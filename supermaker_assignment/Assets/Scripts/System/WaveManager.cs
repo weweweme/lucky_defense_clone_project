@@ -36,14 +36,12 @@ namespace System
         {
             _mdlWaveRx = rootManager.DataManager.WaveRx;
             _spawnHandler = new WaveSpawnHandler();
-            
-            Init();
         }
         
         /// <summary>
         /// 웨이브 관리 루틴을 시작하는 초기화 메서드입니다.
         /// </summary>
-        private void Init()
+        public void WaveStart()
         {
             LoopAsync(_cts.Token).Forget();
         }
