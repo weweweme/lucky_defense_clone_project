@@ -1,5 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Model;
 using UniRx;
 
 namespace System
@@ -20,8 +21,12 @@ namespace System
         /// </summary>
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
 
-        public WaveManager()
+        private readonly MDL_Wave _mdlWave;
+
+        public WaveManager(GameManager rootManager)
         {
+            _mdlWave = rootManager.DataManager.Wave;
+            
             Init();
         }
         

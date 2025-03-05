@@ -22,7 +22,7 @@ namespace System
 
         private void Start()
         {
-            _waveManager = new WaveManager();
+            _waveManager = new WaveManager(this);
         }
 
         protected override void OnDispose()
