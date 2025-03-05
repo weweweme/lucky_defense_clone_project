@@ -6,6 +6,11 @@ namespace System
     /// </summary>
     public sealed class EnemySpawnHandler : SpawnHandlerBase
     {
+        public EnemySpawnHandler(GameManager rootManager)
+        {
+            InitRx(rootManager);
+        }
+        
         /// <summary>
         /// GameManager로부터 적 스폰 관련 스트림을 구독하고,
         /// 이벤트 발생 시 적을 생성하는 초기화 로직을 구성합니다.
