@@ -1,8 +1,6 @@
-using UnityEngine;
-
 namespace Util
 {
-    public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
+    public abstract class Singleton<T> : MonoBehaviourBase where T : Singleton<T>
     {
         private static T _ins;
     
@@ -25,9 +23,11 @@ namespace Util
             InitSingleton();
         }
     
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
             OnDispose();
+            
+            base.OnDestroy();
         }
 
         /// <summary>
