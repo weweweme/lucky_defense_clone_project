@@ -57,7 +57,7 @@ namespace System
 
                 // TODO: waveNumber에 따라 에너미가 강해지는 기능 추가
                 _mdlEnemyRx.SpawnEnemy(EEnemyType.Default);
-                spawnedCount++;
+                ++spawnedCount;
 
                 if (spawnedCount >= TOTAL_SPAWN_COUNT) break;
 
