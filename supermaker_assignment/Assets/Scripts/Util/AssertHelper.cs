@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Util
 {
@@ -35,6 +38,25 @@ namespace Util
 
             // 일반적인 null 체크
             Debug.Assert(field != null, $"[{ownerType.Name}] {nameof(field)} 게임 오브젝트가 할당되지 않았습니다.");
+#endif
+        }
+        
+        /// <summary>
+        /// 지정된 열거형 필드가 특정 잘못된 값과 일치하지 않는지 검증합니다.
+        /// 
+        /// 주로 필드가 초기화되지 않았거나, 유효하지 않은 기본값(None 등)을 가지고 있을 때
+        /// 디버그 환경에서 경고를 출력하여 빠르게 문제를 감지하는 용도로 사용됩니다.
+        /// 
+        /// (이 메서드는 유니티 에디터 환경에서만 동작합니다)
+        /// </summary>
+        /// <typeparam name="T">검사할 열거형 타입</typeparam>
+        /// <param name="ownerType">검사를 수행하는 클래스 타입 (예: typeof(MyClass))</param>
+        /// <param name="field">검사할 열거형 필드</param>
+        /// <param name="invalidValue">유효하지 않은 값으로 간주할 열거형 값 (예: None, Invalid 등)</param>
+        public static void NotEquals<T>(System.Type ownerType, T field, T invalidValue) where T : Enum
+        {
+#if UNITY_EDITOR
+            Debug.Assert(!EqualityComparer<T>.Default.Equals(field, invalidValue), $"[{ownerType.Name}] {nameof(field)} 필드가 잘못된 값({invalidValue})입니다.");
 #endif
         }
     }

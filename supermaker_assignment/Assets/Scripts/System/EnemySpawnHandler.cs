@@ -43,9 +43,11 @@ namespace System
             // TODO: type에 따라 스폰할 에너미의 데이터를 셋업하는 기능 추가
             EnemyRoot enemy = _enemyBasePool.GetObject();
             enemy.transform.position = _northSpawnPos;
+            enemy.OnTakeFromPoolInit(EPlayerSide.North);
             
             enemy = _enemyBasePool.GetObject();
             enemy.transform.position = _southSpawnPos;
+            enemy.OnTakeFromPoolInit(EPlayerSide.South);
         }
     }
 }

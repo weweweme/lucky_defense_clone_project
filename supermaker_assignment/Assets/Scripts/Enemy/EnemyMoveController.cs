@@ -24,7 +24,7 @@ namespace Enemy
         /// <summary>
         /// 경로 초기화 및 첫 이동 방향 설정
         /// </summary>
-        public void Init(Transform[] pathNodes)
+        public void OnActivate(Transform[] pathNodes)
         {
             _pathNodes = pathNodes;
 
