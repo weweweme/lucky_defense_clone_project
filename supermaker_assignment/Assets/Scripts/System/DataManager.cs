@@ -11,10 +11,10 @@ namespace System
         private readonly MDL_WaveRx _waveRx = new MDL_WaveRx();
         public MDL_WaveRx WaveRx => _waveRx;
 
-        private readonly MDL_EnemyRx _enemyRx = new MDL_EnemyRx();
-        public MDL_EnemyRx EnemyRx => _enemyRx;
+        private readonly MDL_Enemy _enemy = new MDL_Enemy();
+        public MDL_Enemy Enemy => _enemy;
         
-        private readonly MDL_GameSystemRx _gameSystemRx = new MDL_GameSystemRx();
-        public MDL_GameSystemRx GameSystemRx => _gameSystemRx;
+        private readonly MDL_GameSystem _gameSystem = new MDL_GameSystem();
+        public MDL_GameSystem GameSystem => _gameSystem;
     }
 }
