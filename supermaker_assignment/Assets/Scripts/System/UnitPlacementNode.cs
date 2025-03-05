@@ -73,6 +73,7 @@ namespace System
         public void AddUnit(UnitRoot unit)
         {
             Debug.Assert(_unitCount != 3);
+            // TODO: UnitGrade, UnitType을 기록하는 코드 추가
 
             _placedUnits[_unitCount++] = unit;
             RearrangeUnitPositions();
