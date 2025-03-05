@@ -15,9 +15,9 @@ namespace Model
         public void TriggerNextWave() => _currentWave.Value = _currentWave.Value + ROUND_INCREMENT;
         
         // 현재 웨이브의 상태를 나타내는 Rx
-        private readonly ReactiveProperty<EWaveStates> _waveState = new ReactiveProperty<EWaveStates>(EWaveStates.Spawning);
-        public IReadOnlyReactiveProperty<EWaveStates> WaveState => _waveState;
-        public void SetWaveState(EWaveStates state) => _waveState.Value = state;
+        private readonly ReactiveProperty<EWaveState> _waveState = new ReactiveProperty<EWaveState>(EWaveState.Spawning);
+        public IReadOnlyReactiveProperty<EWaveState> WaveState => _waveState;
+        public void SetWaveState(EWaveState state) => _waveState.Value = state;
         
         // 다음 웨이브까지의 카운트다운을 나타내는 Rx
         private readonly ReactiveProperty<uint> _nextWaveCountDown = new ReactiveProperty<uint>(0);
