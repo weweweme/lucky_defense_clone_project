@@ -109,7 +109,7 @@ namespace System
         private void SpawnEnemy(EPlayerSide side)
         {
             SEnemySpawnRequestData data = new SEnemySpawnRequestData(_currentSpawnMetaData, side);
-            _mdlEnemy.TriggerSpawnEnemy(data);
+            _mdlEnemy.SpawnEnemy(data);
             _mdlEnemy.SetCurrentEnemyCount(_currentEnemyCount.Value + 1);
             
             const uint GAME_OVER_ENEMY_COUNT = 100;
