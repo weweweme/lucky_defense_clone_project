@@ -25,7 +25,7 @@ namespace Util
         /// 주어진 CancellationTokenSource를 취소하고, Dispose까지 처리하는 메서드.
         /// </summary>
         /// <param name="cts">취소하고 Dispose할 CancellationTokenSource</param>
-        public static void ClearToken(in CancellationTokenSource cts)
+        public static void DisposeToken(in CancellationTokenSource cts)
         {
             if (cts == null)
                 return;
