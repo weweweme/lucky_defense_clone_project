@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Util;
 
@@ -20,6 +21,17 @@ namespace Enemy
         public void Init(EnemyDependencyContainer container)
         {
             dependencyContainer = container;
+        }
+
+        public void OnTakeFromPoolInit(EPlayerSide side)
+        {
+            AssertHelper.NotEquals(typeof(EnemyRoot), side, EPlayerSide.None);
+
+            var enemyPathManager = dependencyContainer.PathManager;
+            Transform[] pathNodePtr = side == EPlayerSide.North ? enemyPathManager.NorthPathNodes : enemyPathManager.SouthPathNodes;
+            AssertHelper.NotNull(typeof(EnemyRoot), pathNodePtr);
+            
+            moveController.OnActivate(pathNodePtr);
         }
     }
 }
