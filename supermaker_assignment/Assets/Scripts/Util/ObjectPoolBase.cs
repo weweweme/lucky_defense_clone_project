@@ -8,7 +8,7 @@ namespace Util
     /// 컴포넌트 타입의 오브젝트를 풀링하며, 풀의 생성/반환/삭제 시점의 동작을 오버라이드하여 커스터마이징할 수 있습니다.
     /// </summary>
     /// <typeparam name="T">풀링할 오브젝트의 컴포넌트 타입</typeparam>
-    public abstract class ObjectPoolBase<T> : MonoBehaviour where T : Component
+    public abstract class ObjectPoolBase<T> : MonoBehaviourBase where T : Component
     {
         /// <summary>
         /// 풀링할 오브젝트의 프리팹입니다.
