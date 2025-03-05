@@ -17,7 +17,7 @@ namespace Enemy
         private readonly EnemyPathManager _pathManager;
         internal EnemyPathManager PathManager => _pathManager;
 
-        public EnemyDependencyContainer(GameManager rootManager)
+        public EnemyDependencyContainer(RootManager rootManager)
         {
             _enemyBasePool = rootManager.PoolManager.EnemyBasePool;
             _mdlEnemy = rootManager.DataManager.Enemy;

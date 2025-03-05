@@ -7,7 +7,7 @@ namespace System
     {
         private readonly EnemySpawnHandler _enemySpawnHandler;
         
-        public SpawnManager(GameManager rootManager)
+        public SpawnManager(RootManager rootManager)
         {
             _enemySpawnHandler = new EnemySpawnHandler(rootManager);
         }

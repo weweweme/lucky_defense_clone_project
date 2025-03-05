@@ -10,7 +10,7 @@ namespace Enemy
     {
         private EnemyDependencyContainer _dependencyContainer;
 
-        public void Init(GameManager rootManager)
+        public void Init(RootManager rootManager)
         {
             _dependencyContainer = new EnemyDependencyContainer(rootManager);
         }

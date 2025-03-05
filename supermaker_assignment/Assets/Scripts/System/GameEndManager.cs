@@ -17,7 +17,7 @@ namespace System
         /// GameEndManager를 초기화하고, 게임 오버 이벤트를 구독합니다.
         /// </summary>
         /// <param name="rootManager">게임의 핵심 매니저 참조</param>
-        public GameEndManager(GameManager rootManager)
+        public GameEndManager(RootManager rootManager)
         {
             rootManager.DataManager.GameSystem.OnGameFlow
                 .Where(state => state == EGameState.GameOver) // 게임 오버 상태만 필터링

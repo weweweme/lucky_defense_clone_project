@@ -18,7 +18,7 @@ namespace System
         /// 상속받는 클래스에서 필수로 구현해야 합니다.
         /// </summary>
         /// <param name="rootManager">게임 전체 매니저 인스턴스</param>
-        protected abstract void InitRx(GameManager rootManager);
+        protected abstract void InitRx(RootManager rootManager);
 
         /// <summary>
         /// IDisposable 인터페이스 구현 메서드입니다.

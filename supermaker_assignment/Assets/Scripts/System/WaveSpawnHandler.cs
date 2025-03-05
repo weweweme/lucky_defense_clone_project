@@ -30,7 +30,7 @@ namespace System
         /// </summary>
         private readonly IReadOnlyReactiveProperty<uint> _currentEnemyCount;
 
-        public WaveSpawnHandler(GameManager rootManager)
+        public WaveSpawnHandler(RootManager rootManager)
         {
             _mdlEnemy = rootManager.DataManager.Enemy;
             _mdlGameSystem = rootManager.DataManager.GameSystem;

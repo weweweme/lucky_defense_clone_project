@@ -6,7 +6,7 @@ namespace System
     /// <summary>
     /// 개임 내에서 사용될 매니저들의 참조와 초기화를 담당합니다.
     /// </summary>
-    public sealed class GameManager : Singleton<GameManager>
+    public sealed class RootManager : Singleton<RootManager>
     {
         [SerializeField] private DataManager _dataManager;
         public DataManager DataManager => _dataManager;
@@ -25,9 +25,9 @@ namespace System
         {
             base.Awake();
             
-            AssertHelper.NotNull(typeof(GameManager), _dataManager);
-            AssertHelper.NotNull(typeof(GameManager), _poolManager);
-            AssertHelper.NotNull(typeof(GameManager), _enemyPathManager);
+            AssertHelper.NotNull(typeof(RootManager), _dataManager);
+            AssertHelper.NotNull(typeof(RootManager), _poolManager);
+            AssertHelper.NotNull(typeof(RootManager), _enemyPathManager);
         }
 
         private void Start()
