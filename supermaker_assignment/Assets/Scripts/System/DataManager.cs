@@ -1,3 +1,4 @@
+using Model;
 using UnityEngine;
 
 namespace System
@@ -7,5 +8,7 @@ namespace System
     /// </summary>
     public sealed class DataManager : MonoBehaviour
     {
+        private readonly MDL_Wave _wave = new MDL_Wave();
+        public MDL_Wave Wave => _wave;
     }
 }
