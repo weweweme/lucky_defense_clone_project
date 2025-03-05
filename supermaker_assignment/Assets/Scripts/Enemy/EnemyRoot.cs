@@ -10,15 +10,16 @@ namespace Enemy
     public sealed class EnemyRoot : MonoBehaviourBase
     {
         [SerializeField] internal EnemyMoveController moveController;
+        internal EnemyDependencyContainer dependencyContainer;
 
         private void Awake()
         {
             AssertHelper.NotNull(typeof(EnemyRoot), moveController);
         }
         
-        public void Init()
+        public void Init(EnemyDependencyContainer container)
         {
-            
+            dependencyContainer = container;
         }
     }
 }

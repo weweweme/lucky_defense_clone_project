@@ -1,3 +1,4 @@
+using System;
 using Util;
 
 namespace Enemy
@@ -7,10 +8,17 @@ namespace Enemy
     /// </summary>
     public sealed class EnemyBasePool : ObjectPoolBase<EnemyRoot>
     {
+        private EnemyDependencyContainer _dependencyContainer;
+
+        public void Init(GameManager rootManager)
+        {
+            _dependencyContainer = new EnemyDependencyContainer(this, rootManager.DataManager.EnemyRx);
+        }
+        
         protected override EnemyRoot CreatePooledItem()
         {
             var enemy = base.CreatePooledItem();
-            enemy.Init();
+            enemy.Init(_dependencyContainer);
 
             return enemy;
         }
