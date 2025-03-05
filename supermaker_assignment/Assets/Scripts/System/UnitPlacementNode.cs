@@ -72,7 +72,7 @@ namespace System
         /// </summary>
         public void AddUnit(UnitRoot unit)
         {
-            Debug.Assert(_unitCount != 3);
+            AssertHelper.NotEqualsValue<uint>(typeof(UnitPlacementNode), _unitCount, MAX_UNIT_COUNT);
             // TODO: UnitGrade, UnitType을 기록하는 코드 추가
 
             _placedUnits[_unitCount++] = unit;
