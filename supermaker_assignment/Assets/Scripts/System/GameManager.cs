@@ -18,7 +18,7 @@ namespace System
 
         private void Start()
         {
-            _waveManager.Init();
+            _waveManager = new WaveManager();
         }
 
         protected override void OnDispose()

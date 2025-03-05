@@ -20,10 +20,15 @@ namespace System
         /// </summary>
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
 
+        public WaveManager()
+        {
+            Init();
+        }
+        
         /// <summary>
         /// 웨이브 관리 루틴을 시작하는 초기화 메서드입니다.
         /// </summary>
-        public void Init()
+        private void Init()
         {
             LoopAsync(_cts.Token).Forget();
         }
