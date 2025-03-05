@@ -32,11 +32,6 @@ namespace System
         /// </summary>
         private readonly WaveSpawnHandler _spawnHandler;
 
-        /// <summary>
-        /// 현재 웨이브가 종료되었는지 여부를 나타내는 플래그입니다.
-        /// </summary>
-        private bool _isWaveCompleted;  // 이름 변경 예시
-
         public WaveManager(GameManager rootManager)
         {
             _mdlWave = rootManager.DataManager.Wave;
@@ -100,9 +95,6 @@ namespace System
 
                 await UniTask.Delay(TimeSpan.FromSeconds(COUNTDOWN_INTERVAL_SECONDS), cancellationToken: token);
             }
-
-            // 웨이브 완료
-            _isWaveCompleted = true;
         }
 
         /// <summary>
