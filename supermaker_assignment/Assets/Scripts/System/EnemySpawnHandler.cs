@@ -18,11 +18,16 @@ namespace System
         public EnemySpawnHandler(RootManager rootManager)
         {
             var enemyPathManager = rootManager.EnemyPathNodeManager;
+            AssertHelper.NotNull(typeof(EnemySpawnHandler), enemyPathManager);
+            
             const int START_IDX = 0;
+            AssertHelper.NotNull(typeof(EnemySpawnHandler), enemyPathManager.NorthPathNodes[START_IDX]);
+            AssertHelper.NotNull(typeof(EnemySpawnHandler), enemyPathManager.SouthPathNodes[START_IDX]);
             _northSpawnPos = enemyPathManager.NorthPathNodes[START_IDX].position;
             _southSpawnPos = enemyPathManager.SouthPathNodes[START_IDX].position;
             
             _enemyBasePool = rootManager.PoolManager.EnemyBasePool;
+            AssertHelper.NotNull(typeof(EnemySpawnHandler), _enemyBasePool);
             
             InitRx(rootManager);
         }
