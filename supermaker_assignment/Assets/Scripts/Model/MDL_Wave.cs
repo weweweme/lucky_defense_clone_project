@@ -6,9 +6,10 @@ namespace Model
     public class MDL_Wave
     {
         // 현재 몇 웨이브인지 나타내는 Rx
+        private const int ROUND_INCREMENT = 1;
         private readonly ReactiveProperty<uint> _currentWave = new ReactiveProperty<uint>(0);
         public IReadOnlyReactiveProperty<uint> CurrentWave => _currentWave;
-        public void TriggerNextWave() => _currentWave.Value = _currentWave.Value + 1;
+        public void TriggerNextWave() => _currentWave.Value = _currentWave.Value + ROUND_INCREMENT;
         
         // 현재 웨이브의 상태를 나타내는 Rx
         private readonly ReactiveProperty<EWaveStates> _waveState = new ReactiveProperty<EWaveStates>(EWaveStates.Spawning);
