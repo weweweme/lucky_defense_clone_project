@@ -41,4 +41,25 @@ namespace System
         /// </summary>
         Default,
     }
+    
+    /// <summary>
+    /// 플레이어 진영을 나타내는 열거형입니다.
+    /// </summary>
+    public enum EPlayerSide
+    {
+        /// <summary>
+        /// 지정되지 않음.
+        /// </summary>
+        None,
+    
+        /// <summary>
+        /// 북쪽 진영.
+        /// </summary>
+        North,
+    
+        /// <summary>
+        /// 남쪽 진영.
+        /// </summary>
+        South,
+    }
 }
