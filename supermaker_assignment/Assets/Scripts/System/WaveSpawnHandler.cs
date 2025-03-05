@@ -1,6 +1,7 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Model;
+using UniRx;
 
 namespace System
 {
@@ -15,13 +16,25 @@ namespace System
         private readonly MDL_Enemy _mdlEnemy;
         
         /// <summary>
+        /// 게임 시스템 관련 정보를 관리하는 데이터 모델 참조입니다.
+        /// </summary>
+        private readonly MDL_GameSystemRx _mdlGameSystem;
+        
+        /// <summary>
         /// 적 유닛 스폰 메타데이터 입니다.
         /// </summary>
         private readonly EnemySpawnMetaData _currentSpawnMetaData = new EnemySpawnMetaData();
+        
+        /// <summary>
+        /// 현재 맵에 존재하는 적의 수를 나타내는 ReactiveProperty입니다.
+        /// </summary>
+        private readonly IReadOnlyReactiveProperty<uint> _currentEnemyCount;
 
         public WaveSpawnHandler(GameManager rootManager)
         {
             _mdlEnemy = rootManager.DataManager.Enemy;
+            _mdlGameSystem = rootManager.DataManager.GameSystem;
+            _currentEnemyCount = _mdlEnemy.CurrentEnemyCount;
         }
         
         /// <summary>
@@ -64,11 +77,8 @@ namespace System
                 if (token.IsCancellationRequested) return;
 
                 // TODO: waveNumber에 따라 에너미가 강해지는 기능 추가
-                SEnemySpawnMetaData data = new SEnemySpawnMetaData(_currentSpawnMetaData, EPlayerSide.North);
-                _mdlEnemy.TriggerSpawnEnemy(data);
-                
-                data = new SEnemySpawnMetaData(_currentSpawnMetaData, EPlayerSide.South);
-                _mdlEnemy.TriggerSpawnEnemy(data);
+                SpawnEnemy(EPlayerSide.North);
+                SpawnEnemy(EPlayerSide.South);
                 
                 ++spawnedCount;
 
@@ -88,12 +98,24 @@ namespace System
         {
             // TODO: waveNumber에 따라 에너미가 강해지는 기능 추가
             // TODO: 보스 소환 이벤트 발행으로 변경
-            
-            SEnemySpawnMetaData data = new SEnemySpawnMetaData(_currentSpawnMetaData, EPlayerSide.North);
+            SpawnEnemy(EPlayerSide.North);
+            SpawnEnemy(EPlayerSide.South);
+        }
+        
+        /// <summary>
+        /// 지정된 진영에 적을 스폰하고 현재 적 수를 갱신하는 메서드입니다.
+        /// </summary>
+        /// <param name="side">적이 소환될 진영</param>
+        private void SpawnEnemy(EPlayerSide side)
+        {
+            SEnemySpawnMetaData data = new SEnemySpawnMetaData(_currentSpawnMetaData, side);
             _mdlEnemy.TriggerSpawnEnemy(data);
+            _mdlEnemy.SetCurrentEnemyCount(_currentEnemyCount.Value + 1);
             
-            data = new SEnemySpawnMetaData(_currentSpawnMetaData, EPlayerSide.South);
-            _mdlEnemy.TriggerSpawnEnemy(data);
+            const uint GAME_OVER_ENEMY_COUNT = 100;
+            if (_currentEnemyCount.Value != GAME_OVER_ENEMY_COUNT) return;
+            
+            _mdlGameSystem.ChangeGameFlow(EGameState.GameOver);
         }
     }
 }
