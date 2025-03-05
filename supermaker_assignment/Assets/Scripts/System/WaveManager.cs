@@ -32,7 +32,7 @@ namespace System
         /// </summary>
         private readonly WaveSpawnHandler _spawnHandler;
 
-        public WaveManager(GameManager rootManager)
+        public WaveManager(RootManager rootManager)
         {
             _mdlWaveRx = rootManager.DataManager.WaveRx;
             _spawnHandler = new WaveSpawnHandler(rootManager);

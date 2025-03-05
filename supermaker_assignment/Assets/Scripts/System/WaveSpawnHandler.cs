@@ -30,7 +30,7 @@ namespace System
         /// </summary>
         private readonly IReadOnlyReactiveProperty<uint> _currentEnemyCount;
 
-        public WaveSpawnHandler(GameManager rootManager)
+        public WaveSpawnHandler(RootManager rootManager)
         {
             _mdlEnemy = rootManager.DataManager.Enemy;
             _mdlGameSystem = rootManager.DataManager.GameSystem;
@@ -49,7 +49,7 @@ namespace System
             
             if (currentWave % 10 == 0)
             {
-                await SpawnBossWaveAsync(token);
+                await SpawnBossWaveAsync();
             }
             else
             {
@@ -94,7 +94,7 @@ namespace System
         /// </summary>
         /// <param name="waveNumber">웨이브 번호</param>
         /// <param name="token">작업 취소 토큰</param>
-        private async UniTask SpawnBossWaveAsync(CancellationToken token)
+        private async UniTask SpawnBossWaveAsync()
         {
             // TODO: waveNumber에 따라 에너미가 강해지는 기능 추가
             // TODO: 보스 소환 이벤트 발행으로 변경
