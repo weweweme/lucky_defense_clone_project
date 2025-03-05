@@ -7,5 +7,9 @@ namespace System
     /// </summary>
     public sealed class SpawnManager : MonoBehaviourBase
     {
+        public SpawnManager(GameManager rootManager)
+        {
+            
+        }
     }
 }
