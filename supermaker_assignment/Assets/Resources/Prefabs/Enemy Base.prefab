@@ -185,5 +185,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b629aaeb60b04ceca4bc9dd7001783f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 25
-  nodeArrivalThreshold: 0.5
+  moveSpeed: 5
+  nodeArrivalThreshold: 0.1
