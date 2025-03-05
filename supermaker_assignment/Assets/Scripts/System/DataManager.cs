@@ -10,5 +10,8 @@ namespace System
     {
         private readonly MDL_WaveRx _waveRx = new MDL_WaveRx();
         public MDL_WaveRx WaveRx => _waveRx;
+
+        private readonly MDL_EnemyRx _enemyRx = new MDL_EnemyRx();
+        public MDL_EnemyRx EnemyRx => _enemyRx;
     }
 }
