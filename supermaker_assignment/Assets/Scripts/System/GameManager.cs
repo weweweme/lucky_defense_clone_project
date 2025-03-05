@@ -29,6 +29,8 @@ namespace System
         {
             _waveManager = new WaveManager(this);
             _spawnManager = new SpawnManager(this);
+
+            _waveManager.WaveStart();
         }
 
         protected override void OnDispose()
