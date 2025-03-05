@@ -10,6 +10,9 @@ namespace System
     {
         [SerializeField] private DataManager _dataManager;
         public DataManager DataManager => _dataManager;
+
+        [SerializeField] private PoolManager _poolManager;
+        public PoolManager PoolManager => _poolManager;
         
         private WaveManager _waveManager;
 
@@ -18,6 +21,7 @@ namespace System
             base.Awake();
             
             AssertHelper.NotNull(typeof(GameManager), _dataManager);
+            AssertHelper.NotNull(typeof(GameManager), _poolManager);
         }
 
         private void Start()
