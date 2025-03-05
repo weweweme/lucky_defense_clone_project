@@ -1,3 +1,4 @@
+using UnityEngine;
 using Util;
 
 namespace Enemy
@@ -8,6 +9,13 @@ namespace Enemy
     /// </summary>
     public sealed class EnemyRoot : MonoBehaviourBase
     {
+        [SerializeField] internal EnemyMoveController moveController;
+
+        private void Awake()
+        {
+            AssertHelper.NotNull(typeof(EnemyRoot), moveController);
+        }
+        
         public void Init()
         {
             
