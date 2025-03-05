@@ -17,6 +17,9 @@ namespace System
         [SerializeField] private EnemyPathManager _enemyPathManager;
         public EnemyPathManager EnemyPathManager => _enemyPathManager;
 
+        private readonly UIManager _uiManager = new UIManager();
+        public UIManager UIManager => _uiManager;
+        
         private SpawnManager _spawnManager;
         private WaveManager _waveManager;
         private GameEndManager _gameEndManager;
@@ -36,6 +39,7 @@ namespace System
             _waveManager = new WaveManager(this);
             _spawnManager = new SpawnManager(this);
             _gameEndManager = new GameEndManager(this);
+            _uiManager.Init(_dataManager);
 
             _waveManager.WaveStart();
         }

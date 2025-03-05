@@ -33,7 +33,7 @@ namespace UI
         {
             AssertHelper.NotNull(typeof(ViewController), _rootManager);
             
-            // TODO: UIManager에 Bind 하는 기능 추가
+            _rootManager.UIManager.AddViewController(this);
         }
         
         /// <summary>
