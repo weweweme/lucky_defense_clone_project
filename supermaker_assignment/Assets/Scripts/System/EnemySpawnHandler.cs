@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace System
 {
     /// <summary>
@@ -6,8 +8,16 @@ namespace System
     /// </summary>
     public sealed class EnemySpawnHandler : SpawnHandlerBase
     {
+        private readonly Vector3 _northSpawnPos;
+        private readonly Vector3 _southSpawnPos;
+        
         public EnemySpawnHandler(GameManager rootManager)
         {
+            var enemyPathManager = rootManager.EnemyPathManager;
+            const int START_IDX = 0;
+            _northSpawnPos = enemyPathManager.NorthPathNodes[START_IDX].position;
+            _southSpawnPos = enemyPathManager.SouthPathNodes[START_IDX].position;
+            
             InitRx(rootManager);
         }
         
