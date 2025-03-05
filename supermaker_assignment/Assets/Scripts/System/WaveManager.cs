@@ -22,10 +22,12 @@ namespace System
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
 
         private readonly MDL_Wave _mdlWave;
+        private readonly WaveSpawnHandler _spawnHandler;
 
         public WaveManager(GameManager rootManager)
         {
             _mdlWave = rootManager.DataManager.Wave;
+            _spawnHandler = new WaveSpawnHandler();
             
             Init();
         }
@@ -47,8 +49,8 @@ namespace System
             while (!token.IsCancellationRequested)
             {
                 await StartWave(token);
-                await EndWave(token);
                 await WaitForNextWave(token);
+                await EndWave(token);
             }
         }
 
@@ -61,16 +63,20 @@ namespace System
             _mdlWave.TriggerNextWave();
             _mdlWave.SetWaveState(EWaveStates.Spawning);
             
-            for (int i = 0; i < 5; i++)
-            {
-                if (token.IsCancellationRequested) return;
-                
-                // SpawnEnemy(EEnemyType.Default);
-                
-                await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: token);
-            }
+            uint currentWave = _mdlWave.CurrentWave.Value;
+            
+            _spawnHandler.HandleWaveSpawnAsync(currentWave, token).Forget();
             
             _mdlWave.SetWaveState(EWaveStates.InProgress);
+        }
+        
+        /// <summary>
+        /// 다음 웨이브 시작 전 대기 시간을 처리하는 비동기 메서드입니다.
+        /// </summary>
+        /// <param name="token">작업 취소 토큰</param>
+        private async UniTask WaitForNextWave(CancellationToken token)
+        {
+            // TODO: 다음 웨이브 대기 로직 구현 예정
         }
 
         /// <summary>
@@ -80,15 +86,6 @@ namespace System
         private async UniTask EndWave(CancellationToken token)
         {
             // TODO: 웨이브 종료 로직 구현 예정
-        }
-
-        /// <summary>
-        /// 다음 웨이브 시작 전 대기 시간을 처리하는 비동기 메서드입니다.
-        /// </summary>
-        /// <param name="token">작업 취소 토큰</param>
-        private async UniTask WaitForNextWave(CancellationToken token)
-        {
-            // TODO: 다음 웨이브 대기 로직 구현 예정
         }
 
         /// <summary>
