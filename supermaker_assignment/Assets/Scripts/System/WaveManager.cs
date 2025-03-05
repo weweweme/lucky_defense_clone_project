@@ -21,8 +21,20 @@ namespace System
         /// </summary>
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
 
+        /// <summary>
+        /// 웨이브 정보를 관리하는 데이터 모델입니다.
+        /// </summary>
         private readonly MDL_Wave _mdlWave;
+
+        /// <summary>
+        /// 현재 웨이브에서의 몬스터 및 보스 스폰 로직을 관리하는 핸들러입니다.
+        /// </summary>
         private readonly WaveSpawnHandler _spawnHandler;
+
+        /// <summary>
+        /// 현재 웨이브가 종료되었는지 여부를 나타내는 플래그입니다.
+        /// </summary>
+        private bool _isWaveCompleted;  // 이름 변경 예시
 
         public WaveManager(GameManager rootManager)
         {
@@ -48,9 +60,11 @@ namespace System
         {
             while (!token.IsCancellationRequested)
             {
-                await StartWave(token);
+                StartWave(token);
+                
                 await WaitForNextWave(token);
-                await EndWave(token);
+                
+                EndWave();
             }
         }
 
@@ -58,7 +72,7 @@ namespace System
         /// 웨이브 시작 시 실행되는 비동기 메서드입니다.
         /// </summary>
         /// <param name="token">작업 취소 토큰</param>
-        private async UniTask StartWave(CancellationToken token)
+        private void StartWave(CancellationToken token)
         {
             _mdlWave.TriggerNextWave();
             _mdlWave.SetWaveState(EWaveStates.Spawning);
@@ -78,8 +92,6 @@ namespace System
         {
             const uint NEXT_ROUND_WAIT_SECONDS = 20;
             const uint COUNTDOWN_INTERVAL_SECONDS = 1;
-
-            _mdlWave.SetWaveState(EWaveStates.Waiting);
             
             for (uint i = 0; i < NEXT_ROUND_WAIT_SECONDS; ++i)
             {
@@ -87,15 +99,18 @@ namespace System
 
                 await UniTask.Delay(TimeSpan.FromSeconds(COUNTDOWN_INTERVAL_SECONDS), cancellationToken: token);
             }
+
+            // 웨이브 완료
+            _isWaveCompleted = true;
         }
 
         /// <summary>
         /// 웨이브 종료 시 실행되는 비동기 메서드입니다.
         /// </summary>
         /// <param name="token">작업 취소 토큰</param>
-        private async UniTask EndWave(CancellationToken token)
+        private void EndWave()
         {
-            // TODO: 웨이브 종료 로직 구현 예정
+            _mdlWave.SetWaveState(EWaveStates.Waiting);
         }
 
         /// <summary>
