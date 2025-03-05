@@ -53,10 +53,32 @@ namespace Util
         /// <param name="ownerType">검사를 수행하는 클래스 타입 (예: typeof(MyClass))</param>
         /// <param name="field">검사할 열거형 필드</param>
         /// <param name="invalidValue">유효하지 않은 값으로 간주할 열거형 값 (예: None, Invalid 등)</param>
-        public static void NotEquals<T>(System.Type ownerType, T field, T invalidValue) where T : Enum
+        public static void NotEqualsEnum<T>(System.Type ownerType, T field, T invalidValue) where T : Enum
         {
 #if UNITY_EDITOR
             Debug.Assert(!EqualityComparer<T>.Default.Equals(field, invalidValue), $"[{ownerType.Name}] {nameof(field)} 필드가 잘못된 값({invalidValue})입니다.");
+#endif
+        }
+        
+        /// <summary>
+        /// 값 타입 필드가 지정된 잘못된 값과 일치하지 않는지 검증합니다.
+        /// 
+        /// 주로 숫자형 값(int, float 등)이나 구조체 타입에서 초기화되지 않았거나
+        /// 유효하지 않은 기본값과 비교해, 디버그 환경에서 경고를 출력하는 용도로 사용됩니다.
+        /// 
+        /// 이 메서드는 유니티 에디터 환경에서만 동작합니다.
+        /// </summary>
+        /// <typeparam name="T">검사할 값 타입 (int, float 등)</typeparam>
+        /// <param name="ownerType">검사를 수행하는 클래스 타입 (예: typeof(MyClass))</param>
+        /// <param name="field">검사할 값 타입 필드</param>
+        /// <param name="invalidValue">유효하지 않은 값으로 간주할 값 (예: -1, 0 등)</param>
+        public static void NotEqualsValue<T>(System.Type ownerType, T field, T invalidValue) where T : struct, IComparable<T>
+        {
+#if UNITY_EDITOR
+            if (EqualityComparer<T>.Default.Equals(field, invalidValue))
+            {
+                Debug.Assert(false, $"[{ownerType.Name}] 필드가 잘못된 값({invalidValue})입니다.");
+            }
 #endif
         }
     }
