@@ -19,6 +19,7 @@ namespace System
 
         private SpawnManager _spawnManager;
         private WaveManager _waveManager;
+        private GameEndManager _gameEndManager;
 
         protected override void Awake()
         {
@@ -34,6 +35,7 @@ namespace System
             _poolManager.Init(this);
             _waveManager = new WaveManager(this);
             _spawnManager = new SpawnManager(this);
+            _gameEndManager = new GameEndManager(this);
 
             _waveManager.WaveStart();
         }
@@ -42,6 +44,7 @@ namespace System
         {
             _spawnManager.Dispose();
             _waveManager.Dispose();
+            _gameEndManager.Dispose();
             
             base.OnDispose();
         }
