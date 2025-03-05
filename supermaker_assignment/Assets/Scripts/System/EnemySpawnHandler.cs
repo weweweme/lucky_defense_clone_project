@@ -17,7 +17,7 @@ namespace System
         
         public EnemySpawnHandler(RootManager rootManager)
         {
-            var enemyPathManager = rootManager.EnemyPathManager;
+            var enemyPathManager = rootManager.EnemyPathNodeManager;
             const int START_IDX = 0;
             _northSpawnPos = enemyPathManager.NorthPathNodes[START_IDX].position;
             _southSpawnPos = enemyPathManager.SouthPathNodes[START_IDX].position;

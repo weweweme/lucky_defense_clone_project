@@ -14,14 +14,14 @@ namespace Enemy
         private readonly MDL_Enemy _mdlEnemy;
         internal MDL_Enemy MdlEnemy => _mdlEnemy;
 
-        private readonly EnemyPathManager _pathManager;
-        internal EnemyPathManager PathManager => _pathManager;
+        private readonly EnemyPathNodeManager _pathNodeManager;
+        internal EnemyPathNodeManager PathNodeManager => _pathNodeManager;
 
         public EnemyDependencyContainer(RootManager rootManager)
         {
             _enemyBasePool = rootManager.PoolManager.EnemyBasePool;
             _mdlEnemy = rootManager.DataManager.Enemy;
-            _pathManager = rootManager.EnemyPathManager;
+            _pathNodeManager = rootManager.EnemyPathNodeManager;
         }
     }
 }
