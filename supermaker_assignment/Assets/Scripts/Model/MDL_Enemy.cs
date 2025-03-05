@@ -9,9 +9,9 @@ namespace Model
     public class MDL_Enemy
     {
         // 적 유닛 스폰과 관련된 Rx
-        private readonly Subject<SEnemySpawnMetaData> _onEnemySpawn = new Subject<SEnemySpawnMetaData>();
-        public IObservable<SEnemySpawnMetaData> OnEnemySpawn => _onEnemySpawn;
-        public void TriggerSpawnEnemy(SEnemySpawnMetaData data) => _onEnemySpawn.OnNext(data);
+        private readonly Subject<SEnemySpawnRequestData> _onEnemySpawn = new Subject<SEnemySpawnRequestData>();
+        public IObservable<SEnemySpawnRequestData> OnEnemySpawn => _onEnemySpawn;
+        public void TriggerSpawnEnemy(SEnemySpawnRequestData data) => _onEnemySpawn.OnNext(data);
 
         // 적 유닛 사망과 관련된 Rx
         private readonly Subject<EEnemyType> _onEnemyDeath = new Subject<EEnemyType>();

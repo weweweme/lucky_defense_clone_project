@@ -39,7 +39,7 @@ namespace System
                 .AddTo(disposable);
         }
         
-        private void SpawnEnemy(SEnemySpawnMetaData data)
+        private void SpawnEnemy(SEnemySpawnRequestData data)
         {
             AssertHelper.NotEquals(typeof(EnemySpawnHandler),data.SpawnMetaData.EnemyType, EEnemyType.None);
             AssertHelper.NotEquals(typeof(EnemySpawnHandler),data.SpawnSide, EPlayerSide.None);

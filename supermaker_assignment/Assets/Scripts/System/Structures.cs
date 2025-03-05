@@ -3,7 +3,7 @@ namespace System
     /// <summary>
     /// 적 소환에 필요한 메타데이터 구조체입니다.
     /// </summary>
-    public struct SEnemySpawnMetaData
+    public struct SEnemySpawnRequestData
     {
         private readonly EnemySpawnMetaData _spawnMetaData;
         private readonly EPlayerSide _spawnSide;
@@ -21,7 +21,7 @@ namespace System
         /// <summary>
         /// 적 소환 메타데이터를 생성하는 생성자입니다.
         /// </summary>
-        public SEnemySpawnMetaData(EnemySpawnMetaData spawnMetaData, EPlayerSide spawnSide)
+        public SEnemySpawnRequestData(EnemySpawnMetaData spawnMetaData, EPlayerSide spawnSide)
         {
             _spawnMetaData = spawnMetaData;
             _spawnSide = spawnSide;

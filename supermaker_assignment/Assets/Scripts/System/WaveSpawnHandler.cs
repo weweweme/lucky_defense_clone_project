@@ -108,7 +108,7 @@ namespace System
         /// <param name="side">적이 소환될 진영</param>
         private void SpawnEnemy(EPlayerSide side)
         {
-            SEnemySpawnMetaData data = new SEnemySpawnMetaData(_currentSpawnMetaData, side);
+            SEnemySpawnRequestData data = new SEnemySpawnRequestData(_currentSpawnMetaData, side);
             _mdlEnemy.TriggerSpawnEnemy(data);
             _mdlEnemy.SetCurrentEnemyCount(_currentEnemyCount.Value + 1);
             
