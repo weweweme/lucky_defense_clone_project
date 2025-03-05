@@ -25,7 +25,7 @@ namespace System
         /// <summary>
         /// 웨이브 정보를 관리하는 데이터 모델입니다.
         /// </summary>
-        private readonly MDL_WaveRx _mdlWaveRx;
+        private readonly MDL_Wave _mdlWave;
 
         /// <summary>
         /// 현재 웨이브에서의 몬스터 및 보스 스폰 로직을 관리하는 핸들러입니다.
@@ -34,7 +34,7 @@ namespace System
 
         public WaveManager(RootManager rootManager)
         {
-            _mdlWaveRx = rootManager.DataManager.WaveRx;
+            _mdlWave = rootManager.DataManager.Wave;
             _spawnHandler = new WaveSpawnHandler(rootManager);
         }
         
@@ -75,14 +75,14 @@ namespace System
         /// <param name="token">작업 취소 토큰</param>
         private void StartWave(CancellationToken token)
         {
-            _mdlWaveRx.TriggerNextWave();
-            _mdlWaveRx.SetWaveState(EWaveStates.Spawning);
+            _mdlWave.TriggerNextWave();
+            _mdlWave.SetWaveState(EWaveStates.Spawning);
             
-            uint currentWave = _mdlWaveRx.CurrentWave.Value;
+            uint currentWave = _mdlWave.CurrentWave.Value;
             
             _spawnHandler.HandleWaveSpawnAsync(currentWave, token).Forget();
             
-            _mdlWaveRx.SetWaveState(EWaveStates.InProgress);
+            _mdlWave.SetWaveState(EWaveStates.InProgress);
         }
         
         /// <summary>
@@ -96,7 +96,7 @@ namespace System
             
             for (uint i = 0; i < NEXT_ROUND_WAIT_SECONDS; ++i)
             {
-                _mdlWaveRx.SetNextWaveCountDown(NEXT_ROUND_WAIT_SECONDS - i);
+                _mdlWave.SetNextWaveCountDown(NEXT_ROUND_WAIT_SECONDS - i);
 
                 await UniTask.Delay(TimeSpan.FromSeconds(COUNTDOWN_INTERVAL_SECONDS), cancellationToken: token);
             }
@@ -108,7 +108,7 @@ namespace System
         /// <param name="token">작업 취소 토큰</param>
         private void EndWave()
         {
-            _mdlWaveRx.SetWaveState(EWaveStates.Waiting);
+            _mdlWave.SetWaveState(EWaveStates.Waiting);
         }
 
         /// <summary>

@@ -8,8 +8,8 @@ namespace System
     /// </summary>
     public sealed class DataManager : MonoBehaviourBase
     {
-        private readonly MDL_WaveRx _waveRx = new MDL_WaveRx();
-        public MDL_WaveRx WaveRx => _waveRx;
+        private readonly MDL_Wave _wave = new MDL_Wave();
+        public MDL_Wave Wave => _wave;
 
         private readonly MDL_Enemy _enemy = new MDL_Enemy();
         public MDL_Enemy Enemy => _enemy;
