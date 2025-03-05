@@ -1,4 +1,5 @@
 using UnityEngine;
+using Util;
 
 namespace System
 {
@@ -6,7 +7,7 @@ namespace System
     /// 유닛이 배치되는 단일 노드를 나타내는 클래스입니다.
     /// 유닛의 등급, 타입, 개수 및 다인 배치 시 위치 정보를 관리합니다.
     /// </summary>
-    public sealed class UnitPlacementNode : MonoBehaviour
+    public sealed class UnitPlacementNode : MonoBehaviourBase
     {
         /// <summary>
         /// 현재 노드에 유닛이 배치되어 있는지 여부입니다.
