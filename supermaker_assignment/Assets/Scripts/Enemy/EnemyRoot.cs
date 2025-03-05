@@ -25,7 +25,7 @@ namespace Enemy
 
         public override void OnTakeFromPoolInit(EPlayerSide side)
         {
-            AssertHelper.NotEquals(typeof(EnemyRoot), side, EPlayerSide.None);
+            AssertHelper.NotEqualsEnum(typeof(EnemyRoot), side, EPlayerSide.None);
 
             var enemyPathManager = dependencyContainer.PathNodeManager;
             Transform[] pathNodePtr = side == EPlayerSide.North ? enemyPathManager.NorthPathNodes : enemyPathManager.SouthPathNodes;

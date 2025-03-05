@@ -41,8 +41,8 @@ namespace System
         
         private void SpawnEnemy(SEnemySpawnRequestData data)
         {
-            AssertHelper.NotEquals(typeof(EnemySpawnHandler),data.SpawnMetaData.EnemyType, EEnemyType.None);
-            AssertHelper.NotEquals(typeof(EnemySpawnHandler),data.SpawnSide, EPlayerSide.None);
+            AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),data.SpawnMetaData.EnemyType, EEnemyType.None);
+            AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),data.SpawnSide, EPlayerSide.None);
             
             // TODO: type에 따라 스폰할 에너미의 데이터를 셋업하는 기능 추가
             // TODO: waveNumber에 따라 스폰할 에너미의 데이터를 셋업하는 기능 추가

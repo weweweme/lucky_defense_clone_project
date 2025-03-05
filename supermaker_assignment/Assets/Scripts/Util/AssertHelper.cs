@@ -53,7 +53,7 @@ namespace Util
         /// <param name="ownerType">검사를 수행하는 클래스 타입 (예: typeof(MyClass))</param>
         /// <param name="field">검사할 열거형 필드</param>
         /// <param name="invalidValue">유효하지 않은 값으로 간주할 열거형 값 (예: None, Invalid 등)</param>
-        public static void NotEquals<T>(System.Type ownerType, T field, T invalidValue) where T : Enum
+        public static void NotEqualsEnum<T>(System.Type ownerType, T field, T invalidValue) where T : Enum
         {
 #if UNITY_EDITOR
             Debug.Assert(!EqualityComparer<T>.Default.Equals(field, invalidValue), $"[{ownerType.Name}] {nameof(field)} 필드가 잘못된 값({invalidValue})입니다.");
