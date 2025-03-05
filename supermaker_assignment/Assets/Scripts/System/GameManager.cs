@@ -35,9 +35,10 @@ namespace System
 
         protected override void OnDispose()
         {
-            base.OnDispose();
-            
+            _spawnManager.Dispose();
             _waveManager.Dispose();
+            
+            base.OnDispose();
         }
     }
 }
