@@ -1,3 +1,4 @@
+using UnityEngine;
 using Util;
 
 namespace System
@@ -7,13 +8,16 @@ namespace System
     /// </summary>
     public sealed class GameManager : Singleton<GameManager>
     {
+        [SerializeField] private DataManager _dataManager;
+        public DataManager DataManager => _dataManager;
+        
         private WaveManager _waveManager;
 
         protected override void Awake()
         {
             base.Awake();
             
-            AssertHelper.NotNull(typeof(GameManager), _waveManager);
+            AssertHelper.NotNull(typeof(GameManager), _dataManager);
         }
 
         private void Start()
