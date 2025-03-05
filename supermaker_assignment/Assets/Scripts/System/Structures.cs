@@ -34,12 +34,18 @@ namespace System
     public struct SUnitSpawnRequestData
     {
         private readonly EUnitGrade _unitGrade;
+        private readonly EUnitType _unitType;
         private readonly EPlayerSide _spawnSide;
 
         /// <summary>
         /// 소환할 유닛의 등급입니다.
         /// </summary>
         public EUnitGrade UnitGrade => _unitGrade;
+
+        /// <summary>
+        /// 소환할 유닛의 타입입니다.
+        /// </summary>
+        public EUnitType UnitType => _unitType;
 
         /// <summary>
         /// 유닛이 소환되는 진영입니다.
@@ -50,10 +56,12 @@ namespace System
         /// 유닛 소환 요청 데이터를 생성하는 생성자입니다.
         /// </summary>
         /// <param name="unitGrade">소환할 유닛의 등급</param>
+        /// <param name="unitType">소환할 유닛의 타입</param>
         /// <param name="spawnSide">유닛이 소환될 진영</param>
-        public SUnitSpawnRequestData(EUnitGrade unitGrade, EPlayerSide spawnSide)
+        public SUnitSpawnRequestData(EUnitGrade unitGrade, EUnitType unitType, EPlayerSide spawnSide)
         {
             _unitGrade = unitGrade;
+            _unitType = unitType;
             _spawnSide = spawnSide;
         }
     }
