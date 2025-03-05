@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7592612271524203648}
   - component: {fileID: 7114600316355442804}
   - component: {fileID: 3996251943159188635}
+  - component: {fileID: 2675316676755326896}
   m_Layer: 31
   m_Name: Enemy Base
   m_TagString: Untagged
@@ -171,3 +172,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bdfc631606e247bbb6bdbf9a9286811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveController: {fileID: 2675316676755326896}
+--- !u!114 &2675316676755326896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211534585129982868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b629aaeb60b04ceca4bc9dd7001783f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 25
+  nodeArrivalThreshold: 0.5
