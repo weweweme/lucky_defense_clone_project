@@ -1,3 +1,7 @@
+using Enemy;
+using UniRx;
+using UnityEngine;
+
 namespace System
 {
     /// <summary>
@@ -6,8 +10,19 @@ namespace System
     /// </summary>
     public sealed class EnemySpawnHandler : SpawnHandlerBase
     {
+        private readonly Vector3 _northSpawnPos;
+        private readonly Vector3 _southSpawnPos;
+        private readonly EnemyBasePool _enemyBasePool;
+        
         public EnemySpawnHandler(GameManager rootManager)
         {
+            var enemyPathManager = rootManager.EnemyPathManager;
+            const int START_IDX = 0;
+            _northSpawnPos = enemyPathManager.NorthPathNodes[START_IDX].position;
+            _southSpawnPos = enemyPathManager.SouthPathNodes[START_IDX].position;
+            
+            _enemyBasePool = rootManager.PoolManager.EnemyBasePool;
+            
             InitRx(rootManager);
         }
         
@@ -18,7 +33,19 @@ namespace System
         /// <param name="rootManager">게임 매니저 인스턴스</param>
         protected override void InitRx(GameManager rootManager)
         {
-            // TODO: OnEnemySpawn 이벤트가 발행되면 에너미를 소환하는 기능 구현
+            rootManager.DataManager.EnemyRx.OnEnemySpawn
+                .Subscribe(SpawnEnemy)
+                .AddTo(disposable);
+        }
+        
+        private void SpawnEnemy(EEnemyType type)
+        {
+            // TODO: type에 따라 스폰할 에너미의 데이터를 셋업하는 기능 추가
+            EnemyRoot enemy = _enemyBasePool.GetObject();
+            enemy.transform.position = _northSpawnPos;
+            
+            enemy = _enemyBasePool.GetObject();
+            enemy.transform.position = _southSpawnPos;
         }
     }
 }

@@ -35,7 +35,7 @@ namespace System
         public WaveManager(GameManager rootManager)
         {
             _mdlWaveRx = rootManager.DataManager.WaveRx;
-            _spawnHandler = new WaveSpawnHandler();
+            _spawnHandler = new WaveSpawnHandler(rootManager);
         }
         
         /// <summary>
