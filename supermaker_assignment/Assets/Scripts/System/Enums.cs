@@ -25,4 +25,20 @@ namespace System
         /// </summary>
         Waiting,
     }
+    
+    /// <summary>
+    /// 적의 종류를 나타내는 열거형입니다.
+    /// </summary>
+    public enum EEnemyType
+    {
+        /// <summary>
+        /// 선택된 적 없음.
+        /// </summary>
+        None,
+        
+        /// <summary>
+        /// 기본 적.
+        /// </summary>
+        Default,
+    }
 }
