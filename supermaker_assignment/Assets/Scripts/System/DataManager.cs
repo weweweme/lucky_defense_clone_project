@@ -16,5 +16,8 @@ namespace System
         
         private readonly MDL_GameSystem _gameSystem = new MDL_GameSystem();
         public MDL_GameSystem GameSystem => _gameSystem;
+        
+        private readonly MDL_Unit _unit = new MDL_Unit();
+        public MDL_Unit Unit => _unit;
     }
 }
