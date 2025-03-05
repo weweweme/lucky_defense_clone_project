@@ -16,6 +16,9 @@ namespace System
 
         [SerializeField] private EnemyPathManager _enemyPathManager;
         public EnemyPathManager EnemyPathManager => _enemyPathManager;
+        
+        [SerializeField] private UnitGridNodeManager _unitGridNodeManager;
+        public UnitGridNodeManager UnitGridNodeManager => _unitGridNodeManager;
 
         private readonly UIManager _uiManager = new UIManager();
         public UIManager UIManager => _uiManager;
@@ -31,6 +34,7 @@ namespace System
             AssertHelper.NotNull(typeof(RootManager), _dataManager);
             AssertHelper.NotNull(typeof(RootManager), _poolManager);
             AssertHelper.NotNull(typeof(RootManager), _enemyPathManager);
+            AssertHelper.NotNull(typeof(RootManager), _unitGridNodeManager);
         }
 
         private void Start()
