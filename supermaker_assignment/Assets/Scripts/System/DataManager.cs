@@ -13,5 +13,8 @@ namespace System
 
         private readonly MDL_EnemyRx _enemyRx = new MDL_EnemyRx();
         public MDL_EnemyRx EnemyRx => _enemyRx;
+        
+        private readonly MDL_GameSystemRx _gameSystemRx = new MDL_GameSystemRx();
+        public MDL_GameSystemRx GameSystemRx => _gameSystemRx;
     }
 }
