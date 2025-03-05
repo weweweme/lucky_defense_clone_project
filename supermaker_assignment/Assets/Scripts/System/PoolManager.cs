@@ -1,3 +1,5 @@
+using Enemy;
+using UnityEngine;
 using Util;
 
 namespace System
@@ -7,5 +9,12 @@ namespace System
     /// </summary>
     public sealed class PoolManager : MonoBehaviourBase
     {
+        [SerializeField] private EnemyBasePool enemyBasePool;
+        public EnemyBasePool EnemyBasePool => enemyBasePool;
+
+        private void Awake()
+        {
+            AssertHelper.NotNull(typeof(PoolManager), enemyBasePool);
+        }
     }
 }
