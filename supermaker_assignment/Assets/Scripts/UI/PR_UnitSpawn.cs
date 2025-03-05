@@ -28,7 +28,7 @@ namespace UI
                 .AddTo(disposable);
         }
 
-        private void TrySpawnUnit(Unit _)
+        private void TrySpawnUnit(UniRx.Unit _)
         {
             // TODO: 유닛 생성 시도 기능 구현
             SUnitSpawnRequestData data = new SUnitSpawnRequestData(EUnitGrade.Common, EPlayerSide.South);

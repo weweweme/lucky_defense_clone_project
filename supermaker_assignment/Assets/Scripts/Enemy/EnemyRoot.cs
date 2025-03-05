@@ -8,7 +8,7 @@ namespace Enemy
     /// Enemy의 최상위 루트 클래스입니다.
     /// 각 모듈의 참조를 관리하고, 초기화 과정을 수행합니다.
     /// </summary>
-    public sealed class EnemyRoot : MonoBehaviourBase
+    public sealed class EnemyRoot : PooledEntityRootBase
     {
         [SerializeField] internal EnemyMoveController moveController;
         internal EnemyDependencyContainer dependencyContainer;
@@ -23,7 +23,7 @@ namespace Enemy
             dependencyContainer = container;
         }
 
-        public void OnTakeFromPoolInit(EPlayerSide side)
+        public override void OnTakeFromPoolInit(EPlayerSide side)
         {
             AssertHelper.NotEquals(typeof(EnemyRoot), side, EPlayerSide.None);
 
