@@ -14,6 +14,9 @@ namespace System
         [SerializeField] private PoolManager _poolManager;
         public PoolManager PoolManager => _poolManager;
 
+        [SerializeField] private EnemyPathManager _enemyPathManager;
+        public EnemyPathManager EnemyPathManager => _enemyPathManager;
+
         private SpawnManager _spawnManager;
         private WaveManager _waveManager;
 
@@ -23,6 +26,7 @@ namespace System
             
             AssertHelper.NotNull(typeof(GameManager), _dataManager);
             AssertHelper.NotNull(typeof(GameManager), _poolManager);
+            AssertHelper.NotNull(typeof(GameManager), _enemyPathManager);
         }
 
         private void Start()
