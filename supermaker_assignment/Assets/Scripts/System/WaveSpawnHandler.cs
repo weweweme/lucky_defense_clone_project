@@ -18,7 +18,7 @@ namespace System
         /// <summary>
         /// 게임 시스템 관련 정보를 관리하는 데이터 모델 참조입니다.
         /// </summary>
-        private readonly MDL_GameSystemRx _mdlGameSystem;
+        private readonly MDL_GameSystem _mdlGameSystem;
         
         /// <summary>
         /// 적 유닛 스폰 메타데이터 입니다.
