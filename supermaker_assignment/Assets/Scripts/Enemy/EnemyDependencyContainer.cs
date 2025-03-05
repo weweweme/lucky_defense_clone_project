@@ -15,7 +15,7 @@ namespace Enemy
         internal MDL_EnemyRx MdlEnemyRx => _mdlEnemyRx;
 
         private readonly EnemyPathManager _pathManager;
-        internal EnemyPathManager PathManager;
+        internal EnemyPathManager PathManager => _pathManager;
 
         public EnemyDependencyContainer(GameManager rootManager)
         {

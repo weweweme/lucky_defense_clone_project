@@ -16,5 +16,10 @@ namespace System
         {
             AssertHelper.NotNull(typeof(PoolManager), enemyBasePool);
         }
+
+        public void Init(GameManager rootManager)
+        {
+            enemyBasePool.Init(rootManager);
+        }
     }
 }

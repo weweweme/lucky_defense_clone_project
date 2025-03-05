@@ -31,6 +31,7 @@ namespace System
 
         private void Start()
         {
+            _poolManager.Init(this);
             _waveManager = new WaveManager(this);
             _spawnManager = new SpawnManager(this);
 
