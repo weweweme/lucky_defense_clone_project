@@ -13,10 +13,10 @@ namespace System
         /// </summary>
         private const int GRID_NODE_COUNT = 18;
 
-        [SerializeField] private Transform[] northGridNodes = new Transform[GRID_NODE_COUNT];
-        public Transform[] NorthGridNodes => northGridNodes;
+        [SerializeField] private UnitPlacementNode[] northGridNodes = new UnitPlacementNode[GRID_NODE_COUNT];
+        public UnitPlacementNode[] NorthGridNodes => northGridNodes;
         
-        [SerializeField] private Transform[] southGridNodes = new Transform[GRID_NODE_COUNT];
-        public Transform[] SouthGridNodes => southGridNodes;
+        [SerializeField] private UnitPlacementNode[] southGridNodes = new UnitPlacementNode[GRID_NODE_COUNT];
+        public UnitPlacementNode[] SouthGridNodes => southGridNodes;
     }
 }

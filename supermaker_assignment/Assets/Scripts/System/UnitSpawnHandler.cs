@@ -1,6 +1,5 @@
 using UniRx;
 using Unit;
-using UnityEngine;
 using Util;
 
 namespace System
@@ -12,8 +11,8 @@ namespace System
     public sealed class UnitSpawnHandler : SpawnHandlerBase
     {
         private readonly UnitBasePool _unitBasePool;
-        private readonly Transform[] _northGridNodes;
-        private readonly Transform[] _southGridNodes;
+        private readonly UnitPlacementNode[] _northGridNodes;
+        private readonly UnitPlacementNode[] _southGridNodes;
         
         public UnitSpawnHandler(RootManager rootManager)
         {
@@ -42,7 +41,7 @@ namespace System
             
             // TODO: type에 따라 스폰할 유닛의 데이터를 셋업하는 기능 추가
             UnitRoot unit = _unitBasePool.GetObject();
-            unit.transform.position = data.SpawnSide == EPlayerSide.North ? _northGridNodes[0].position : _southGridNodes[0].position;
+            unit.transform.position = data.SpawnSide == EPlayerSide.North ? _northGridNodes[0].transform.position : _southGridNodes[0].transform.position;
         }
     }
 }
