@@ -58,7 +58,19 @@ namespace System
         /// <param name="token">작업 취소 토큰</param>
         private async UniTask StartWave(CancellationToken token)
         {
-            // TODO: 웨이브 시작 로직 구현 예정
+            _mdlWave.TriggerNextWave();
+            _mdlWave.SetWaveState(EWaveStates.Spawning);
+            
+            for (int i = 0; i < 5; i++)
+            {
+                if (token.IsCancellationRequested) return;
+                
+                // SpawnEnemy(EEnemyType.Default);
+                
+                await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: token);
+            }
+            
+            _mdlWave.SetWaveState(EWaveStates.InProgress);
         }
 
         /// <summary>
