@@ -62,4 +62,35 @@ namespace System
         /// </summary>
         South,
     }
+    
+    /// <summary>
+    /// 게임의 전체 진행 상태를 나타내는 열거형입니다.
+    /// </summary>
+    public enum EGameState
+    {
+        /// <summary>
+        /// 상태 없음.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// 게임 진행 중.
+        /// </summary>
+        Playing,
+
+        /// <summary>
+        /// 게임 오버.
+        /// </summary>
+        GameOver,
+
+        /// <summary>
+        /// 게임 클리어.
+        /// </summary>
+        GameClear,
+
+        /// <summary>
+        /// 게임 일시정지.
+        /// </summary>
+        Paused,
+    }
 }
