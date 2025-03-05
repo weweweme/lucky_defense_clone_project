@@ -2,6 +2,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using Model;
 using UniRx;
+using Util;
 
 namespace System
 {
@@ -119,6 +120,7 @@ namespace System
         public void Dispose()
         {
             _disposable.Dispose();
+            CancelTokenHelper.DisposeToken(in _cts);
         }
     }
 }
