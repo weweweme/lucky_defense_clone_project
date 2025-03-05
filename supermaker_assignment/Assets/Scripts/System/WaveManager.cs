@@ -76,13 +76,13 @@ namespace System
         private void StartWave(CancellationToken token)
         {
             _mdlWave.TriggerNextWave();
-            _mdlWave.SetWaveState(EWaveStates.Spawning);
+            _mdlWave.SetWaveState(EWaveState.Spawning);
             
             uint currentWave = _mdlWave.CurrentWave.Value;
             
             _spawnHandler.HandleWaveSpawnAsync(currentWave, token).Forget();
             
-            _mdlWave.SetWaveState(EWaveStates.InProgress);
+            _mdlWave.SetWaveState(EWaveState.InProgress);
         }
         
         /// <summary>
@@ -108,7 +108,7 @@ namespace System
         /// <param name="token">작업 취소 토큰</param>
         private void EndWave()
         {
-            _mdlWave.SetWaveState(EWaveStates.Waiting);
+            _mdlWave.SetWaveState(EWaveState.Waiting);
         }
 
         /// <summary>

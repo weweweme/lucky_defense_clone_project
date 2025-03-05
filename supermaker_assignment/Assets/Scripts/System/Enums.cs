@@ -3,7 +3,7 @@ namespace System
     /// <summary>
     /// 웨이브의 진행 상태를 나타내는 열거형입니다.
     /// </summary>
-    public enum EWaveStates
+    public enum EWaveState
     {
         /// <summary>
         /// 상태 없음.
