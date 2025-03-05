@@ -27,7 +27,7 @@ namespace Enemy
         {
             AssertHelper.NotEquals(typeof(EnemyRoot), side, EPlayerSide.None);
 
-            var enemyPathManager = dependencyContainer.PathManager;
+            var enemyPathManager = dependencyContainer.PathNodeManager;
             Transform[] pathNodePtr = side == EPlayerSide.North ? enemyPathManager.NorthPathNodes : enemyPathManager.SouthPathNodes;
             AssertHelper.NotNull(typeof(EnemyRoot), pathNodePtr);
             

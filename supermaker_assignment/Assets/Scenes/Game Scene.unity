@@ -724,7 +724,7 @@ GameObject:
   m_Component:
   - component: {fileID: 307920795}
   m_Layer: 0
-  m_Name: South Enemy Path
+  m_Name: South Enemy Path Nodes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4106,7 +4106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 959299042}
   m_Layer: 0
-  m_Name: North Enemy Path
+  m_Name: North Enemy Path Nodes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5584,7 +5584,7 @@ GameObject:
   - component: {fileID: 1813658366}
   - component: {fileID: 1813658367}
   m_Layer: 0
-  m_Name: Enemy Path Manager
+  m_Name: Enemy Path Node Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5952,7 +5952,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dataManager: {fileID: 488597885}
   _poolManager: {fileID: 1245659187}
-  _enemyPathManager: {fileID: 1813658367}
+  enemyPathNodeManager: {fileID: 1813658367}
   _unitGridNodeManager: {fileID: 266216276}
 --- !u!1 &1993265939
 GameObject:

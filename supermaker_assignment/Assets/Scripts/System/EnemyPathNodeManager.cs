@@ -10,7 +10,7 @@ namespace System
     /// 이 클래스는 적이 이동해야 할 경로(패스포인트)들을 저장하며, 
     /// 참조를 제공한다.
     /// </remarks>
-    public sealed class EnemyPathManager : MonoBehaviourBase
+    public sealed class EnemyPathNodeManager : MonoBehaviourBase
     {
         /// <summary>
         /// 각 경로의 노드 개수 상수
