@@ -27,11 +27,6 @@ namespace System
             InitRx(rootManager);
         }
         
-        /// <summary>
-        /// GameManager로부터 적 스폰 관련 스트림을 구독하고,
-        /// 이벤트 발생 시 적을 생성하는 초기화 로직을 구성합니다.
-        /// </summary>
-        /// <param name="rootManager">게임 매니저 인스턴스</param>
         protected override void InitRx(RootManager rootManager)
         {
             rootManager.DataManager.Enemy.OnEnemySpawn
