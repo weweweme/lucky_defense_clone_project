@@ -11,8 +11,8 @@ namespace Enemy
         private readonly EnemyBasePool _enemyBasePool;
         internal EnemyBasePool EnemyBasePool => _enemyBasePool;
         
-        private readonly MDL_EnemyRx _mdlEnemyRx;
-        internal MDL_EnemyRx MdlEnemyRx => _mdlEnemyRx;
+        private readonly MDL_Enemy _mdlEnemy;
+        internal MDL_Enemy MdlEnemy => _mdlEnemy;
 
         private readonly EnemyPathManager _pathManager;
         internal EnemyPathManager PathManager => _pathManager;
@@ -20,7 +20,7 @@ namespace Enemy
         public EnemyDependencyContainer(GameManager rootManager)
         {
             _enemyBasePool = rootManager.PoolManager.EnemyBasePool;
-            _mdlEnemyRx = rootManager.DataManager.EnemyRx;
+            _mdlEnemy = rootManager.DataManager.Enemy;
             _pathManager = rootManager.EnemyPathManager;
         }
     }

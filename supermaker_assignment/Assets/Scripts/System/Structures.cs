@@ -5,19 +5,13 @@ namespace System
     /// </summary>
     public struct SEnemySpawnMetaData
     {
-        private readonly EEnemyType _enemyType;
-        private readonly uint _waveNumber;
+        private readonly EnemySpawnMetaData _spawnMetaData;
         private readonly EPlayerSide _spawnSide;
 
         /// <summary>
-        /// 소환할 적의 종류입니다.
+        /// 소환할 적의 메타데이터 입니다.
         /// </summary>
-        public EEnemyType EnemyType => _enemyType;
-
-        /// <summary>
-        /// 적이 소환되는 웨이브 번호입니다.
-        /// </summary>
-        public uint WaveNumber => _waveNumber;
+        public EnemySpawnMetaData SpawnMetaData => _spawnMetaData;
 
         /// <summary>
         /// 적이 소환되는 진영입니다.
@@ -27,10 +21,9 @@ namespace System
         /// <summary>
         /// 적 소환 메타데이터를 생성하는 생성자입니다.
         /// </summary>
-        public SEnemySpawnMetaData(EEnemyType enemyType, uint waveNumber, EPlayerSide spawnSide)
+        public SEnemySpawnMetaData(EnemySpawnMetaData spawnMetaData, EPlayerSide spawnSide)
         {
-            _enemyType = enemyType;
-            _waveNumber = waveNumber;
+            _spawnMetaData = spawnMetaData;
             _spawnSide = spawnSide;
         }
     }

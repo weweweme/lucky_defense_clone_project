@@ -34,23 +34,21 @@ namespace System
         /// <param name="rootManager">게임 매니저 인스턴스</param>
         protected override void InitRx(GameManager rootManager)
         {
-            rootManager.DataManager.EnemyRx.OnEnemySpawn
+            rootManager.DataManager.Enemy.OnEnemySpawn
                 .Subscribe(SpawnEnemy)
                 .AddTo(disposable);
         }
         
-        private void SpawnEnemy(EEnemyType type)
+        private void SpawnEnemy(SEnemySpawnMetaData data)
         {
-            AssertHelper.NotEquals(typeof(EnemySpawnHandler),type, EEnemyType.None);
+            AssertHelper.NotEquals(typeof(EnemySpawnHandler),data.SpawnMetaData.EnemyType, EEnemyType.None);
+            AssertHelper.NotEquals(typeof(EnemySpawnHandler),data.SpawnSide, EPlayerSide.None);
             
             // TODO: type에 따라 스폰할 에너미의 데이터를 셋업하는 기능 추가
+            // TODO: waveNumber에 따라 스폰할 에너미의 데이터를 셋업하는 기능 추가
             EnemyRoot enemy = _enemyBasePool.GetObject();
-            enemy.transform.position = _northSpawnPos;
-            enemy.OnTakeFromPoolInit(EPlayerSide.North);
-            
-            enemy = _enemyBasePool.GetObject();
-            enemy.transform.position = _southSpawnPos;
-            enemy.OnTakeFromPoolInit(EPlayerSide.South);
+            enemy.transform.position = data.SpawnSide == EPlayerSide.North ? _northSpawnPos : _southSpawnPos;
+            enemy.OnTakeFromPoolInit(data.SpawnSide);
         }
     }
 }
