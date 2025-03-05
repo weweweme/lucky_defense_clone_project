@@ -1,6 +1,7 @@
 using Enemy;
 using UniRx;
 using UnityEngine;
+using Util;
 
 namespace System
 {
@@ -40,6 +41,8 @@ namespace System
         
         private void SpawnEnemy(EEnemyType type)
         {
+            AssertHelper.NotEquals(typeof(EnemySpawnHandler),type, EEnemyType.None);
+            
             // TODO: type에 따라 스폰할 에너미의 데이터를 셋업하는 기능 추가
             EnemyRoot enemy = _enemyBasePool.GetObject();
             enemy.transform.position = _northSpawnPos;
