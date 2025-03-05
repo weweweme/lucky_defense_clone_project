@@ -6,15 +6,18 @@ namespace System
     public sealed class SpawnManager : IDisposable
     {
         private readonly EnemySpawnHandler _enemySpawnHandler;
+        private readonly UnitSpawnHandler _unitSpawnHandler;
         
         public SpawnManager(RootManager rootManager)
         {
             _enemySpawnHandler = new EnemySpawnHandler(rootManager);
+            _unitSpawnHandler = new UnitSpawnHandler(rootManager);
         }
 
         public void Dispose()
         {
             _enemySpawnHandler.Dispose();
+            _unitSpawnHandler.Dispose();
         }
     }
 }
