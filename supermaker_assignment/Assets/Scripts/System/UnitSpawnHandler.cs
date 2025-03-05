@@ -11,18 +11,15 @@ namespace System
     public sealed class UnitSpawnHandler : SpawnHandlerBase
     {
         private readonly UnitBasePool _unitBasePool;
-        private readonly UnitPlacementNode[] _northGridNodes;
-        private readonly UnitPlacementNode[] _southGridNodes;
+        private readonly UnitGridNodeManager _unitGridNodeManager;
         
         public UnitSpawnHandler(RootManager rootManager)
         {
             _unitBasePool = rootManager.PoolManager.UnitBasePool;
             AssertHelper.NotNull(typeof(UnitSpawnHandler), _unitBasePool);
             
-            var unitGridNodeManager = rootManager.UnitGridNodeManager;
-            AssertHelper.NotNull(typeof(UnitSpawnHandler), unitGridNodeManager);
-            _northGridNodes = unitGridNodeManager.NorthGridNodes;
-            _southGridNodes = unitGridNodeManager.SouthGridNodes;
+            _unitGridNodeManager = rootManager.UnitGridNodeManager;
+            AssertHelper.NotNull(typeof(UnitSpawnHandler), _unitGridNodeManager);
             
             InitRx(rootManager);
         }
@@ -41,7 +38,9 @@ namespace System
             
             // TODO: type에 따라 스폰할 유닛의 데이터를 셋업하는 기능 추가
             UnitRoot unit = _unitBasePool.GetObject();
-            unit.transform.position = data.SpawnSide == EPlayerSide.North ? _northGridNodes[0].transform.position : _southGridNodes[0].transform.position;
+            UnitPlacementNode placementNode = _unitGridNodeManager.FindAvailableNode(data);
+            AssertHelper.NotNull(typeof(UnitSpawnHandler), placementNode);
+            placementNode.AddUnit(unit);
         }
     }
 }

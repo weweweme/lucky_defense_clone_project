@@ -31,7 +31,7 @@ namespace UI
         private void TrySpawnUnit(UniRx.Unit _)
         {
             // TODO: 유닛 생성 시도 기능 구현
-            SUnitSpawnRequestData data = new SUnitSpawnRequestData(EUnitGrade.Common, EPlayerSide.South);
+            SUnitSpawnRequestData data = new SUnitSpawnRequestData(EUnitGrade.Common, EUnitType.Melee, EPlayerSide.South);
             _mdlUnit.SpawnUnit(data);   
         }
     }

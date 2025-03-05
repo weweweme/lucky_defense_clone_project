@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using Util;
 
@@ -18,5 +19,28 @@ namespace System
         
         [SerializeField] private UnitPlacementNode[] southGridNodes = new UnitPlacementNode[GRID_NODE_COUNT];
         public UnitPlacementNode[] SouthGridNodes => southGridNodes;
+
+        /// <summary>
+        /// 주어진 진영에서 배치 가능한 노드를 반환합니다.
+        /// </summary>
+        /// <param name="side">유닛을 배치할 진영</param>
+        /// <param name="data">스폰 요청 데이터 (등급, 타입)</param>
+        /// <returns>배치 가능한 노드 또는 null</returns>
+        [return: NotNull]
+        public UnitPlacementNode FindAvailableNode(SUnitSpawnRequestData data)
+        {
+            UnitPlacementNode[] targetGrid = data.SpawnSide == EPlayerSide.North ? northGridNodes : southGridNodes;
+
+            foreach (var node in targetGrid)
+            {
+                AssertHelper.NotNull(typeof(UnitGridNodeManager), node);
+
+                if (!node.CanAcceptUnit(data)) continue;
+                    
+                return node;
+            }
+
+            throw new InvalidOperationException($"[{nameof(UnitGridNodeManager)}] {data.SpawnSide} 진영에서 배치 가능한 노드가 없습니다.");
+        }
     }
 }
