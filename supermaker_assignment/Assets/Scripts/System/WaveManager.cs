@@ -76,7 +76,17 @@ namespace System
         /// <param name="token">작업 취소 토큰</param>
         private async UniTask WaitForNextWave(CancellationToken token)
         {
-            // TODO: 다음 웨이브 대기 로직 구현 예정
+            const uint NEXT_ROUND_WAIT_SECONDS = 20;
+            const uint COUNTDOWN_INTERVAL_SECONDS = 1;
+
+            _mdlWave.SetWaveState(EWaveStates.Waiting);
+            
+            for (uint i = 0; i < NEXT_ROUND_WAIT_SECONDS; ++i)
+            {
+                _mdlWave.SetNextWaveCountDown(NEXT_ROUND_WAIT_SECONDS - i);
+
+                await UniTask.Delay(TimeSpan.FromSeconds(COUNTDOWN_INTERVAL_SECONDS), cancellationToken: token);
+            }
         }
 
         /// <summary>
