@@ -74,6 +74,27 @@ namespace System
     }
     
     /// <summary>
+    /// 유닛의 유형을 나타내는 열거형입니다.
+    /// </summary>
+    public enum EUnitType
+    {
+        /// <summary>
+        /// 선택된 유형 없음.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// 근거리 유닛.
+        /// </summary>
+        Melee,
+
+        /// <summary>
+        /// 원거리 유닛.
+        /// </summary>
+        Ranged,
+    }
+    
+    /// <summary>
     /// 플레이어 진영을 나타내는 열거형입니다.
     /// </summary>
     public enum EPlayerSide
