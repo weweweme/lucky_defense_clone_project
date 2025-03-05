@@ -7,5 +7,25 @@ namespace System
     /// </summary>
     public sealed class GameManager : Singleton<GameManager>
     {
+        private WaveManager _waveManager;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            AssertHelper.NotNull(typeof(GameManager), _waveManager);
+        }
+
+        private void Start()
+        {
+            _waveManager = new WaveManager();
+        }
+
+        protected override void OnDispose()
+        {
+            base.OnDispose();
+            
+            _waveManager.Dispose();
+        }
     }
 }
