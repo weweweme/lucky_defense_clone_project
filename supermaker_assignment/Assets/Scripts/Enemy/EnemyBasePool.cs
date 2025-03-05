@@ -12,7 +12,7 @@ namespace Enemy
 
         public void Init(GameManager rootManager)
         {
-            _dependencyContainer = new EnemyDependencyContainer(this, rootManager.DataManager.EnemyRx);
+            _dependencyContainer = new EnemyDependencyContainer(rootManager);
         }
         
         protected override EnemyRoot CreatePooledItem()
