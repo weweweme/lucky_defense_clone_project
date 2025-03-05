@@ -3,7 +3,10 @@ using UniRx;
 
 namespace Model
 {
-    public class MDL_WaveRx
+    /// <summary>
+    /// 웨이브와 관련된 데이터를 관리하는 모델 클래스.
+    /// </summary>
+    public class MDL_Wave
     {
         // 현재 몇 웨이브인지 나타내는 Rx
         private const int ROUND_INCREMENT = 1;

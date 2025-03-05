@@ -43,6 +43,37 @@ namespace System
     }
     
     /// <summary>
+    /// 유닛의 등급을 나타내는 열거형입니다.
+    /// </summary>
+    public enum EUnitGrade
+    {
+        /// <summary>
+        /// 등급 없음.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// 일반 등급.
+        /// </summary>
+        Common,
+
+        /// <summary>
+        /// 희귀 등급.
+        /// </summary>
+        Rare,
+
+        /// <summary>
+        /// 영웅 등급.
+        /// </summary>
+        Heroic,
+
+        /// <summary>
+        /// 신화 등급.
+        /// </summary>
+        Mythic,
+    }
+    
+    /// <summary>
     /// 플레이어 진영을 나타내는 열거형입니다.
     /// </summary>
     public enum EPlayerSide

@@ -4,14 +4,14 @@ using UniRx;
 namespace Model
 {
     /// <summary>
-    /// 적 유닛과 관련된 Rx를 관리하는 모델 클래스.
+    /// 적 유닛과 관련된 데이터를 관리하는 모델 클래스.
     /// </summary>
     public class MDL_Enemy
     {
         // 적 유닛 스폰과 관련된 Rx
         private readonly Subject<SEnemySpawnRequestData> _onEnemySpawn = new Subject<SEnemySpawnRequestData>();
         public IObservable<SEnemySpawnRequestData> OnEnemySpawn => _onEnemySpawn;
-        public void TriggerSpawnEnemy(SEnemySpawnRequestData data) => _onEnemySpawn.OnNext(data);
+        public void SpawnEnemy(SEnemySpawnRequestData data) => _onEnemySpawn.OnNext(data);
 
         // 적 유닛 사망과 관련된 Rx
         private readonly Subject<EEnemyType> _onEnemyDeath = new Subject<EEnemyType>();
