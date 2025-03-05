@@ -13,7 +13,8 @@ namespace System
 
         [SerializeField] private PoolManager _poolManager;
         public PoolManager PoolManager => _poolManager;
-        
+
+        private SpawnManager _spawnManager;
         private WaveManager _waveManager;
 
         protected override void Awake()
@@ -27,6 +28,7 @@ namespace System
         private void Start()
         {
             _waveManager = new WaveManager(this);
+            _spawnManager = new SpawnManager(this);
         }
 
         protected override void OnDispose()
