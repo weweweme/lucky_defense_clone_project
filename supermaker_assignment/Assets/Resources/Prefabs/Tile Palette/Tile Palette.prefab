@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 4193354928683441532}
   - component: {fileID: 1746982283158771557}
   m_Layer: 0
-  m_Name: Tower Defense Tile Palette
+  m_Name: Tile Palette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
