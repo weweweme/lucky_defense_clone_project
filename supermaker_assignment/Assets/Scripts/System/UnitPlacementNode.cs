@@ -51,28 +51,6 @@ namespace System
         [SerializeField] private Transform[] threeUnitPositions = new Transform[3];
 
         /// <summary>
-        /// 노드 상태를 초기화합니다.
-        /// </summary>
-        public void ResetNode()
-        {
-            _isOccupied = false;
-            _unitGrade = EUnitGrade.None;
-            _unitType = EUnitType.None;
-            _unitCount = 0;
-        }
-
-        /// <summary>
-        /// 유닛 데이터를 설정하고, 노드를 점유 상태로 변경합니다.
-        /// </summary>
-        public void SetUnitData(EUnitGrade grade, EUnitType type, uint count)
-        {
-            _isOccupied = true;
-            _unitGrade = grade;
-            _unitType = type;
-            _unitCount = count;
-        }
-
-        /// <summary>
         /// 주어진 유닛 스폰 요청 데이터에 따라 해당 유닛을 수용할 수 있는지 여부를 반환합니다.
         /// </summary>
         public bool CanAcceptUnit(SUnitSpawnRequestData requestData)
@@ -88,11 +66,22 @@ namespace System
             // 동일 타입 & 동일 등급이면 합체 가능
             return _unitType == requestData.UnitType && _unitGrade == requestData.UnitGrade;
         }
+        
+        /// <summary>
+        /// 유닛을 노드에 추가하고, 자동으로 배치 위치를 재조정합니다.
+        /// </summary>
+        public void AddUnit(UnitRoot unit)
+        {
+            Debug.Assert(_unitCount != 3);
+
+            _placedUnits[_unitCount++] = unit;
+            RearrangeUnitPositions();
+        }
 
         /// <summary>
         /// 배치된 유닛들의 위치를 현재 노드 상태에 맞게 재조정합니다.
         /// </summary>
-        public void RearrangeUnitPositions()
+        private void RearrangeUnitPositions()
         {
             if (_unitCount == 1)
             {
