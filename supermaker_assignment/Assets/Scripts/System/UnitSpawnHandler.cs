@@ -1,4 +1,6 @@
 using UniRx;
+using Unit;
+using UnityEngine;
 using Util;
 
 namespace System
@@ -7,10 +9,22 @@ namespace System
     /// 유닛 스폰 로직을 담당하는 핸들러 클래스입니다.
     /// 게임 내 유닛 스폰 이벤트를 감지하고, 해당 이벤트 처리를 담당합니다.
     /// </summary>
-    public class UnitSpawnHandler : SpawnHandlerBase
+    public sealed class UnitSpawnHandler : SpawnHandlerBase
     {
+        private readonly UnitBasePool _unitBasePool;
+        private readonly Transform[] _northGridNodes;
+        private readonly Transform[] _southGridNodes;
+        
         public UnitSpawnHandler(RootManager rootManager)
         {
+            _unitBasePool = rootManager.PoolManager.UnitBasePool;
+            AssertHelper.NotNull(typeof(UnitSpawnHandler), _unitBasePool);
+            
+            var unitGridNodeManager = rootManager.UnitGridNodeManager;
+            AssertHelper.NotNull(typeof(UnitSpawnHandler), unitGridNodeManager);
+            _northGridNodes = unitGridNodeManager.NorthGridNodes;
+            _southGridNodes = unitGridNodeManager.SouthGridNodes;
+            
             InitRx(rootManager);
         }
         
@@ -27,7 +41,8 @@ namespace System
             AssertHelper.NotEquals(typeof(EnemySpawnHandler),data.SpawnSide, EPlayerSide.None);
             
             // TODO: type에 따라 스폰할 유닛의 데이터를 셋업하는 기능 추가
-            // TODO: 풀에서 Unit의 베이스를 가져와 스폰하는 기능 추가
+            UnitRoot unit = _unitBasePool.GetObject();
+            unit.transform.position = data.SpawnSide == EPlayerSide.North ? _northGridNodes[0].position : _southGridNodes[0].position;
         }
     }
 }
