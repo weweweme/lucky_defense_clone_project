@@ -184,8 +184,7 @@ namespace System
                 if (dragDistance >= DRAG_THRESHOLD)
                 {
                     _isDragging = true; // 드래그로 전환
-                    
-                    
+                    HandleClickSelect();
                 }
             }
 
