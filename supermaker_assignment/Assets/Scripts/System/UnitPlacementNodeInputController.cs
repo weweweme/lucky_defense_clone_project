@@ -149,6 +149,7 @@ namespace System
             _inputHandler.OnLeftClickStarted -= TryStartDrag;
             _inputHandler.OnLeftClickCanceled -= HandleDragEnd;
             _inputHandler.Dispose();
+            _pr.Dispose();
 
             base.OnDestroy();
         }
