@@ -29,6 +29,9 @@ namespace UI
         /// <param name="normalizedHealth">0과 1 사이의 노멀라이즈된 체력 값</param>
         public void UpdateHealthUI(float normalizedHealth)
         {
+            bool isHealthBarActive = normalizedHealth < 1;
+            _canvas.enabled = isHealthBarActive; 
+            
             // normalizedHealth 값이 0과 1 사이에 있는지 확인
             normalizedHealth = Mathf.Clamp01(normalizedHealth);
             _healthBarImage.fillAmount = normalizedHealth;
