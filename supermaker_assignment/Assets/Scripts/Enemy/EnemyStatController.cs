@@ -54,7 +54,7 @@ namespace Enemy
         public void OnTakeFromPoolInit()
         {
             _state = EEnemyState.Alive;
-            _mdl.SetCurrentHp(_maxHP);
+            _mdl.SetStat(_maxHP);
         }
 
         /// <summary>
