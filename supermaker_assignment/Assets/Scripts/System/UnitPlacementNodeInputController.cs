@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using Model;
+using UI;
 using UnityEngine;
 using Util;
 
@@ -11,7 +12,9 @@ namespace System
     /// </summary>
     public sealed class UnitPlacementNodeInputController : MonoBehaviourBase
     {
+        [SerializeField] private VW_UnitAttackRange _attackRangeView;
         private readonly MDL_UnitPlacementField _mdl = new MDL_UnitPlacementField();
+        private PR_UnitAttackRange _pr;
         
         /// <summary>
         /// 마우스 입력 처리를 담당하는 핸들러 인스턴스입니다.
@@ -53,11 +56,15 @@ namespace System
         /// </summary>
         private void Awake()
         {
+            AssertHelper.NotNull(typeof(UnitPlacementNodeInputController), _attackRangeView);
+            
             _inputHandler = new UnitPlacementNodeInputHandler(Camera.main);
             _inputHandler.OnLeftClickStarted -= TryStartDrag;
             _inputHandler.OnLeftClickStarted += TryStartDrag;
             _inputHandler.OnLeftClickCanceled -= HandleDragEnd;
             _inputHandler.OnLeftClickCanceled += HandleDragEnd;
+            
+            _pr = new PR_UnitAttackRange(_mdl, _attackRangeView);
         }
 
         /// <summary>

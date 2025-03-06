@@ -2561,6 +2561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f4bb6b0a40d0440f8139ec6cbca6e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attackRangeView: {fileID: 1085947231}
 --- !u!1001 &583592956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7107,6 +7108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1085947229}
   - component: {fileID: 1085947230}
+  - component: {fileID: 1085947231}
   m_Layer: 0
   m_Name: VW_Unit Attack Range
   m_TagString: Untagged
@@ -7181,6 +7183,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1085947231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085947228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97b95074d84a6436692bbad48b9b1e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackRangeSpriteRenderer: {fileID: 1085947230}
 --- !u!1001 &1099061662
 PrefabInstance:
   m_ObjectHideFlags: 0
