@@ -21,10 +21,10 @@ namespace Model
         public void SetSpawnNeededGold(uint value) => _spawnNeededGold.Value = value;
         
         // 유닛 스폰 최대 가능 수량
-        public const uint MAX_POSSIBLE_SPAWN_COUNT = 20;
+        private const uint MAX_POSSIBLE_SPAWN_COUNT = 20;
         private readonly ReactiveProperty<uint> _currentSpawnCount = new ReactiveProperty<uint>(0);
         public IReactiveProperty<uint> CurrentSpawnCount => _currentSpawnCount;
-        public uint GetCurrentSpawnCount() => _currentSpawnCount.Value;
+        public bool IsSpawnPossible() => _currentSpawnCount.Value < MAX_POSSIBLE_SPAWN_COUNT;
         public void SetCurrentSpawnCount(uint value) => _currentSpawnCount.Value = value;
     }
 }

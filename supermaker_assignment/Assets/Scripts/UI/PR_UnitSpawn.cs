@@ -42,6 +42,9 @@ namespace UI
             uint currentSpawnNeededGold = _mdlUnit.GetSpawnNeededGold();
             uint currentAvailableGold = _mdlCurrency.GetGold();
 
+            // 소환 가능 여부 판단
+            if (!_mdlUnit.IsSpawnPossible()) return;
+            
             // 보유 골드가 부족한 경우 소환 중단
             if (currentSpawnNeededGold > currentAvailableGold) return;
             
