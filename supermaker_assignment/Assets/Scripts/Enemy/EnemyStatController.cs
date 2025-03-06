@@ -89,8 +89,8 @@ namespace Enemy
             
             EnemyDependencyContainer dependencyContainer = _enemyRoot.dependencyContainer;
             
-            dependencyContainer.MdlEnemy.KillEnemy(EEnemyType.Default);
-            dependencyContainer.EnemyBasePool.ReturnObject(_enemyRoot);
+            dependencyContainer.mdlEnemy.KillEnemy(EEnemyType.Default);
+            dependencyContainer.enemyBasePool.ReturnObject(_enemyRoot);
         }
 
         protected override void OnDestroy()
