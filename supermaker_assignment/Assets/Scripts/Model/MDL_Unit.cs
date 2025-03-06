@@ -17,6 +17,7 @@ namespace Model
         private const uint INITIAL_SPAWN_NEEDED_GOLD = 1;
         private readonly ReactiveProperty<uint> _spawnNeededGold = new ReactiveProperty<uint>(INITIAL_SPAWN_NEEDED_GOLD);
         public IReactiveProperty<uint> SpawnNeededGold => _spawnNeededGold;
+        public uint GetSpawnNeededGold() => _spawnNeededGold.Value;
         public void SetSpawnNeededGold(uint value) => _spawnNeededGold.Value = value;
     }
 }

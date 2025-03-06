@@ -11,6 +11,7 @@ namespace Model
         private readonly ReactiveProperty<uint> _gold = new ReactiveProperty<uint>(INITIAL_GOLD);
         public IReadOnlyReactiveProperty<uint> Gold => _gold;
 
+        public uint GetGold() => _gold.Value;
         public void AddGold(uint amount) => _gold.Value += amount;
         public void SubtractGold(uint amount) => _gold.Value -= amount;
     }

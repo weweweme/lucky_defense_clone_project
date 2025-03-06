@@ -34,8 +34,12 @@ namespace UI
 
         private void TrySpawnUnit(UniRx.Unit _)
         {
-            _mdlCurrency.SubtractGold(1);
+            uint currentSpawnNeededGold = _mdlUnit.GetSpawnNeededGold();
+            uint currentAvailableGold = _mdlCurrency.GetGold();
+            
+            _mdlCurrency.SubtractGold(currentSpawnNeededGold);
             SUnitSpawnRequestData data = new SUnitSpawnRequestData(EUnitGrade.Common, EUnitType.Melee, EPlayerSide.South);
+            _mdlUnit.SetSpawnNeededGold(currentSpawnNeededGold + 1);
             _mdlUnit.SpawnUnit(data);   
         }
     }
