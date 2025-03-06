@@ -21,7 +21,7 @@ namespace UI
         /// 재화를 업데이트합니다.
         /// </summary>
         /// <param name="currency"></param>
-        private void UpdateCurrency(uint currency)
+        public void UpdateCurrency(uint currency)
         {
             _currency.SetText(currency.ToString());
         }
