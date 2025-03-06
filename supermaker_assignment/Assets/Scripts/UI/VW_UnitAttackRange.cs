@@ -1,3 +1,4 @@
+using System;
 using InGame.System;
 using UnityEngine;
 using Util;
@@ -14,6 +15,18 @@ namespace UI
         private void Awake()
         {
             AssertHelper.NotNull(typeof(VW_UnitAttackRange), _attackRangeSpriteRenderer);
+        }
+
+        public void ShowAttackRange(UnitPlacementNode node)
+        {
+            if (node == null)
+            {
+                _attackRangeSpriteRenderer.enabled = false;
+                return;
+            }
+            
+            _attackRangeSpriteRenderer.enabled = true;
+            transform.position = node.transform.position;
         }
     }
 }
