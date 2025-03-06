@@ -184,14 +184,17 @@ namespace System
                 if (dragDistance >= DRAG_THRESHOLD)
                 {
                     _isDragging = true; // 드래그로 전환
-                    _mdl.SetIsDragging(true);
+                    
+                    
                 }
             }
 
             if (_isDragging)
             {
                 // 드래그 중 시각적 처리 (필요한 경우 추가)
-                // 예: 드래그 중인 노드 하이라이트 등
+                UnitPlacementNode targetNode = FindClosestNodeOrNull(_currentMouseWorldPos, _currentClickedNode);
+                SUnitPlacementDragData unitPlacementDragData = new SUnitPlacementDragData(true, targetNode);
+                _mdl.SetIsDragging(unitPlacementDragData);
             }
         }
 
@@ -228,7 +231,7 @@ namespace System
         {
             _currentClickedNode = null;
             _isDragging = false;
-            _mdl.SetIsDragging(false);
+            _mdl.SetIsDragging(new SUnitPlacementDragData(false, null));
         }
 
         protected override void OnDestroy()

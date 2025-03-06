@@ -14,8 +14,8 @@ namespace Model
         public void SelectNode(UnitPlacementNode node) => _selectedNode.OnNext(node);
         
         // 현재 드래그 중인지 Rx
-        private readonly ReactiveProperty<bool> _isDragging = new ReactiveProperty<bool>(false);
-        public IReadOnlyReactiveProperty<bool> IsDragging => _isDragging;
-        public void SetIsDragging(bool value) => _isDragging.Value = value;
+        private readonly Subject<SUnitPlacementDragData> _isDragging = new Subject<SUnitPlacementDragData>();
+        public IObservable<SUnitPlacementDragData> IsDragging => _isDragging;
+        public void SetIsDragging(SUnitPlacementDragData value) => _isDragging.OnNext(value);
     }
 }

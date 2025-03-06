@@ -15,7 +15,7 @@ namespace UI
         public PR_UnitPlacementVisible(MDL_UnitPlacementField mdl, VW_UnitPlacementVisible view)
         {
             AssertHelper.NotNull(typeof(PR_UnitPlacementVisible), mdl);
-            AssertHelper.NotNull(typeof(PR_EnemyHP), view);
+            AssertHelper.NotNull(typeof(PR_UnitPlacementVisible), view);
             
             mdl.IsDragging
                 .Subscribe(view.ShowUnitPlacementField)
