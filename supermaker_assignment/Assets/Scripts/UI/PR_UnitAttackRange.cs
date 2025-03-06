@@ -1,0 +1,24 @@
+using System;
+using Model;
+using UniRx;
+
+namespace UI
+{
+    /// <summary>
+    /// Unit Attack Range와 관련된 UI의 비즈니스 로직을 담당하는 Presenter 클래스입니다.
+    /// </summary>
+    public sealed class PR_UnitAttackRange : IDisposable
+    {
+        private readonly CompositeDisposable _disposable = new CompositeDisposable();
+
+        public PR_UnitAttackRange(MDL_UnitPlacementField mdl, VW_UnitAttackRange view)
+        {
+            
+        }
+        
+        public void Dispose()
+        {
+            _disposable.Dispose();
+        }
+    }
+}
