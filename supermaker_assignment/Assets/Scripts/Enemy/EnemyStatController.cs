@@ -39,7 +39,7 @@ namespace Enemy
         /// EnemyRoot 객체를 전달받아 내부 참조를 초기화합니다.
         /// </summary>
         /// <param name="root">초기화할 때 사용할 EnemyRoot 객체</param>
-        public void Init(EnemyRoot root)
+        public void CreatePooledItemInit(EnemyRoot root)
         {
             _enemyRoot = root;
         }
@@ -48,7 +48,7 @@ namespace Enemy
         /// 오브젝트 풀에서 꺼내질 때 호출되는 메서드입니다.
         /// 내부 데이터 초기화를 담당합니다.
         /// </summary>
-        public void OnRetrieveFromPool()
+        public void OnTakeFromPoolInit()
         {
             _state = EEnemyState.Alive;
         }
