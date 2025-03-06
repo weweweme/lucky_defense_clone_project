@@ -6840,6 +6840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rootManager: {fileID: 1939053484}
   _vwGoldCurrency: {fileID: 1315631891}
+  _vwUserSpawnInfo: {fileID: 1109695507}
 --- !u!1 &1002900518
 GameObject:
   m_ObjectHideFlags: 0
@@ -7341,7 +7342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1109695504}
   - component: {fileID: 1109695506}
-  - component: {fileID: 1109695505}
+  - component: {fileID: 1109695507}
   m_Layer: 5
   m_Name: VW_Unit Spawn Info
   m_TagString: Untagged
@@ -7369,19 +7370,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 195, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1109695505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1109695503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c06275d380bc4428a96019f99077c673, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currency: {fileID: 725918438}
 --- !u!222 &1109695506
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7390,6 +7378,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109695503}
   m_CullTransparentMesh: 1
+--- !u!114 &1109695507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109695503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d937c5438534d2b8d924e311ff23b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpawnCount: {fileID: 782602169}
+  currentSpawnCount: {fileID: 725918438}
 --- !u!1001 &1118869953
 PrefabInstance:
   m_ObjectHideFlags: 0
