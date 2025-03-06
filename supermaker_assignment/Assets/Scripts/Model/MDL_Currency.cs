@@ -7,7 +7,8 @@ namespace Model
     /// </summary>
     public class MDL_Currency
     {
-        private readonly ReactiveProperty<uint> _gold = new ReactiveProperty<uint>(0);
+        private const uint INITIAL_GOLD = 100;
+        private readonly ReactiveProperty<uint> _gold = new ReactiveProperty<uint>(INITIAL_GOLD);
         public IReadOnlyReactiveProperty<uint> Gold => _gold;
 
         public void AddGold(uint amount) => _gold.Value += amount;
