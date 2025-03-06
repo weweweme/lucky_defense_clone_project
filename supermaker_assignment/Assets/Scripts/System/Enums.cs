@@ -43,6 +43,27 @@ namespace System
     }
     
     /// <summary>
+    /// 적의 상태를 나타내는 열거형입니다.
+    /// </summary>
+    public enum EEnemyState
+    {
+        /// <summary>
+        /// 상태 없음.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// 생존 상태.
+        /// </summary>
+        Alive,
+
+        /// <summary>
+        /// 사망 상태.
+        /// </summary>
+        Dead,
+    }
+    
+    /// <summary>
     /// 유닛의 등급을 나타내는 열거형입니다.
     /// </summary>
     public enum EUnitGrade
