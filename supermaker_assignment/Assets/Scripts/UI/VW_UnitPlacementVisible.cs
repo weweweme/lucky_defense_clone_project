@@ -1,6 +1,5 @@
 using InGame.System;
 using UnityEngine;
-using UnityEngine.UI;
 using Util;
 
 namespace UI
@@ -10,12 +9,13 @@ namespace UI
     /// </summary>
     public sealed class VW_UnitPlacementVisible : View
     {
-        [SerializeField] private Image[] _unitPlacementImages;
+        [SerializeField] private Canvas _canvas;
 
         private void Awake()
         {
-            const int UNIT_PLACEMENT_IMAGE_COUNT = 18;
-            AssertHelper.EqualsValue(typeof(VW_UnitPlacementVisible), _unitPlacementImages.Length, UNIT_PLACEMENT_IMAGE_COUNT);
+            AssertHelper.NotNull(typeof(VW_UnitPlacementVisible), _canvas);
         }
+
+        public void ShowUnitPlacementField(bool value) => _canvas.enabled = value;
     }
 }
