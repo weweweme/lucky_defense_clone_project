@@ -23,7 +23,12 @@ namespace System
         /// <summary>
         /// 현재 드래그 중인 유닛 배치 노드입니다.
         /// </summary>
-        private UnitPlacementNode _clickedNode;
+        private UnitPlacementNode _currentClickedNode;
+        
+        /// <summary>
+        /// 마지막으로 클릭한 유닛 배치 노드입니다.
+        /// </summary>
+        private UnitPlacementNode _lastClickedNode;
 
         /// <summary>
         /// 현재 드래그 상태 여부입니다.
@@ -78,12 +83,22 @@ namespace System
         /// </summary>
         private void OnLeftClickStarted()
         {
-            _clickedNode = FindClosestNodeOrNull(_currentMouseWorldPos);
-            if (_clickedNode == null)
+            UnitPlacementNode currentNode = FindClosestNodeOrNull(_currentMouseWorldPos);
+            if (_lastClickedNode == null && currentNode == null)
             {
                 HandleClickSelect();
+                ClearSelection();
                 return;
             }
+            
+            if (_lastClickedNode != null && _lastClickedNode != currentNode)
+            {
+                HandleClickSelect();
+                ClearSelection();
+                return;
+            }
+            
+            _currentClickedNode = currentNode;
             
             _isDragging = false;
             _clickedPos = _currentMouseWorldPos;
@@ -92,28 +107,40 @@ namespace System
         /// <summary>
         /// 마우스 클릭 해제 시 처리
         /// </summary>
+        /// <summary>
+        /// 마우스 클릭 해제 시 처리
+        /// </summary>
         private void OnLeftClickCanceled()
         {
-            if (_clickedNode == null) return;
-            
+            if (_currentClickedNode == null)
+            {
+                _lastClickedNode = null;
+                goto FINALIZE;
+            }
+
             if (!_isDragging)
             {
-                // 드래그가 아닌 경우 = 클릭으로 판단한다.
-                // 드래그가 아닌 데 비어있는 슬롯을 터치하는 경우 반환.
-                if (_clickedNode.UnitGroup.IsEmpty())
+                // 클릭으로 판단
+                if (_currentClickedNode.UnitGroup.IsEmpty())
                 {
-                    ClearSelection();
-                    return;
+                    goto FINALIZE;
                 }
-                
-                HandleClickSelect(_clickedNode);
+
+                _lastClickedNode = _currentClickedNode;
+                HandleClickSelect(_currentClickedNode);
             }
             else
             {
+                if (_lastClickedNode == null)
+                {
+                    goto FINALIZE;
+                }
+
                 // 드래그 종료 처리
                 HandleDragEnd();
             }
 
+            FINALIZE:
             ClearSelection();
         }
 
@@ -122,11 +149,11 @@ namespace System
         /// </summary>
         private void HandleDragEnd()
         {
-            UnitPlacementNode targetNode = FindClosestNodeOrNull(_currentMouseWorldPos, _clickedNode);
+            UnitPlacementNode targetNode = FindClosestNodeOrNull(_currentMouseWorldPos, _currentClickedNode);
 
             if (targetNode != null)
             {
-                _clickedNode.SwapWith(targetNode);
+                _currentClickedNode.SwapWith(targetNode);
             }
         }
 
@@ -143,7 +170,7 @@ namespace System
         /// </summary>
         private void Update()
         {
-            if (_clickedNode == null) return;
+            if (_currentClickedNode == null) return;
 
             // 드래그 여부 판단
             if (!_isDragging)
@@ -194,7 +221,7 @@ namespace System
         /// </summary>
         private void ClearSelection()
         {
-            _clickedNode = null;
+            _currentClickedNode = null;
             _isDragging = false;
         }
 
