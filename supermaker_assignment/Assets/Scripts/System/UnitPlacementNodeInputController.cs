@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using Model;
 using UnityEngine;
 using Util;
 
@@ -10,6 +11,8 @@ namespace System
     /// </summary>
     public sealed class UnitPlacementNodeInputController : MonoBehaviourBase
     {
+        private readonly MDL_UnitPlacementField _mdl = new MDL_UnitPlacementField();
+        
         /// <summary>
         /// 마우스 입력 처리를 담당하는 핸들러 인스턴스입니다.
         /// </summary>
