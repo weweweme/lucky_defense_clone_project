@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6503434451031850375}
   - component: {fileID: 2095557803764027478}
   - component: {fileID: 7068047959761146040}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: UI_Enemy HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 9218825823537526468}
   - component: {fileID: 899457546843301458}
   - component: {fileID: 1370425802257723251}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Image_Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 5774352333301274104}
   - component: {fileID: 610142406776230480}
   - component: {fileID: 1034703719660909739}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Image_Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 8635858036535795934}
   - component: {fileID: 1116570367490451579}
   - component: {fileID: 7659868660736979377}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Image_HP Gauge
   m_TagString: Untagged
   m_Icon: {fileID: 0}

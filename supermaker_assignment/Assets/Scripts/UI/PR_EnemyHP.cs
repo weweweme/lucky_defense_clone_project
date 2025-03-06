@@ -19,6 +19,7 @@ namespace UI
             _view = view;
             
             mdl.Hp
+                .Skip(Observer.INITIAL_SUBSCRIPTION_SKIP_COUNT)
                 .Subscribe(NormalizeHP)
                 .AddTo(_disposable);
         }
