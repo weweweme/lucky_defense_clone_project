@@ -11,9 +11,11 @@ namespace System
     /// </summary>
     public sealed class UnitPlacementNodeInputController : MonoBehaviourBase
     {
-        [SerializeField] private VW_UnitAttackRange _attackRangeView;
         private readonly MDL_UnitPlacementField _mdl = new MDL_UnitPlacementField();
-        private PR_UnitAttackRange _pr;
+        [SerializeField] private VW_UnitAttackRange _attackRangeView;
+        private PR_UnitAttackRange _attackRangePr;
+        [SerializeField] private VW_UnitPlacementVisible _placementVisibleView;
+        private PR_UnitPlacementVisible _placementVisiblePr;
 
         /// <summary>
         /// 마우스 입력 처리를 담당하는 핸들러 인스턴스입니다.
@@ -68,6 +70,7 @@ namespace System
         private void Awake()
         {
             AssertHelper.NotNull(typeof(UnitPlacementNodeInputController), _attackRangeView);
+            AssertHelper.NotNull(typeof(UnitPlacementNodeInputController), _placementVisibleView);
 
             _inputHandler = new UnitPlacementNodeInputHandler(Camera.main);
             _inputHandler.OnLeftClickStarted -= OnLeftClickStarted;
@@ -75,7 +78,8 @@ namespace System
             _inputHandler.OnLeftClickCanceled -= OnLeftClickCanceled;
             _inputHandler.OnLeftClickCanceled += OnLeftClickCanceled;
 
-            _pr = new PR_UnitAttackRange(_mdl, _attackRangeView);
+            _attackRangePr = new PR_UnitAttackRange(_mdl, _attackRangeView);
+            _placementVisiblePr = new PR_UnitPlacementVisible(_mdl, _placementVisibleView);
         }
 
         /// <summary>
@@ -99,7 +103,6 @@ namespace System
             }
             
             _currentClickedNode = currentNode;
-            
             _isDragging = false;
             _clickedPos = _currentMouseWorldPos;
         }
@@ -120,7 +123,6 @@ namespace System
 
             if (!_isDragging)
             {
-                // 클릭으로 판단
                 if (_currentClickedNode.UnitGroup.IsEmpty())
                 {
                     goto FINALIZE;
@@ -131,12 +133,12 @@ namespace System
             }
             else
             {
-                if (_lastClickedNode == null)
+                if (_currentClickedNode.UnitGroup.IsEmpty())
                 {
                     goto FINALIZE;
                 }
 
-                // 드래그 종료 처리
+                _lastClickedNode = _currentClickedNode;
                 HandleDragEnd();
             }
 
@@ -154,6 +156,7 @@ namespace System
             if (targetNode != null)
             {
                 _currentClickedNode.SwapWith(targetNode);
+                _lastClickedNode = null;
             }
         }
 
@@ -175,11 +178,13 @@ namespace System
             // 드래그 여부 판단
             if (!_isDragging)
             {
+                if (_currentClickedNode.UnitGroup.IsEmpty()) return;
+                
                 float dragDistance = Vector2.Distance(_clickedPos, _currentMouseWorldPos);
                 if (dragDistance >= DRAG_THRESHOLD)
                 {
                     _isDragging = true; // 드래그로 전환
-                    // 드래그 시작 시 필요한 추가 처리 (예: 하이라이트 표시 등) 가능
+                    _mdl.SetIsDragging(true);
                 }
             }
 
@@ -223,6 +228,7 @@ namespace System
         {
             _currentClickedNode = null;
             _isDragging = false;
+            _mdl.SetIsDragging(false);
         }
 
         protected override void OnDestroy()
@@ -230,7 +236,8 @@ namespace System
             _inputHandler.OnLeftClickStarted -= OnLeftClickStarted;
             _inputHandler.OnLeftClickCanceled -= OnLeftClickCanceled;
             _inputHandler.Dispose();
-            _pr.Dispose();
+            _attackRangePr.Dispose();
+            _placementVisiblePr.Dispose();
 
             base.OnDestroy();
         }

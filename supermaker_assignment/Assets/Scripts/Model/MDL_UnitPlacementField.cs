@@ -12,5 +12,10 @@ namespace Model
         private readonly Subject<UnitPlacementNode> _selectedNode = new Subject<UnitPlacementNode>();
         public IObservable<UnitPlacementNode> SelectedNode => _selectedNode;
         public void SelectNode(UnitPlacementNode node) => _selectedNode.OnNext(node);
+        
+        // 현재 드래그 중인지 Rx
+        private readonly ReactiveProperty<bool> _isDragging = new ReactiveProperty<bool>(false);
+        public IReadOnlyReactiveProperty<bool> IsDragging => _isDragging;
+        public void SetIsDragging(bool value) => _isDragging.Value = value;
     }
 }
