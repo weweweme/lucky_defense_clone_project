@@ -7330,6 +7330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rootManager: {fileID: 1939053484}
   _vwUnitSpawn: {fileID: 486088967}
+  _vwSpawnNeededGold: {fileID: 1310503996}
 --- !u!1 &1109695503
 GameObject:
   m_ObjectHideFlags: 0
