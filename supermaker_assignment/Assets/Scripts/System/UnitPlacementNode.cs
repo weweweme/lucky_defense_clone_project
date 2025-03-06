@@ -11,34 +11,9 @@ namespace System
     public sealed class UnitPlacementNode : MonoBehaviourBase
     {
         /// <summary>
-        /// 최대 배치 가능한 유닛 수입니다.
+        /// 해당 노드가 관리하는 유닛 그룹입니다.
         /// </summary>
-        private const int MAX_UNIT_COUNT = 3;
-        
-        /// <summary>
-        /// 현재 노드가 유닛으로 점유되어 있는지 여부입니다.
-        /// </summary>
-        private bool _isOccupied;
-
-        /// <summary>
-        /// 현재 배치된 유닛의 등급입니다.
-        /// </summary>
-        private EUnitGrade _unitGrade;
-
-        /// <summary>
-        /// 현재 배치된 유닛의 타입입니다.
-        /// </summary>
-        private EUnitType _unitType;
-
-        /// <summary>
-        /// 현재 노드에 배치된 유닛 수입니다.
-        /// </summary>
-        private uint _unitCount;
-
-        /// <summary>
-        /// 해당 노드에 배치된 유닛들의 참조 배열입니다.
-        /// </summary>
-        [SerializeField] private UnitRoot[] _placedUnits = new UnitRoot[MAX_UNIT_COUNT];
+        public UnitGroup UnitGroup = new UnitGroup();
 
         /// <summary>
         /// 2개 유닛 배치 시 사용되는 위치 배열입니다.
@@ -55,27 +30,22 @@ namespace System
         /// </summary>
         public bool CanAcceptUnit(SUnitSpawnRequestData requestData)
         {
-            // 이미 가득 찼거나 신화 등급인 경우 추가 불가
-            if (_unitCount == 3 || _unitGrade == EUnitGrade.Mythic)
+            if (UnitGroup.IsFull())
                 return false;
 
-            // 비어있으면 바로 배치 가능
-            if (!_isOccupied)
+            if (!UnitGroup.IsOccupied)
                 return true;
 
-            // 동일 타입 & 동일 등급이면 합체 가능
-            return _unitType == requestData.UnitType && _unitGrade == requestData.UnitGrade;
+            return UnitGroup.UnitType == requestData.UnitType &&
+                   UnitGroup.UnitGrade == requestData.UnitGrade;
         }
-        
+
         /// <summary>
         /// 유닛을 노드에 추가하고, 자동으로 배치 위치를 재조정합니다.
         /// </summary>
         public void AddUnit(UnitRoot unit)
         {
-            AssertHelper.NotEqualsValue<uint>(typeof(UnitPlacementNode), _unitCount, MAX_UNIT_COUNT);
-            // TODO: UnitGrade, UnitType을 기록하는 코드 추가
-
-            _placedUnits[_unitCount++] = unit;
+            UnitGroup.AddUnit(unit);
             RearrangeUnitPositions();
         }
 
@@ -84,18 +54,28 @@ namespace System
         /// </summary>
         private void RearrangeUnitPositions()
         {
-            if (_unitCount == 1)
+            switch (UnitGroup.UnitCount)
             {
-                _placedUnits[0].transform.position = transform.position;
-                return;
+                case 1:
+                    UnitGroup.SetPositions(transform);
+                    break;
+                case 2:
+                    UnitGroup.SetPositions(twoUnitPositions);
+                    break;
+                case 3:
+                    UnitGroup.SetPositions(threeUnitPositions);
+                    break;
             }
+        }
 
-            Transform[] targetPositions = _unitCount == 2 ? twoUnitPositions : threeUnitPositions;
-
-            for (int i = 0; i < _unitCount; ++i)
-            {
-                _placedUnits[i].transform.position = targetPositions[i].position;
-            }
+        /// <summary>
+        /// 다른 노드와 유닛 그룹을 교환하고, 서로의 유닛 위치를 재조정합니다.
+        /// </summary>
+        public void SwapWith(UnitPlacementNode targetNode)
+        {
+            (UnitGroup, targetNode.UnitGroup) = (targetNode.UnitGroup, UnitGroup);
+            RearrangeUnitPositions();
+            targetNode.RearrangeUnitPositions();
         }
     }
 }
