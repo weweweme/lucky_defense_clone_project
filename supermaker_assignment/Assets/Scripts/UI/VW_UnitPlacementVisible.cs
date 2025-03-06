@@ -1,3 +1,4 @@
+using System;
 using InGame.System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +24,9 @@ namespace UI
             AssertHelper.EqualsValue(typeof(VW_UnitPlacementVisible), _unitPlacementNodes.Length, UNIT_PLACEMENT_NODE_COUNT);
         }
 
-        public void ShowUnitPlacementField(bool value) => _canvas.enabled = value;
+        public void ShowUnitPlacementField(SUnitPlacementDragData data)
+        {
+            _canvas.enabled = data.IsDragging;
+        }
     }
 }

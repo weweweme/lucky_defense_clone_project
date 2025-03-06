@@ -184,7 +184,10 @@ namespace System
                 if (dragDistance >= DRAG_THRESHOLD)
                 {
                     _isDragging = true; // 드래그로 전환
-                    _mdl.SetIsDragging(true);
+                    
+                    UnitPlacementNode targetNode = FindClosestNodeOrNull(_currentMouseWorldPos, _currentClickedNode);
+                    SUnitPlacementDragData unitPlacementDragData = new SUnitPlacementDragData(true, targetNode);
+                    _mdl.SetIsDragging(unitPlacementDragData);
                 }
             }
 
@@ -228,7 +231,7 @@ namespace System
         {
             _currentClickedNode = null;
             _isDragging = false;
-            _mdl.SetIsDragging(false);
+            _mdl.SetIsDragging(new SUnitPlacementDragData(false, null));
         }
 
         protected override void OnDestroy()
