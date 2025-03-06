@@ -1,5 +1,4 @@
 using InGame.System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Util;
@@ -12,12 +11,10 @@ namespace UI
     public sealed class VW_UnitSpawn : View
     {
         [SerializeField] internal Button btnSpawn;
-        [SerializeField] internal TextMeshProUGUI currentCurrency; 
         
         private void Awake()
         {
             AssertHelper.NotNull(typeof(VW_UnitSpawn), btnSpawn);
-            AssertHelper.NotNull(typeof(VW_UnitSpawn), currentCurrency);
         }
     }
 }
