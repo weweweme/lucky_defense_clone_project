@@ -11,9 +11,11 @@ namespace System
     /// </summary>
     public sealed class UnitPlacementNodeInputController : MonoBehaviourBase
     {
-        [SerializeField] private VW_UnitAttackRange _attackRangeView;
         private readonly MDL_UnitPlacementField _mdl = new MDL_UnitPlacementField();
-        private PR_UnitAttackRange _pr;
+        [SerializeField] private VW_UnitAttackRange _attackRangeView;
+        private PR_UnitAttackRange _attackRangePr;
+        [SerializeField] private VW_UnitPlacementVisible _placementVisibleView;
+        private PR_UnitPlacementVisible _placementVisiblePr;
 
         /// <summary>
         /// 마우스 입력 처리를 담당하는 핸들러 인스턴스입니다.
@@ -68,6 +70,7 @@ namespace System
         private void Awake()
         {
             AssertHelper.NotNull(typeof(UnitPlacementNodeInputController), _attackRangeView);
+            AssertHelper.NotNull(typeof(UnitPlacementNodeInputController), _placementVisibleView);
 
             _inputHandler = new UnitPlacementNodeInputHandler(Camera.main);
             _inputHandler.OnLeftClickStarted -= OnLeftClickStarted;
@@ -75,7 +78,8 @@ namespace System
             _inputHandler.OnLeftClickCanceled -= OnLeftClickCanceled;
             _inputHandler.OnLeftClickCanceled += OnLeftClickCanceled;
 
-            _pr = new PR_UnitAttackRange(_mdl, _attackRangeView);
+            _attackRangePr = new PR_UnitAttackRange(_mdl, _attackRangeView);
+            _placementVisiblePr = new PR_UnitPlacementVisible(_mdl, _placementVisibleView);
         }
 
         /// <summary>
@@ -231,7 +235,8 @@ namespace System
             _inputHandler.OnLeftClickStarted -= OnLeftClickStarted;
             _inputHandler.OnLeftClickCanceled -= OnLeftClickCanceled;
             _inputHandler.Dispose();
-            _pr.Dispose();
+            _attackRangePr.Dispose();
+            _placementVisiblePr.Dispose();
 
             base.OnDestroy();
         }

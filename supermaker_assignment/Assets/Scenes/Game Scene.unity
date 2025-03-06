@@ -573,7 +573,7 @@ GameObject:
   - component: {fileID: 101733382}
   - component: {fileID: 101733384}
   - component: {fileID: 101733383}
-  m_Layer: 29
+  m_Layer: 30
   m_Name: Image_S3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -597,7 +597,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -4}
-  m_SizeDelta: {x: 2, y: 2}
+  m_SizeDelta: {x: 2, y: 1.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &101733383
 MonoBehaviour:
@@ -612,7 +612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -782,7 +782,7 @@ GameObject:
   - component: {fileID: 103090417}
   - component: {fileID: 103090419}
   - component: {fileID: 103090418}
-  m_Layer: 29
+  m_Layer: 30
   m_Name: Image_S10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -806,7 +806,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 7.4399996, y: 0}
-  m_SizeDelta: {x: 2, y: 2}
+  m_SizeDelta: {x: 2, y: 1.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &103090418
 MonoBehaviour:
@@ -821,7 +821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1221,7 +1221,7 @@ GameObject:
   - component: {fileID: 176132490}
   - component: {fileID: 176132492}
   - component: {fileID: 176132491}
-  m_Layer: 29
+  m_Layer: 30
   m_Name: Image_S15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1245,7 +1245,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 9.92, y: -4}
-  m_SizeDelta: {x: 2, y: 2}
+  m_SizeDelta: {x: 2, y: 1.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &176132491
 MonoBehaviour:
@@ -1260,7 +1260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1400,8 +1400,8 @@ GameObject:
   - component: {fileID: 258547397}
   - component: {fileID: 258547396}
   - component: {fileID: 258547399}
-  m_Layer: 29
-  m_Name: VW_UnitPlacementVisible
+  m_Layer: 30
+  m_Name: VW_Unit Placement Visible
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1491,7 +1491,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258547394}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 519420031}
@@ -1519,25 +1519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3028e0e5b24a84d3a96d386dcde366f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unitPlacementImages:
-  - {fileID: 400506868}
-  - {fileID: 1482889024}
-  - {fileID: 101733383}
-  - {fileID: 286219524}
-  - {fileID: 1671344219}
-  - {fileID: 337200777}
-  - {fileID: 987081639}
-  - {fileID: 1081492156}
-  - {fileID: 1695702091}
-  - {fileID: 103090418}
-  - {fileID: 962097195}
-  - {fileID: 1331516308}
-  - {fileID: 1486321775}
-  - {fileID: 1508693473}
-  - {fileID: 176132491}
-  - {fileID: 473001346}
-  - {fileID: 1742521557}
-  - {fileID: 820798878}
+  _canvas: {fileID: 258547398}
 --- !u!1001 &260999213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1860,7 +1842,7 @@ GameObject:
   - component: {fileID: 286219523}
   - component: {fileID: 286219525}
   - component: {fileID: 286219524}
-  m_Layer: 29
+  m_Layer: 30
   m_Name: Image_S4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1884,7 +1866,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 2.4799998, y: 0}
-  m_SizeDelta: {x: 2, y: 2}
+  m_SizeDelta: {x: 2, y: 1.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &286219524
 MonoBehaviour:
@@ -1899,7 +1881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2118,7 +2100,7 @@ GameObject:
   - component: {fileID: 337200776}
   - component: {fileID: 337200778}
   - component: {fileID: 337200777}
-  m_Layer: 29
+  m_Layer: 30
   m_Name: Image_S6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2142,7 +2124,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 2.4799998, y: -4}
-  m_SizeDelta: {x: 2, y: 2}
+  m_SizeDelta: {x: 2, y: 1.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &337200777
 MonoBehaviour:
@@ -2157,7 +2139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2193,7 +2175,7 @@ GameObject:
   - component: {fileID: 400506867}
   - component: {fileID: 400506869}
   - component: {fileID: 400506868}
-  m_Layer: 29
+  m_Layer: 30
   m_Name: Image_S1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2217,7 +2199,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2, y: 2}
+  m_SizeDelta: {x: 2, y: 1.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &400506868
 MonoBehaviour:
@@ -2232,7 +2214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2611,7 +2593,7 @@ GameObject:
   - component: {fileID: 473001345}
   - component: {fileID: 473001347}
   - component: {fileID: 473001346}
-  m_Layer: 29
+  m_Layer: 30
   m_Name: Image_S16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2635,7 +2617,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 12.4, y: 0}
-  m_SizeDelta: {x: 2, y: 2}
+  m_SizeDelta: {x: 2, y: 1.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &473001346
 MonoBehaviour:
@@ -2650,7 +2632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3239,6 +3221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackRangeView: {fileID: 1085947231}
+  _placementVisibleView: {fileID: 258547399}
 --- !u!1001 &583592956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6299,7 +6282,7 @@ GameObject:
   - component: {fileID: 820798877}
   - component: {fileID: 820798879}
   - component: {fileID: 820798878}
-  m_Layer: 29
+  m_Layer: 30
   m_Name: Image_S18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6323,7 +6306,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 12.4, y: -4}
-  m_SizeDelta: {x: 2, y: 2}
+  m_SizeDelta: {x: 2, y: 1.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &820798878
 MonoBehaviour:
@@ -6338,7 +6321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7131,7 +7114,7 @@ GameObject:
   - component: {fileID: 962097194}
   - component: {fileID: 962097196}
   - component: {fileID: 962097195}
-  m_Layer: 29
+  m_Layer: 30
   m_Name: Image_S11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7155,7 +7138,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 7.4399996, y: -2}
-  m_SizeDelta: {x: 2, y: 2}
+  m_SizeDelta: {x: 2, y: 1.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &962097195
 MonoBehaviour:
@@ -7170,7 +7153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7563,7 +7546,7 @@ GameObject:
   - component: {fileID: 987081638}
   - component: {fileID: 987081640}
   - component: {fileID: 987081639}
-  m_Layer: 29
+  m_Layer: 30
   m_Name: Image_S7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7587,7 +7570,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 4.96, y: 0}
-  m_SizeDelta: {x: 2, y: 2}
+  m_SizeDelta: {x: 2, y: 1.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &987081639
 MonoBehaviour:
@@ -7602,7 +7585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8011,7 +7994,7 @@ GameObject:
   - component: {fileID: 1081492155}
   - component: {fileID: 1081492157}
   - component: {fileID: 1081492156}
-  m_Layer: 29
+  m_Layer: 30
   m_Name: Image_S8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8035,7 +8018,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 4.96, y: -2}
-  m_SizeDelta: {x: 2, y: 2}
+  m_SizeDelta: {x: 2, y: 1.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1081492156
 MonoBehaviour:
@@ -8050,7 +8033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9368,7 +9351,7 @@ GameObject:
   - component: {fileID: 1331516307}
   - component: {fileID: 1331516309}
   - component: {fileID: 1331516308}
-  m_Layer: 29
+  m_Layer: 30
   m_Name: Image_S12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9392,7 +9375,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 7.4399996, y: -4}
-  m_SizeDelta: {x: 2, y: 2}
+  m_SizeDelta: {x: 2, y: 1.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1331516308
 MonoBehaviour:
@@ -9407,7 +9390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9958,7 +9941,7 @@ GameObject:
   - component: {fileID: 1482889023}
   - component: {fileID: 1482889025}
   - component: {fileID: 1482889024}
-  m_Layer: 29
+  m_Layer: 30
   m_Name: Image_S2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9982,7 +9965,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -2}
-  m_SizeDelta: {x: 2, y: 2}
+  m_SizeDelta: {x: 2, y: 1.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1482889024
 MonoBehaviour:
@@ -9997,7 +9980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10033,7 +10016,7 @@ GameObject:
   - component: {fileID: 1486321774}
   - component: {fileID: 1486321776}
   - component: {fileID: 1486321775}
-  m_Layer: 29
+  m_Layer: 30
   m_Name: Image_S13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10057,7 +10040,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 9.92, y: 0}
-  m_SizeDelta: {x: 2, y: 2}
+  m_SizeDelta: {x: 2, y: 1.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1486321775
 MonoBehaviour:
@@ -10072,7 +10055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10108,7 +10091,7 @@ GameObject:
   - component: {fileID: 1508693472}
   - component: {fileID: 1508693474}
   - component: {fileID: 1508693473}
-  m_Layer: 29
+  m_Layer: 30
   m_Name: Image_S14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10132,7 +10115,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 9.92, y: -2}
-  m_SizeDelta: {x: 2, y: 2}
+  m_SizeDelta: {x: 2, y: 1.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1508693473
 MonoBehaviour:
@@ -10147,7 +10130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10746,7 +10729,7 @@ GameObject:
   - component: {fileID: 1671344218}
   - component: {fileID: 1671344220}
   - component: {fileID: 1671344219}
-  m_Layer: 29
+  m_Layer: 30
   m_Name: Image_S5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10770,7 +10753,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 2.4799998, y: -2}
-  m_SizeDelta: {x: 2, y: 2}
+  m_SizeDelta: {x: 2, y: 1.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1671344219
 MonoBehaviour:
@@ -10785,7 +10768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10934,7 +10917,7 @@ GameObject:
   - component: {fileID: 1695702090}
   - component: {fileID: 1695702092}
   - component: {fileID: 1695702091}
-  m_Layer: 29
+  m_Layer: 30
   m_Name: Image_S9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10958,7 +10941,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 4.96, y: -4}
-  m_SizeDelta: {x: 2, y: 2}
+  m_SizeDelta: {x: 2, y: 1.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1695702091
 MonoBehaviour:
@@ -10973,7 +10956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11153,7 +11136,7 @@ GameObject:
   - component: {fileID: 1742521556}
   - component: {fileID: 1742521558}
   - component: {fileID: 1742521557}
-  m_Layer: 29
+  m_Layer: 30
   m_Name: Image_S17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11177,7 +11160,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 12.4, y: -2}
-  m_SizeDelta: {x: 2, y: 2}
+  m_SizeDelta: {x: 2, y: 1.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1742521557
 MonoBehaviour:
@@ -11192,7 +11175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
