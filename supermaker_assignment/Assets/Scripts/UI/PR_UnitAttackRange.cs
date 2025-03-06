@@ -14,8 +14,8 @@ namespace UI
 
         public PR_UnitAttackRange(MDL_UnitPlacementField mdl, VW_UnitAttackRange view)
         {
-            AssertHelper.NotNull(typeof(PR_EnemyHP), mdl);
-            AssertHelper.NotNull(typeof(PR_EnemyHP), view);
+            AssertHelper.NotNull(typeof(PR_UnitAttackRange), mdl);
+            AssertHelper.NotNull(typeof(PR_UnitAttackRange), view);
             
             mdl.SelectedNode
                 .Subscribe(view.ShowAttackRange)
