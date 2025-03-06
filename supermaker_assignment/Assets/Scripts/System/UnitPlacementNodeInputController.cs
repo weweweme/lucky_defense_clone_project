@@ -23,7 +23,12 @@ namespace System
         /// <summary>
         /// 현재 드래그 중인 유닛 배치 노드입니다.
         /// </summary>
-        private UnitPlacementNode _draggingNode;
+        private UnitPlacementNode _currentClickedNode;
+        
+        /// <summary>
+        /// 마지막으로 클릭한 유닛 배치 노드입니다.
+        /// </summary>
+        private UnitPlacementNode _lastClickedNode;
 
         /// <summary>
         /// 현재 드래그 상태 여부입니다.
@@ -33,7 +38,7 @@ namespace System
         /// <summary>
         /// 클릭 시작 지점 (드래그 거리 계산용)
         /// </summary>
-        private Vector2 _initialClickPosition;
+        private Vector2 _clickedPos;
 
         /// <summary>
         /// 드래그 판단 거리 (픽셀 기준)
@@ -78,31 +83,65 @@ namespace System
         /// </summary>
         private void OnLeftClickStarted()
         {
-            _draggingNode = FindClosestNodeOrNull(_currentMouseWorldPos);
+            UnitPlacementNode currentNode = FindClosestNodeOrNull(_currentMouseWorldPos);
+            if (_lastClickedNode == null && currentNode == null)
+            {
+                HandleClickSelect();
+                ClearSelection();
+                return;
+            }
+            
+            if (_lastClickedNode != null && _lastClickedNode != currentNode)
+            {
+                HandleClickSelect();
+                ClearSelection();
+                return;
+            }
+            
+            _currentClickedNode = currentNode;
+            
             _isDragging = false;
-            _initialClickPosition = _currentMouseWorldPos; // 클릭 위치 기록
+            _clickedPos = _currentMouseWorldPos;
         }
 
         /// <summary>
         /// 마우스 클릭 해제 시 처리
         /// </summary>
+        /// <summary>
+        /// 마우스 클릭 해제 시 처리
+        /// </summary>
         private void OnLeftClickCanceled()
         {
-            if (_draggingNode == null) return;
+            if (_currentClickedNode == null)
+            {
+                _lastClickedNode = null;
+                goto FINALIZE;
+            }
 
             if (!_isDragging)
             {
-                // 드래그가 아닌 경우 = 클릭으로 판단
-                HandleClickSelect();
+                // 클릭으로 판단
+                if (_currentClickedNode.UnitGroup.IsEmpty())
+                {
+                    goto FINALIZE;
+                }
+
+                _lastClickedNode = _currentClickedNode;
+                HandleClickSelect(_currentClickedNode);
             }
             else
             {
+                if (_lastClickedNode == null)
+                {
+                    goto FINALIZE;
+                }
+
                 // 드래그 종료 처리
                 HandleDragEnd();
             }
 
-            _draggingNode = null;
-            _isDragging = false;
+            FINALIZE:
+            ClearSelection();
         }
 
         /// <summary>
@@ -110,20 +149,20 @@ namespace System
         /// </summary>
         private void HandleDragEnd()
         {
-            UnitPlacementNode targetNode = FindClosestNodeOrNull(_currentMouseWorldPos, _draggingNode);
+            UnitPlacementNode targetNode = FindClosestNodeOrNull(_currentMouseWorldPos, _currentClickedNode);
 
             if (targetNode != null)
             {
-                _draggingNode.SwapWith(targetNode);
+                _currentClickedNode.SwapWith(targetNode);
             }
         }
 
         /// <summary>
         /// 노드 선택 처리
         /// </summary>
-        private void HandleClickSelect()
+        private void HandleClickSelect(UnitPlacementNode node = null)
         {
-            _mdl.SelectNode(_draggingNode); // 여기는 네가 원하는 방식으로 바꿔서 사용
+            _mdl.SelectNode(node);
         }
 
         /// <summary>
@@ -131,12 +170,12 @@ namespace System
         /// </summary>
         private void Update()
         {
-            if (_draggingNode == null) return;
+            if (_currentClickedNode == null) return;
 
             // 드래그 여부 판단
             if (!_isDragging)
             {
-                float dragDistance = Vector2.Distance(_initialClickPosition, _currentMouseWorldPos);
+                float dragDistance = Vector2.Distance(_clickedPos, _currentMouseWorldPos);
                 if (dragDistance >= DRAG_THRESHOLD)
                 {
                     _isDragging = true; // 드래그로 전환
@@ -175,6 +214,15 @@ namespace System
             }
 
             return closestNode;
+        }
+        
+        /// <summary>
+        /// 선택 및 드래그 상태 초기화
+        /// </summary>
+        private void ClearSelection()
+        {
+            _currentClickedNode = null;
+            _isDragging = false;
         }
 
         protected override void OnDestroy()

@@ -33,7 +33,7 @@ namespace System
             if (UnitGroup.IsFull())
                 return false;
 
-            if (!UnitGroup.IsOccupied)
+            if (UnitGroup.IsEmpty())
                 return true;
 
             return UnitGroup.UnitType == requestData.UnitType &&
