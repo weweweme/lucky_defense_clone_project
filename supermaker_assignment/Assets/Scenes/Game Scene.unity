@@ -2562,6 +2562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackRangeView: {fileID: 1085947231}
+  DRAG_THRESHOLD: 0.3
 --- !u!1001 &583592956
 PrefabInstance:
   m_ObjectHideFlags: 0
