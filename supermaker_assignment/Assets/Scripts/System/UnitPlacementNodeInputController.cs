@@ -99,7 +99,6 @@ namespace System
             }
             
             _currentClickedNode = currentNode;
-            
             _isDragging = false;
             _clickedPos = _currentMouseWorldPos;
         }
@@ -120,7 +119,6 @@ namespace System
 
             if (!_isDragging)
             {
-                // 클릭으로 판단
                 if (_currentClickedNode.UnitGroup.IsEmpty())
                 {
                     goto FINALIZE;
@@ -131,12 +129,12 @@ namespace System
             }
             else
             {
-                if (_lastClickedNode == null)
+                if (_currentClickedNode.UnitGroup.IsEmpty())
                 {
                     goto FINALIZE;
                 }
 
-                // 드래그 종료 처리
+                _lastClickedNode = _currentClickedNode;
                 HandleDragEnd();
             }
 
@@ -154,6 +152,7 @@ namespace System
             if (targetNode != null)
             {
                 _currentClickedNode.SwapWith(targetNode);
+                _lastClickedNode = null;
             }
         }
 
@@ -179,6 +178,7 @@ namespace System
                 if (dragDistance >= DRAG_THRESHOLD)
                 {
                     _isDragging = true; // 드래그로 전환
+                    _mdl.SetIsDragging(true);
                     // 드래그 시작 시 필요한 추가 처리 (예: 하이라이트 표시 등) 가능
                 }
             }
@@ -223,6 +223,7 @@ namespace System
         {
             _currentClickedNode = null;
             _isDragging = false;
+            _mdl.SetIsDragging(false);
         }
 
         protected override void OnDestroy()
