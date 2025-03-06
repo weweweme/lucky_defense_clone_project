@@ -35,5 +35,9 @@ namespace Unit
         {
             _btController.StartBtTick();
         }
+        
+        public void Release()
+        {
+        }
     }
 }
