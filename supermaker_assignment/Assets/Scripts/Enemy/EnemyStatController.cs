@@ -97,5 +97,12 @@ namespace Enemy
             dependencyContainer.MdlEnemy.KillEnemy(EEnemyType.Default);
             dependencyContainer.EnemyBasePool.ReturnObject(_enemyRoot);
         }
+
+        protected override void OnDestroy()
+        {
+            _presenter.Dispose();
+            
+            base.OnDestroy();
+        }
     }
 }
