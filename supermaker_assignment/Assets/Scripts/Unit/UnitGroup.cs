@@ -21,11 +21,6 @@ namespace Unit
         private readonly UnitRoot[] _placedUnits = new UnitRoot[MAX_UNIT_COUNT];
 
         /// <summary>
-        /// 현재 노드가 유닛으로 점유되어 있는지 여부입니다.
-        /// </summary>
-        public bool IsOccupied { get; private set; }
-        
-        /// <summary>
         /// 현재 그룹에 속한 유닛들의 등급입니다.
         /// </summary>
         public EUnitGrade UnitGrade { get; private set; }
@@ -50,7 +45,6 @@ namespace Unit
             _placedUnits[UnitCount++] = unit;
             UnitGrade = unit.Grade;
             UnitType = unit.Type;
-            IsOccupied = true;
         }
 
         /// <summary>
@@ -77,13 +71,18 @@ namespace Unit
             UnitGrade = EUnitGrade.None;
             UnitType = EUnitType.None;
             UnitCount = 0;
-            IsOccupied = false;
         }
 
         /// <summary>
         /// 현재 그룹이 가득 찼는지 여부를 반환합니다.
         /// </summary>
         public bool IsFull() => UnitCount == MAX_UNIT_COUNT || UnitGrade == EUnitGrade.Mythic;
+        
+        /// <summary>
+        /// 현재 그룹이 비어있는지 여부를 반환합니다.
+        /// </summary>
+        /// <returns>true일 경우 비어있음, false일 경우 점유 중 </returns>
+        public bool IsEmpty() => UnitCount == 0;
 
         /// <summary>
         /// 현재 그룹의 공격 사정거리를 반환합니다.
