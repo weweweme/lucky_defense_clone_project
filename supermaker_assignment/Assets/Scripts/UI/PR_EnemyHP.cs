@@ -1,4 +1,5 @@
 using System;
+using Model;
 using UniRx;
 
 namespace UI
@@ -10,7 +11,7 @@ namespace UI
     {
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
 
-        public void InitRx(VW_EnemyHP view)
+        public PR_EnemyHP(MDL_EnemyStat mdl, VW_EnemyHP view)
         {
             
         }

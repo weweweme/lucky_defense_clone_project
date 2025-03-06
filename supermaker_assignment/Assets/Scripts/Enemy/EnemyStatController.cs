@@ -1,4 +1,6 @@
 using System;
+using Model;
+using UI;
 using UnityEngine;
 using Util;
 
@@ -9,6 +11,10 @@ namespace Enemy
     /// </summary>
     public sealed class EnemyStatController : MonoBehaviourBase
     {
+        [SerializeField] private VW_EnemyHP _view;
+        private readonly MDL_EnemyStat _mdl = new MDL_EnemyStat();
+        private PR_EnemyHP _presenter;
+        
         /// <summary>
         /// 적의 최대 체력입니다.
         /// </summary>
@@ -31,8 +37,11 @@ namespace Enemy
 
         private void Awake()
         {
+            AssertHelper.NotNull(typeof(EnemyStatController), _view);
+            
             // 적 생성 시, 현재 체력을 최대 체력으로 초기화합니다.
             _currentHP = _maxHP;
+            _presenter = new PR_EnemyHP(_mdl, _view);
         }
 
         /// <summary>
