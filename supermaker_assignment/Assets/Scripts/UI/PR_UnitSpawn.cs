@@ -13,6 +13,7 @@ namespace UI
     {
         private MDL_Unit _mdlUnit;
         private MDL_Currency _mdlCurrency;
+        private uint _maxPossibleSpawnCount;
         
         public override void Init(DataManager dataManager, View view)
         {
@@ -20,13 +21,14 @@ namespace UI
             
             _mdlUnit = dataManager.Unit;
             AssertHelper.NotNull(typeof(PR_UnitSpawn), _mdlUnit);
+            _maxPossibleSpawnCount = _mdlUnit.GetMaxPossibleSpawnCount();
             
             _mdlCurrency = dataManager.Currency;
             AssertHelper.NotNull(typeof(PR_UnitSpawn), _mdlCurrency);
             
             VW_UnitSpawn vwUnitSpawn = view as VW_UnitSpawn;
             AssertHelper.NotNull(typeof(PR_UnitSpawn), vwUnitSpawn);
-
+            
             vwUnitSpawn!.btnSpawn.OnClickAsObservable()
                 .Subscribe(TrySpawnUnit)
                 .AddTo(disposable);
@@ -39,14 +41,18 @@ namespace UI
         /// <param name="_">버튼 클릭 이벤트에서 전달되는 파라미터 (사용하지 않음)</param>
         private void TrySpawnUnit(UniRx.Unit _)
         {
+            // 소환 가능 여부 판단
+            uint currentSpawnCount = _mdlUnit.GetCurrentSpawnCount();
+            if (currentSpawnCount >= _maxPossibleSpawnCount) return;
+            
+            // 보유 골드가 부족한 경우 소환 중단
             uint currentSpawnNeededGold = _mdlUnit.GetSpawnNeededGold();
             uint currentAvailableGold = _mdlCurrency.GetGold();
-
-            // 보유 골드가 부족한 경우 소환 중단
             if (currentSpawnNeededGold > currentAvailableGold) return;
             
             _mdlCurrency.SubtractGold(currentSpawnNeededGold);
             _mdlUnit.SetSpawnNeededGold(currentSpawnNeededGold + 1);
+            _mdlUnit.SetCurrentSpawnCount(currentSpawnCount + 1);
             
             SUnitSpawnRequestData data = new SUnitSpawnRequestData(EUnitGrade.Common, EUnitType.Melee, EPlayerSide.South);
             _mdlUnit.SpawnUnit(data);   
