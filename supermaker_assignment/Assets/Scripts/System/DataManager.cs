@@ -19,5 +19,8 @@ namespace System
         
         private readonly MDL_Unit _unit = new MDL_Unit();
         public MDL_Unit Unit => _unit;
+        
+        private readonly MDL_Currency _currency = new MDL_Currency();
+        public MDL_Currency Currency => _currency;
     }
 }
