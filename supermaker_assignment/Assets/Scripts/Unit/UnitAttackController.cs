@@ -52,7 +52,7 @@ namespace Unit
         /// <summary>
         /// 유닛의 데미지입니다.
         /// </summary>
-        private readonly int _damage = 20;
+        private readonly uint _damage = 20;
 
         private void Awake()
         {

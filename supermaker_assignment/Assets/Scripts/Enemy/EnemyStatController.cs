@@ -18,13 +18,8 @@ namespace Enemy
         /// <summary>
         /// 적의 최대 체력입니다.
         /// </summary>
-        [SerializeField] private float _maxHP = 100f;
+        [SerializeField] private uint _maxHP = 100;
 
-        /// <summary>
-        /// 적의 현재 체력입니다.
-        /// </summary>
-        private float _currentHP;
-        
         /// <summary>
         /// 에너미의 현재 상태입니다.
         /// </summary>
@@ -40,7 +35,6 @@ namespace Enemy
             AssertHelper.NotNull(typeof(EnemyStatController), _view);
             
             // 적 생성 시, 현재 체력을 최대 체력으로 초기화합니다.
-            _currentHP = _maxHP;
             _presenter = new PR_EnemyHP(_mdl, _view);
         }
 
@@ -60,6 +54,7 @@ namespace Enemy
         public void OnTakeFromPoolInit()
         {
             _state = EEnemyState.Alive;
+            _mdl.SetCurrentHp(_maxHP);
         }
 
         /// <summary>
@@ -67,11 +62,11 @@ namespace Enemy
         /// 체력이 0 이하가 되면 적을 제거합니다.
         /// </summary>
         /// <param name="damage">적용할 피해량</param>
-        public void TakeDamage(float damage)
+        public void TakeDamage(uint damage)
         {
-            _currentHP = Mathf.Max(0, _currentHP - damage);
+            _mdl.SetCurrentHp(Math.Max(0, _mdl.Hp.Value - damage));
 
-            if (_currentHP > 0) return;
+            if (_mdl.HasHpRemaining()) return;
             
             Die();
         }
