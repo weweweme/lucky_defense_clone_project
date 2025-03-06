@@ -9,9 +9,10 @@ namespace Model
     public class MDL_UnitPlacementField
     {
         // 현재 화면에 선택된 노드와 관련된 Rx
-        private readonly Subject<UnitPlacementNode> _selectedNode = new Subject<UnitPlacementNode>();
+        private readonly BehaviorSubject<UnitPlacementNode> _selectedNode = new BehaviorSubject<UnitPlacementNode>(null);
         public IObservable<UnitPlacementNode> SelectedNode => _selectedNode;
         public void SelectNode(UnitPlacementNode node) => _selectedNode.OnNext(node);
+        public UnitPlacementNode GetSelectedNode() => _selectedNode.Value;
         
         // 현재 드래그 중인지 Rx
         private readonly Subject<SUnitPlacementDragData> _isDragging = new Subject<SUnitPlacementDragData>();
