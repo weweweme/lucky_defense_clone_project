@@ -12,6 +12,7 @@ namespace UI
     public sealed class PR_UnitSpawn : Presenter
     {
         private MDL_Unit _mdlUnit;
+        private MDL_Currency _mdlCurrency;
         
         public override void Init(DataManager dataManager, View view)
         {
@@ -19,6 +20,9 @@ namespace UI
             
             _mdlUnit = dataManager.Unit;
             AssertHelper.NotNull(typeof(PR_UnitSpawn), _mdlUnit);
+            
+            _mdlCurrency = dataManager.Currency;
+            AssertHelper.NotNull(typeof(PR_UnitSpawn), _mdlCurrency);
             
             VW_UnitSpawn vwUnitSpawn = view as VW_UnitSpawn;
             AssertHelper.NotNull(typeof(PR_UnitSpawn), vwUnitSpawn);
@@ -30,7 +34,7 @@ namespace UI
 
         private void TrySpawnUnit(UniRx.Unit _)
         {
-            // TODO: 유닛 생성 시도 기능 구현
+            _mdlCurrency.SubtractGold(1);
             SUnitSpawnRequestData data = new SUnitSpawnRequestData(EUnitGrade.Common, EUnitType.Melee, EPlayerSide.South);
             _mdlUnit.SpawnUnit(data);   
         }
