@@ -53,6 +53,15 @@ namespace System
         }
 
         /// <summary>
+        /// 노드에 배치된 유닛을 판매하고, 자동으로 배치 위치를 재조정합니다.
+        /// </summary>
+        public void SellUnit()
+        {
+            UnitGroup.SellUnit();
+            RearrangeUnitPositions();
+        }
+
+        /// <summary>
         /// 배치된 유닛들의 위치를 현재 노드 상태에 맞게 재조정합니다.
         /// </summary>
         private void RearrangeUnitPositions()
