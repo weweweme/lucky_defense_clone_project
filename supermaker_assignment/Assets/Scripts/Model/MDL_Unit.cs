@@ -12,5 +12,11 @@ namespace Model
         private readonly Subject<SUnitSpawnRequestData> _onUnitSpawn = new Subject<SUnitSpawnRequestData>();
         public IObservable<SUnitSpawnRequestData> OnUnitSpawn => _onUnitSpawn;
         public void SpawnUnit(SUnitSpawnRequestData data) => _onUnitSpawn.OnNext(data);
+        
+        // 유닛 스폰에 필요한 골드량
+        private const uint INITIAL_SPAWN_NEEDED_GOLD = 1;
+        private readonly ReactiveProperty<uint> _spawnNeededGold = new ReactiveProperty<uint>(INITIAL_SPAWN_NEEDED_GOLD);
+        public IReactiveProperty<uint> SpawnNeededGold => _spawnNeededGold;
+        public void SetSpawnNeededGold(uint value) => _spawnNeededGold.Value = value;
     }
 }
