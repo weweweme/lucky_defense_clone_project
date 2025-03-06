@@ -3,6 +3,7 @@ using Model;
 using UI;
 using UnityEngine;
 using Util;
+using Random = UnityEngine.Random;
 
 namespace Enemy
 {
@@ -90,6 +91,7 @@ namespace Enemy
             EnemyDependencyContainer dependencyContainer = _enemyRoot.dependencyContainer;
             
             dependencyContainer.mdlEnemy.KillEnemy(EEnemyType.Default);
+            dependencyContainer.mdlCurrency.AddGold((uint)Random.Range(1, 3));
             dependencyContainer.enemyBasePool.ReturnObject(_enemyRoot);
         }
 
