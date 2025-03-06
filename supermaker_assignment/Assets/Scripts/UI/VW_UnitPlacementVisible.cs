@@ -31,9 +31,17 @@ namespace UI
             _canvas.enabled = isDragging;
 
             if (!isDragging) return;
-            if (data.TargetNode == null) return;
             
-            _dragTargetHighlight.rectTransform.position = _unitPlacementNodes[data.TargetNode.NodeIndex].rect.position;
+            UnitPlacementNode targetNode = data.TargetNode;
+            if (targetNode == null)
+            {
+                _dragTargetHighlight.enabled = false;
+                return;
+            }
+            
+            AssertHelper.NotEqualsValue(typeof(VW_UnitPlacementVisible), targetNode.NodeIndex, uint.MaxValue);
+            _dragTargetHighlight.enabled = true;
+            _dragTargetHighlight.rectTransform.position = _unitPlacementNodes[targetNode.NodeIndex].position;
         }
     }
 }

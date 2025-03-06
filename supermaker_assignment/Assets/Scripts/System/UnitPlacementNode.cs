@@ -10,7 +10,7 @@ namespace System
     /// </summary>
     public sealed class UnitPlacementNode : MonoBehaviourBase
     {
-        [SerializeField] private uint _nodeIndex = int.MaxValue;
+        [SerializeField] private uint _nodeIndex = uint.MaxValue;
         public uint NodeIndex => _nodeIndex;
         
         /// <summary>

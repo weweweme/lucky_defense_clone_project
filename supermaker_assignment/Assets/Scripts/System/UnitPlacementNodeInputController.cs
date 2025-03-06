@@ -185,16 +185,16 @@ namespace System
                 {
                     _isDragging = true; // 드래그로 전환
                     
-                    UnitPlacementNode targetNode = FindClosestNodeOrNull(_currentMouseWorldPos, _currentClickedNode);
-                    SUnitPlacementDragData unitPlacementDragData = new SUnitPlacementDragData(true, targetNode);
-                    _mdl.SetIsDragging(unitPlacementDragData);
+                    
                 }
             }
 
             if (_isDragging)
             {
                 // 드래그 중 시각적 처리 (필요한 경우 추가)
-                // 예: 드래그 중인 노드 하이라이트 등
+                UnitPlacementNode targetNode = FindClosestNodeOrNull(_currentMouseWorldPos, _currentClickedNode);
+                SUnitPlacementDragData unitPlacementDragData = new SUnitPlacementDragData(true, targetNode);
+                _mdl.SetIsDragging(unitPlacementDragData);
             }
         }
 
