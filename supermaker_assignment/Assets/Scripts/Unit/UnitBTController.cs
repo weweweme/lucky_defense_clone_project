@@ -87,7 +87,7 @@ namespace Unit
                 
                     // 1. 현재 공격 중인지 확인
                     .Sequence("공격 중일 때")
-                        .Condition("현재 공격 중인가?", _attackController.HasTarget)
+                        .Condition("현재 공격 중인가?, 공격중이라면 Target을 가지고 있음", _attackController.HasTarget)
                         .Selector("타겟 유지 or 해제")
                             .Condition("타겟이 여전히 사거리 안에 있는가?", _attackController.IsTargetInRange)
                             .Do("타겟 해제", _attackController.ClearTarget)

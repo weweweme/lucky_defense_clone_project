@@ -161,7 +161,7 @@ namespace Unit
                 // 현재 타겟이 없다면 다음 루프로 이동
                 if (!_currentTarget.HasTarget) continue;
 
-                // 현재 타겟이 없다면 타겟을 비우고 다음 루프로 이동
+                // 현재 타겟이 죽었다면 타겟을 비우고 다음 루프로 이동
                 if (_currentTarget.IsDead())
                 {
                     ClearTarget();
@@ -173,6 +173,7 @@ namespace Unit
 
                 // TODO: 공격 수행
                 // Attack();
+                Debug.Log($"[Unit] 공격 수행!");
 
                 // 발사 후 쿨다운 리셋
                 _fireCooldown = _fireRate;
