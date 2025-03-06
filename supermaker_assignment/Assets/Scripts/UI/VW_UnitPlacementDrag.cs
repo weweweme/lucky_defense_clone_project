@@ -7,9 +7,9 @@ using Util;
 namespace UI
 {
     /// <summary>
-    /// Unit Placement UI의 View 클래스입니다.
+    /// 드래그 이벤트와 관련된 UI의 동작을 수행하는 View 클래스입니다.
     /// </summary>
-    public sealed class VW_UnitPlacementVisible : View
+    public sealed class VW_UnitPlacementDrag : View
     {
         [SerializeField] private Canvas _canvas;
         [SerializeField] private RectTransform[] _unitPlacementNodes;
@@ -17,11 +17,11 @@ namespace UI
 
         private void Awake()
         {
-            AssertHelper.NotNull(typeof(VW_UnitPlacementVisible), _canvas);
-            AssertHelper.NotNull(typeof(VW_UnitPlacementVisible), _dragTargetHighlight);
+            AssertHelper.NotNull(typeof(VW_UnitPlacementDrag), _canvas);
+            AssertHelper.NotNull(typeof(VW_UnitPlacementDrag), _dragTargetHighlight);
             
             const int UNIT_PLACEMENT_NODE_COUNT = 18;
-            AssertHelper.EqualsValue(typeof(VW_UnitPlacementVisible), _unitPlacementNodes.Length, UNIT_PLACEMENT_NODE_COUNT);
+            AssertHelper.EqualsValue(typeof(VW_UnitPlacementDrag), _unitPlacementNodes.Length, UNIT_PLACEMENT_NODE_COUNT);
         }
 
         public void ShowUnitPlacementField(SUnitPlacementDragData data)
@@ -39,7 +39,7 @@ namespace UI
                 return;
             }
             
-            AssertHelper.NotEqualsValue(typeof(VW_UnitPlacementVisible), targetNode.NodeIndex, uint.MaxValue);
+            AssertHelper.NotEqualsValue(typeof(VW_UnitPlacementDrag), targetNode.NodeIndex, uint.MaxValue);
             _dragTargetHighlight.enabled = true;
             _dragTargetHighlight.rectTransform.position = _unitPlacementNodes[targetNode.NodeIndex].position;
         }

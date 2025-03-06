@@ -12,10 +12,10 @@ namespace System
     public sealed class UnitPlacementNodeInputController : MonoBehaviourBase
     {
         private readonly MDL_UnitPlacementField _mdl = new MDL_UnitPlacementField();
-        [SerializeField] private VW_UnitAttackRange _attackRangeView;
-        private PR_UnitAttackRange _attackRangePr;
-        [SerializeField] private VW_UnitPlacementVisible _placementVisibleView;
-        private PR_UnitPlacementVisible _placementVisiblePr;
+        [SerializeField] private VW_UnitPlacementSelection _placementSelectionView;
+        private PR_UnitPlacementSelection _attackRangePr;
+        [SerializeField] private VW_UnitPlacementDrag _placementDragView;
+        private PR_UnitPlacementDrag _placementDragPr;
 
         /// <summary>
         /// 마우스 입력 처리를 담당하는 핸들러 인스턴스입니다.
@@ -69,8 +69,8 @@ namespace System
 
         private void Awake()
         {
-            AssertHelper.NotNull(typeof(UnitPlacementNodeInputController), _attackRangeView);
-            AssertHelper.NotNull(typeof(UnitPlacementNodeInputController), _placementVisibleView);
+            AssertHelper.NotNull(typeof(UnitPlacementNodeInputController), _placementSelectionView);
+            AssertHelper.NotNull(typeof(UnitPlacementNodeInputController), _placementDragView);
 
             _inputHandler = new UnitPlacementNodeInputHandler(Camera.main);
             _inputHandler.OnLeftClickStarted -= OnLeftClickStarted;
@@ -78,8 +78,8 @@ namespace System
             _inputHandler.OnLeftClickCanceled -= OnLeftClickCanceled;
             _inputHandler.OnLeftClickCanceled += OnLeftClickCanceled;
 
-            _attackRangePr = new PR_UnitAttackRange(_mdl, _attackRangeView);
-            _placementVisiblePr = new PR_UnitPlacementVisible(_mdl, _placementVisibleView);
+            _attackRangePr = new PR_UnitPlacementSelection(_mdl, _placementSelectionView);
+            _placementDragPr = new PR_UnitPlacementDrag(_mdl, _placementDragView);
         }
 
         /// <summary>
@@ -240,7 +240,7 @@ namespace System
             _inputHandler.OnLeftClickCanceled -= OnLeftClickCanceled;
             _inputHandler.Dispose();
             _attackRangePr.Dispose();
-            _placementVisiblePr.Dispose();
+            _placementDragPr.Dispose();
 
             base.OnDestroy();
         }
