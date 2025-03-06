@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Util;
@@ -50,6 +51,11 @@ namespace System
         /// OverlapCircleNonAlloc용 버퍼 배열입니다.
         /// </summary>
         private readonly Collider2D[] _nodeBuffer = new Collider2D[10];
+        
+        /// <summary>
+        /// 찾을 레이어 마스크입니다.
+        /// </summary>
+        private readonly int TARGET_LAYER = Layers.GetLayerMask(Layers.UNIT_PLACEMENT_NODE);
 
         /// <summary>
         /// 초기화 시 Input System 설정 및 카메라 참조를 가져옵니다.
@@ -102,18 +108,8 @@ namespace System
         /// <returns>드래그 시작 여부</returns>
         private bool TryStartDrag()
         {
-            int hitCount = Physics2D.OverlapCircleNonAlloc(_targetWorldPos, SEARCH_RADIUS, _nodeBuffer, LayerMask.GetMask("UnitPlacementNode"));
-
-            for (int i = 0; i < hitCount; i++)
-            {
-                if (_nodeBuffer[i].TryGetComponent(out UnitPlacementNode node))
-                {
-                    _draggingNode = node;
-                    return true;  // 드래그 시작 성공
-                }
-            }
-
-            return false;  // 드래그 시작 실패
+            _draggingNode = FindClosestNodeOrNull(_targetWorldPos);
+            return _draggingNode != null;
         }
 
         /// <summary>
@@ -123,9 +119,9 @@ namespace System
         {
             if (!_isDragging || _draggingNode == null) return;
 
-            UnitPlacementNode targetNode = FindClosestNodeOrNull();
+            UnitPlacementNode targetNode = FindClosestNodeOrNull(_targetWorldPos, _draggingNode);
 
-            if (targetNode != null && targetNode != _draggingNode)
+            if (targetNode != null)
             {
                 _draggingNode.SwapWith(targetNode);
             }
@@ -139,23 +135,26 @@ namespace System
         /// <summary>
         /// 현재 위치 기준으로 가장 가까운 유닛 배치 노드를 탐색해 반환합니다.
         /// </summary>
+        /// <param name="worldPos">탐색 중심 위치</param>
+        /// <param name="excludeNode">탐색에서 제외할 노드 (자기 자신 등)</param>
         /// <returns>가장 가까운 노드 또는 null</returns>
-        private UnitPlacementNode FindClosestNodeOrNull()
+        [CanBeNull]
+        private UnitPlacementNode FindClosestNodeOrNull(Vector2 worldPos, UnitPlacementNode excludeNode = null)
         {
-            int hitCount = Physics2D.OverlapCircleNonAlloc(_targetWorldPos, SEARCH_RADIUS, _nodeBuffer, LayerMask.GetMask("UnitPlacementNode"));
+            int hitCount = Physics2D.OverlapCircleNonAlloc(worldPos, SEARCH_RADIUS, _nodeBuffer, TARGET_LAYER);
             UnitPlacementNode closestNode = null;
             float closestDistanceSqr = float.MaxValue;
 
             for (int i = 0; i < hitCount; i++)
             {
-                if (_nodeBuffer[i].TryGetComponent(out UnitPlacementNode candidateNode) && candidateNode != _draggingNode)
+                if (!_nodeBuffer[i].TryGetComponent(out UnitPlacementNode candidateNode) || candidateNode == excludeNode)
+                    continue;
+
+                float distanceSqr = ((Vector2)candidateNode.transform.position - worldPos).sqrMagnitude;
+                if (distanceSqr < closestDistanceSqr)
                 {
-                    float distanceSqr = ((Vector2)candidateNode.transform.position - _targetWorldPos).sqrMagnitude;
-                    if (distanceSqr < closestDistanceSqr)
-                    {
-                        closestDistanceSqr = distanceSqr;
-                        closestNode = candidateNode;
-                    }
+                    closestDistanceSqr = distanceSqr;
+                    closestNode = candidateNode;
                 }
             }
 
