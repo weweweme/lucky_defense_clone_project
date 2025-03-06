@@ -26,7 +26,14 @@ namespace UI
 
         public void ShowUnitPlacementField(SUnitPlacementDragData data)
         {
-            _canvas.enabled = data.IsDragging;
+            bool isDragging = data.IsDragging;
+
+            _canvas.enabled = isDragging;
+
+            if (!isDragging) return;
+            if (data.TargetNode == null) return;
+            
+            _dragTargetHighlight.rectTransform.position = _unitPlacementNodes[data.TargetNode.NodeIndex].rect.position;
         }
     }
 }
