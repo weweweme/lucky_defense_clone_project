@@ -11,16 +11,19 @@ namespace Enemy
     public sealed class EnemyRoot : PooledEntityRootBase
     {
         [SerializeField] internal EnemyMoveController moveController;
+        [SerializeField] internal EnemyStatController statController;
         internal EnemyDependencyContainer dependencyContainer;
 
         private void Awake()
         {
             AssertHelper.NotNull(typeof(EnemyRoot), moveController);
+            AssertHelper.NotNull(typeof(EnemyRoot), statController);
         }
         
-        public void Init(EnemyDependencyContainer container)
+        public void CreatePooledItemInit(EnemyDependencyContainer container)
         {
             dependencyContainer = container;
+            statController.CreatePooledItemInit(this);
         }
 
         public override void OnTakeFromPoolInit(EPlayerSide side)
@@ -32,6 +35,7 @@ namespace Enemy
             AssertHelper.NotNull(typeof(EnemyRoot), pathNodePtr);
             
             moveController.OnActivate(pathNodePtr);
+            statController.OnTakeFromPoolInit();
         }
     }
 }

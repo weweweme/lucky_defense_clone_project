@@ -18,7 +18,7 @@ namespace Enemy
         protected override EnemyRoot CreatePooledItem()
         {
             var enemy = base.CreatePooledItem();
-            enemy.Init(_dependencyContainer);
+            enemy.CreatePooledItemInit(_dependencyContainer);
 
             return enemy;
         }
