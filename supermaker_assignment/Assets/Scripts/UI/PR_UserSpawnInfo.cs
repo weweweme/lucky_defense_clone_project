@@ -17,8 +17,8 @@ namespace UI
             MDL_Unit mdl = dataManager.Unit;
             AssertHelper.NotNull(typeof(PR_UnitSpawn), mdl);
             
-            VW_UnitSpawn vwUnitSpawn = view as VW_UnitSpawn;
-            AssertHelper.NotNull(typeof(PR_UnitSpawn), vwUnitSpawn);
+            VW_UserSpawnInfo vw = view as VW_UserSpawnInfo;
+            AssertHelper.NotNull(typeof(PR_UnitSpawn), vw);
         }
     }
 }
