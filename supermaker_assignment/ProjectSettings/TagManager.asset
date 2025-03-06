@@ -34,7 +34,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - UnitPlacementNode
   - Unit
   - Enemy
   m_SortingLayers:
