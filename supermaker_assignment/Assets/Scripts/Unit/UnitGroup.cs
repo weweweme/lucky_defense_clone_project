@@ -84,5 +84,15 @@ namespace Unit
         /// 현재 그룹이 가득 찼는지 여부를 반환합니다.
         /// </summary>
         public bool IsFull() => UnitCount == MAX_UNIT_COUNT || UnitGrade == EUnitGrade.Mythic;
+
+        /// <summary>
+        /// 현재 그룹의 공격 사정거리를 반환합니다.
+        /// </summary>
+        /// <returns>현재 그룹의 공격 사정거리.</returns>
+        public float GetAttackRange()
+        {
+            // TODO: 추후 유닛의 타입에 따라 사정거리 분기 기능 추가.
+            return 5.0f;
+        }
     }
 }

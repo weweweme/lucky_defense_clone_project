@@ -18,7 +18,6 @@ namespace UI
             AssertHelper.NotNull(typeof(PR_EnemyHP), view);
             
             mdl.SelectedNode
-                .Skip(Observer.INITIAL_SUBSCRIPTION_SKIP_COUNT)
                 .Subscribe(view.ShowAttackRange)
                 .AddTo(_disposable);
         }

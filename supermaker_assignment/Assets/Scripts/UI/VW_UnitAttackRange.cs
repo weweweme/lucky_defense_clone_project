@@ -25,8 +25,12 @@ namespace UI
                 return;
             }
             
-            _attackRangeSpriteRenderer.enabled = true;
+            float attackRange = node.UnitGroup.GetAttackRange();
+            float diameter = attackRange * 2f;
+            transform.localScale = new Vector3(diameter, diameter, 1f);
+            
             transform.position = node.transform.position;
+            _attackRangeSpriteRenderer.enabled = true;
         }
     }
 }
