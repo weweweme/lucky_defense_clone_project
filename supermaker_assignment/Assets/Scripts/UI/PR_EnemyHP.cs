@@ -10,10 +10,24 @@ namespace UI
     public sealed class PR_EnemyHP : IDisposable
     {
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
+        private readonly MDL_EnemyStat _mdl;
+        private readonly VW_EnemyHP _view;
 
         public PR_EnemyHP(MDL_EnemyStat mdl, VW_EnemyHP view)
         {
+            _mdl = mdl;
+            _view = view;
             
+            mdl.Hp
+                .Subscribe(NormalizeHP)
+                .AddTo(_disposable);
+        }
+
+        private void NormalizeHP(uint currentHp)
+        {
+            float maxHp = _mdl.MaxHp;
+            float normalizedHp = currentHp / maxHp;
+            _view.UpdateHealthUI(normalizedHp);
         }
         
         public void Dispose()
