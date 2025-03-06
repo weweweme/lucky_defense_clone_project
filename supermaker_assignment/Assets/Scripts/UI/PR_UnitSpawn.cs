@@ -32,14 +32,23 @@ namespace UI
                 .AddTo(disposable);
         }
 
+        /// <summary>
+        /// 유닛 소환 시도 메서드입니다.
+        /// 버튼 클릭 이벤트로 호출되며, 소환에 필요한 골드와 현재 보유 골드를 비교하여 소환 가능 여부를 판단합니다.
+        /// </summary>
+        /// <param name="_">버튼 클릭 이벤트에서 전달되는 파라미터 (사용하지 않음)</param>
         private void TrySpawnUnit(UniRx.Unit _)
         {
             uint currentSpawnNeededGold = _mdlUnit.GetSpawnNeededGold();
             uint currentAvailableGold = _mdlCurrency.GetGold();
+
+            // 보유 골드가 부족한 경우 소환 중단
+            if (currentSpawnNeededGold > currentAvailableGold) return;
             
             _mdlCurrency.SubtractGold(currentSpawnNeededGold);
-            SUnitSpawnRequestData data = new SUnitSpawnRequestData(EUnitGrade.Common, EUnitType.Melee, EPlayerSide.South);
             _mdlUnit.SetSpawnNeededGold(currentSpawnNeededGold + 1);
+            
+            SUnitSpawnRequestData data = new SUnitSpawnRequestData(EUnitGrade.Common, EUnitType.Melee, EPlayerSide.South);
             _mdlUnit.SpawnUnit(data);   
         }
     }
