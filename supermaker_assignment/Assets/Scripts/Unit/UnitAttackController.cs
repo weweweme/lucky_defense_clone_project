@@ -171,9 +171,7 @@ namespace Unit
                 // 발사 쿨다운이 남아있다면 다음 루프로 이동
                 if (_fireCooldown > 0) continue;
 
-                // TODO: 공격 수행
-                // Attack();
-                Debug.Log($"[Unit] 공격 수행!");
+                Attack();
 
                 // 발사 후 쿨다운 리셋
                 _fireCooldown = _fireRate;
@@ -185,9 +183,9 @@ namespace Unit
         /// </summary>
         /// <param name="dir">투사체가 이동할 방향</param>
         /// <param name="targetTr">공격 대상 트랜스폼</param>
-        private void Attack(Vector3 dir, TargetEnemyData targetTr)
+        private void Attack()
         {
-            // TODO: 공격 로직 구현
+            _currentTarget.StatController.TakeDamage(_damage);
         }
 
         /// <summary>
