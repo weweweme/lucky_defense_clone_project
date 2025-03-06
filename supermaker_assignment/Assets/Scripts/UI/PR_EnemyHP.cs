@@ -1,6 +1,7 @@
 using System;
 using Model;
 using UniRx;
+using Util;
 
 namespace UI
 {
@@ -15,6 +16,9 @@ namespace UI
 
         public PR_EnemyHP(MDL_EnemyStat mdl, VW_EnemyHP view)
         {
+            AssertHelper.NotNull(typeof(PR_EnemyHP), mdl);
+            AssertHelper.NotNull(typeof(PR_EnemyHP), view);
+            
             _mdl = mdl;
             _view = view;
             

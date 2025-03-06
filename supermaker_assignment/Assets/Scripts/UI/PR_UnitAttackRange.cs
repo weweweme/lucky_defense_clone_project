@@ -1,6 +1,7 @@
 using System;
 using Model;
 using UniRx;
+using Util;
 
 namespace UI
 {
@@ -13,7 +14,13 @@ namespace UI
 
         public PR_UnitAttackRange(MDL_UnitPlacementField mdl, VW_UnitAttackRange view)
         {
+            AssertHelper.NotNull(typeof(PR_EnemyHP), mdl);
+            AssertHelper.NotNull(typeof(PR_EnemyHP), view);
             
+            mdl.SelectedNode
+                .Skip(Observer.INITIAL_SUBSCRIPTION_SKIP_COUNT)
+                .Subscribe(view.ShowAttackRange)
+                .AddTo(_disposable);
         }
         
         public void Dispose()
