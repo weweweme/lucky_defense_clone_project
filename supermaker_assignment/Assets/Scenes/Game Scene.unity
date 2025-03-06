@@ -6839,6 +6839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rootManager: {fileID: 1939053484}
+  _vwGoldCurrency: {fileID: 1315631891}
 --- !u!1 &1002900518
 GameObject:
   m_ObjectHideFlags: 0
@@ -7329,7 +7330,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rootManager: {fileID: 1939053484}
   _vwUnitSpawn: {fileID: 486088967}
-  _vwCurrency: {fileID: 1310503996}
 --- !u!1 &1109695503
 GameObject:
   m_ObjectHideFlags: 0
@@ -10504,7 +10504,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2038334261}
   m_Layer: 5
-  m_Name: Rect_User Currency
+  m_Name: Rect_User Spawn Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
