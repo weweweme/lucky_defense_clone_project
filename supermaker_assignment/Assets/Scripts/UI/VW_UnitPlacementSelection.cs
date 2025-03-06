@@ -1,6 +1,7 @@
 using System;
 using InGame.System;
 using UnityEngine;
+using UnityEngine.UI;
 using Util;
 
 namespace UI
@@ -11,26 +12,29 @@ namespace UI
     public sealed class VW_UnitPlacementSelection : View
     {
         [SerializeField] private SpriteRenderer _attackRangeSpriteRenderer;
+        [SerializeField] private Canvas _unitSellCanvas;
+        [SerializeField] internal Button unitSellBtn; 
         
         private void Awake()
         {
             AssertHelper.NotNull(typeof(VW_UnitPlacementSelection), _attackRangeSpriteRenderer);
+            AssertHelper.NotNull(typeof(VW_UnitPlacementSelection), _unitSellCanvas);
+            AssertHelper.NotNull(typeof(VW_UnitPlacementSelection), unitSellBtn);
         }
 
-        public void ShowAttackRange(UnitPlacementNode node)
+        public void ShowUnitPlacementField(UnitPlacementNode node)
         {
-            if (node == null)
-            {
-                _attackRangeSpriteRenderer.enabled = false;
-                return;
-            }
+            bool isNodeNull = node == null;
+            _attackRangeSpriteRenderer.enabled = !isNodeNull;
+            _unitSellCanvas.enabled = !isNodeNull;
+            
+            if (isNodeNull) return;
             
             float attackRange = node.UnitGroup.GetAttackRange();
             float diameter = attackRange * 2f;
-            transform.localScale = new Vector3(diameter, diameter, 1f);
+            _attackRangeSpriteRenderer.transform.localScale = new Vector3(diameter, diameter, 1f);
             
             transform.position = node.transform.position;
-            _attackRangeSpriteRenderer.enabled = true;
         }
     }
 }

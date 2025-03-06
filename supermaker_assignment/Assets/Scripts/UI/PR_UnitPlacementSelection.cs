@@ -18,7 +18,7 @@ namespace UI
             AssertHelper.NotNull(typeof(PR_UnitPlacementSelection), view);
             
             mdl.SelectedNode
-                .Subscribe(view.ShowAttackRange)
+                .Subscribe(view.ShowUnitPlacementField)
                 .AddTo(_disposable);
         }
         
