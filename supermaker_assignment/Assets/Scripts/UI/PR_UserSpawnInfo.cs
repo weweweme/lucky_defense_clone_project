@@ -1,6 +1,7 @@
 using System;
 using InGame.System;
 using Model;
+using UniRx;
 using Util;
 
 namespace UI
@@ -19,6 +20,11 @@ namespace UI
             
             VW_UserSpawnInfo vw = view as VW_UserSpawnInfo;
             AssertHelper.NotNull(typeof(PR_UnitSpawn), vw);
+            
+            vw!.UpdateMaxSpawnCount(mdl.GetMaxPossibleSpawnCount());
+            mdl.CurrentSpawnCount
+                .Subscribe(vw.UpdateCurrentSpawnCount)
+                .AddTo(disposable);
         }
     }
 }
