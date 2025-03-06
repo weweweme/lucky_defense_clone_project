@@ -7,5 +7,12 @@ namespace Unit
     /// </summary>
     public class UnitBasePool : ObjectPoolBase<UnitRoot>
     {
+        protected override UnitRoot CreatePooledItem()
+        {
+            var enemy = base.CreatePooledItem();
+            enemy.CreatePooledItemInit();
+
+            return enemy;
+        }
     }
 }

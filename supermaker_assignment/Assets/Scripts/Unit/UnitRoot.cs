@@ -1,4 +1,6 @@
 using System;
+using UnityEngine;
+using Util;
 
 namespace Unit
 {
@@ -15,8 +17,23 @@ namespace Unit
         private EUnitType _type = EUnitType.Melee;
         public EUnitType Type => _type;
         
+        [SerializeField] internal UnitAttackController attackController;
+        private UnitBTController _btController;
+
+        private void Awake()
+        {
+            AssertHelper.NotNull(typeof(UnitRoot), attackController);
+        }
+        
+        public void CreatePooledItemInit()
+        {
+            _btController = new UnitBTController(this);
+            attackController.Init();
+        }
+
         public override void OnTakeFromPoolInit(EPlayerSide side)
         {
+            _btController.StartBtTick();
         }
     }
 }
