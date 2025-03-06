@@ -1,4 +1,6 @@
 using System;
+using UnityEngine;
+using Util;
 
 namespace UI
 {
@@ -7,16 +9,22 @@ namespace UI
     /// </summary>
     public class VC_UserInfo : ViewController
     {
+        [SerializeField] private VW_Currency _vwGoldCurrency;
+        private readonly PR_GoldCurrency _prGoldCurrency = new PR_GoldCurrency();
+        
         protected override void ValidateReferences()
         {
+            AssertHelper.NotNull(typeof(VC_UnitSpawn), _vwGoldCurrency);
         }
 
         public override void Init(DataManager dataManager)
         {
+            _prGoldCurrency.Init(dataManager, _vwGoldCurrency);
         }
 
         protected override void ReleasePresenter()
         {
+            _prGoldCurrency.Dispose();
         }
     }
 }
