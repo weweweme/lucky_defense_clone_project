@@ -178,12 +178,13 @@ namespace System
             // 드래그 여부 판단
             if (!_isDragging)
             {
+                if (_currentClickedNode.UnitGroup.IsEmpty()) return;
+                
                 float dragDistance = Vector2.Distance(_clickedPos, _currentMouseWorldPos);
                 if (dragDistance >= DRAG_THRESHOLD)
                 {
                     _isDragging = true; // 드래그로 전환
                     _mdl.SetIsDragging(true);
-                    // 드래그 시작 시 필요한 추가 처리 (예: 하이라이트 표시 등) 가능
                 }
             }
 
