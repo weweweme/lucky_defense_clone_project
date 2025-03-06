@@ -12,19 +12,25 @@ namespace UI
         [SerializeField] private VW_UnitSpawn _vwUnitSpawn;
         private readonly PR_UnitSpawn _prUnitSpawn = new PR_UnitSpawn();
         
+        [SerializeField] private VW_Currency _vwSpawnNeededGold;
+        private readonly PR_SpawnNeededGold _prSpawnNeededGold = new PR_SpawnNeededGold();
+        
         protected override void ValidateReferences()
         {
             AssertHelper.NotNull(typeof(VC_UnitSpawn), _vwUnitSpawn);
+            AssertHelper.NotNull(typeof(VC_UnitSpawn), _vwSpawnNeededGold);
         }
 
         public override void Init(DataManager dataManager)
         {
             _prUnitSpawn.Init(dataManager, _vwUnitSpawn);
+            _prSpawnNeededGold.Init(dataManager, _vwSpawnNeededGold);
         }
 
         protected override void ReleasePresenter()
         {
             _prUnitSpawn.Dispose();
+            _prSpawnNeededGold.Dispose();
         }
     }
 }
