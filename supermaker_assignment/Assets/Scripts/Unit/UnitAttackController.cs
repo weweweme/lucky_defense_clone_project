@@ -185,87 +185,27 @@ namespace Unit
         /// <param name="targetTr">공격 대상 트랜스폼</param>
         private void Attack()
         {
+            SetFacingDirection();
             _currentTarget.StatController.TakeDamage(_damage);
         }
 
         /// <summary>
-        /// 총구를 타겟 방향으로 회전시킵니다.
-        /// 타겟의 위치를 기준으로 방향 벡터를 사용하여 Z축 회전을 조정합니다.
+        /// 타겟의 위치를 기준으로 유닛의 좌/우 방향을 설정합니다.
         /// </summary>
-        /// <param name="dir">타겟 방향을 나타내는 정규화된 벡터</param>
-        private void SetMuzzleRotation(Vector3 dir)
-        {
-            /// <remarks>
-            /// [구현 원리]
-            /// 1. Atan2(y, x) 함수는 직교 좌표계에서 
-            ///    주어진 벡터 (x, y)의 방향(각도)을 라디안(Radian) 단위로 반환합니다.
-            ///    - 일반적인 Atan(y/x)와 달리 Atan2(y, x)는 x가 0일 때도 안전하게 계산할 수 있음.
-            /// 
-            /// 2. Atan2는 반시계 방향을 양수(+), 시계 방향을 음수(-)로 취급합니다.
-            ///    즉, 벡터의 방향을 360도 전 범위에서 올바르게 계산할 수 있습니다.
-            /// 
-            /// 3. 라디안 값은 `-π ~ π (-180° ~ 180°)` 범위를 가지므로, 
-            ///    이를 도(degree) 단위로 변환하기 위해 `Mathf.Rad2Deg`(180/π)를 곱합니다.**
-            ///
-            /// [동작 예시]
-            /// 
-            /// (1, 0)  → 0°  (오른쪽)
-            /// (0, 1)  → 90° (위쪽)
-            /// (-1, 0) → 180° (왼쪽)
-            /// (0, -1) → -90° (아래쪽)
-            /// (1, 1)  → 45° (오른쪽 위 대각선)
-            /// (-1, -1) → -135° (왼쪽 아래 대각선)
-            ///
-            /// 예제) dir = (0.5, 0.5) → atan2(0.5, 0.5) ≈ 0.7854 rad → 0.7854 * (180 / π) ≈ 45°
-            ///                                    
-            /// </remarks>
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
-            // 각도에 RotationOffset를 더하여 손이 올바른 방향으로 회전하도록 합니다.
-            Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
-
-            // 현재 회전 상태와 목표 회전 상태 사이를 부드럽게 선형 보간
-            const float ROTATION_LERP_SPEED = 10f;
-            transform.rotation = Quaternion.Lerp(
-                transform.rotation, // 현재 회전 값
-                targetRotation, // 목표 회전 값
-                Time.deltaTime * ROTATION_LERP_SPEED // 보간 속도 (직렬화된 값)
-            );
-        }
-
+        /// <param name="targetPosition">타겟의 월드 위치</param>
         /// <summary>
-        /// 총구가 타겟을 충분히 향하고 있는지 확인합니다.
-        /// 총구의 현재 방향과 타겟 방향 사이의 각도 차이를 계산하여,
-        /// 일정 범위(기본값: 5도) 이내에 있으면 조준된 것으로 간주합니다.
+        /// 타겟의 위치를 기준으로 유닛의 좌/우 방향을 설정합니다.
         /// </summary>
-        /// <param name="targetDir">타겟의 위치를 가리키는 방향 벡터</param>
-        /// <returns>총구가 타겟을 조준하고 있으면 true, 그렇지 않으면 false</returns>
-        private bool IsMuzzleFacingTarget(Vector3 targetDir)
+        private void SetFacingDirection()
         {
-            /// <remarks>
-            /// [구현 원리]
-            /// 
-            /// 1. 현재 총구의 방향(`transform.right`)과 목표 방향(`targetDir`) 사이의 각도를 계산합니다.
-            ///    - transform.right는 오브젝트의 오른쪽(기본 방향)을 나타냅니다.
-            /// 
-            /// 2. `Vector2.SignedAngle(from, to)`를 사용하여 두 벡터 사이의 회전 각도를 구합니다.
-            ///    - 결과 값은 `-180° ~ 180°` 범위의 각도를 반환합니다.
-            /// 
-            /// 3. `Mathf.Abs(angleToTarget) <= angleThreshold`를 검사하여,
-            ///    - 총구와 타겟 방향의 각도 차이가 일정 값(기본: 5도) 이하일 경우 **조준된 상태로 간주**합니다.
-            ///
-            /// [동작 예시]
-            /// 
-            /// - 총구가 정확히 타겟을 향할 경우 → `angleToTarget = 0°`
-            /// - 총구가 타겟보다 10도 왼쪽을 향할 경우 → `angleToTarget = -10°`
-            /// - 총구가 타겟보다 10도 오른쪽을 향할 경우 → `angleToTarget = 10°`
-            /// - 위의 예에서 `angleThreshold = 5°`이면, -5° ~ 5° 사이에서만 조준된 것으로 간주됨.
-            /// 
-            /// </remarks>
-            float angleToTarget = Vector2.SignedAngle(transform.right, targetDir); // Z축 회전을 기준으로 각도를 계산
-            const float angleThreshold = 5f; // 각도 차이가 5도 이내일 때만 발사 가능
+            AssertHelper.NotNull(typeof(UnitAttackController), _currentTarget);
+            
+            float dirX = _currentTarget.Transform.position.x - transform.position.x;
+            float sign = (dirX < 0) ? -1f : 1f;
 
-            return Mathf.Abs(angleToTarget) <= angleThreshold;
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Abs(scale.x) * sign;
+            transform.localScale = scale;
         }
 
         protected override void OnDestroy()
