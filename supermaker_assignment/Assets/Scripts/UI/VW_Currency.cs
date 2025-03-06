@@ -1,4 +1,7 @@
 using InGame.System;
+using TMPro;
+using UnityEngine;
+using Util;
 
 namespace UI
 {
@@ -7,5 +10,20 @@ namespace UI
     /// </summary>
     public sealed class VW_Currency : View
     {
+        [SerializeField] private TextMeshProUGUI _currency;
+
+        private void Awake()
+        {
+            AssertHelper.NotNull(typeof(VW_Currency), _currency);
+        }
+
+        /// <summary>
+        /// 재화를 업데이트합니다.
+        /// </summary>
+        /// <param name="currency"></param>
+        private void UpdateCurrency(uint currency)
+        {
+            _currency.SetText(currency.ToString());
+        }
     }
 }
