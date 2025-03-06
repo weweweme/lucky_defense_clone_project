@@ -43,9 +43,9 @@ namespace System
         /// <summary>
         /// 유닛을 노드에 추가하고, 자동으로 배치 위치를 재조정합니다.
         /// </summary>
-        public void AddUnit(UnitRoot unit, EUnitGrade grade, EUnitType type)
+        public void AddUnit(UnitRoot unit)
         {
-            UnitGroup.AddUnit(unit, grade, type);
+            UnitGroup.AddUnit(unit);
             RearrangeUnitPositions();
         }
 

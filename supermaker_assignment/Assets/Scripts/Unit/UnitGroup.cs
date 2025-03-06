@@ -43,13 +43,13 @@ namespace Unit
         /// <summary>
         /// 유닛을 그룹에 추가합니다.
         /// </summary>
-        public void AddUnit(UnitRoot unit, EUnitGrade grade, EUnitType type)
+        public void AddUnit(UnitRoot unit)
         {
             AssertHelper.NotEqualsValue<uint>(typeof(UnitGroup), UnitCount, MAX_UNIT_COUNT);
 
             _placedUnits[UnitCount++] = unit;
-            UnitGrade = grade;
-            UnitType = type;
+            UnitGrade = unit.Grade;
+            UnitType = unit.Type;
             IsOccupied = true;
         }
 
