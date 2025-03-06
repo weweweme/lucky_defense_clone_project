@@ -10,6 +10,9 @@ namespace System
     /// </summary>
     public sealed class UnitPlacementNode : MonoBehaviourBase
     {
+        [SerializeField] private uint _nodeIndex = int.MaxValue;
+        public uint NodeIndex => _nodeIndex;
+        
         /// <summary>
         /// 해당 노드가 관리하는 유닛 그룹입니다.
         /// </summary>
