@@ -6,7 +6,7 @@ using Util;
 namespace UI
 {
     /// <summary>
-    /// 체력 게이지 관련 처리를 담당하는 뷰 클래스입니다.
+    /// Enemy의 체력 게이지 관련 처리를 담당하는 뷰 클래스입니다.
     /// </summary>
     public class VW_EnemyHP : View
     {
