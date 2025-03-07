@@ -8,13 +8,13 @@ namespace UI
     /// <summary>
     /// 신화 조합 패널을 여는 버튼의 View 클래스입니다.
     /// </summary>
-    public class VW_MythicUnitCombinationButton : View
+    public sealed class VW_MythicUnitCombinationButton : View
     {
-        [SerializeField] internal Button openPanel;
+        [SerializeField] internal Button openPanelBut;
         
         private void Awake()
         {
-            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationButton), openPanel);
+            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationButton), openPanelBut);
         }
     }
 }
