@@ -10,7 +10,7 @@ namespace Unit
     /// 지정된 조건에 맞는 유닛들이 특정 개수 이상 배치되었는지를 추적하고,
     /// 모든 조건을 충족했을 때 합성 가능 상태(_canCombine)를 ReactiveProperty로 노출합니다.
     /// </summary>
-    public sealed class UnitCombinationFlagChecker
+    public sealed class UnitCombinationPossibleChecker
     {
         /// <summary>
         /// 합성 완료 시 생성되는 유닛의 타입입니다.
@@ -51,9 +51,9 @@ namespace Unit
         /// <param name="first">첫 번째 조합 조건</param>
         /// <param name="second">두 번째 조합 조건</param>
         /// <param name="third">세 번째 조합 조건</param>
-        public UnitCombinationFlagChecker(EUnitType resultType, SUnitCombinationFlagCondition first, SUnitCombinationFlagCondition second, SUnitCombinationFlagCondition third)
+        public UnitCombinationPossibleChecker(EUnitType resultType, SUnitCombinationFlagCondition first, SUnitCombinationFlagCondition second, SUnitCombinationFlagCondition third)
         {
-            AssertHelper.NotEqualsEnum(typeof(UnitCombinationFlagChecker), resultType, EUnitType.None);
+            AssertHelper.NotEqualsEnum(typeof(UnitCombinationPossibleChecker), resultType, EUnitType.None);
             
             ResultUnitType = resultType;
             _conditions[0] = first;
@@ -111,6 +111,11 @@ namespace Unit
             }
 
             _canCombine.Value = true;  // 모든 조건 충족 시 true
+        }
+        
+        public SUnitCombinationFlagCondition GetCondition(int idx)
+        {
+            return _conditions[idx];
         }
     }
 }

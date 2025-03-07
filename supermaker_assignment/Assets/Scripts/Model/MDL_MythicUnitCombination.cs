@@ -11,10 +11,10 @@ namespace Model
     public class MDL_MythicUnitCombination
     {
         // 현재 신화 유닛 조합이 가능한지 여부를 나타내는 List<Rx>
-        private readonly List<UnitCombinationFlagChecker> _combinationFlagCheckers = new List<UnitCombinationFlagChecker>();
+        private readonly List<UnitCombinationPossibleChecker> _combinationFlagCheckers = new List<UnitCombinationPossibleChecker>();
         public MDL_MythicUnitCombination()
         {
-            UnitCombinationFlagChecker meleeMythicalChecker = new UnitCombinationFlagChecker(
+            UnitCombinationPossibleChecker meleeMythicalChecker = new UnitCombinationPossibleChecker(
                 EUnitType.Melee,
                 new SUnitCombinationFlagCondition(EUnitGrade.Common, EUnitType.Melee),
                 new SUnitCombinationFlagCondition(EUnitGrade.Rare, EUnitType.Melee),
@@ -22,7 +22,7 @@ namespace Model
             );
             _combinationFlagCheckers.Add(meleeMythicalChecker);
             
-            UnitCombinationFlagChecker rangedMythicalChecker = new UnitCombinationFlagChecker(
+            UnitCombinationPossibleChecker rangedMythicalChecker = new UnitCombinationPossibleChecker(
                 EUnitType.Ranged,
                 new SUnitCombinationFlagCondition(EUnitGrade.Common, EUnitType.Ranged),
                 new SUnitCombinationFlagCondition(EUnitGrade.Rare, EUnitType.Ranged),
@@ -30,7 +30,7 @@ namespace Model
             );
             _combinationFlagCheckers.Add(rangedMythicalChecker);
         }
-        public IReadOnlyList<UnitCombinationFlagChecker> GetCombinationFlagCheckers() => _combinationFlagCheckers;
+        public IReadOnlyList<UnitCombinationPossibleChecker> GetCombinationFlagCheckers() => _combinationFlagCheckers;
         
         // 현재 어떤 유닛을 조합할지 보여주는 Rx
         private readonly Subject<SCurrentMythicUnitCombinationData> _onMythicUnitCombination = new Subject<SCurrentMythicUnitCombinationData>();
