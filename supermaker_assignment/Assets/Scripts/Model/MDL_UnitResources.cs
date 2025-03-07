@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Unit;
 using UnityEngine;
 using Util;
@@ -14,9 +15,13 @@ namespace Model
         private const uint CURRENT_UNIT_COUNT = 8;
         [SerializeField] private List<UnitMetaData> _unitResourceList;
         private readonly Dictionary<EUnitGrade, Dictionary<EUnitType, UnitMetaData>> _unitResourceDic = new();
+        
+        [SerializeField] MythicUnitFullSpriteDic _mythicUnitFullSpriteDic;
 
         private void Awake()
         {
+            AssertHelper.EqualsValue(typeof(MDL_UnitResources), (uint)_unitResourceList.Count, CURRENT_UNIT_COUNT);
+            
             InitResourceDic();
         }
 
@@ -41,6 +46,7 @@ namespace Model
             }
         }
 
+        [NotNull]
         public UnitMetaData GetResource(EUnitGrade grade, EUnitType type)
         {
             AssertHelper.NotEqualsEnum(typeof(MDL_UnitResources), grade, EUnitGrade.None);
@@ -52,6 +58,20 @@ namespace Model
             }
 
             Debug.LogWarning($"리소스 데이터 없음: {grade}-{type}");
+            return null;
+        }
+        
+        [NotNull]
+        public Sprite GetMythicUnitFullSprite(EUnitType type)
+        {
+            AssertHelper.NotEqualsEnum(typeof(MDL_UnitResources), type, EUnitType.None);
+            
+            if (_mythicUnitFullSpriteDic.TryGetValue(type, out var sprite))
+            {
+                return sprite;
+            }
+
+            Debug.LogWarning($"신화 유닛 전체 이미지 리소스 없음: {type}");
             return null;
         }
     }

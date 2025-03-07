@@ -1,8 +1,9 @@
 using System;
 using Unit;
+using UnityEngine;
 
 namespace Util
 {
     [Serializable]
-    public class UnitResourceDic : SerializableDictionary<EUnitGrade, UnitMetaData> { }
+    public class MythicUnitFullSpriteDic : SerializableDictionary<EUnitType, Sprite> { }
 }
