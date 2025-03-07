@@ -10,11 +10,10 @@ namespace Unit
     /// </summary>
     public class UnitRoot : PooledEntityRootBase
     {
-        // TODO: UnitGrade와 Type이 OnTakeFromPoolInit에서 초기화되도록 설정합니다.
-        private EUnitGrade _grade = EUnitGrade.Common;
+        private EUnitGrade _grade = EUnitGrade.None;
         public EUnitGrade Grade => _grade;
         
-        private EUnitType _type = EUnitType.Melee;
+        private EUnitType _type = EUnitType.None;
         public EUnitType Type => _type;
         
         [SerializeField] internal UnitAttackController attackController;
@@ -33,10 +32,13 @@ namespace Unit
 
         public override void OnTakeFromPoolInit(EPlayerSide side)
         {
+            _grade = EUnitGrade.Common;
+            _type = EUnitType.Melee;
+            
             _btController.StartBtTick();
         }
         
-        public void Release()
+        public void ReleaseObject()
         {
         }
     }

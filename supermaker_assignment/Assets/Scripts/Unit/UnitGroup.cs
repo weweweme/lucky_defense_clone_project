@@ -54,7 +54,7 @@ namespace Unit
         {
             UnitRoot unit = _placedUnits[UnitCount--];
             AssertHelper.NotNull(typeof(UnitGroup), unit);
-            unit.Release();
+            unit.ReleaseObject();
 
             if (!IsEmpty()) return;
             Clear();
