@@ -41,7 +41,7 @@ namespace Unit
         public void AddUnit(UnitRoot unit)
         {
             AssertHelper.NotEqualsValue<uint>(typeof(UnitGroup), UnitCount, MAX_UNIT_COUNT);
-
+            
             _placedUnits[UnitCount++] = unit;
             UnitGrade = unit.Grade;
             UnitType = unit.Type;
@@ -52,7 +52,8 @@ namespace Unit
         /// </summary>
         public void SellUnit()
         {
-            UnitRoot unit = _placedUnits[UnitCount--];
+            uint targetIdx = UnitCount-- - 1;
+            UnitRoot unit = _placedUnits[targetIdx];
             AssertHelper.NotNull(typeof(UnitGroup), unit);
             unit.ReleaseObject();
 

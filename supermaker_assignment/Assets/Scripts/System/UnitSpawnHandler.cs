@@ -38,6 +38,7 @@ namespace System
             
             // TODO: type에 따라 스폰할 유닛의 데이터를 셋업하는 기능 추가
             UnitRoot unit = _unitBasePool.GetObject();
+            AssertHelper.NotNull(typeof(UnitSpawnHandler), unit);
             unit.OnTakeFromPoolInit(data.SpawnSide);
             
             UnitPlacementNode placementNode = _unitGridNodeManager.FindAvailableNode(data);
