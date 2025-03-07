@@ -14,23 +14,30 @@ namespace UI
     /// </summary>
     public sealed class VW_MythicUnitCombinationPanel : View
     {
-        [SerializeField] internal Canvas canvas;
         [SerializeField] internal Button exitBackgroundPanel;
         [SerializeField] internal Button exitButton;
-        [SerializeField] internal TextMeshProUGUI unitName;
-        [SerializeField] internal Image unitIcon;
-        [SerializeField] internal Image unitFullImage;
+
+        [SerializeField] private Canvas _canvas;
+        [SerializeField] private TextMeshProUGUI _unitName;
+        [SerializeField] private Image _unitIcon;
+        [SerializeField] private Image _unitFullImage;
+        [SerializeField] private Image _requiredFirstUnitIcon;
+        [SerializeField] private Image _requiredSecondUnitIcon;
+        [SerializeField] private Image _requiredThirdUnitIcon;
         
         private MDL_UnitResources _mdlUnitResources;
 
         private void Awake()
         {
-            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), canvas);
+            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _canvas);
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), exitBackgroundPanel);
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), exitButton);
-            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), unitName);
-            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), unitIcon);
-            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), unitFullImage);
+            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _unitName);
+            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _unitIcon);
+            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _unitFullImage);
+            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _requiredFirstUnitIcon);
+            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _requiredSecondUnitIcon);
+            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _requiredThirdUnitIcon);
         }
 
         private void Start()
@@ -39,7 +46,7 @@ namespace UI
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _mdlUnitResources);
         }
         
-        public void SetCanvasActive(bool isActive) => canvas.enabled = isActive;
+        public void SetCanvasActive(bool isActive) => _canvas.enabled = isActive;
         public void SetCurrentUnitData(SCurrentMythicUnitCombinationData data)
         {
             AssertHelper.NotEqualsEnum(typeof(VW_MythicUnitCombinationPanel), data.UnitType, EUnitType.None);
@@ -47,9 +54,9 @@ namespace UI
             UnitMetaData metaData = _mdlUnitResources.GetResource(EUnitGrade.Mythic, data.UnitType);
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), metaData);
             
-            unitName.SetText(data.UnitName);
-            unitIcon.sprite = metaData.Sprite;
-            unitFullImage.sprite = _mdlUnitResources.GetMythicUnitFullSprite(data.UnitType);
+            _unitName.SetText(data.UnitName);
+            _unitIcon.sprite = metaData.Sprite;
+            _unitFullImage.sprite = _mdlUnitResources.GetMythicUnitFullSprite(data.UnitType);
         }
     }
 }
