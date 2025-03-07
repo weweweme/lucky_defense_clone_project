@@ -15,5 +15,7 @@ namespace UI
         {
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), canvas);
         }
+        
+        public void SetCanvasActive(bool isActive) => canvas.enabled = isActive;
     }
 }
