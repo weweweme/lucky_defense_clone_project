@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 using Util;
 
 namespace UI
@@ -9,13 +10,15 @@ namespace UI
     /// </summary>
     public sealed class MythicUnitListItem : MonoBehaviourBase
     {
-        [SerializeField] internal string _unitName;
-        [SerializeField] internal EUnitType _unitType;
+        [SerializeField] internal Button unitButton;
+        [SerializeField] internal string unitName;
+        [SerializeField] internal EUnitType unitType;
 
         private void Awake()
         {
-            AssertHelper.NotNull(typeof(MythicUnitListItem), _unitName);
-            AssertHelper.NotEqualsEnum(typeof(MythicUnitListItem), _unitType, EUnitType.None);
+            AssertHelper.NotNull(typeof(MythicUnitListItem), unitButton);
+            AssertHelper.NotNull(typeof(MythicUnitListItem), unitName);
+            AssertHelper.NotEqualsEnum(typeof(MythicUnitListItem), unitType, EUnitType.None);
         }
     }
 }
