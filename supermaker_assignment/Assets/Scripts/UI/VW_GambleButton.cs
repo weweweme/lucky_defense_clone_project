@@ -1,4 +1,7 @@
 using InGame.System;
+using UnityEngine;
+using UnityEngine.UI;
+using Util;
 
 namespace UI
 {
@@ -7,5 +10,11 @@ namespace UI
     /// </summary>
     public sealed class VW_GambleButton : View
     {
+        [SerializeField] internal Button gambleBut;
+
+        private void Awake()
+        {
+            AssertHelper.NotNull(typeof(VW_GambleButton), gambleBut);
+        }
     }
 }

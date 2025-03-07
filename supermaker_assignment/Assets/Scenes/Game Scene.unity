@@ -15756,6 +15756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f27d855989c4fa0bcd32a3d86bb471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gambleBut: {fileID: 2134621793}
 --- !u!1 &2136983945
 GameObject:
   m_ObjectHideFlags: 0
