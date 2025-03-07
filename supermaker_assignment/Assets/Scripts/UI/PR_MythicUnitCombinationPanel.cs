@@ -20,7 +20,20 @@ namespace UI
 
             MDL_GameSystem mdl = dataManager.GameSystem;
             mdl.MythicCombinationPanelVisible
-                .Subscribe(vw.SetCanvasActive)
+                .Subscribe(vw!.SetCanvasActive)
+                .AddTo(disposable);
+
+            ClosePanel(mdl, vw);
+        }
+        
+        private void ClosePanel(MDL_GameSystem mdl, VW_MythicUnitCombinationPanel view)
+        {
+            view.exitBackgroundPanel.OnClickAsObservable()
+                .Subscribe(_ => mdl.SetMythicCombinationPanelVisible(false))
+                .AddTo(disposable);
+            
+            view.exitButton.OnClickAsObservable()
+                .Subscribe(_ => mdl.SetMythicCombinationPanelVisible(false))
                 .AddTo(disposable);
         }
     }
