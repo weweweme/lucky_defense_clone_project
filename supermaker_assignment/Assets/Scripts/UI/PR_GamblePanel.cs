@@ -18,7 +18,7 @@ namespace UI
             { EUnitGrade.Heroic, 0.2f },
             { EUnitGrade.Mythic, 0.1f }
         };
-        private readonly MDL_Unit _mdlUnit;
+        private MDL_Unit _mdlUnit;
         
         public override void Init(DataManager dataManager, View view)
         {
@@ -27,8 +27,8 @@ namespace UI
             VW_GamblePanel vw = view as VW_GamblePanel;
             AssertHelper.NotNull(typeof(PR_GamblePanel), vw);
             
-            MDL_Unit mdlUnit = dataManager.Unit;
-            AssertHelper.NotNull(typeof(PR_GamblePanel), mdlUnit);
+            _mdlUnit = dataManager.Unit;
+            AssertHelper.NotNull(typeof(PR_GamblePanel), _mdlUnit);
 
             MDL_GameSystem mdlSystem = dataManager.GameSystem;
             AssertHelper.NotNull(typeof(PR_MythicUnitCombinationPanel), mdlSystem);
