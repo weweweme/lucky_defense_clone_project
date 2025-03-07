@@ -19,26 +19,20 @@ namespace UI
             AssertHelper.NotNull(typeof(PR_MythicUnitCombinationPanel), vw);
 
             MDL_GameSystem mdlGameSystem = dataManager.GameSystem;
+            AssertHelper.NotNull(typeof(PR_MythicUnitCombinationPanel), mdlGameSystem);
             mdlGameSystem.MythicCombinationPanelVisible
                 .Subscribe(vw!.SetCanvasActive)
+                .AddTo(disposable);
+            vw.exitBackgroundPanel.OnClickAsObservable()
+                .Subscribe(_ => mdlGameSystem.SetMythicCombinationPanelVisible(false))
+                .AddTo(disposable);
+            vw.exitButton.OnClickAsObservable()
+                .Subscribe(_ => mdlGameSystem.SetMythicCombinationPanelVisible(false))
                 .AddTo(disposable);
             
             MDL_MythicUnitCombination mdlMythicUnitCombination = dataManager.MythicUnitCombination;
             mdlMythicUnitCombination.OnMythicUnitCombination
                 .Subscribe(vw.SetCurrentUnitData)
-                .AddTo(disposable);
-
-            ClosePanel(mdlGameSystem, vw);
-        }
-        
-        private void ClosePanel(MDL_GameSystem mdl, VW_MythicUnitCombinationPanel view)
-        {
-            view.exitBackgroundPanel.OnClickAsObservable()
-                .Subscribe(_ => mdl.SetMythicCombinationPanelVisible(false))
-                .AddTo(disposable);
-            
-            view.exitButton.OnClickAsObservable()
-                .Subscribe(_ => mdl.SetMythicCombinationPanelVisible(false))
                 .AddTo(disposable);
         }
     }
