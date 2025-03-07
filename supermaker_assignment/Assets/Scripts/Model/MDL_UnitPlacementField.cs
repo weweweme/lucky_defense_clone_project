@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UniRx;
+using Unit;
 
 namespace Model
 {
@@ -18,5 +20,27 @@ namespace Model
         private readonly Subject<SUnitPlacementDragData> _isDragging = new Subject<SUnitPlacementDragData>();
         public IObservable<SUnitPlacementDragData> IsDragging => _isDragging;
         public void SetIsDragging(SUnitPlacementDragData value) => _isDragging.OnNext(value);
+        
+        // 현재 신화 유닛 조합이 가능한지 여부를 나타내는 List<Rx>
+        private readonly List<UnitCombinationFlagChecker> _combinationFlagCheckers = new List<UnitCombinationFlagChecker>();
+        public MDL_UnitPlacementField()
+        {
+            UnitCombinationFlagChecker meleeMythicalChecker = new UnitCombinationFlagChecker(
+                EUnitType.Melee,
+                new SUnitCombinationFlagCondition(EUnitGrade.Common, EUnitType.Melee),
+                new SUnitCombinationFlagCondition(EUnitGrade.Rare, EUnitType.Melee),
+                new SUnitCombinationFlagCondition(EUnitGrade.Heroic, EUnitType.Melee)
+            );
+            _combinationFlagCheckers.Add(meleeMythicalChecker);
+            
+            UnitCombinationFlagChecker rangedMythicalChecker = new UnitCombinationFlagChecker(
+                EUnitType.Ranged,
+                new SUnitCombinationFlagCondition(EUnitGrade.Common, EUnitType.Ranged),
+                new SUnitCombinationFlagCondition(EUnitGrade.Rare, EUnitType.Ranged),
+                new SUnitCombinationFlagCondition(EUnitGrade.Heroic, EUnitType.Ranged)
+            );
+            _combinationFlagCheckers.Add(rangedMythicalChecker);
+        }
+        public IReadOnlyList<UnitCombinationFlagChecker> GetCombinationFlagCheckers() => _combinationFlagCheckers;
     }
 }
