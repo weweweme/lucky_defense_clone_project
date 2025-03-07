@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 1810397756535471803}
   - component: {fileID: 2141280642432138752}
   - component: {fileID: 6915132898072117720}
+  - component: {fileID: 8953150605942837915}
   m_Layer: 5
   m_Name: UI_Gamble Try Item
   m_TagString: Untagged
@@ -230,6 +231,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8953150605942837915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976319205667222258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9f99f07cdba40e48ce3ad3d867d228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chancePercent: {fileID: 8814516787852070042}
+  tryNeedDiamond: {fileID: 147312143375500569}
 --- !u!1 &2688614037935058428
 GameObject:
   m_ObjectHideFlags: 0
