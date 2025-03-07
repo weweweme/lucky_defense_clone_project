@@ -19,6 +19,11 @@ namespace System
         public UnitGroup UnitGroup = new UnitGroup();
 
         /// <summary>
+        /// 1개 유닛 배치 시 사용되는 위치입니다.
+        /// </summary>
+        [SerializeField] private Transform oneUnitPosition;
+        
+        /// <summary>
         /// 2개 유닛 배치 시 사용되는 위치 배열입니다.
         /// </summary>
         [SerializeField] private Transform[] twoUnitPositions = new Transform[2];
@@ -27,6 +32,13 @@ namespace System
         /// 3개 유닛 배치 시 사용되는 위치 배열입니다.
         /// </summary>
         [SerializeField] private Transform[] threeUnitPositions = new Transform[3];
+
+        private void Awake()
+        {
+            AssertHelper.NotNull(typeof(UnitPlacementNode), oneUnitPosition);
+            AssertHelper.EqualsValue(typeof(UnitPlacementNode), twoUnitPositions.Length, 2);
+            AssertHelper.EqualsValue(typeof(UnitPlacementNode), threeUnitPositions.Length, 3);
+        }
 
         /// <summary>
         /// 주어진 유닛 스폰 요청 데이터에 따라 해당 유닛을 수용할 수 있는지 여부를 반환합니다.
@@ -69,7 +81,7 @@ namespace System
             switch (UnitGroup.UnitCount)
             {
                 case 1:
-                    UnitGroup.SetPositions(transform);
+                    UnitGroup.SetPositions(oneUnitPosition);
                     break;
                 case 2:
                     UnitGroup.SetPositions(twoUnitPositions);

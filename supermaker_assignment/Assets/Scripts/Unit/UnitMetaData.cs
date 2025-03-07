@@ -13,5 +13,6 @@ namespace Unit
         public EUnitType Type;
         public uint SellPrice;
         public Sprite Sprite;
+        public float ScaleSize;
     }
 }
