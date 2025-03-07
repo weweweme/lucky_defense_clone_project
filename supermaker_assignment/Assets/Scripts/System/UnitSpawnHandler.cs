@@ -34,6 +34,7 @@ namespace System
         private void SpawnUnit(SUnitSpawnRequestData data)
         {
             AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),data.UnitGrade, EUnitGrade.None);
+            AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),data.UnitType, EUnitType.None);
             AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),data.SpawnSide, EPlayerSide.None);
             
             // TODO: type에 따라 스폰할 유닛의 데이터를 셋업하는 기능 추가

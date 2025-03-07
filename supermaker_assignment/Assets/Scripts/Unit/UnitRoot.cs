@@ -37,12 +37,19 @@ namespace Unit
         
         public void SetupUnitClassification(EUnitGrade grade, EUnitType type)
         {
+            AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),grade, EUnitGrade.None);
+            AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),type, EUnitType.None);
+            
             _grade = grade;
             _type = type;
         }
 
         public override void OnTakeFromPoolInit(EPlayerSide side)
         {
+            AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),side, EPlayerSide.None);
+            AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),_grade, EUnitGrade.None);
+            AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),_type, EUnitType.None);
+            
             _btController.StartBtTick();
         }
         

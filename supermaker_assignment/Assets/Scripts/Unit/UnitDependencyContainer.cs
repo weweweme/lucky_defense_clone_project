@@ -11,12 +11,14 @@ namespace Unit
         internal readonly UnitBasePool unitBasePool;
         internal readonly MDL_Unit mdlUnit;
         internal readonly MDL_Currency mdlCurrency;
+        internal readonly MDL_UnitResources unitResources;
 
         public UnitDependencyContainer(RootManager rootManager)
         {
             unitBasePool = rootManager.PoolManager.UnitBasePool;
             mdlUnit = rootManager.DataManager.Unit;
             mdlCurrency = rootManager.DataManager.Currency;
+            unitResources = rootManager.DataManager.UnitResources;
         }
     }
 }
