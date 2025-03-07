@@ -40,7 +40,6 @@ namespace System
             AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),data.UnitType, EUnitType.None);
             AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),data.SpawnSide, EPlayerSide.None);
             
-            // TODO: type에 따라 스폰할 유닛의 데이터를 셋업하는 기능 추가
             UnitRoot unit = _unitBasePool.GetObject();
             AssertHelper.NotNull(typeof(UnitSpawnHandler), unit);
             unit.SetupUnitClassification(data.UnitGrade, data.UnitType);
