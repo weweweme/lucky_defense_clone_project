@@ -26,6 +26,7 @@ namespace UI
         [SerializeField] private Image _requiredThirdUnitIcon;
         
         private MDL_UnitResources _mdlUnitResources;
+        private MDL_MythicUnitCombination _mdlMythicUnitCombination;
 
         private void Awake()
         {
@@ -44,19 +45,49 @@ namespace UI
         {
             _mdlUnitResources = RootManager.Ins.DataManager.UnitResources;
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _mdlUnitResources);
+            
+            _mdlMythicUnitCombination = RootManager.Ins.DataManager.MythicUnitCombination;
+            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _mdlMythicUnitCombination);
         }
         
         public void SetCanvasActive(bool isActive) => _canvas.enabled = isActive;
         public void SetCurrentUnitData(SCurrentMythicUnitCombinationData data)
         {
             AssertHelper.NotEqualsEnum(typeof(VW_MythicUnitCombinationPanel), data.UnitType, EUnitType.None);
-            
+
             UnitMetaData metaData = _mdlUnitResources.GetResource(EUnitGrade.Mythic, data.UnitType);
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), metaData);
-            
+
             _unitName.SetText(data.UnitName);
             _unitIcon.sprite = metaData.Sprite;
             _unitFullImage.sprite = _mdlUnitResources.GetMythicUnitFullSprite(data.UnitType);
+
+            // 조건에 맞는 CombinationFlagChecker 찾기
+            UnitCombinationFlagChecker checker = null;
+            foreach (var flagChecker in _mdlMythicUnitCombination.GetCombinationFlagCheckers())
+            {
+                if (flagChecker.ResultUnitType != data.UnitType) continue;
+                
+                checker = flagChecker;
+                break;
+            }
+            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), checker);
+
+            // 각 조건 유닛의 아이콘 세팅
+            SetRequiredUnitIcon(_requiredFirstUnitIcon, checker.GetCondition(0));
+            SetRequiredUnitIcon(_requiredSecondUnitIcon, checker.GetCondition(1));
+            SetRequiredUnitIcon(_requiredThirdUnitIcon, checker.GetCondition(2));
+        }
+
+        /// <summary>
+        /// 지정된 조건에 해당하는 유닛의 아이콘을 설정합니다.
+        /// </summary>
+        private void SetRequiredUnitIcon(Image targetIcon, SUnitCombinationFlagCondition condition)
+        {
+            UnitMetaData metaData = _mdlUnitResources.GetResource(condition.Grade, condition.Type);
+            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), metaData);
+
+            targetIcon.sprite = metaData.Sprite;
         }
     }
 }

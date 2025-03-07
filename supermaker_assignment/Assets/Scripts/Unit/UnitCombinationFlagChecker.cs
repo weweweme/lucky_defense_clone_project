@@ -112,5 +112,10 @@ namespace Unit
 
             _canCombine.Value = true;  // 모든 조건 충족 시 true
         }
+        
+        public SUnitCombinationFlagCondition GetCondition(int idx)
+        {
+            return _conditions[idx];
+        }
     }
 }
