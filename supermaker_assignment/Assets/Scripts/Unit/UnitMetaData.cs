@@ -11,7 +11,6 @@ namespace Unit
     {
         public EUnitGrade Grade;
         public EUnitType Type;
-        public uint SpawnCost;
         public uint SellPrice;
         public Sprite Sprite;
     }
