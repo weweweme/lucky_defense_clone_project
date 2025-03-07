@@ -1,5 +1,6 @@
 using System;
 using InGame.System;
+using UniRx;
 using Util;
 
 namespace UI
@@ -15,6 +16,13 @@ namespace UI
             
             VW_MythicUnitList vw = view as VW_MythicUnitList;
             AssertHelper.NotNull(typeof(PR_MythicUnitList), vw);
+
+            foreach (var elem in vw!.mythicUnitItemList)
+            {
+                elem.unitButton.OnClickAsObservable()
+                    .Subscribe()
+                    .AddTo(disposable);
+            }
         }
     }
 }
