@@ -17,12 +17,14 @@ namespace Unit
         public EUnitType Type => _type;
         
         [SerializeField] internal UnitAttackController attackController;
+        [SerializeField] internal UnitSpriteController spriteController;
         internal UnitDependencyContainer dependencyContainer;
         private UnitBTController _btController;
 
         private void Awake()
         {
             AssertHelper.NotNull(typeof(UnitRoot), attackController);
+            AssertHelper.NotNull(typeof(UnitRoot), spriteController);
         }
         
         public override void CreatePooledItemInit(DependencyContainerBase containerBase)
@@ -50,6 +52,7 @@ namespace Unit
             AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),_grade, EUnitGrade.None);
             AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),_type, EUnitType.None);
             
+            spriteController.ChangeSprite();
             _btController.StartBtTick();
         }
         

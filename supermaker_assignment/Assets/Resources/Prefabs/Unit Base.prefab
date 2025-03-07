@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4184735902855163255}
   - component: {fileID: 3610169384799238795}
   - component: {fileID: 1889337234972084887}
+  - component: {fileID: 5238383128305566337}
   m_Layer: 30
   m_Name: Unit Base
   m_TagString: Untagged
@@ -128,6 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackController: {fileID: 3610169384799238795}
+  spriteController: {fileID: 5238383128305566337}
 --- !u!114 &3610169384799238795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,3 +177,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 5
+--- !u!114 &5238383128305566337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211534585129982868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f516f9d179124775a89557d64acc469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
