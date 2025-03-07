@@ -10793,7 +10793,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214724057}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -14216,7 +14216,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1825110447}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 985663796}
@@ -14305,7 +14305,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847254433}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -15756,6 +15756,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f27d855989c4fa0bcd32a3d86bb471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gambleBut: {fileID: 2134621793}
+  _gambleCanvas: {fileID: 1214724060}
 --- !u!1 &2136983945
 GameObject:
   m_ObjectHideFlags: 0

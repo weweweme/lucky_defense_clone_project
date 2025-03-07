@@ -1,6 +1,7 @@
 using System;
 using InGame.System;
 using Model;
+using UniRx;
 using Util;
 
 namespace UI
@@ -19,6 +20,15 @@ namespace UI
 
             MDL_GameSystem mdl = dataManager.GameSystem;
             AssertHelper.NotNull(typeof(PR_GambleButton), mdl);
+            
+            vw!.gambleBut.OnClickAsObservable()
+                .Where(_ => !mdl.MythicCombinationPanelVisible.Value)
+                .Subscribe(_ => mdl.SetGamblePanelVisible(true))
+                .AddTo(disposable);
+
+            mdl.GamblePanelVisible
+                .Subscribe(vw.SetGamblePanelVisible)
+                .AddTo(disposable);
         }
     }
 }
