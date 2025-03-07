@@ -11,13 +11,11 @@ namespace UI
     public sealed class VW_MythicUnitListItem : View
     {
         [SerializeField] internal string _unitName;
-        [SerializeField] internal EUnitGrade _unitGrade;
         [SerializeField] internal EUnitType _unitType;
 
         private void Awake()
         {
             AssertHelper.NotNull(typeof(VW_MythicUnitListItem), _unitName);
-            AssertHelper.NotEqualsEnum(typeof(VW_MythicUnitListItem), _unitGrade, EUnitGrade.None);
             AssertHelper.NotEqualsEnum(typeof(VW_MythicUnitListItem), _unitType, EUnitType.None);
         }
     }

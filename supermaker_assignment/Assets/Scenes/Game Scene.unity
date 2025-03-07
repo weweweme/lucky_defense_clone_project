@@ -14764,9 +14764,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1678285206}
     m_Modifications:
+    - target: {fileID: 2634502248041072484, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+      propertyPath: _unitName
+      value: "\uCCAD\uBA85\uD55C \uCE7C\uB0A0\uBE44"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634502248041072484, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+      propertyPath: _unitType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2741217506916769671, guid: cf361bfdd054944df8d149525c504d89, type: 3}
       propertyPath: m_Name
-      value: UI_Mythic Unit List Item Range
+      value: VW_Mythic Unit List Item Range
       objectReference: {fileID: 0}
     - target: {fileID: 4995340387391220396, guid: cf361bfdd054944df8d149525c504d89, type: 3}
       propertyPath: m_Pivot.x
@@ -19241,9 +19249,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1678285206}
     m_Modifications:
+    - target: {fileID: 2634502248041072484, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+      propertyPath: _unitName
+      value: "\uC885\uB9D0\uC758 \uAD11\uB300"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634502248041072484, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+      propertyPath: _unitType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634502248041072484, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+      propertyPath: _unitGrade
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2741217506916769671, guid: cf361bfdd054944df8d149525c504d89, type: 3}
       propertyPath: m_Name
-      value: UI_Mythic Unit List Item Melee
+      value: VW_Mythic Unit List Item Melee
       objectReference: {fileID: 0}
     - target: {fileID: 4995340387391220396, guid: cf361bfdd054944df8d149525c504d89, type: 3}
       propertyPath: m_Pivot.x

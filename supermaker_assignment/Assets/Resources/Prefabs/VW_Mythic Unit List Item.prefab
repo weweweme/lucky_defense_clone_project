@@ -354,8 +354,9 @@ GameObject:
   - component: {fileID: 4995340387391220396}
   - component: {fileID: 6553020657323022959}
   - component: {fileID: 6384888935974483933}
+  - component: {fileID: 2634502248041072484}
   m_Layer: 5
-  m_Name: UI_Mythic Unit List Item
+  m_Name: VW_Mythic Unit List Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -420,6 +421,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2634502248041072484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2741217506916769671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d38139f360ed6455ab3687c48bb7ef58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitName: 
+  _unitGrade: 0
+  _unitType: 0
 --- !u!1 &4506346526127658880
 GameObject:
   m_ObjectHideFlags: 0
