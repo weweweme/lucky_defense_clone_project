@@ -63,7 +63,7 @@ namespace UI
             _unitFullImage.sprite = _mdlUnitResources.GetMythicUnitFullSprite(data.UnitType);
 
             // 조건에 맞는 CombinationFlagChecker 찾기
-            UnitCombinationFlagChecker checker = null;
+            UnitCombinationPossibleChecker checker = null;
             foreach (var flagChecker in _mdlMythicUnitCombination.GetCombinationFlagCheckers())
             {
                 if (flagChecker.ResultUnitType != data.UnitType) continue;
