@@ -1,5 +1,7 @@
 using System;
 using InGame.System;
+using Model;
+using UniRx;
 using Util;
 
 namespace UI
@@ -15,6 +17,15 @@ namespace UI
 
             VW_GamblePanel vw = view as VW_GamblePanel;
             AssertHelper.NotNull(typeof(PR_GamblePanel), vw);
+            
+            MDL_GameSystem mdl = dataManager.GameSystem;
+            AssertHelper.NotNull(typeof(PR_MythicUnitCombinationPanel), mdl);
+            vw!.exitBackgroundPanel.OnClickAsObservable()
+                .Subscribe(_ => mdl.SetGamblePanelVisible(false))
+                .AddTo(disposable);
+            vw.exitButton.OnClickAsObservable()
+                .Subscribe(_ => mdl.SetGamblePanelVisible(false))
+                .AddTo(disposable);
         }
     }
 }
