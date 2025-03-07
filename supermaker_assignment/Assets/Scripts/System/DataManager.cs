@@ -1,4 +1,5 @@
 using Model;
+using UnityEngine;
 using Util;
 
 namespace System
@@ -22,5 +23,13 @@ namespace System
         
         private readonly MDL_Currency _currency = new MDL_Currency();
         public MDL_Currency Currency => _currency;
+        
+        [SerializeField] private MDL_UnitResources _unitResources;
+        public MDL_UnitResources UnitResources => _unitResources;
+
+        private void Awake()
+        {
+            AssertHelper.NotNull(typeof(DataManager), _unitResources);
+        }
     }
 }
