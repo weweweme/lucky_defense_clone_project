@@ -14,5 +14,8 @@ namespace Unit
         public uint SellPrice;
         public Sprite Sprite;
         public float ScaleSize;
+        public uint AttackDamage;
+        public float AttackRange;
+        public float AttackFireRate;
     }
 }
