@@ -18,12 +18,17 @@ namespace UI
             VW_MythicUnitCombinationPanel vw = view as VW_MythicUnitCombinationPanel;
             AssertHelper.NotNull(typeof(PR_MythicUnitCombinationPanel), vw);
 
-            MDL_GameSystem mdl = dataManager.GameSystem;
-            mdl.MythicCombinationPanelVisible
+            MDL_GameSystem mdlGameSystem = dataManager.GameSystem;
+            mdlGameSystem.MythicCombinationPanelVisible
                 .Subscribe(vw!.SetCanvasActive)
                 .AddTo(disposable);
+            
+            MDL_MythicUnitCombination mdlMythicUnitCombination = dataManager.MythicUnitCombination;
+            mdlMythicUnitCombination.OnMythicUnitCombination
+                .Subscribe(vw.SetCurrentUnitData)
+                .AddTo(disposable);
 
-            ClosePanel(mdl, vw);
+            ClosePanel(mdlGameSystem, vw);
         }
         
         private void ClosePanel(MDL_GameSystem mdl, VW_MythicUnitCombinationPanel view)

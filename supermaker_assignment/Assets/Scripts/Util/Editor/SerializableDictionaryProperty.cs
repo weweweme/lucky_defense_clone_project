@@ -2,7 +2,7 @@ using UnityEditor;
 
 namespace Util.Editor
 {
-    [CustomPropertyDrawer(typeof(UnitResourceDic))]
+    [CustomPropertyDrawer(typeof(MythicUnitFullSpriteDic))]
     
     public class SerializableDictionaryDrawer : SerializableDictionaryPropertyDrawer {}
 }
