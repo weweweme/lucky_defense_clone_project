@@ -25,6 +25,7 @@ namespace System
         public void Init(RootManager rootManager)
         {
             enemyBasePool.Init(rootManager);
+            unitBasePool.Init(rootManager);
         }
     }
 }

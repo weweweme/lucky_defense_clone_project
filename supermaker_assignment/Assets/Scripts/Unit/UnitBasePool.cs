@@ -1,5 +1,4 @@
 using System;
-using Enemy;
 using Util;
 
 namespace Unit
@@ -9,13 +8,17 @@ namespace Unit
     /// </summary>
     public class UnitBasePool : ObjectPoolBase<UnitRoot>
     {
+        private UnitDependencyContainer _dependencyContainer;
+
+        public void Init(RootManager rootManager)
+        {
+            _dependencyContainer = new UnitDependencyContainer(rootManager);
+        }
+        
         protected override UnitRoot CreatePooledItem()
         {
-            // TODO: UnitDependencyContainer 클래스 구현 뒤 코드 정상화
-            EnemyDependencyContainer tmp = new EnemyDependencyContainer(RootManager.Ins);
-            
             var enemy = base.CreatePooledItem();
-            enemy.CreatePooledItemInit(tmp);
+            enemy.CreatePooledItemInit(_dependencyContainer);
 
             return enemy;
         }
