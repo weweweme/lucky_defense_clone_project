@@ -7466,6 +7466,7 @@ GameObject:
   - component: {fileID: 883503785}
   - component: {fileID: 883503784}
   - component: {fileID: 883503783}
+  - component: {fileID: 883503786}
   m_Layer: 5
   m_Name: VW_Mythic Unit Combination Button
   m_TagString: Untagged
@@ -7576,6 +7577,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883503781}
   m_CullTransparentMesh: 1
+--- !u!114 &883503786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883503781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bde26768201641949f2c4cd4c293988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openPanelBut: {fileID: 883503783}
 --- !u!1001 &883838247
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13380,6 +13394,7 @@ GameObject:
   - component: {fileID: 1825110451}
   - component: {fileID: 1825110450}
   - component: {fileID: 1825110449}
+  - component: {fileID: 1825110452}
   m_Layer: 5
   m_Name: VC_Mythic Unit Combination
   m_TagString: Untagged
@@ -13471,6 +13486,21 @@ Canvas:
   m_SortingLayerID: -2147147229
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1825110452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825110447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20df78db7e904460972ecad5f188186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rootManager: {fileID: 1939053484}
+  _vwMythicUnitCombinationButton: {fileID: 883503786}
+  _vwMythicUnitCombinationPanel: {fileID: 1847254438}
 --- !u!1 &1847254433
 GameObject:
   m_ObjectHideFlags: 0
@@ -13483,6 +13513,7 @@ GameObject:
   - component: {fileID: 1847254436}
   - component: {fileID: 1847254435}
   - component: {fileID: 1847254437}
+  - component: {fileID: 1847254438}
   m_Layer: 5
   m_Name: VW_Mythic Unit Combination Panel
   m_TagString: Untagged
@@ -13573,6 +13604,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1847254438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847254433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6049451c69c2e410694be07e7c48a653, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 1847254437}
 --- !u!1 &1852482909
 GameObject:
   m_ObjectHideFlags: 0

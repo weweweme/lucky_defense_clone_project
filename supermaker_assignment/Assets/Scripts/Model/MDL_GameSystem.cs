@@ -12,5 +12,10 @@ namespace Model
         private readonly Subject<EGameState> _onGameFlow = new Subject<EGameState>();
         public IObservable<EGameState> OnGameFlow => _onGameFlow;
         public void ChangeGameFlow(EGameState state) => _onGameFlow.OnNext(state);
+        
+        // 신화 조합 패널의 on/off 여부를 나타내는 Rx.
+        private readonly ReactiveProperty<bool> _mythicCombinationPanelVisible = new ReactiveProperty<bool>(false);
+        public IReactiveProperty<bool> MythicCombinationPanelVisible => _mythicCombinationPanelVisible;
+        public void SetMythicCombinationPanelVisible(bool value) => _mythicCombinationPanelVisible.Value = value;
     }
 }
