@@ -75,7 +75,7 @@ namespace Unit
         /// <summary>
         /// 그룹의 모든 유닛 정보를 제거하고 초기화합니다.
         /// </summary>
-        public void Clear()
+        private void Clear()
         {
             for (int i = 0; i < MAX_UNIT_COUNT; ++i)
             {

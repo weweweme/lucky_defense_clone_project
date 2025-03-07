@@ -1,3 +1,4 @@
+using Model;
 using UniRx;
 using Unit;
 using Util;
@@ -12,6 +13,7 @@ namespace System
     {
         private readonly UnitBasePool _unitBasePool;
         private readonly UnitGridNodeManager _unitGridNodeManager;
+        private MDL_Unit _mdlUnit;
         
         public UnitSpawnHandler(RootManager rootManager)
         {
@@ -26,7 +28,8 @@ namespace System
         
         protected override void InitRx(RootManager rootManager)
         {
-            rootManager.DataManager.Unit.OnUnitSpawn
+            _mdlUnit = rootManager.DataManager.Unit;
+            _mdlUnit.OnUnitSpawn
                 .Subscribe(SpawnUnit)
                 .AddTo(disposable);
         }
@@ -46,6 +49,11 @@ namespace System
             UnitPlacementNode placementNode = _unitGridNodeManager.FindAvailableNode(data);
             AssertHelper.NotNull(typeof(UnitSpawnHandler), placementNode);
             placementNode.AddUnit(unit);
+
+            foreach (var elem in _mdlUnit.GetCombinationFlagCheckers())
+            {
+                elem.HandleAddUnit(placementNode);
+            }
         }
     }
 }
