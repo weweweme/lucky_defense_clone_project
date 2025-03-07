@@ -1,7 +1,6 @@
 using System.Threading;
 using CleverCrow.Fluid.BTs.Tasks;
 using Cysharp.Threading.Tasks;
-using Model;
 using UnityEngine;
 using Util;
 
@@ -28,7 +27,7 @@ namespace Unit
         /// <summary>
         /// 유닛의 공격 범위를 결정하는 CircleCollider2D입니다.
         /// </summary>
-        private CircleCollider2D _attackRange;
+        [SerializeField] private CircleCollider2D _attackRange;
 
         /// <summary>
         /// OverlapCircleNonAlloc에서 사용될 충돌체 버퍼입니다.
@@ -56,7 +55,7 @@ namespace Unit
 
         private void Awake()
         {
-            _attackRange = gameObject.GetComponentOrAssert<CircleCollider2D>();
+            AssertHelper.NotNull(typeof(UnitAttackController), _attackRange);
             _attackRange.radius = float.MaxValue;
         }
 
