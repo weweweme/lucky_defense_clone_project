@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UniRx;
 using Unit;
 
 namespace Model
@@ -30,5 +31,10 @@ namespace Model
             _combinationFlagCheckers.Add(rangedMythicalChecker);
         }
         public IReadOnlyList<UnitCombinationFlagChecker> GetCombinationFlagCheckers() => _combinationFlagCheckers;
+        
+        // 현재 어떤 유닛을 조합할지 보여주는 Rx
+        private readonly Subject<SCurrentMythicUnitCombinationData> _onMythicUnitCombination = new Subject<SCurrentMythicUnitCombinationData>();
+        public IObservable<SCurrentMythicUnitCombinationData> OnMythicUnitCombination => _onMythicUnitCombination;
+        public void DisplayMythicUnitCombination(SCurrentMythicUnitCombinationData data) => _onMythicUnitCombination.OnNext(data);
     }
 }
