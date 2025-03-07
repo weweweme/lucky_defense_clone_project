@@ -11,7 +11,7 @@ namespace Unit
         /// <summary>
         /// 유닛의 스프라이트 렌더링을 담당하는 컴포넌트
         /// </summary>
-        private SpriteRenderer _spriteRenderer;
+        [SerializeField] private SpriteRenderer _spriteRenderer;
 
         /// <summary>
         /// 해당 유닛의 최상위 컨테이너인 UnitRoot 참조
@@ -24,7 +24,7 @@ namespace Unit
         /// </summary>
         private void Awake()
         {
-            _spriteRenderer = gameObject.GetComponentOrAssert<SpriteRenderer>();
+            AssertHelper.NotNull(typeof(UnitSpriteController), _spriteRenderer);
         }
 
         /// <summary>
@@ -43,14 +43,11 @@ namespace Unit
         /// </summary>
         public void ChangeVisible()
         {
-            /* 유닛의 등급과 타입에 맞는 메타데이터를 리소스 매니저에서 조회 */
             UnitMetaData metaData = _unitRoot.dependencyContainer.mdlUnitResources.GetResource(_unitRoot.Grade, _unitRoot.Type);
-
-            /* 스프라이트 교체 */
-            _spriteRenderer.sprite = metaData.Sprite;
+            AssertHelper.NotNull(typeof(UnitAttackController), metaData);
             
-            /* 유닛의 크기 조정 */
-            transform.localScale = Vector3.one * metaData.ScaleSize;
+            _spriteRenderer.sprite = metaData.Sprite;
+            _spriteRenderer.transform.localScale = Vector3.one * metaData.ScaleSize;
         }
     }
 }

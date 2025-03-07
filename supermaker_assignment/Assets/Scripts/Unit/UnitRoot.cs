@@ -55,6 +55,7 @@ namespace Unit
             
             spriteController.ChangeVisible();
             _btController.StartBtTick();
+            attackController.OnTakeFromPoolInit(this);
         }
         
         public void ReleaseObject()
