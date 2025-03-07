@@ -117,5 +117,10 @@ namespace Unit
         {
             return _conditions[idx];
         }
+        
+        public bool IsConditionMet(int index)
+        {
+            return _flagCounts[index] > 0;
+        }
     }
 }
