@@ -243,7 +243,6 @@ namespace System
             Collider2D[] buffer = new Collider2D[1];
 
             int hitCount = Physics2D.OverlapCircleNonAlloc(_currentMouseWorldPos, CHECK_RADIUS, buffer, Layers.GetLayerMask(Layers.UNIT_UI));
-            Debug.Log(hitCount);
             return hitCount > 0;
         }
         

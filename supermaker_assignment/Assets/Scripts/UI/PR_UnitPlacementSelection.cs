@@ -39,15 +39,21 @@ namespace UI
             UnitPlacementNode selectedNode = _mdlUnitPlacementField.GetSelectedNode();
             AssertHelper.NotNull(typeof(PR_UnitPlacementSelection), selectedNode);
             
-            selectedNode.SellUnit();
-            
             EUnitGrade grade = selectedNode.UnitGroup.UnitGrade;
             AssertHelper.NotEqualsEnum(typeof(PR_UnitPlacementSelection), grade, EUnitGrade.None);
+            
             EUnitType type = selectedNode.UnitGroup.UnitType;
             AssertHelper.NotEqualsEnum(typeof(PR_UnitPlacementSelection), type, EUnitType.None);
             
+            selectedNode.SellUnit();
             // TODO: 추후 Grade와 Type에 따라 return하도록 변경.
             _mdlCurrency.SubtractGold(1);
+
+            // 판매 처리 후 노드가 비어있으면 선택된 노드를 null로 변경
+            if (selectedNode.UnitGroup.IsEmpty())
+            {
+                _mdlUnitPlacementField.SelectNode(null);
+            }
         }
         
         public void Dispose()
