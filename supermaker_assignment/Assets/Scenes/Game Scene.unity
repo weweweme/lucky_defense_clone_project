@@ -1826,6 +1826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rootManager: {fileID: 1939053484}
   _vwGambleButton: {fileID: 2134621796}
+  _vwGamblePanel: {fileID: 1214724062}
 --- !u!1 &258547394
 GameObject:
   m_ObjectHideFlags: 0
@@ -10740,6 +10741,7 @@ GameObject:
   - component: {fileID: 1214724061}
   - component: {fileID: 1214724060}
   - component: {fileID: 1214724059}
+  - component: {fileID: 1214724062}
   m_Layer: 5
   m_Name: VW_Gamble Panel
   m_TagString: Untagged
@@ -10793,7 +10795,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214724057}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -10817,6 +10819,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214724057}
   m_CullTransparentMesh: 1
+--- !u!114 &1214724062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214724057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f4ff5d774f074ee69e975c5fdbd5d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exitBackgroundPanel: {fileID: 341829741}
+  exitButton: {fileID: 1741367881}
 --- !u!1 &1223137430
 GameObject:
   m_ObjectHideFlags: 0
@@ -13623,7 +13639,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 442, y: 691}
+  m_AnchoredPosition: {x: 442, y: -460}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1741367881
