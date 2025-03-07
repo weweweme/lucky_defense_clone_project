@@ -5,6 +5,7 @@ namespace Util
     /// </summary>
     public static class Layers
     {
+        public const int UNIT_UI = 28;
         public const int UNIT_PLACEMENT_NODE = 29;
         public const int UNIT = 30;  
         public const int ENEMY = 31;  
