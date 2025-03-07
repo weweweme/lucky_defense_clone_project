@@ -104,8 +104,10 @@ namespace Unit
         /// <returns>현재 그룹의 공격 사정거리.</returns>
         public float GetAttackRange()
         {
-            // TODO: 추후 유닛의 타입에 따라 사정거리 분기 기능 추가.
-            return 5.0f;
+            UnitMetaData data = RootManager.Ins.DataManager.UnitResources.GetResource(UnitGrade, UnitType);
+            AssertHelper.NotNull(typeof(UnitGroup), data);
+
+            return data.AttackRange;
         }
     }
 }
