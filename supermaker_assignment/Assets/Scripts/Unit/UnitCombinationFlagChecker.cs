@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UniRx;
+using Util;
 
 namespace Unit
 {
@@ -11,6 +12,11 @@ namespace Unit
     /// </summary>
     public sealed class UnitCombinationFlagChecker
     {
+        /// <summary>
+        /// 합성 완료 시 생성되는 유닛의 타입입니다.
+        /// </summary>
+        public readonly EUnitType ResultUnitType;
+        
         /// <summary>
         /// 현재 조합 가능한 상태인지 여부를 나타내는 ReactiveProperty입니다.
         /// 모든 조건이 충족되면 true로 설정되며, 조건이 하나라도 부족하면 false가 됩니다.
@@ -45,8 +51,11 @@ namespace Unit
         /// <param name="first">첫 번째 조합 조건</param>
         /// <param name="second">두 번째 조합 조건</param>
         /// <param name="third">세 번째 조합 조건</param>
-        public UnitCombinationFlagChecker(SUnitCombinationFlagCondition first, SUnitCombinationFlagCondition second, SUnitCombinationFlagCondition third)
+        public UnitCombinationFlagChecker(EUnitType resultType, SUnitCombinationFlagCondition first, SUnitCombinationFlagCondition second, SUnitCombinationFlagCondition third)
         {
+            AssertHelper.NotEqualsEnum(typeof(UnitCombinationFlagChecker), resultType, EUnitType.None);
+            
+            ResultUnitType = resultType;
             _conditions[0] = first;
             _conditions[1] = second;
             _conditions[2] = third;
