@@ -1,7 +1,8 @@
 using System;
+using Unit;
 
 namespace Util
 {
     [Serializable]
-    public class UnitResourceDic : SerializableDictionary<EUnitGrade, EUnitType> { }
+    public class UnitResourceDic : SerializableDictionary<EUnitGrade, UnitMetaData> { }
 }
