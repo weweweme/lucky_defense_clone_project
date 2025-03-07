@@ -20,8 +20,11 @@ namespace Enemy
             AssertHelper.NotNull(typeof(EnemyRoot), statController);
         }
         
-        public void CreatePooledItemInit(EnemyDependencyContainer container)
+        public override void CreatePooledItemInit(DependencyContainerBase containerBase)
         {
+            EnemyDependencyContainer container = containerBase as EnemyDependencyContainer;
+            AssertHelper.NotNull(typeof(EnemyRoot), container);
+            
             dependencyContainer = container;
             statController.CreatePooledItemInit(this);
         }
