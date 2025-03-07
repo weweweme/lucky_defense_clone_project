@@ -6,7 +6,7 @@ namespace Enemy
     /// <summary>
     /// Enemy에서 사용될 외부 모듈의 참조를 관리하는 컨테이너 클래스입니다.
     /// </summary>
-    public class EnemyDependencyContainer : DependencyContainerBase
+    public sealed class EnemyDependencyContainer : DependencyContainerBase
     {
         internal readonly EnemyBasePool enemyBasePool;
         internal readonly MDL_Enemy mdlEnemy;
