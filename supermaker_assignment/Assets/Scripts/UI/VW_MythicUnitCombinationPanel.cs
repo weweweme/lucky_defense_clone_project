@@ -74,7 +74,7 @@ namespace UI
             // 각 조건 유닛의 아이콘과 상태 패널 세팅
             for (int i = 0; i < _requiredUnitSlots.Length; ++i)
             {
-                SetRequiredUnitSlot(_requiredUnitSlots[i], checker.GetCondition(i), checker.IsConditionMet(i));
+                SetRequiredUnitSlot(_requiredUnitSlots[i], checker.GetCondition(i), checker.HasRequiredUnit(i));
             }
         }
 

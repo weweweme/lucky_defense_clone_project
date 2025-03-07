@@ -113,12 +113,23 @@ namespace Unit
             _canCombine.Value = true;  // 모든 조건 충족 시 true
         }
         
+        /// <summary>
+        /// 지정된 인덱스의 유닛 조합 조건 정보를 반환합니다.
+        /// </summary>
+        /// <param name="idx">조합 조건 인덱스 (0부터 시작)</param>
+        /// <returns>해당 인덱스의 유닛 조합 조건 정보</returns>
         public SUnitCombinationFlagCondition GetCondition(int idx)
         {
             return _conditions[idx];
         }
-        
-        public bool IsConditionMet(int index)
+
+        /// <summary>
+        /// 지정된 인덱스의 유닛 조건이 충족되었는지 여부를 반환합니다.
+        /// 해당 조건에 맞는 유닛이 최소 1개 이상 배치되어 있는지 여부를 의미합니다.
+        /// </summary>
+        /// <param name="index">조합 조건 인덱스 (0부터 시작)</param>
+        /// <returns>해당 조건 유닛 보유 여부 (true: 보유, false: 미보유)</returns>
+        public bool HasRequiredUnit(int index)
         {
             return _flagCounts[index] > 0;
         }
