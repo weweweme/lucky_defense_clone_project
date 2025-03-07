@@ -10833,6 +10833,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exitBackgroundPanel: {fileID: 341829741}
   exitButton: {fileID: 1741367881}
+  _gambleCanvas: {fileID: 1214724060}
 --- !u!1 &1223137430
 GameObject:
   m_ObjectHideFlags: 0
@@ -15773,7 +15774,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gambleBut: {fileID: 2134621793}
-  _gambleCanvas: {fileID: 1214724060}
 --- !u!1 &2136983945
 GameObject:
   m_ObjectHideFlags: 0

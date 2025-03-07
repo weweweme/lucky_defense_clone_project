@@ -26,6 +26,9 @@ namespace UI
             vw.exitButton.OnClickAsObservable()
                 .Subscribe(_ => mdl.SetGamblePanelVisible(false))
                 .AddTo(disposable);
+            mdl.GamblePanelVisible
+                .Subscribe(vw.SetGamblePanelVisible)
+                .AddTo(disposable);
         }
     }
 }
