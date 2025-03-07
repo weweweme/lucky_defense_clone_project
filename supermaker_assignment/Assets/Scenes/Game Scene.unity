@@ -9503,6 +9503,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Gamble Try Item Heroic
       objectReference: {fileID: 0}
+    - target: {fileID: 8953150605942837915, guid: a58b3e7a40d9645d3820876a33d579b3, type: 3}
+      propertyPath: unitGrade
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9513,6 +9517,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1810397756535471803, guid: a58b3e7a40d9645d3820876a33d579b3, type: 3}
   m_PrefabInstance: {fileID: 1025801279}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1025801283 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8953150605942837915, guid: a58b3e7a40d9645d3820876a33d579b3, type: 3}
+  m_PrefabInstance: {fileID: 1025801279}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9f99f07cdba40e48ce3ad3d867d228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1046558571
 GameObject:
   m_ObjectHideFlags: 0
@@ -10510,6 +10525,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1810397756535471803, guid: a58b3e7a40d9645d3820876a33d579b3, type: 3}
   m_PrefabInstance: {fileID: 3436760611606210819}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1157405338 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8953150605942837915, guid: a58b3e7a40d9645d3820876a33d579b3, type: 3}
+  m_PrefabInstance: {fileID: 3436760611606210819}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9f99f07cdba40e48ce3ad3d867d228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1165917863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10833,6 +10859,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exitBackgroundPanel: {fileID: 341829741}
   exitButton: {fileID: 1741367881}
+  gambleTryItems:
+  - {fileID: 1157405338}
+  - {fileID: 1025801283}
+  - {fileID: 2064940957}
   _gambleCanvas: {fileID: 1214724060}
 --- !u!1 &1223137430
 GameObject:
@@ -15301,6 +15331,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Gamble Try Item Mythic
       objectReference: {fileID: 0}
+    - target: {fileID: 8953150605942837915, guid: a58b3e7a40d9645d3820876a33d579b3, type: 3}
+      propertyPath: unitGrade
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15311,6 +15345,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1810397756535471803, guid: a58b3e7a40d9645d3820876a33d579b3, type: 3}
   m_PrefabInstance: {fileID: 2064940953}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2064940957 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8953150605942837915, guid: a58b3e7a40d9645d3820876a33d579b3, type: 3}
+  m_PrefabInstance: {fileID: 2064940953}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9f99f07cdba40e48ce3ad3d867d228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2068439707 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5112506027641990277, guid: a5ca53aacf6e546bca399f0bbb01a5d2, type: 3}
@@ -20331,6 +20376,10 @@ PrefabInstance:
     - target: {fileID: 1976319205667222258, guid: a58b3e7a40d9645d3820876a33d579b3, type: 3}
       propertyPath: m_Name
       value: UI_Gamble Try Item Rare
+      objectReference: {fileID: 0}
+    - target: {fileID: 8953150605942837915, guid: a58b3e7a40d9645d3820876a33d579b3, type: 3}
+      propertyPath: unitGrade
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

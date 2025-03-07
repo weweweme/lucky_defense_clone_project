@@ -17,7 +17,7 @@ namespace UI
 
             VW_GamblePanel vw = view as VW_GamblePanel;
             AssertHelper.NotNull(typeof(PR_GamblePanel), vw);
-            
+
             MDL_GameSystem mdl = dataManager.GameSystem;
             AssertHelper.NotNull(typeof(PR_MythicUnitCombinationPanel), mdl);
             vw!.exitBackgroundPanel.OnClickAsObservable()
@@ -29,6 +29,13 @@ namespace UI
             mdl.GamblePanelVisible
                 .Subscribe(vw.SetGamblePanelVisible)
                 .AddTo(disposable);
+
+            foreach (var elem in vw.gambleTryItems)
+            {
+                elem.tryButton.OnClickAsObservable()
+                    .Subscribe()
+                    .AddTo(disposable);
+            }
         }
     }
 }
