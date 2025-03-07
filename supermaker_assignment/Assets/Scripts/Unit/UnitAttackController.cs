@@ -1,6 +1,7 @@
 using System.Threading;
 using CleverCrow.Fluid.BTs.Tasks;
 using Cysharp.Threading.Tasks;
+using Model;
 using UnityEngine;
 using Util;
 
@@ -37,8 +38,7 @@ namespace Unit
         /// <summary>
         /// 유닛의 공격 속도 (초당 공격 횟수)입니다.
         /// </summary>
-        private readonly float _fireRate = 0.5f;
-
+        private float _fireRate = float.MaxValue;
         /// <summary>
         /// 유닛의 다음 공격까지 발사까지 남은 쿨다운 시간(초)입니다.
         /// </summary>
@@ -52,17 +52,32 @@ namespace Unit
         /// <summary>
         /// 유닛의 데미지입니다.
         /// </summary>
-        private readonly uint _damage = 20;
+        private uint _damage = uint.MaxValue;
 
         private void Awake()
         {
             _attackRange = gameObject.GetComponentOrAssert<CircleCollider2D>();
+            _attackRange.radius = float.MaxValue;
         }
 
         public void Init()
         {
             CancelTokenHelper.GetToken(ref _cts);
             StartAttacking(_cts.Token).Forget();
+        }
+
+        public void OnTakeFromPoolInit(UnitRoot root)
+        {
+            UnitMetaData metaData = root.dependencyContainer.mdlUnitResources.GetResource(root.Grade, root.Type);
+            AssertHelper.NotNull(typeof(UnitAttackController), metaData);
+            
+            _fireRate = metaData.AttackFireRate;
+            _damage = metaData.AttackDamage;
+            _attackRange.radius = metaData.AttackRange;
+            
+            AssertHelper.NotEqualsValue(typeof(UnitAttackController), _damage, uint.MaxValue);
+            AssertHelper.NotEqualsValue(typeof(UnitAttackController), _fireRate, float.MaxValue);
+            AssertHelper.NotEqualsValue(typeof(UnitAttackController), _attackRange.radius, float.MaxValue);
         }
 
         /// <summary>
@@ -185,6 +200,8 @@ namespace Unit
         /// <param name="targetTr">공격 대상 트랜스폼</param>
         private void Attack()
         {
+            AssertHelper.NotEqualsValue(typeof(UnitAttackController), _damage, uint.MaxValue);
+            
             SetFacingDirection();
             _currentTarget.StatController.TakeDamage(_damage);
         }
