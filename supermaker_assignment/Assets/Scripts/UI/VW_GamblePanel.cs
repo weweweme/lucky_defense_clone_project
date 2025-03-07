@@ -12,7 +12,7 @@ namespace UI
     {
         [SerializeField] internal Button exitBackgroundPanel;
         [SerializeField] internal Button exitButton;
-        [SerializeField] internal GambleTryItem[] _gambleTryItems;
+        [SerializeField] internal GambleTryItem[] gambleTryItems;
         
         [SerializeField] private Canvas _gambleCanvas;
 
@@ -23,7 +23,7 @@ namespace UI
             AssertHelper.NotNull(typeof(VW_GamblePanel), _gambleCanvas);
             
             const int TRY_SLOT_COUNT = 3;
-            AssertHelper.EqualsValue(typeof(VW_MythicUnitCombinationPanel), _gambleTryItems.Length, TRY_SLOT_COUNT);
+            AssertHelper.EqualsValue(typeof(VW_MythicUnitCombinationPanel), gambleTryItems.Length, TRY_SLOT_COUNT);
         }
         
         public void SetGamblePanelVisible(bool value) => _gambleCanvas.enabled = value;
