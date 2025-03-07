@@ -65,7 +65,7 @@ namespace Enemy
         /// <param name="damage">적용할 피해량</param>
         public void TakeDamage(uint damage)
         {
-            _mdl.SetCurrentHp(Math.Max(0, _mdl.Hp.Value - damage));
+            _mdl.SetCurrentHp(Math.Max(0, _mdl.Hp.Value - (int)damage));
 
             if (_mdl.HasHpRemaining()) return;
             

@@ -28,7 +28,7 @@ namespace UI
                 .AddTo(_disposable);
         }
 
-        private void NormalizeHP(uint currentHp)
+        private void NormalizeHP(int currentHp)
         {
             float maxHp = _mdl.MaxHp;
             float normalizedHp = currentHp / maxHp;

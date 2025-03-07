@@ -8,12 +8,12 @@ namespace Model
     public class MDL_EnemyStat
     {
         // 적의 체력과 관련된 Rx
-        private readonly ReactiveProperty<uint> _hp = new ReactiveProperty<uint>();
-        public IReactiveProperty<uint> Hp => _hp;
+        private readonly ReactiveProperty<int> _hp = new ReactiveProperty<int>();
+        public IReactiveProperty<int> Hp => _hp;
 
         // 적의 최대 체력
-        private uint _maxHp;
-        public uint MaxHp => _maxHp;
+        private int _maxHp;
+        public int MaxHp => _maxHp;
 
         /// <summary>
         /// 적 유닛의 최대 체력과 현재 체력을 초기화합니다.
@@ -21,15 +21,15 @@ namespace Model
         /// <param name="maxHp">적 유닛의 최대 체력</param>
         public void SetStat(uint maxHp)
         {
-            _maxHp = maxHp;
-            _hp.Value = maxHp;
+            _maxHp = (int)maxHp;
+            _hp.Value = (int)maxHp;
         }
 
         /// <summary>
         /// 적 유닛의 현재 체력을 지정된 값으로 설정합니다.
         /// </summary>
         /// <param name="hp">설정할 현재 체력 값</param>
-        public void SetCurrentHp(uint hp)
+        public void SetCurrentHp(int hp)
         {
             _hp.Value = hp;
         }
