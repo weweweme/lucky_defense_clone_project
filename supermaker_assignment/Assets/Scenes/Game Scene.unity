@@ -12803,7 +12803,7 @@ GameObject:
   - component: {fileID: 1678285208}
   - component: {fileID: 1678285207}
   m_Layer: 5
-  m_Name: Rect_Mythic Unit List
+  m_Name: VW_Mythic Unit List
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14798,7 +14798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2741217506916769671, guid: cf361bfdd054944df8d149525c504d89, type: 3}
       propertyPath: m_Name
-      value: VW_Mythic Unit List Item Range
+      value: UI_Mythic Unit List Item Range
       objectReference: {fileID: 0}
     - target: {fileID: 4995340387391220396, guid: cf361bfdd054944df8d149525c504d89, type: 3}
       propertyPath: m_Pivot.x
@@ -19319,7 +19319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2741217506916769671, guid: cf361bfdd054944df8d149525c504d89, type: 3}
       propertyPath: m_Name
-      value: VW_Mythic Unit List Item Melee
+      value: UI_Mythic Unit List Item Melee
       objectReference: {fileID: 0}
     - target: {fileID: 4995340387391220396, guid: cf361bfdd054944df8d149525c504d89, type: 3}
       propertyPath: m_Pivot.x

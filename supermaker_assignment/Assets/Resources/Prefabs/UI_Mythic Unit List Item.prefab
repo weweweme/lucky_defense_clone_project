@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 6384888935974483933}
   - component: {fileID: 2634502248041072484}
   m_Layer: 5
-  m_Name: VW_Mythic Unit List Item
+  m_Name: UI_Mythic Unit List Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -434,7 +434,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitName: 
-  _unitGrade: 0
   _unitType: 0
 --- !u!1 &4506346526127658880
 GameObject:
