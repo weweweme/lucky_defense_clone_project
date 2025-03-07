@@ -54,8 +54,24 @@ namespace UI
             _mdlUnit.SetSpawnNeededGold(currentSpawnNeededGold + 1);
             _mdlUnit.SetCurrentSpawnCount(currentSpawnCount + 1);
             
-            SUnitSpawnRequestData data = new SUnitSpawnRequestData(EUnitGrade.Common, EUnitType.Melee, EPlayerSide.South);
-            _mdlUnit.SpawnUnit(data);   
+            SUnitSpawnRequestData data = new SUnitSpawnRequestData(GetRandomGrade(), GetRandomType(), EPlayerSide.South);
+            _mdlUnit.SpawnUnit(data);
         }
+        
+        private EUnitGrade GetRandomGrade()
+        {
+            int roll = UnityEngine.Random.Range(0, 100);
+
+            if (roll < 50) return EUnitGrade.Common;   // 50%
+            if (roll < 80) return EUnitGrade.Rare;     // 30%
+            if (roll < 95) return EUnitGrade.Heroic;   // 15%
+            return EUnitGrade.Mythic;                   // 5%
+        }
+
+        private EUnitType GetRandomType()
+        {
+            return UnityEngine.Random.Range(0f, 1f) < 0.6f ? EUnitType.Melee : EUnitType.Ranged;
+        }
+
     }
 }
