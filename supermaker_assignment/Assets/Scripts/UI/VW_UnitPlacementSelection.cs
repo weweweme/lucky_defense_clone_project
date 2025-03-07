@@ -13,12 +13,14 @@ namespace UI
     {
         [SerializeField] private SpriteRenderer _attackRangeSpriteRenderer;
         [SerializeField] private Canvas _unitSellCanvas;
-        [SerializeField] internal Button unitSellBtn; 
+        [SerializeField] private BoxCollider2D _unitSellCollider;
+        [SerializeField] internal Button unitSellBtn;
         
         private void Awake()
         {
             AssertHelper.NotNull(typeof(VW_UnitPlacementSelection), _attackRangeSpriteRenderer);
             AssertHelper.NotNull(typeof(VW_UnitPlacementSelection), _unitSellCanvas);
+            AssertHelper.NotNull(typeof(VW_UnitPlacementSelection), _unitSellCollider);
             AssertHelper.NotNull(typeof(VW_UnitPlacementSelection), unitSellBtn);
         }
 
@@ -27,6 +29,7 @@ namespace UI
             bool isNodeNull = node == null;
             _attackRangeSpriteRenderer.enabled = !isNodeNull;
             _unitSellCanvas.enabled = !isNodeNull;
+            _unitSellCollider.enabled = !isNodeNull;
             
             if (isNodeNull) return;
             

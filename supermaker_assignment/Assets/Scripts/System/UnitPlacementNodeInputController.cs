@@ -1,7 +1,10 @@
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using Model;
 using UI;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using Util;
 
 namespace System
@@ -77,7 +80,10 @@ namespace System
             _inputHandler.OnLeftClickStarted += OnLeftClickStarted;
             _inputHandler.OnLeftClickCanceled -= OnLeftClickCanceled;
             _inputHandler.OnLeftClickCanceled += OnLeftClickCanceled;
+        }
 
+        private void Start()
+        {
             _attackRangePr = new PR_UnitPlacementSelection(_mdl, _placementSelectionView);
             _placementDragPr = new PR_UnitPlacementDrag(_mdl, _placementDragView);
         }
@@ -87,6 +93,11 @@ namespace System
         /// </summary>
         private void OnLeftClickStarted()
         {
+            if (IsPointerOverUnitUI())
+            {
+                return;
+            }
+            
             UnitPlacementNode currentNode = FindClosestNodeOrNull(_currentMouseWorldPos);
             if (_lastClickedNode == null && currentNode == null)
             {
@@ -221,6 +232,19 @@ namespace System
             }
 
             return closestNode;
+        }
+        
+        /// <summary>
+        /// 해당 월드 좌표에 UnitUI 레이어 오브젝트가 있는지 판별합니다.
+        /// </summary>
+        private bool IsPointerOverUnitUI()
+        {
+            const float CHECK_RADIUS = 0.01f;  // 클릭 포인트 근처 작은 영역만 검사
+            Collider2D[] buffer = new Collider2D[1];
+
+            int hitCount = Physics2D.OverlapCircleNonAlloc(_currentMouseWorldPos, CHECK_RADIUS, buffer, Layers.GetLayerMask(Layers.UNIT_UI));
+            Debug.Log(hitCount);
+            return hitCount > 0;
         }
         
         /// <summary>
