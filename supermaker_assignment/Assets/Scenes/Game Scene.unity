@@ -13500,6 +13500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rootManager: {fileID: 1939053484}
   _vwMythicUnitCombinationButton: {fileID: 883503786}
+  _vwMythicUnitCombinationPanel: {fileID: 1847254438}
 --- !u!1 &1847254433
 GameObject:
   m_ObjectHideFlags: 0
@@ -13512,6 +13513,7 @@ GameObject:
   - component: {fileID: 1847254436}
   - component: {fileID: 1847254435}
   - component: {fileID: 1847254437}
+  - component: {fileID: 1847254438}
   m_Layer: 5
   m_Name: VW_Mythic Unit Combination Panel
   m_TagString: Untagged
@@ -13586,7 +13588,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847254433}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -13602,6 +13604,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1847254438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847254433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6049451c69c2e410694be07e7c48a653, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 1847254437}
 --- !u!1 &1852482909
 GameObject:
   m_ObjectHideFlags: 0
