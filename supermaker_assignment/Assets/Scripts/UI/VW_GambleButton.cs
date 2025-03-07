@@ -11,10 +11,14 @@ namespace UI
     public sealed class VW_GambleButton : View
     {
         [SerializeField] internal Button gambleBut;
+        [SerializeField] private Canvas _gambleCanvas;
 
         private void Awake()
         {
             AssertHelper.NotNull(typeof(VW_GambleButton), gambleBut);
+            AssertHelper.NotNull(typeof(VW_GambleButton), _gambleCanvas);
         }
+        
+        public void SetGamblePanelVisible(bool value) => _gambleCanvas.enabled = value;
     }
 }

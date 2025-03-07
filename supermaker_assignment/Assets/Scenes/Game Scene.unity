@@ -15757,6 +15757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gambleBut: {fileID: 2134621793}
+  _gambleCanvas: {fileID: 1214724060}
 --- !u!1 &2136983945
 GameObject:
   m_ObjectHideFlags: 0
