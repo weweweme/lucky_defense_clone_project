@@ -24,7 +24,7 @@ namespace Unit
             AssertHelper.NotNull(typeof(UnitRoot), attackController);
         }
         
-        public void CreatePooledItemInit()
+        public override void CreatePooledItemInit(DependencyContainerBase containerBase)
         {
             _btController = new UnitBTController(this);
             attackController.Init();

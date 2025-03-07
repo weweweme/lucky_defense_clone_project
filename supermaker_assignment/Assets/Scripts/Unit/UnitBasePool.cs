@@ -1,3 +1,5 @@
+using System;
+using Enemy;
 using Util;
 
 namespace Unit
@@ -9,8 +11,11 @@ namespace Unit
     {
         protected override UnitRoot CreatePooledItem()
         {
+            // TODO: UnitDependencyContainer 클래스 구현 뒤 코드 정상화
+            EnemyDependencyContainer tmp = new EnemyDependencyContainer(RootManager.Ins);
+            
             var enemy = base.CreatePooledItem();
-            enemy.CreatePooledItemInit();
+            enemy.CreatePooledItemInit(tmp);
 
             return enemy;
         }
