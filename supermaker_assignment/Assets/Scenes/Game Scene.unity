@@ -8637,6 +8637,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRangeSpriteRenderer: {fileID: 752500058}
   _unitSellCanvas: {fileID: 173539076}
+  _unitSellCollider: {fileID: 730253814}
   unitSellBtn: {fileID: 730253813}
 --- !u!1001 &1099061662
 PrefabInstance:
