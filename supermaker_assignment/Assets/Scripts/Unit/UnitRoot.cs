@@ -46,7 +46,7 @@ namespace Unit
         public void ReleaseObject()
         {
             _btController.Dispose();
-            dependencyContainer.unitBasePool.ReturnObject(this);
+            dependencyContainer.unitBasePool.ReleaseObject(this);
         }
     }
 }
