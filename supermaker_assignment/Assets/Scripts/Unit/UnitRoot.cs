@@ -34,12 +34,15 @@ namespace Unit
             _btController = new UnitBTController(this);
             attackController.Init();
         }
+        
+        public void SetupUnitClassification(EUnitGrade grade, EUnitType type)
+        {
+            _grade = grade;
+            _type = type;
+        }
 
         public override void OnTakeFromPoolInit(EPlayerSide side)
         {
-            _grade = EUnitGrade.Common;
-            _type = EUnitType.Melee;
-            
             _btController.StartBtTick();
         }
         
