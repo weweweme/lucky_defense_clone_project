@@ -17,5 +17,10 @@ namespace Model
         private readonly ReactiveProperty<bool> _mythicCombinationPanelVisible = new ReactiveProperty<bool>(false);
         public IReactiveProperty<bool> MythicCombinationPanelVisible => _mythicCombinationPanelVisible;
         public void SetMythicCombinationPanelVisible(bool value) => _mythicCombinationPanelVisible.Value = value;
+        
+        // 도박 패널의 on/off 여부를 나타내는 Rx.
+        private readonly ReactiveProperty<bool> _gamblePanelVisible = new ReactiveProperty<bool>(false);
+        public IReactiveProperty<bool> GamblePanelVisible => _gamblePanelVisible;
+        public void SetGamblePanelVisible(bool value) => _gamblePanelVisible.Value = value;
     }
 }
