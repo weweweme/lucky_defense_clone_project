@@ -19,8 +19,9 @@ namespace UI
             AssertHelper.NotNull(typeof(PR_MythicUnitCombinationButton), vw);
 
             MDL_GameSystem mdl = dataManager.GameSystem;
+            AssertHelper.NotNull(typeof(PR_MythicUnitCombinationButton), mdl);
             vw!.openPanelBut.OnClickAsObservable()
-                .Where(_ => mdl.MythicCombinationPanelVisible.Value == false)
+                .Where(_ => !mdl.MythicCombinationPanelVisible.Value)
                 .Subscribe(_ => mdl.SetMythicCombinationPanelVisible(true))
                 .AddTo(disposable);
         }
