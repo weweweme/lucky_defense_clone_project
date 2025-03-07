@@ -21,9 +21,7 @@ namespace UI
         [SerializeField] private TextMeshProUGUI _unitName;
         [SerializeField] private Image _unitIcon;
         [SerializeField] private Image _unitFullImage;
-        [SerializeField] private Image _requiredFirstUnitIcon;
-        [SerializeField] private Image _requiredSecondUnitIcon;
-        [SerializeField] private Image _requiredThirdUnitIcon;
+        [SerializeField] private RequiredUnitSlot[] _requiredUnitSlots;
         
         private MDL_UnitResources _mdlUnitResources;
         private MDL_MythicUnitCombination _mdlMythicUnitCombination;
@@ -36,9 +34,9 @@ namespace UI
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _unitName);
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _unitIcon);
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _unitFullImage);
-            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _requiredFirstUnitIcon);
-            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _requiredSecondUnitIcon);
-            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _requiredThirdUnitIcon);
+            
+            const int REQUIRE_SLOT_COUNT = 3;
+            AssertHelper.EqualsValue(typeof(VW_MythicUnitCombinationPanel), _requiredUnitSlots.Length, REQUIRE_SLOT_COUNT);
         }
 
         private void Start()
@@ -73,21 +71,24 @@ namespace UI
             }
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), checker);
 
-            // 각 조건 유닛의 아이콘 세팅
-            SetRequiredUnitIcon(_requiredFirstUnitIcon, checker.GetCondition(0));
-            SetRequiredUnitIcon(_requiredSecondUnitIcon, checker.GetCondition(1));
-            SetRequiredUnitIcon(_requiredThirdUnitIcon, checker.GetCondition(2));
+            // 각 조건 유닛의 아이콘과 상태 패널 세팅
+            for (int i = 0; i < _requiredUnitSlots.Length; ++i)
+            {
+                SetRequiredUnitSlot(_requiredUnitSlots[i], checker.GetCondition(i), checker.HasRequiredUnit(i));
+            }
         }
 
         /// <summary>
-        /// 지정된 조건에 해당하는 유닛의 아이콘을 설정합니다.
+        /// 지정된 슬롯에 조건에 맞는 아이콘과 승인/거부 상태 패널을 설정합니다.
         /// </summary>
-        private void SetRequiredUnitIcon(Image targetIcon, SUnitCombinationFlagCondition condition)
+        private void SetRequiredUnitSlot(RequiredUnitSlot slot, SUnitCombinationFlagCondition condition, bool isApproved)
         {
             UnitMetaData metaData = _mdlUnitResources.GetResource(condition.Grade, condition.Type);
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), metaData);
 
-            targetIcon.sprite = metaData.Sprite;
+            slot.unitIcon.sprite = metaData.Sprite;
+            slot.approvedPanel.SetActive(isApproved);
+            slot.deniedPanel.SetActive(!isApproved);
         }
     }
 }
