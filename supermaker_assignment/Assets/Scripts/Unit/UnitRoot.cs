@@ -34,6 +34,7 @@ namespace Unit
             
             dependencyContainer = container;
             _btController = new UnitBTController(this);
+            spriteController.Init(this);
             attackController.Init();
         }
         
@@ -52,7 +53,7 @@ namespace Unit
             AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),_grade, EUnitGrade.None);
             AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),_type, EUnitType.None);
             
-            spriteController.ChangeSprite();
+            spriteController.ChangeVisible();
             _btController.StartBtTick();
         }
         
