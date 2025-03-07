@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 2141280642432138752}
   - component: {fileID: 6915132898072117720}
   m_Layer: 5
-  m_Name: UI_Gamble Grade Item
+  m_Name: UI_Gamble Try Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
