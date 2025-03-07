@@ -114,4 +114,32 @@ namespace System
             Type = type;
         }
     }
+    
+    /// <summary>
+    /// 현재 보여 줄 신화 유닛 조합 정보를 담는 구조체입니다.
+    /// 신화 유닛 조합 패널 등에서 현재 어떤 유닛 조합을 진행 중인지 표시할 때 사용됩니다.
+    /// </summary>
+    public readonly struct SCurrentMythicUnitCombinationData
+    {
+        /// <summary>
+        /// 신화 유닛의 이름입니다.
+        /// </summary>
+        public string UnitName { get; }
+
+        /// <summary>
+        /// 신화 유닛의 타입입니다.
+        /// </summary>
+        public EUnitType UnitType { get; }
+
+        /// <summary>
+        /// 현재 진행 중인 신화 유닛 조합 정보를 생성하는 생성자입니다.
+        /// </summary>
+        /// <param name="unitName">신화 유닛 이름</param>
+        /// <param name="unitType">신화 유닛 타입</param>
+        public SCurrentMythicUnitCombinationData(string unitName, EUnitType unitType)
+        {
+            UnitName = unitName;
+            UnitType = unitType;
+        }
+    }
 }

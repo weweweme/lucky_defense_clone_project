@@ -13893,7 +13893,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847254433}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -14796,6 +14796,14 @@ PrefabInstance:
     - target: {fileID: 2408571087952715111, guid: cf361bfdd054944df8d149525c504d89, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634502248041072484, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+      propertyPath: unitName
+      value: "\uCCAD\uBA85\uD55C \uCE7C\uB0A0\uBE44"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634502248041072484, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+      propertyPath: unitType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2634502248041072484, guid: cf361bfdd054944df8d149525c504d89, type: 3}
       propertyPath: _unitName
@@ -19348,6 +19356,14 @@ PrefabInstance:
     - target: {fileID: 2408571087952715111, guid: cf361bfdd054944df8d149525c504d89, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634502248041072484, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+      propertyPath: unitName
+      value: "\uC885\uB9D0\uC758 \uAD11\uB300"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634502248041072484, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+      propertyPath: unitType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2634502248041072484, guid: cf361bfdd054944df8d149525c504d89, type: 3}
       propertyPath: _unitName

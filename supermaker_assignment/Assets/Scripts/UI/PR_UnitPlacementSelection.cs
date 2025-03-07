@@ -13,7 +13,7 @@ namespace UI
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
         private readonly MDL_UnitPlacementField _mdlUnitPlacementField;
         private readonly MDL_Currency _mdlCurrency;
-        private readonly MDL_Unit _mdlUnit;
+        private readonly MDL_MythicUnitCombination _mdlMythicUnitCombination;
 
         public PR_UnitPlacementSelection(MDL_UnitPlacementField mdlUnitPlacementField, VW_UnitPlacementSelection view)
         {
@@ -22,7 +22,7 @@ namespace UI
 
             var dataManager = RootManager.Ins.DataManager;
             _mdlCurrency = dataManager.Currency;
-            _mdlUnit = dataManager.Unit;
+            _mdlMythicUnitCombination = dataManager.MythicUnitCombination;
 
             _mdlUnitPlacementField = mdlUnitPlacementField;
             mdlUnitPlacementField.SelectedNode
@@ -58,7 +58,7 @@ namespace UI
                 _mdlUnitPlacementField.SelectNode(null);
             }
             
-            foreach (var elem in _mdlUnit.GetCombinationFlagCheckers())
+            foreach (var elem in _mdlMythicUnitCombination.GetCombinationFlagCheckers())
             {
                 elem.HandleRemoveUnit(selectedNode);
             }

@@ -9,21 +9,13 @@ namespace System
     /// </summary>
     public sealed class DataManager : MonoBehaviourBase
     {
-        private readonly MDL_Wave _wave = new MDL_Wave();
-        public MDL_Wave Wave => _wave;
+        public MDL_Wave Wave { get; } = new MDL_Wave();
+        public MDL_Enemy Enemy { get; } = new MDL_Enemy();
+        public MDL_GameSystem GameSystem { get; } = new MDL_GameSystem();
+        public MDL_Unit Unit { get; } = new MDL_Unit();
+        public MDL_Currency Currency { get; } = new MDL_Currency();
+        public MDL_MythicUnitCombination MythicUnitCombination { get; } = new MDL_MythicUnitCombination();
 
-        private readonly MDL_Enemy _enemy = new MDL_Enemy();
-        public MDL_Enemy Enemy => _enemy;
-        
-        private readonly MDL_GameSystem _gameSystem = new MDL_GameSystem();
-        public MDL_GameSystem GameSystem => _gameSystem;
-        
-        private readonly MDL_Unit _unit = new MDL_Unit();
-        public MDL_Unit Unit => _unit;
-        
-        private readonly MDL_Currency _currency = new MDL_Currency();
-        public MDL_Currency Currency => _currency;
-        
         [SerializeField] private MDL_UnitResources _unitResources;
         public MDL_UnitResources UnitResources => _unitResources;
 
