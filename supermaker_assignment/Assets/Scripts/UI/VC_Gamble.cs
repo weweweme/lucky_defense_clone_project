@@ -12,19 +12,25 @@ namespace UI
         [SerializeField] private VW_GambleButton _vwGambleButton;
         private readonly PR_GambleButton _prGambleButton = new PR_GambleButton();
         
+        [SerializeField] private VW_GamblePanel _vwGamblePanel;
+        private readonly PR_GamblePanel _prGamblePanel = new PR_GamblePanel();
+        
         protected override void ValidateReferences()
         {
             AssertHelper.NotNull(typeof(VC_Gamble), _vwGambleButton);
+            AssertHelper.NotNull(typeof(VC_Gamble), _vwGamblePanel);
         }
 
         public override void Init(DataManager dataManager)
         {
             _prGambleButton.Init(dataManager, _vwGambleButton);
+            _prGamblePanel.Init(dataManager, _vwGamblePanel);
         }
 
         protected override void ReleasePresenter()
         {
             _prGambleButton.Dispose();
+            _prGamblePanel.Dispose();
         }
     }
 }
