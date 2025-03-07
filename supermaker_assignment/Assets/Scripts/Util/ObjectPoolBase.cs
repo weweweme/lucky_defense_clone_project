@@ -99,7 +99,7 @@ namespace Util
         /// 사용한 오브젝트를 풀로 반환합니다.
         /// </summary>
         /// <param name="item">풀로 반환할 오브젝트</param>
-        public void ReturnObject(T item)
+        public void ReleaseObject(T item)
         {
             objectPool.Release(item);
         }

@@ -92,7 +92,7 @@ namespace Enemy
             
             dependencyContainer.mdlEnemy.KillEnemy(EEnemyType.Default);
             dependencyContainer.mdlCurrency.AddGold((uint)Random.Range(1, 3));
-            dependencyContainer.enemyBasePool.ReturnObject(_enemyRoot);
+            dependencyContainer.enemyBasePool.ReleaseObject(_enemyRoot);
         }
 
         protected override void OnDestroy()

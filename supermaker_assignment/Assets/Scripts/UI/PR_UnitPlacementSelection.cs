@@ -11,15 +11,18 @@ namespace UI
     public sealed class PR_UnitPlacementSelection : IDisposable
     {
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
-        private readonly MDL_UnitPlacementField _mdl;
+        private readonly MDL_UnitPlacementField _mdlUnitPlacementField;
+        private readonly MDL_Currency _mdlCurrency;
 
-        public PR_UnitPlacementSelection(MDL_UnitPlacementField mdl, VW_UnitPlacementSelection view)
+        public PR_UnitPlacementSelection(MDL_UnitPlacementField mdlUnitPlacementField, VW_UnitPlacementSelection view)
         {
-            AssertHelper.NotNull(typeof(PR_UnitPlacementSelection), mdl);
+            AssertHelper.NotNull(typeof(PR_UnitPlacementSelection), mdlUnitPlacementField);
             AssertHelper.NotNull(typeof(PR_UnitPlacementSelection), view);
 
-            _mdl = mdl;
-            mdl.SelectedNode
+            _mdlCurrency = RootManager.Ins.DataManager.Currency;
+
+            _mdlUnitPlacementField = mdlUnitPlacementField;
+            mdlUnitPlacementField.SelectedNode
                 .Subscribe(view.ShowUnitPlacementField)
                 .AddTo(_disposable);
             
@@ -33,10 +36,18 @@ namespace UI
         /// </summary>
         private void SellUnit(UniRx.Unit _)
         {
-            UnitPlacementNode selectedNode = _mdl.GetSelectedNode();
+            UnitPlacementNode selectedNode = _mdlUnitPlacementField.GetSelectedNode();
             AssertHelper.NotNull(typeof(PR_UnitPlacementSelection), selectedNode);
             
             selectedNode.SellUnit();
+            
+            EUnitGrade grade = selectedNode.UnitGroup.UnitGrade;
+            AssertHelper.NotEqualsEnum(typeof(PR_UnitPlacementSelection), grade, EUnitGrade.None);
+            EUnitType type = selectedNode.UnitGroup.UnitType;
+            AssertHelper.NotEqualsEnum(typeof(PR_UnitPlacementSelection), type, EUnitType.None);
+            
+            // TODO: 추후 Grade와 Type에 따라 return하도록 변경.
+            _mdlCurrency.SubtractGold(1);
         }
         
         public void Dispose()

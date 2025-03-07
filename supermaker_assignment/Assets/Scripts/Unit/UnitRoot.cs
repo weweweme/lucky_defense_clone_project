@@ -17,6 +17,7 @@ namespace Unit
         public EUnitType Type => _type;
         
         [SerializeField] internal UnitAttackController attackController;
+        internal UnitDependencyContainer dependencyContainer;
         private UnitBTController _btController;
 
         private void Awake()
@@ -26,6 +27,10 @@ namespace Unit
         
         public override void CreatePooledItemInit(DependencyContainerBase containerBase)
         {
+            UnitDependencyContainer container = containerBase as UnitDependencyContainer;
+            AssertHelper.NotNull(typeof(UnitRoot), container);
+            
+            dependencyContainer = container;
             _btController = new UnitBTController(this);
             attackController.Init();
         }
@@ -40,6 +45,8 @@ namespace Unit
         
         public void ReleaseObject()
         {
+            _btController.Dispose();
+            dependencyContainer.unitBasePool.ReleaseObject(this);
         }
     }
 }
