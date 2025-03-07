@@ -1,3 +1,4 @@
+using System;
 using InGame.System;
 using TMPro;
 using UnityEngine;
@@ -25,5 +26,11 @@ namespace UI
         }
         
         public void SetCanvasActive(bool isActive) => canvas.enabled = isActive;
+        public void SetCurrentUnitData(SCurrentMythicUnitCombinationData data)
+        {
+            AssertHelper.NotEqualsEnum(typeof(VW_MythicUnitCombinationPanel), data.UnitType, EUnitType.None);
+            
+            unitName.SetText(data.UnitName);
+        }
     }
 }
