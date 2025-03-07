@@ -11,6 +11,9 @@ namespace UI
     /// </summary>
     public sealed class PR_MythicUnitList : Presenter
     {
+        private MDL_MythicUnitCombination _mdlMythicUnitCombination;
+        private MythicUnitListItem _firstMythicUnitListItem;
+        
         public override void Init(DataManager dataManager, View view)
         {
             AssertHelper.NotNull(typeof(PR_MythicUnitList), dataManager);
@@ -18,15 +21,28 @@ namespace UI
             VW_MythicUnitList vw = view as VW_MythicUnitList;
             AssertHelper.NotNull(typeof(PR_MythicUnitList), vw);
             
-            MDL_MythicUnitCombination mdl = dataManager.MythicUnitCombination;
-            AssertHelper.NotNull(typeof(PR_MythicUnitList), mdl);
+            MDL_GameSystem mdlSystem = dataManager.GameSystem;
+            AssertHelper.NotNull(typeof(PR_MythicUnitList), mdlSystem);
+            mdlSystem.MythicCombinationPanelVisible
+                .Subscribe(DisplayMythicUnitCombinationPanel)
+                .AddTo(disposable);
 
+            _mdlMythicUnitCombination = dataManager.MythicUnitCombination;
+            AssertHelper.NotNull(typeof(PR_MythicUnitList), _mdlMythicUnitCombination);
+            _firstMythicUnitListItem = vw!.mythicUnitItemList[0];
             foreach (var elem in vw!.mythicUnitItemList)
             {
                 elem.unitButton.OnClickAsObservable()
-                    .Subscribe(_ => mdl.DisplayMythicUnitCombination(new SCurrentMythicUnitCombinationData(elem.unitName, elem.unitType)))
+                    .Subscribe(_ => _mdlMythicUnitCombination.DisplayMythicUnitCombination(new SCurrentMythicUnitCombinationData(elem.unitName, elem.unitType)))
                     .AddTo(disposable);
             }
+        }
+        
+        private void DisplayMythicUnitCombinationPanel(bool value)
+        {
+            if (!value) return;
+            
+            _mdlMythicUnitCombination.DisplayMythicUnitCombination(new SCurrentMythicUnitCombinationData(_firstMythicUnitListItem.unitName, _firstMythicUnitListItem.unitType));
         }
     }
 }
