@@ -72,6 +72,5 @@ namespace UI
         {
             return UnityEngine.Random.Range(0f, 1f) < 0.6f ? EUnitType.Melee : EUnitType.Ranged;
         }
-
     }
 }
