@@ -9501,7 +9501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1976319205667222258, guid: a58b3e7a40d9645d3820876a33d579b3, type: 3}
       propertyPath: m_Name
-      value: UI_Gamble Grade Item Heroic
+      value: UI_Gamble Try Item Heroic
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15299,7 +15299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1976319205667222258, guid: a58b3e7a40d9645d3820876a33d579b3, type: 3}
       propertyPath: m_Name
-      value: UI_Gamble Grade Item Mythic
+      value: UI_Gamble Try Item Mythic
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20330,7 +20330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1976319205667222258, guid: a58b3e7a40d9645d3820876a33d579b3, type: 3}
       propertyPath: m_Name
-      value: UI_Gamble Grade Item Rare
+      value: UI_Gamble Try Item Rare
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
