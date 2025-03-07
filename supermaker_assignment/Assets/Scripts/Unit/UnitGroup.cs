@@ -48,6 +48,19 @@ namespace Unit
         }
 
         /// <summary>
+        /// 마지막으로 추가된 유닛을 판매합니다.
+        /// </summary>
+        public void SellUnit()
+        {
+            UnitRoot unit = _placedUnits[UnitCount--];
+            AssertHelper.NotNull(typeof(UnitGroup), unit);
+            unit.ReleaseObject();
+
+            if (!IsEmpty()) return;
+            Clear();
+        }
+
+        /// <summary>
         /// 현재 배치된 유닛들의 위치를 지정된 위치로 설정합니다.
         /// </summary>
         public void SetPositions(params Transform[] targetPositions)
