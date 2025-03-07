@@ -9596,41 +9596,65 @@ MonoBehaviour:
     SellPrice: 0
     Sprite: {fileID: -150523396, guid: 0c187a32c5bde4747be8d00770b07403, type: 3}
     ScaleSize: 1
+    AttackDamage: 20
+    AttackRange: 4
+    AttackFireRate: 0.1
   - Grade: 1
     Type: 2
     SellPrice: 0
     Sprite: {fileID: 978012912, guid: 99a24620d31e5ce4e823c32d11e17c2c, type: 3}
     ScaleSize: 1
+    AttackDamage: 15
+    AttackRange: 7
+    AttackFireRate: 0.1
   - Grade: 2
     Type: 1
-    SellPrice: 0
+    SellPrice: 10
     Sprite: {fileID: 938132271, guid: 57a1443e67528144aa07582927559650, type: 3}
     ScaleSize: 1
+    AttackDamage: 30
+    AttackRange: 4
+    AttackFireRate: 0.1
   - Grade: 2
     Type: 2
-    SellPrice: 0
+    SellPrice: 10
     Sprite: {fileID: -1442216141, guid: 8f7a60065e3984c489b9c4d41bc3dc4e, type: 3}
     ScaleSize: 1
+    AttackDamage: 30
+    AttackRange: 7
+    AttackFireRate: 0.1
   - Grade: 3
     Type: 1
-    SellPrice: 0
+    SellPrice: 50
     Sprite: {fileID: 21300000, guid: 72de0c64f2c6a498096698322c976a67, type: 3}
     ScaleSize: 4.4
+    AttackDamage: 120
+    AttackRange: 4
+    AttackFireRate: 0.1
   - Grade: 3
     Type: 2
-    SellPrice: 0
+    SellPrice: 50
     Sprite: {fileID: -6367560908665664636, guid: 3750f45c844123341b9a777a96cb1eca, type: 3}
     ScaleSize: 3.8
+    AttackDamage: 80
+    AttackRange: 7
+    AttackFireRate: 0.1
   - Grade: 4
     Type: 1
-    SellPrice: 0
+    SellPrice: 100
     Sprite: {fileID: -6367560908665664636, guid: d348dff3819df794186a80cb95777629, type: 3}
     ScaleSize: 8
+    AttackDamage: 200
+    AttackRange: 4
+    AttackFireRate: 0.1
   - Grade: 4
     Type: 2
-    SellPrice: 0
+    SellPrice: 100
     Sprite: {fileID: -6367560908665664636, guid: cd947491a13509945aa1b644f9db3ef2, type: 3}
     ScaleSize: 8
+    AttackDamage: 150
+    AttackRange: 7
+    AttackFireRate: 0.1
 --- !u!1 &1245659185
 GameObject:
   m_ObjectHideFlags: 0
