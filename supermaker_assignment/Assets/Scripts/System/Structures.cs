@@ -85,4 +85,33 @@ namespace System
             TargetNode = targetNode;
         }
     }
+
+    /// <summary>
+    /// 특정 유닛 조합 조건을 정의하는 구조체입니다.
+    /// 유닛 합성 등의 조건 체크 시, 요구되는 유닛 등급과 타입을 명시하는 데 사용됩니다.
+    /// </summary>
+    public readonly struct SUnitCombinationFlagCondition
+    {
+        /// <summary>
+        /// 해당 조합 조건에서 요구하는 유닛 등급입니다.
+        /// </summary>
+        public EUnitGrade Grade { get; }
+
+        /// <summary>
+        /// 해당 조합 조건에서 요구하는 유닛 타입입니다.
+        /// </summary>
+        public EUnitType Type { get; }
+        
+        /// <summary>
+        /// 유닛 조합 조건을 정의하는 생성자입니다.
+        /// 원하는 유닛 등급과 타입을 지정하여 조건을 구성합니다.
+        /// </summary>
+        /// <param name="grade">조합 조건에 필요한 유닛 등급</param>
+        /// <param name="type">조합 조건에 필요한 유닛 타입</param>
+        public SUnitCombinationFlagCondition(EUnitGrade grade, EUnitType type)
+        {
+            Grade = grade;
+            Type = type;
+        }
+    }
 }
