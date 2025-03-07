@@ -12802,12 +12802,13 @@ GameObject:
   - component: {fileID: 1678285206}
   - component: {fileID: 1678285208}
   - component: {fileID: 1678285207}
+  - component: {fileID: 1678285209}
   m_Layer: 5
   m_Name: VW_Mythic Unit List
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &1678285206
 RectTransform:
@@ -12868,6 +12869,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1678285205}
   m_CullTransparentMesh: 1
+--- !u!114 &1678285209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678285205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc61d2b02d09649ad8c4415af10125b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mythicUnitItemList:
+  - {fileID: 2106556695355672716}
+  - {fileID: 2100428550}
 --- !u!1 &1684527580
 GameObject:
   m_ObjectHideFlags: 0
@@ -13819,6 +13835,7 @@ MonoBehaviour:
   _rootManager: {fileID: 1939053484}
   _vwMythicUnitCombinationButton: {fileID: 883503786}
   _vwMythicUnitCombinationPanel: {fileID: 1847254438}
+  _vwMythicUnitList: {fileID: 1678285209}
 --- !u!1 &1847254433
 GameObject:
   m_ObjectHideFlags: 0
@@ -14772,6 +14789,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 2162908628578149636, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408571087952715111, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2634502248041072484, guid: cf361bfdd054944df8d149525c504d89, type: 3}
       propertyPath: _unitName
       value: "\uCCAD\uBA85\uD55C \uCE7C\uB0A0\uBE44"
@@ -14799,6 +14824,14 @@ PrefabInstance:
     - target: {fileID: 2741217506916769671, guid: cf361bfdd054944df8d149525c504d89, type: 3}
       propertyPath: m_Name
       value: UI_Mythic Unit List Item Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741217506916769671, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4506346526127658880, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4995340387391220396, guid: cf361bfdd054944df8d149525c504d89, type: 3}
       propertyPath: m_Pivot.x
@@ -14880,6 +14913,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5601299427490591133, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8199414875131049627, guid: cf361bfdd054944df8d149525c504d89, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -14902,6 +14939,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4995340387391220396, guid: cf361bfdd054944df8d149525c504d89, type: 3}
   m_PrefabInstance: {fileID: 2100428548}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2100428550 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2634502248041072484, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+  m_PrefabInstance: {fileID: 2100428548}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d38139f360ed6455ab3687c48bb7ef58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2121358287
 GameObject:
   m_ObjectHideFlags: 0
@@ -19289,6 +19337,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 921319170885097547, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162908628578149636, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408571087952715111, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2634502248041072484, guid: cf361bfdd054944df8d149525c504d89, type: 3}
       propertyPath: _unitName
       value: "\uC885\uB9D0\uC758 \uAD11\uB300"
@@ -19320,6 +19380,14 @@ PrefabInstance:
     - target: {fileID: 2741217506916769671, guid: cf361bfdd054944df8d149525c504d89, type: 3}
       propertyPath: m_Name
       value: UI_Mythic Unit List Item Melee
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741217506916769671, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4506346526127658880, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4995340387391220396, guid: cf361bfdd054944df8d149525c504d89, type: 3}
       propertyPath: m_Pivot.x
@@ -19401,6 +19469,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5601299427490591133, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8199414875131049627, guid: cf361bfdd054944df8d149525c504d89, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -19418,6 +19490,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+--- !u!114 &2106556695355672716 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2634502248041072484, guid: cf361bfdd054944df8d149525c504d89, type: 3}
+  m_PrefabInstance: {fileID: 2106556695355672715}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d38139f360ed6455ab3687c48bb7ef58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!483693784 &2730277469315449488
 TilemapRenderer:
   m_ObjectHideFlags: 0
