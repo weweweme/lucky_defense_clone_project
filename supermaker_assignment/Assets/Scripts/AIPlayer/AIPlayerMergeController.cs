@@ -1,5 +1,6 @@
 using System;
 using CleverCrow.Fluid.BTs.Tasks;
+using Unit;
 using Util;
 
 namespace AIPlayer
@@ -10,6 +11,7 @@ namespace AIPlayer
     public sealed class AIPlayerMergeController : MonoBehaviourBase
     {
         private UnitPlacementNode[] _northGridNodes;
+        private UnitPlacementNode _mergeNode;
 
         public void Init(AIPlayerRoot root)
         {
@@ -18,6 +20,18 @@ namespace AIPlayer
 
         public bool CanMerge()
         {
+            foreach (var elem in _northGridNodes)
+            {
+                UnitGroup currentUnitGroup = elem.UnitGroup;
+
+                if (!currentUnitGroup.IsFull()) continue;
+                
+                bool isMergePossibleGrade = currentUnitGroup.UnitGrade < EUnitGrade.Mythic;
+                if (!isMergePossibleGrade) continue;
+
+                _mergeNode = elem;
+            }
+            
             return false;
         }
         
