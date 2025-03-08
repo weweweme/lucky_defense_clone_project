@@ -1,4 +1,5 @@
 using CleverCrow.Fluid.BTs.Tasks;
+using Model;
 using Util;
 
 namespace AIPlayer
@@ -8,21 +9,18 @@ namespace AIPlayer
     /// </summary>
     public sealed class AIPlayerGambleController : MonoBehaviourBase
     {
-        /// <summary>
-        /// AI 플레이어의 루트 클래스입니다.
-        /// </summary>
-        private AIPlayerRoot _root;
-
-        /// <summary>
-        /// AI의 재화 상태를 관리하는 컨트롤러입니다.
-        /// </summary>
-        private AIPlayerDataCurrency _currency;
+        private AIPlayerDataCurrency _aiPlayerDataCurrency;
+        private AIPlayerDataUnit _aiPlayerUnitData;
+        private MDL_Unit _mdlGlobalUnit;
 
         public void Init(AIPlayerRoot root)
         {
-            _root = root;
-
-            // TODO: 도박 관련 초기화 로직 추가 (필요 시)
+            AIPlayerDataModel dataModel = root.dataModel;
+            AssertHelper.NotNull(typeof(AIPlayerSpawnController), dataModel);
+            
+            _aiPlayerDataCurrency = dataModel.Currency;
+            _aiPlayerUnitData = dataModel.Unit;
+            _mdlGlobalUnit = root.rootDataManager.Unit;
         }
 
         /// <summary>
