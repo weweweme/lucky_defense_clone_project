@@ -34,7 +34,7 @@ namespace UI
             {
                 EUnitGrade grade = elem.Key;
                 gambleTryItems.TryGetValue(grade, out GambleChoiceItem item);
-                item!.chancePercent.SetText("(elem.Value.SuccessProbability * 100) + %");
+                item!.chancePercent.SetText($"{elem.Value.SuccessProbability * 100}%");
                 item.tryNeedDiamond.SetText(elem.Value.RequiredDia.ToString());
             }
         }
