@@ -29,8 +29,13 @@ namespace AIPlayer
             MDL_Enemy enemy = dataManager.Enemy;
             AssertHelper.NotNull(typeof(AIPlayerDataModel), enemy);
             enemy.OnEnemyDeath
-                .Subscribe(_ => _gold += 1)
+                .Subscribe(_ => AddCurrencyOnEnemyDeath())
                 .AddTo(disposable);
         } 
+        
+        private void AddCurrencyOnEnemyDeath()
+        {
+            _gold += (uint)UnityEngine.Random.Range(1, 3);
+        }
     }
 }
