@@ -7364,6 +7364,7 @@ GameObject:
   - component: {fileID: 748038303}
   - component: {fileID: 748038302}
   - component: {fileID: 748038304}
+  - component: {fileID: 748038305}
   m_Layer: 5
   m_Name: VW_Game Speed Multiplier
   m_TagString: Untagged
@@ -7473,6 +7474,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &748038305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748038300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd429dd2d35e44c42a2cec7e66a81590, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _multiplierTxt: {fileID: 512297895}
+  speedUpBut: {fileID: 748038304}
 --- !u!1 &752500056
 GameObject:
   m_ObjectHideFlags: 0
@@ -13357,6 +13372,7 @@ GameObject:
   - component: {fileID: 1473418060}
   - component: {fileID: 1473418059}
   - component: {fileID: 1473418058}
+  - component: {fileID: 1473418061}
   m_Layer: 5
   m_Name: VC_Config
   m_TagString: Untagged
@@ -13447,6 +13463,20 @@ Canvas:
   m_SortingLayerID: -2147147229
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1473418061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473418056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59a980c1b757458dbd6c14dd494c5c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rootManager: {fileID: 1939053484}
+  _vwGameSpeedMultiplier: {fileID: 748038305}
 --- !u!1 &1482889022
 GameObject:
   m_ObjectHideFlags: 0
