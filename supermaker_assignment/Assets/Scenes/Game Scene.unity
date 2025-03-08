@@ -8854,6 +8854,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 6586250220925465509, guid: 6dd6c5d042df041438b2cd79c480086c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8862,6 +8866,27 @@ PrefabInstance:
 --- !u!224 &976767484 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3657926124600041636, guid: 6dd6c5d042df041438b2cd79c480086c, type: 3}
+  m_PrefabInstance: {fileID: 976767483}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &976767485 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 5691518769188073801, guid: 6dd6c5d042df041438b2cd79c480086c, type: 3}
+  m_PrefabInstance: {fileID: 976767483}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &976767486 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3570023464983536537, guid: 6dd6c5d042df041438b2cd79c480086c, type: 3}
+  m_PrefabInstance: {fileID: 976767483}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!223 &976767487 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 6586250220925465509, guid: 6dd6c5d042df041438b2cd79c480086c, type: 3}
   m_PrefabInstance: {fileID: 976767483}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &982310017
@@ -10062,13 +10087,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRangeSpriteRenderer: {fileID: 752500058}
   unitSellUI:
-    _canvas: {fileID: 0}
-    _collider: {fileID: 0}
-    actionButton: {fileID: 0}
+    _canvas: {fileID: 976767487}
+    _collider: {fileID: 976767485}
+    actionButton: {fileID: 976767486}
   unitMergeUI:
-    _canvas: {fileID: 0}
-    _collider: {fileID: 0}
-    actionButton: {fileID: 0}
+    _canvas: {fileID: 1848923849}
+    _collider: {fileID: 1848923847}
+    actionButton: {fileID: 1848923848}
+  _unitMergeDenyPanel: {fileID: 1466960877}
 --- !u!1001 &1099061662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14945,6 +14971,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 6586250220925465509, guid: 6dd6c5d042df041438b2cd79c480086c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -14956,6 +14986,27 @@ PrefabInstance:
 --- !u!224 &1848923846 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3657926124600041636, guid: 6dd6c5d042df041438b2cd79c480086c, type: 3}
+  m_PrefabInstance: {fileID: 1848923845}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1848923847 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 5691518769188073801, guid: 6dd6c5d042df041438b2cd79c480086c, type: 3}
+  m_PrefabInstance: {fileID: 1848923845}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1848923848 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3570023464983536537, guid: 6dd6c5d042df041438b2cd79c480086c, type: 3}
+  m_PrefabInstance: {fileID: 1848923845}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!223 &1848923849 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 6586250220925465509, guid: 6dd6c5d042df041438b2cd79c480086c, type: 3}
   m_PrefabInstance: {fileID: 1848923845}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1852482909

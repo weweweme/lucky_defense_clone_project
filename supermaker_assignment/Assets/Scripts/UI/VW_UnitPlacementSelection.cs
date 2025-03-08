@@ -31,12 +31,14 @@ namespace UI
         [SerializeField] private SpriteRenderer _attackRangeSpriteRenderer;
         [SerializeField] internal UnitActionUI unitSellUI;
         [SerializeField] internal UnitActionUI unitMergeUI;
+        [SerializeField] private GameObject _unitMergeDenyPanel;
 
         private void Awake()
         {
             AssertHelper.NotNull(typeof(VW_UnitPlacementSelection), _attackRangeSpriteRenderer);
             AssertHelper.NotNull(typeof(VW_UnitPlacementSelection), unitSellUI);
             AssertHelper.NotNull(typeof(VW_UnitPlacementSelection), unitMergeUI);
+            AssertHelper.NotNull(typeof(VW_UnitPlacementSelection), _unitMergeDenyPanel);
         }
 
         public void ShowUnitPlacementField(UnitPlacementNode node)
@@ -44,7 +46,9 @@ namespace UI
             bool isNodeNull = node == null;
             _attackRangeSpriteRenderer.enabled = !isNodeNull;
             unitSellUI.SetActive(!isNodeNull);
-            unitMergeUI.SetActive(!isNodeNull);
+            unitMergeUI.SetActive(!isNodeNull); 
+            
+            // TODO: 머지 가능 or 불가능 여부에 따라 unitMergeDenyPanel를 조정하는 로직 구현
 
             if (isNodeNull) return;
 
