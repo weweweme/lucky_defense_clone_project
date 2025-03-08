@@ -23,6 +23,7 @@ namespace UI
         [SerializeField] private Image _unitFullImage;
         [SerializeField] private RequiredUnitSlot[] _requiredUnitSlots;
         [SerializeField] internal Button combineBut;
+        [SerializeField] private GameObject _combineButDenyPanel;
         
         private MDL_UnitResources _mdlUnitResources;
         private MDL_MythicUnitCombination _mdlMythicUnitCombination;
@@ -36,6 +37,7 @@ namespace UI
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _unitIcon);
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _unitFullImage);
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _requiredUnitSlots);
+            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), combineBut);
             
             const int REQUIRE_SLOT_COUNT = 3;
             AssertHelper.EqualsValue(typeof(VW_MythicUnitCombinationPanel), _requiredUnitSlots.Length, REQUIRE_SLOT_COUNT);
@@ -74,10 +76,19 @@ namespace UI
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), checker);
 
             // 각 조건 유닛의 아이콘과 상태 패널 세팅
+            uint flagCount = 0;
             for (int i = 0; i < _requiredUnitSlots.Length; ++i)
             {
-                SetRequiredUnitSlot(_requiredUnitSlots[i], checker.GetCondition(i), checker.HasRequiredUnit(i));
+                bool isApproved = checker!.HasRequiredUnit(i);
+                SetRequiredUnitSlot(_requiredUnitSlots[i], checker!.GetCondition(i), isApproved);
+                
+                if (!isApproved) continue;
+                ++flagCount;
             }
+            
+            const uint COMBINE_FLAG_COUNT = 3;
+            bool canCombine = flagCount == COMBINE_FLAG_COUNT;
+            _combineButDenyPanel.SetActive(!canCombine);
         }
 
         /// <summary>
