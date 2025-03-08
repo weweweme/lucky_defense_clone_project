@@ -11,10 +11,13 @@ namespace AIPlayer
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
         private readonly AIPlayerDataCurrency _currency;
         public AIPlayerDataCurrency Currency => _currency;
+        private readonly AIPlayerDataUnit _unit;
+        public AIPlayerDataUnit Unit => _unit;
         
         public AIPlayerDataModel(DataManager dataManager)
         {
             _currency = new AIPlayerDataCurrency(dataManager, _disposable);
+            _unit = new AIPlayerDataUnit(dataManager, _disposable);
         }
 
         public void Dispose()
