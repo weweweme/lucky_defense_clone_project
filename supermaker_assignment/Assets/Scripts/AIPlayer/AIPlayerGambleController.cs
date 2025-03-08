@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using CleverCrow.Fluid.BTs.Tasks;
 using Model;
+using UnityEngine;
 using Util;
 
 namespace AIPlayer
@@ -50,16 +51,16 @@ namespace AIPlayer
         /// <summary>
         /// AI가 도박을 실행하는 메서드입니다.
         /// </summary>
-        /// <returns>성공 시 Success, 실패 시 Failure 반환</returns>
         public TaskStatus TryGamble()
         {
-            // TODO: AI가 도박을 수행하는 로직 구현
-            // 1. 도박 비용 차감 (재화를 사용할 수 있는지 확인)
-            // 2. 확률적으로 유닛 획득 여부 결정
-            // 3. 획득 시 유닛 소환 (AIPlayerSpawnController 활용 가능)
-            // 4. 실패 시 아무런 보상을 받지 않음
+            EUnitGrade tryTargetGrade = GetRandomGambleGrade();
+            float targetSuccessProbability = GetGambleSuccessProbability(tryTargetGrade);
+            bool isSuccess = UnityEngine.Random.Range(0f, 1f) < targetSuccessProbability;
+            if (!isSuccess) return TaskStatus.Success;
 
-            return TaskStatus.Success; // 실제 결과에 따라 반환 값 변경
+            SUnitSpawnRequestData data = new SUnitSpawnRequestData(tryTargetGrade, GetRandomType(), EPlayerSide.North);
+            _mdlGlobalUnit.SpawnUnit(data);
+            return TaskStatus.Success;
         }
         
         /// <summary>
@@ -81,6 +82,24 @@ namespace AIPlayer
             }
 
             return EUnitGrade.Mythic; // 논리적으로 도달할 수 없는 경우 대비
+        }
+        
+        /// <summary>
+        /// 등급별 도박 성공 확률을 반환합니다.
+        /// </summary>
+        /// <param name="grade">도박 대상 유닛 등급</param>
+        /// <returns>성공 확률 (0.0f ~ 1.0f)</returns>
+        private float GetGambleSuccessProbability(EUnitGrade grade)
+        {
+            AssertHelper.NotEqualsEnum(typeof(AIPlayerGambleController), grade, EUnitGrade.None);
+            AssertHelper.NotEqualsEnum(typeof(AIPlayerGambleController), grade, EUnitGrade.Common);
+    
+            if (GAMBLE_META_DATA.TryGetValue(grade, out SGambleMetaData metaData))
+            {
+                return metaData.SuccessProbability;
+            }
+    
+            throw new ArgumentOutOfRangeException(nameof(grade), grade, "Unsupported grade for gambling.");
         }
         
         /// <summary>
