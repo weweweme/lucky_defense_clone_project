@@ -31,10 +31,10 @@ namespace UI
             _mdlUnit = dataManager.Unit;
             AssertHelper.NotNull(typeof(PR_GamblePanel), _mdlUnit);
             _mdlCurrency = dataManager.Currency;
-            AssertHelper.NotNull(typeof(PR_UnitSpawn), _mdlCurrency);
+            AssertHelper.NotNull(typeof(PR_GamblePanel), _mdlCurrency);
 
             MDL_GameSystem mdlSystem = dataManager.GameSystem;
-            AssertHelper.NotNull(typeof(PR_MythicUnitCombinationPanel), mdlSystem);
+            AssertHelper.NotNull(typeof(PR_GamblePanel), mdlSystem);
             vw!.exitBackgroundPanel.OnClickAsObservable()
                 .Subscribe(_ => mdlSystem.SetGamblePanelVisible(false))
                 .AddTo(disposable);
@@ -47,8 +47,8 @@ namespace UI
             
             foreach (var elem in vw.gambleTryItems)
             {
-                elem.tryButton.OnClickAsObservable()
-                    .Subscribe(_ => TryGamble(elem.unitGrade))
+                elem.Value.tryButton.OnClickAsObservable()
+                    .Subscribe(_ => TryGamble(elem.Value.unitGrade))
                     .AddTo(disposable);
             }
         }

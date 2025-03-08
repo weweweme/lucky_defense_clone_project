@@ -8,5 +8,5 @@ namespace Util
     public class MythicUnitFullSpriteDic : SerializableDictionary<EUnitType, Sprite> { }
     
     [Serializable]
-    public class UnitGradeToGambleMetaDataDic : SerializableDictionary<EUnitGrade, GambleTryItem> { }
+    public class UnitGradeToGambleMetaDataDic : SerializableDictionary<EUnitGrade, GambleChoiceItem> { }
 }
