@@ -28,9 +28,15 @@ namespace AI
         /// 유닛의 행동을 결정하는 트리입니다.
         /// </summary>
         private BehaviorTree _bt;
+        
+        /// <summary>
+        /// AI 플레이어의 루트 클래스입니다.
+        /// </summary>
+        private AIPlayerRoot _root;
 
         public void Init(AIPlayerRoot root)
         {
+            _root = root;
             _bt = CreateTree(root.gameObject);
         }
         

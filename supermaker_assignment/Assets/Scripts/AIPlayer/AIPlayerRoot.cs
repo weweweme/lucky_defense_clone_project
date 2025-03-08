@@ -1,3 +1,4 @@
+using AIPlayer;
 using UnityEngine;
 using Util;
 
@@ -9,10 +10,12 @@ namespace AI
     public sealed class AIPlayerRoot : MonoBehaviourBase
     {
         [SerializeField] internal AIPlayerBTController btController;
+        [SerializeField] internal AIPlayerMergeController mergeController;
         
         private void Awake()
         {
             AssertHelper.NotNull(typeof(AIPlayerRoot), btController);
+            AssertHelper.NotNull(typeof(AIPlayerRoot), mergeController);
             
             btController.Init(this);
         }
