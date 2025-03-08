@@ -16,5 +16,7 @@ namespace UI
         {
             AssertHelper.NotNull(typeof(VW_NextWaveTimer), nextWaveTimerText);
         }
+
+        public void SetTime(uint seconds) => nextWaveTimerText.SetText(seconds.ToString());
     }
 }
