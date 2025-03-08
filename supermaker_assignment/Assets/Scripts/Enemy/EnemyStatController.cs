@@ -17,7 +17,7 @@ namespace Enemy
         private PR_EnemyHP _presenter;
         
         /// <summary>
-        /// 적의 최대 체력입니다.
+        /// 적의 기초 최대 체력입니다.
         /// </summary>
         [SerializeField] private uint _maxHP = 100;
 
@@ -52,10 +52,14 @@ namespace Enemy
         /// 오브젝트 풀에서 꺼내질 때 호출되는 메서드입니다.
         /// 내부 데이터 초기화를 담당합니다.
         /// </summary>
-        public void OnTakeFromPoolInit()
+        public void SetStatsForWave()
         {
             _state = EEnemyState.Alive;
-            _mdl.SetStat(_maxHP);
+
+            uint currentSpawnWaveIdx = _enemyRoot.currentSpawnWaveIdx;
+            uint currentWaveMaxHp = _maxHP + currentSpawnWaveIdx * 20;
+            
+            _mdl.SetStat(currentWaveMaxHp);
         }
 
         /// <summary>

@@ -54,7 +54,7 @@ namespace Enemy
             AssertHelper.NotNull(typeof(EnemyRoot), pathNodePtr);
             
             moveController.OnActivate(pathNodePtr);
-            statController.OnTakeFromPoolInit();
+            statController.SetStatsForWave();
             spriteController.ChangeVisible();
         }
     }
