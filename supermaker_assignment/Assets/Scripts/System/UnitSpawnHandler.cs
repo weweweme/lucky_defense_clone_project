@@ -54,12 +54,21 @@ namespace System
             AssertHelper.NotNull(typeof(UnitSpawnHandler), placementNode);
             placementNode.AddUnit(unit);
 
+            UnitPlacementNode availableNode = _unitGridNodeManager.FindAvailableNode(data);
+            bool hasAvailableNode = availableNode != null;
+
             // 만약 유저의 유닛 스폰이 아니라면 더이상 진행하지 않습니다.
-            if (data.SpawnSide == EPlayerSide.North) return;
-            
-            foreach (var elem in _mdlMythicUnitCombination.GetCombinationFlagCheckers())
+            if (data.SpawnSide == EPlayerSide.North)
             {
-                elem.HandleAddUnit(placementNode);
+                
+            }
+            else
+            {
+                _mdlUnit.SetHasValidNodesStatus(hasAvailableNode);
+                foreach (var elem in _mdlMythicUnitCombination.GetCombinationFlagCheckers())
+                {
+                    elem.HandleAddUnit(placementNode);
+                }
             }
         }
     }
