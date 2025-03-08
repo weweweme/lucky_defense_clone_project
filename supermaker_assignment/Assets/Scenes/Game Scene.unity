@@ -1739,8 +1739,9 @@ GameObject:
   - component: {fileID: 250815358}
   - component: {fileID: 250815360}
   - component: {fileID: 250815359}
+  - component: {fileID: 250815361}
   m_Layer: 5
-  m_Name: Rect_Current Wave Count
+  m_Name: VW_Current Wave Count
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1804,6 +1805,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 250815357}
   m_CullTransparentMesh: 1
+--- !u!114 &250815361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250815357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8da7823571b4d0f95a2379d0e118f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWaveCountText: {fileID: 1877562550}
 --- !u!1001 &254081342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12874,6 +12888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rootManager: {fileID: 1939053484}
   _vwNextWaveTimer: {fileID: 774533468}
+  _vwCurrentWaveCount: {fileID: 250815361}
 --- !u!1 &1544907292
 GameObject:
   m_ObjectHideFlags: 0

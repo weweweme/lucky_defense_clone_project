@@ -12,19 +12,25 @@ namespace UI
         [SerializeField] private VW_NextWaveTimer _vwNextWaveTimer;
         private readonly PR_NextWaveTimer _prNextWaveTimer = new PR_NextWaveTimer();
         
+        [SerializeField] private VW_CurrentWaveCount _vwCurrentWaveCount;
+        private readonly PR_CurrentWaveCount _prCurrentWaveCount = new PR_CurrentWaveCount();
+        
         protected override void ValidateReferences()
         {
             AssertHelper.NotNull(typeof(VC_WaveInfo), _vwNextWaveTimer);
+            AssertHelper.NotNull(typeof(VC_WaveInfo), _vwCurrentWaveCount);
         }
 
         public override void Init(DataManager dataManager)
         {
             _prNextWaveTimer.Init(dataManager, _vwNextWaveTimer);
+            _prCurrentWaveCount.Init(dataManager, _vwCurrentWaveCount);
         }
 
         protected override void ReleasePresenter()
         {
             _prNextWaveTimer.Dispose();
+            _prCurrentWaveCount.Dispose();
         }
     }
 }
