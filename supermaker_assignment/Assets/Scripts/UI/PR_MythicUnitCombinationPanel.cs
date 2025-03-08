@@ -74,6 +74,8 @@ namespace UI
                 selectedChecker.HandleRemoveUnit(node); // 내부 카운트 정리
             }
 
+            ApplyUnitCount();
+
             // 신화 유닛 소환
             SUnitSpawnRequestData spawnData = new SUnitSpawnRequestData(
                 EUnitGrade.Mythic,
@@ -81,6 +83,16 @@ namespace UI
                 EPlayerSide.North);
 
             _mdlUnit.SpawnUnit(spawnData);
+        }
+        
+        /// <summary>
+        /// 조합을 위한 유닛 수량을 적용하는 메서드입니다.
+        /// </summary>
+        private void ApplyUnitCount()
+        {
+            const uint SUB_COMBINATION_UNIT_COUNT = 2; // -3 + 1 = 2
+            uint currentSpawnCount = _mdlUnit.GetCurrentSpawnCount();
+            _mdlUnit.SetCurrentSpawnCount(currentSpawnCount - SUB_COMBINATION_UNIT_COUNT);
         }
     }
 }
