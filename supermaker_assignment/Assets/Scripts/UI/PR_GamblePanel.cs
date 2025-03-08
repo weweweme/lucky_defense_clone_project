@@ -58,7 +58,8 @@ namespace UI
         {
             AssertHelper.NotEqualsEnum(typeof(PR_GamblePanel), grade, EUnitGrade.None);
             AssertHelper.NotEqualsEnum(typeof(PR_GamblePanel), grade, EUnitGrade.Common);
-            
+
+            if (!_mdlUnit.HasValidNodes) return;
             if (!IsPossibleGamble(grade)) return;
 
             ConsumeGambleCost(grade);
