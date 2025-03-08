@@ -1,3 +1,4 @@
+using AIPlayer;
 using UnityEngine;
 using Util;
 
@@ -22,6 +23,9 @@ namespace System
         
         [SerializeField] private SequenceManager _sequenceManager;
         public SequenceManager SequenceManager => _sequenceManager;
+        
+        [SerializeField] private AIPlayerRoot _aiPlayerRoot;
+        public AIPlayerRoot AIPlayerRoot => _aiPlayerRoot;
 
         private readonly UIManager _uiManager = new UIManager();
         public UIManager UIManager => _uiManager;
@@ -39,6 +43,7 @@ namespace System
             AssertHelper.NotNull(typeof(RootManager), enemyPathNodeManager);
             AssertHelper.NotNull(typeof(RootManager), _unitGridNodeManager);
             AssertHelper.NotNull(typeof(RootManager), _sequenceManager);
+            AssertHelper.NotNull(typeof(RootManager), _aiPlayerRoot);
         }
 
         private void Start()

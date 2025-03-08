@@ -10,19 +10,13 @@ namespace System
     /// </summary>
     public sealed class SequenceManager : MonoBehaviourBase
     {
-        [SerializeField] private AIPlayerRoot _aiPlayerRoot;
         private RootManager _rootManager;
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
-        
-        private void Awake()
-        {
-            AssertHelper.NotNull(typeof(SequenceManager), _aiPlayerRoot);
-        }
 
         public void Init(RootManager rootManager)
         {
             _rootManager = rootManager;
-            _aiPlayerRoot.Init(rootManager);
+            rootManager.AIPlayerRoot.Init(rootManager);
             
             rootManager.DataManager.GameSystem.OnGameFlow
                 .Where(state => state == EGameState.GameOver) // 게임 오버 상태만 필터링
@@ -33,7 +27,7 @@ namespace System
         public void StartGame()
         {
             _rootManager.WaveManager.WaveStart();
-            _aiPlayerRoot.ActivateAI();
+            _rootManager.AIPlayerRoot.ActivateAI();
         }
         
         /// <summary>
@@ -46,7 +40,7 @@ namespace System
 
         private void StopGame()
         {
-            _aiPlayerRoot.DeactivateAI();
+            _rootManager.AIPlayerRoot.DeactivateAI();
         }
         
         protected override void OnDestroy()
