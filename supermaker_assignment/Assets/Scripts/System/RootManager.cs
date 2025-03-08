@@ -19,13 +19,16 @@ namespace System
         
         [SerializeField] private UnitGridNodeManager _unitGridNodeManager;
         public UnitGridNodeManager UnitGridNodeManager => _unitGridNodeManager;
+        
+        [SerializeField] private SequenceManager _sequenceManager;
+        public SequenceManager SequenceManager => _sequenceManager;
 
         private readonly UIManager _uiManager = new UIManager();
         public UIManager UIManager => _uiManager;
         
         private SpawnManager _spawnManager;
         private WaveManager _waveManager;
-        private GameEndManager _gameEndManager;
+        public WaveManager WaveManager => _waveManager; 
 
         protected override void Awake()
         {
@@ -35,6 +38,7 @@ namespace System
             AssertHelper.NotNull(typeof(RootManager), _poolManager);
             AssertHelper.NotNull(typeof(RootManager), enemyPathNodeManager);
             AssertHelper.NotNull(typeof(RootManager), _unitGridNodeManager);
+            AssertHelper.NotNull(typeof(RootManager), _sequenceManager);
         }
 
         private void Start()
@@ -42,17 +46,16 @@ namespace System
             _poolManager.Init(this);
             _waveManager = new WaveManager(this);
             _spawnManager = new SpawnManager(this);
-            _gameEndManager = new GameEndManager(this);
             _uiManager.Init(_dataManager);
+            _sequenceManager.Init(this);
 
-            _waveManager.WaveStart();
+            _sequenceManager.StartGame();
         }
 
         protected override void OnDispose()
         {
             _spawnManager.Dispose();
             _waveManager.Dispose();
-            _gameEndManager.Dispose();
             
             base.OnDispose();
         }
