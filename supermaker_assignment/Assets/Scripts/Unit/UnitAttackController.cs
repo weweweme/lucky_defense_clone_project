@@ -67,7 +67,7 @@ namespace Unit
 
         public void OnTakeFromPoolInit(UnitRoot root)
         {
-            UnitMetaData metaData = root.dependencyContainer.mdlUnitResources.GetResource(root.Grade, root.Type);
+            UnitMetaData metaData = root.dependencyContainer.mdlUnitResources.GetResource(root.grade, root.type);
             AssertHelper.NotNull(typeof(UnitAttackController), metaData);
             
             _fireRate = metaData.AttackFireRate;

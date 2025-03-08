@@ -43,8 +43,8 @@ namespace Unit
             AssertHelper.NotEqualsValue<uint>(typeof(UnitGroup), UnitCount, MAX_UNIT_COUNT);
             
             _placedUnits[UnitCount++] = unit;
-            UnitGrade = unit.Grade;
-            UnitType = unit.Type;
+            UnitGrade = unit.grade;
+            UnitType = unit.type;
         }
 
         /// <summary>

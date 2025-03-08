@@ -43,7 +43,7 @@ namespace Unit
         /// </summary>
         public void ChangeVisible()
         {
-            UnitMetaData metaData = _unitRoot.dependencyContainer.mdlUnitResources.GetResource(_unitRoot.Grade, _unitRoot.Type);
+            UnitMetaData metaData = _unitRoot.dependencyContainer.mdlUnitResources.GetResource(_unitRoot.grade, _unitRoot.type);
             AssertHelper.NotNull(typeof(UnitAttackController), metaData);
             
             _spriteRenderer.sprite = metaData.Sprite;
