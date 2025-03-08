@@ -17,26 +17,28 @@ namespace UI
         private IReadOnlyList<UnitCombinationPossibleChecker> _combinationCheckers;
         private readonly List<UnitPlacementNode> _removeNodes = new List<UnitPlacementNode>();
         private MDL_Unit _mdlUnit;
+        private VW_MythicUnitCombinationPanel _vw;
+        private EUnitType _currentClickedUnitType;
 
         public override void Init(DataManager dataManager, View view)
         {
             AssertHelper.NotNull(typeof(PR_MythicUnitCombinationPanel), dataManager);
 
-            VW_MythicUnitCombinationPanel vw = view as VW_MythicUnitCombinationPanel;
-            AssertHelper.NotNull(typeof(PR_MythicUnitCombinationPanel), vw);
+            _vw = view as VW_MythicUnitCombinationPanel;
+            AssertHelper.NotNull(typeof(PR_MythicUnitCombinationPanel), _vw);
 
             MDL_GameSystem mdlGameSystem = dataManager.GameSystem;
             AssertHelper.NotNull(typeof(PR_MythicUnitCombinationPanel), mdlGameSystem);
             mdlGameSystem.MythicCombinationPanelVisible
-                .Subscribe(vw!.SetCanvasActive)
+                .Subscribe(_vw!.SetCanvasActive)
                 .AddTo(disposable);
-            vw.exitBackgroundPanel.OnClickAsObservable()
+            _vw.exitBackgroundPanel.OnClickAsObservable()
                 .Subscribe(_ => mdlGameSystem.SetMythicCombinationPanelVisible(false))
                 .AddTo(disposable);
-            vw.exitButton.OnClickAsObservable()
+            _vw.exitButton.OnClickAsObservable()
                 .Subscribe(_ => mdlGameSystem.SetMythicCombinationPanelVisible(false))
                 .AddTo(disposable);
-            vw.combineBut.OnClickAsObservable()
+            _vw.combineBut.OnClickAsObservable()
                 .Subscribe(_ => TryCombineMythicUnit())
                 .AddTo(disposable);
 
@@ -46,7 +48,7 @@ namespace UI
             _mdlUnit = dataManager.Unit; 
 
             _mdlMythicUnitCombination.OnMythicUnitCombination
-                .Subscribe(vw.SetCurrentUnitData)
+                .Subscribe(OnClickCombinationUnitListItem)
                 .AddTo(disposable);
         }
 
@@ -57,7 +59,15 @@ namespace UI
             // 조합 가능한 유닛 탐색
             UnitCombinationPossibleChecker selectedChecker = null;
 
-            // TODO: 현재 클릭한 신화 유닛이 어떤 타입인지 확인하고 selectedChecker를 할당하는 기능 구현
+            // 횬재 클릭한 조합 가능한 신화 유닛 Checker 탐색
+            foreach (var elem in _combinationCheckers)
+            {
+                if (elem.ResultUnitType == _currentClickedUnitType)
+                {
+                    selectedChecker = elem;
+                    break;
+                }
+            }
             
             AssertHelper.NotNull(typeof(PR_MythicUnitCombinationPanel), selectedChecker);
 
@@ -93,6 +103,12 @@ namespace UI
             const uint SUB_COMBINATION_UNIT_COUNT = 2; // -3 + 1 = 2
             uint currentSpawnCount = _mdlUnit.GetCurrentSpawnCount();
             _mdlUnit.SetCurrentSpawnCount(currentSpawnCount - SUB_COMBINATION_UNIT_COUNT);
+        }
+
+        private void OnClickCombinationUnitListItem(SCurrentMythicUnitCombinationData data)
+        {
+            _vw.SetCurrentUnitData(data);
+            _currentClickedUnitType = data.UnitType;
         }
     }
 }
