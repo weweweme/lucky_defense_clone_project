@@ -44,30 +44,16 @@ namespace System
         /// <param name="token">작업 취소 토큰</param>
         public async UniTaskVoid HandleWaveSpawnAsync(uint currentWave, CancellationToken token)
         {
-            TestSpawn(token).Forget();
+            EEnemyType enemyType = (currentWave % 10 == 0) ? EEnemyType.Boss : EEnemyType.Common;
+            _currentSpawnMetaData.SetData(enemyType, currentWave);
             
-            // EEnemyType enemyType = (currentWave % 10 == 0) ? EEnemyType.Boss : EEnemyType.Common;
-            // _currentSpawnMetaData.SetData(enemyType, currentWave);
-            //
-            // if (enemyType == EEnemyType.Boss)
-            // {
-            //     SpawnBossWave();
-            // }
-            // else
-            // {
-            //     await SpawnNormalWaveAsync(token);
-            // }
-        }
-
-        private async UniTask TestSpawn(CancellationToken token)
-        {
-            for (uint i = 3; i < 10; ++i)
+            if (enemyType == EEnemyType.Boss)
             {
-                _currentSpawnMetaData.SetData(EEnemyType.Common, i + 1);
-                SpawnEnemy(EPlayerSide.North);
-                SpawnEnemy(EPlayerSide.South);
-                
-                await UniTask.Delay(TimeSpan.FromSeconds(0.2f), cancellationToken: token);
+                SpawnBossWave();
+            }
+            else
+            {
+                await SpawnNormalWaveAsync(token);
             }
         }
 
