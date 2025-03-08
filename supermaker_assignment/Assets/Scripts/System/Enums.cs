@@ -39,7 +39,12 @@ namespace System
         /// <summary>
         /// 기본 적.
         /// </summary>
-        Default,
+        Common,
+        
+        /// <summary>
+        /// 보스.
+        /// </summary>
+        Boss,
     }
     
     /// <summary>

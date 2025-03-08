@@ -90,7 +90,7 @@ namespace Enemy
             
             EnemyDependencyContainer dependencyContainer = _enemyRoot.dependencyContainer;
             
-            dependencyContainer.mdlEnemy.KillEnemy(EEnemyType.Default);
+            dependencyContainer.mdlEnemy.KillEnemy(EEnemyType.Common);
             dependencyContainer.mdlCurrency.AddGold((uint)Random.Range(1, 3));
             dependencyContainer.enemyBasePool.ReleaseObject(_enemyRoot);
         }

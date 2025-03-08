@@ -45,7 +45,7 @@ namespace System
         public async UniTaskVoid HandleWaveSpawnAsync(uint currentWave, CancellationToken token)
         {
             // TODO: 보스 웨이브인지, 노말 웨이브인지 확인하고 데이터 셋업하는 기능 추가
-            _currentSpawnMetaData.SetData(EEnemyType.Default, currentWave);
+            _currentSpawnMetaData.SetData(EEnemyType.Common, currentWave);
             
             if (currentWave % 10 == 0)
             {
