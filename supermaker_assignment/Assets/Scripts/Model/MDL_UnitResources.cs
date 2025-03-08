@@ -16,7 +16,8 @@ namespace Model
         [SerializeField] private List<UnitMetaData> _unitResourceList;
         private readonly Dictionary<EUnitGrade, Dictionary<EUnitType, UnitMetaData>> _unitResourceDic = new();
         
-        [SerializeField] MythicUnitFullSpriteDic _mythicUnitFullSpriteDic;
+        [SerializeField] private MythicUnitFullSpriteDic _mythicUnitFullSpriteDic;
+        [SerializeField] private UnitGradeToMaterialDic _unitGradeToMaterialDic;
 
         private void Awake()
         {

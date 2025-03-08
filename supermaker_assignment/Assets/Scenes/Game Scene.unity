@@ -12059,6 +12059,13 @@ MonoBehaviour:
     m_values:
     - {fileID: 21300000, guid: 1a6feec238b9a99499082bb755fa32df, type: 3}
     - {fileID: 21300000, guid: b6d14bcb8d9dbb349beb9d3619096732, type: 3}
+  _unitGradeToMaterialDic:
+    m_keys: 01000000020000000300000004000000
+    m_values:
+    - {fileID: 2100000, guid: 87d6c3e936ea24d03a900ed8b699b58f, type: 2}
+    - {fileID: 2100000, guid: cf892b1602b18489e86974dc3561c473, type: 2}
+    - {fileID: 2100000, guid: 4c97a7d93fbd842efb4555e2ac3c17bd, type: 2}
+    - {fileID: 2100000, guid: cb21f17d0eee24bbca813a19e8ca5428, type: 2}
 --- !u!1 &1245659185
 GameObject:
   m_ObjectHideFlags: 0
