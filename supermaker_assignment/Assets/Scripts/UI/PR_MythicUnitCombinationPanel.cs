@@ -90,7 +90,7 @@ namespace UI
             SUnitSpawnRequestData spawnData = new SUnitSpawnRequestData(
                 EUnitGrade.Mythic,
                 selectedChecker.ResultUnitType,
-                EPlayerSide.North);
+                EPlayerSide.South);
 
             _mdlUnit.SpawnUnit(spawnData);
         }
