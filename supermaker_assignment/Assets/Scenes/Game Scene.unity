@@ -14739,22 +14739,22 @@ MonoBehaviour:
     ScaleSize: 1
   - Type: 1
     Sprite: {fileID: 21300000, guid: f7155fac0d464a04796941cd3fbbfaac, type: 3}
-    ScaleSize: 1
+    ScaleSize: 2.8
   - Type: 1
     Sprite: {fileID: 21300000, guid: e0aab8ef7a3e2664c9a41888a276b862, type: 3}
-    ScaleSize: 1
+    ScaleSize: 3
   - Type: 1
     Sprite: {fileID: 21300000, guid: d31f46d309957764298b96bbd18f8b18, type: 3}
-    ScaleSize: 1
+    ScaleSize: 3.5
   - Type: 1
     Sprite: {fileID: 21300000, guid: f240dfd4814d34d55a9b033f3c9d8a60, type: 3}
-    ScaleSize: 1
+    ScaleSize: 3.5
   - Type: 1
     Sprite: {fileID: 21300000, guid: b7a9b30e19b516f4e8f485ca2d26cbbd, type: 3}
-    ScaleSize: 1
+    ScaleSize: 3.5
   - Type: 2
     Sprite: {fileID: 21300000, guid: 05806b63f014ac3449ddae915b77a961, type: 3}
-    ScaleSize: 1
+    ScaleSize: 5
 --- !u!1 &1910648951
 GameObject:
   m_ObjectHideFlags: 0
