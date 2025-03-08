@@ -83,11 +83,14 @@ namespace UI
             
             EUnitGrade grade = selectedNode.UnitGroup.UnitGrade;
             AssertHelper.NotEqualsEnum(typeof(PR_UnitPlacementSelection), grade, EUnitGrade.None);
+            AssertHelper.NotEqualsEnum(typeof(PR_UnitPlacementSelection), grade, EUnitGrade.Mythic);
 
-            selectedNode.MergeUnit();
+            selectedNode.BeforeMergeClearUnit();
             _mdlUnitPlacementField.SelectNode(null);
             
             EUnitGrade targetGrade = GetNextGrade(grade);
+            AssertHelper.NotEqualsEnum(typeof(PR_UnitPlacementSelection), targetGrade, EUnitGrade.None);
+            
             EUnitType targetType = GetRandomType();
             SUnitSpawnRequestData data = new SUnitSpawnRequestData(targetGrade, targetType, EPlayerSide.South);
             _mdlUnit.SpawnUnit(data);

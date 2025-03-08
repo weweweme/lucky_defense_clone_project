@@ -69,9 +69,16 @@ namespace AIPlayer
         {
             AssertHelper.NotNull(typeof(AIPlayerMergeController), _mergeNode);
             
+            EUnitGrade prevGrade = _mergeNode.UnitGroup.UnitGrade;
+            AssertHelper.NotEqualsEnum(typeof(AIPlayerMergeController), prevGrade, EUnitGrade.None);
+            AssertHelper.NotEqualsEnum(typeof(AIPlayerMergeController), prevGrade, EUnitGrade.Mythic);
+            
             EUnitGrade targetGrade = GetNextGrade(_mergeNode.UnitGroup.UnitGrade);
+            AssertHelper.NotEqualsEnum(typeof(AIPlayerMergeController), targetGrade, EUnitGrade.None);
+            
             EUnitType targetType = GetRandomType();
             
+            _mergeNode.BeforeMergeClearUnit();
             _mergeNode = null;
             SUnitSpawnRequestData data = new SUnitSpawnRequestData(targetGrade, targetType, EPlayerSide.North);
             _globalMdlUnit.SpawnUnit(data);
