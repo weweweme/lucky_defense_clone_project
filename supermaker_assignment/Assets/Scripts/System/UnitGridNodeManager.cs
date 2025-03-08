@@ -31,14 +31,28 @@ namespace System
         {
             UnitPlacementNode[] targetGrid = data.SpawnSide == EPlayerSide.North ? northGridNodes : southGridNodes;
 
+            UnitPlacementNode emptyNode = null; // 완전히 비어있는 노드를 저장할 변수
+
             foreach (var node in targetGrid)
             {
                 AssertHelper.NotNull(typeof(UnitGridNodeManager), node);
 
-                if (!node.CanAcceptUnit(data)) continue;
-                    
-                return node;
+                // 유닛 그룹이 비어있으면 비어있는 노드로 임시 저장
+                if (node.UnitGroup.IsEmpty())
+                {
+                    if (emptyNode == null) emptyNode = node;
+                    continue;
+                }
+
+                // 기존 노드가 스폰 요청 데이터와 일치하면 즉시 반환
+                if (node.CanAcceptUnit(data))
+                {
+                    return node;
+                }
             }
+
+            // 기존 노드에 배치할 수 없다면 비어있는 노드 반환
+            if (emptyNode != null) return emptyNode;
 
             throw new InvalidOperationException($"[{nameof(UnitGridNodeManager)}] {data.SpawnSide} 진영에서 배치 가능한 노드가 없습니다.");
         }
