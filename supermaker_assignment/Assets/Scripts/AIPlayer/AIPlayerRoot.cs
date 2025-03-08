@@ -41,6 +41,7 @@ namespace AI
         protected override void OnDestroy()
         {
             btController.Dispose();
+            dataModel.Dispose();
             
             base.OnDestroy();
         }
