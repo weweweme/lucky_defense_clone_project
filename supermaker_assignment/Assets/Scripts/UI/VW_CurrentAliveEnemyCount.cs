@@ -18,9 +18,9 @@ namespace UI
             AssertHelper.NotNull(typeof(VW_CurrentAliveEnemyCount), _aliveEnemyPercentImg);
         }
 
-        public void UpdateRemainingUI(uint remainingEnemyCount)
+        public void UpdateAliveEnemyUI(uint aliveEnemyCount)
         {
-            float normalizedHealth = remainingEnemyCount / MAX_ENEMY_COUNT;
+            float normalizedHealth = aliveEnemyCount / MAX_ENEMY_COUNT;
             
             // normalizedHealth 값이 0과 1 사이에 있는지 확인
             normalizedHealth = Mathf.Clamp01(normalizedHealth);
