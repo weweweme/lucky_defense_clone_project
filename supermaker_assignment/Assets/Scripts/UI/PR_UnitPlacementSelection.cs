@@ -97,7 +97,7 @@ namespace UI
         
         private EUnitType GetRandomType()
         {
-            return UnityEngine.Random.Range(0f, 1f) < 0.6f ? EUnitType.Melee : EUnitType.Ranged;
+            return UnityEngine.Random.Range(0f, 1f) < 0.5f ? EUnitType.Melee : EUnitType.Ranged;
         }
         
         public void Dispose()
