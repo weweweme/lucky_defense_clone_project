@@ -52,6 +52,7 @@ namespace UI
 
         private void TryGamble(EUnitGrade grade)
         {
+            if (!_mdlUnit.IsSpawnPossible()) return;
             float successProbability = GetGambleSuccessProbability(grade);
             bool isSuccess = UnityEngine.Random.Range(0f, 1f) < successProbability;
 
