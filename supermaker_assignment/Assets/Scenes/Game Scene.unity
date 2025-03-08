@@ -3538,6 +3538,7 @@ GameObject:
   - component: {fileID: 459902450}
   - component: {fileID: 459902451}
   - component: {fileID: 459902452}
+  - component: {fileID: 459902453}
   m_Layer: 0
   m_Name: AI Player Root
   m_TagString: Untagged
@@ -3561,6 +3562,7 @@ MonoBehaviour:
   mergeController: {fileID: 459902450}
   spawnController: {fileID: 459902451}
   gambleController: {fileID: 459902452}
+  mythicUnitCombinationController: {fileID: 459902453}
 --- !u!4 &459902448
 Transform:
   m_ObjectHideFlags: 0
@@ -3622,6 +3624,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7e2d981870bd487898a5800b581b167, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &459902453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459902446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8fe3c43e8a54407bae96f57de5e4ed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &473001344

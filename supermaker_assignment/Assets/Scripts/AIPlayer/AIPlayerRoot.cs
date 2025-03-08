@@ -14,6 +14,7 @@ namespace AIPlayer
         [SerializeField] internal AIPlayerMergeController mergeController;
         [SerializeField] internal AIPlayerSpawnController spawnController;
         [SerializeField] internal AIPlayerGambleController gambleController;
+        [SerializeField] internal AIPlayerMythicUnitCombinationController mythicUnitCombinationController;
         internal AIPlayerDataModel dataModel;
         internal RootManager globalRootManager;
         
@@ -23,6 +24,7 @@ namespace AIPlayer
             AssertHelper.NotNull(typeof(AIPlayerRoot), mergeController);
             AssertHelper.NotNull(typeof(AIPlayerRoot), spawnController);
             AssertHelper.NotNull(typeof(AIPlayerRoot), gambleController);
+            AssertHelper.NotNull(typeof(AIPlayerRoot), mythicUnitCombinationController);
         }
 
         public void Init(RootManager rootManager)
@@ -37,6 +39,7 @@ namespace AIPlayer
             mergeController.Init(this);
             spawnController.Init(this);
             gambleController.Init(this);
+            mythicUnitCombinationController.Init(this);
         }
         
         public void ActivateAI()
