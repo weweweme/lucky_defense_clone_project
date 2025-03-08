@@ -1,6 +1,7 @@
 using System;
 using Model;
 using UI;
+using UniRx;
 using UnityEngine;
 using Util;
 using Random = UnityEngine.Random;
@@ -46,6 +47,10 @@ namespace Enemy
         public void CreatePooledItemInit(EnemyRoot root)
         {
             _enemyRoot = root;
+
+            _enemyRoot.dependencyContainer.mdlEnemy.OnEnemyDeath
+                .Subscribe(_ => RewardGoldOnEnemyDeath())
+                .AddTo(this);
         }
 
         /// <summary>
@@ -94,12 +99,19 @@ namespace Enemy
             
             EnemyDependencyContainer dependencyContainer = _enemyRoot.dependencyContainer;
             
-            dependencyContainer.mdlEnemy.KillEnemy(EEnemyType.Common);
-            dependencyContainer.mdlCurrency.AddGold((uint)Random.Range(1, 3));
+            dependencyContainer.mdlEnemy.KillEnemy();
             dependencyContainer.enemyBasePool.ReleaseObject(_enemyRoot);
             
             uint currentAliveEnemyCount = dependencyContainer.mdlEnemy.CurrentAliveEnemyCount.Value;
             dependencyContainer.mdlEnemy.SetCurrentEnemyCount(currentAliveEnemyCount - 1);
+        }
+
+        /// <summary>
+        /// 적이 사망했을 때 플레이어에게 골드를 지급합니다.
+        /// </summary>
+        private void RewardGoldOnEnemyDeath()
+        {
+            _enemyRoot.dependencyContainer.mdlCurrency.AddGold((uint)UnityEngine.Random.Range(1, 3));
         }
 
         protected override void OnDestroy()
