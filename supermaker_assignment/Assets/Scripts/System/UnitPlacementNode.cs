@@ -74,6 +74,20 @@ namespace System
         }
 
         /// <summary>
+        /// 유닛 합성 이벤트가 일어났을 때 호출되는 메서드입니다.
+        /// </summary>
+        public void MergeUnit()
+        {
+            AssertHelper.NotEqualsValue(typeof(UnitPlacementNode), UnitGroup.IsEmpty(), true);
+            
+            uint unitCount = UnitGroup.UnitCount;
+            for (uint i = 0; i < unitCount; ++i)
+            {
+                UnitGroup.SubUnit();
+            }
+        }
+
+        /// <summary>
         /// 배치된 유닛들의 위치를 현재 노드 상태에 맞게 재조정합니다.
         /// </summary>
         private void RearrangeUnitPositions()
