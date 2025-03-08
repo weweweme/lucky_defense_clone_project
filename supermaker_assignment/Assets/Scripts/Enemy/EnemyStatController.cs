@@ -97,6 +97,9 @@ namespace Enemy
             dependencyContainer.mdlEnemy.KillEnemy(EEnemyType.Common);
             dependencyContainer.mdlCurrency.AddGold((uint)Random.Range(1, 3));
             dependencyContainer.enemyBasePool.ReleaseObject(_enemyRoot);
+            
+            uint currentAliveEnemyCount = dependencyContainer.mdlEnemy.CurrentAliveEnemyCount.Value;
+            dependencyContainer.mdlEnemy.SetCurrentEnemyCount(currentAliveEnemyCount - 1);
         }
 
         protected override void OnDestroy()
