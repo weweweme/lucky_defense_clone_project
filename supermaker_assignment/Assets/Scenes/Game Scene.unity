@@ -277,7 +277,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -31.9, y: 1.8}
+  m_AnchoredPosition: {x: -31.900002, y: 1.7999992}
   m_SizeDelta: {x: -50, y: -50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &51118850
@@ -15267,6 +15267,7 @@ MonoBehaviour:
   - {fileID: 858897397}
   combineBut: {fileID: 1065151931}
   _combineButDenyPanel: {fileID: 1668701868}
+  _combineButDenyText: {fileID: 572030913}
 --- !u!114 &1847254439
 MonoBehaviour:
   m_ObjectHideFlags: 0

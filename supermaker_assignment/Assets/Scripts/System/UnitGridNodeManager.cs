@@ -55,5 +55,24 @@ namespace System
 
             throw new InvalidOperationException($"[{nameof(UnitGridNodeManager)}] {data.SpawnSide} 진영에서 배치 가능한 노드가 없습니다.");
         }
+        
+        /// <summary>
+        /// 해당 진영에 완전히 비어 있는 노드가 하나라도 있는지 확인합니다.
+        /// </summary>
+        /// <param name="side">체크할 진영</param>
+        /// <returns>비어 있는 노드가 하나라도 있으면 true, 아니면 false</returns>
+        public bool HasAnyEmptyNode(EPlayerSide side)
+        {
+            UnitPlacementNode[] targetGrid = side == EPlayerSide.North ? northGridNodes : southGridNodes;
+
+            foreach (var node in targetGrid)
+            {
+                AssertHelper.NotNull(typeof(UnitGridNodeManager), node);
+
+                if (node.UnitGroup.IsEmpty()) return true; // 완전히 비어 있는 노드가 있으면 true 반환
+            }
+
+            return false; // 모든 노드가 사용 중이면 false 반환
+        }
     }
 }
