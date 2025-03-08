@@ -8,14 +8,16 @@ namespace AIPlayer
     /// </summary>
     public sealed class AIPlayerSpawnController : MonoBehaviourBase
     {
-        /// <summary>
-        /// AI 플레이어의 루트 클래스입니다.
-        /// </summary>
-        private AIPlayerRoot _root;
+        private AIPlayerDataCurrency _currency;
+        private AIPlayerDataUnit _unit;
 
         public void Init(AIPlayerRoot root)
         {
-            _root = root;
+            AIPlayerDataModel dataModel = root.dataModel;
+            AssertHelper.NotNull(typeof(AIPlayerSpawnController), dataModel);
+            
+            _currency = dataModel.Currency;
+            _unit = dataModel.Unit;
         }
 
         /// <summary>
