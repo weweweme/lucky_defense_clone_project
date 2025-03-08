@@ -22,6 +22,7 @@ namespace UI
         [SerializeField] private Image _unitIcon;
         [SerializeField] private Image _unitFullImage;
         [SerializeField] private RequiredUnitSlot[] _requiredUnitSlots;
+        [SerializeField] internal Button combineBut;
         
         private MDL_UnitResources _mdlUnitResources;
         private MDL_MythicUnitCombination _mdlMythicUnitCombination;
@@ -34,6 +35,7 @@ namespace UI
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _unitName);
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _unitIcon);
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _unitFullImage);
+            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _requiredUnitSlots);
             
             const int REQUIRE_SLOT_COUNT = 3;
             AssertHelper.EqualsValue(typeof(VW_MythicUnitCombinationPanel), _requiredUnitSlots.Length, REQUIRE_SLOT_COUNT);
