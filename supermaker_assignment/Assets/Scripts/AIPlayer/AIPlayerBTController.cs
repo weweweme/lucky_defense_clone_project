@@ -34,10 +34,16 @@ namespace AI
         /// AI 플레이어의 루트 클래스입니다.
         /// </summary>
         private AIPlayerRoot _root;
+        
+        /// <summary>
+        /// AI 플레이어의 스폰 컨트롤러입니다.
+        /// </summary>
+        private AIPlayerSpawnController _spawnController;
 
         public void Init(AIPlayerRoot root)
         {
             _root = root;
+            _spawnController = root.spawnController;
             _bt = CreateTree(root.gameObject);
         }
         
