@@ -69,8 +69,22 @@ namespace System
         /// </summary>
         public void SellUnit()
         {
-            UnitGroup.SellUnit();
+            UnitGroup.SubUnit();
             RearrangeUnitPositions();
+        }
+
+        /// <summary>
+        /// 유닛 합성 이벤트가 일어났을 때 호출되는 메서드입니다.
+        /// </summary>
+        public void MergeUnit()
+        {
+            AssertHelper.NotEqualsValue(typeof(UnitPlacementNode), UnitGroup.IsEmpty(), true);
+            
+            uint unitCount = UnitGroup.UnitCount;
+            for (uint i = 0; i < unitCount; ++i)
+            {
+                UnitGroup.SubUnit();
+            }
         }
 
         /// <summary>
