@@ -13,7 +13,7 @@ namespace Model
         public IReadOnlyReactiveProperty<uint> Gold => _gold;
         public uint GetGold() => _gold.Value;
         public void AddGold(uint amount) => _gold.Value += amount;
-        public void SubtractGold(uint amount) => _gold.Value -= amount;
+        public void SubGold(uint amount) => _gold.Value -= amount;
 
         // 다이아몬드 관련 Rx
         private const uint INITIAL_DIAMOND = 3;
@@ -21,6 +21,6 @@ namespace Model
         public IReadOnlyReactiveProperty<uint> Diamond => _diamond;
         public uint GetDiamond() => _diamond.Value;
         public void AddDiamond(uint amount) => _diamond.Value += amount;
-        public void SubtractDiamond(uint amount) => _diamond.Value -= amount;
+        public void SubDiamond(uint amount) => _diamond.Value -= amount;
     }
 }

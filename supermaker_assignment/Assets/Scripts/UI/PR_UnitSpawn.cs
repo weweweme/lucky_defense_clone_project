@@ -69,7 +69,7 @@ namespace UI
         private void ConsumeSpawnCost()
         {
             uint currentSpawnNeededGold = _mdlUnit.GetSpawnNeededGold();
-            _mdlCurrency.SubtractGold(currentSpawnNeededGold);
+            _mdlCurrency.SubGold(currentSpawnNeededGold);
             _mdlUnit.SetSpawnNeededGold(currentSpawnNeededGold + 1);
 
             uint currentSpawnCount = _mdlUnit.GetCurrentSpawnCount();
