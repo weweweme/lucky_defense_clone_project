@@ -11,6 +11,7 @@ namespace Enemy
         internal readonly EnemyBasePool enemyBasePool;
         internal readonly MDL_Enemy mdlEnemy;
         internal readonly MDL_Currency mdlCurrency;
+        internal readonly MDL_EnemyResources mdlEnemyResources;
         internal readonly EnemyPathNodeManager pathNodeManager;
 
         public EnemyDependencyContainer(RootManager rootManager)
@@ -18,6 +19,7 @@ namespace Enemy
             enemyBasePool = rootManager.PoolManager.EnemyBasePool;
             mdlEnemy = rootManager.DataManager.Enemy;
             mdlCurrency = rootManager.DataManager.Currency;
+            mdlEnemyResources = rootManager.DataManager.EnemyResources;
             pathNodeManager = rootManager.EnemyPathNodeManager;
         }
     }
