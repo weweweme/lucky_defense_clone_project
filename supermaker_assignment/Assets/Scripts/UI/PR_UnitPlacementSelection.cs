@@ -75,6 +75,7 @@ namespace UI
             if (selectedNode.UnitGroup.IsEmpty())
             {
                 _mdlUnitPlacementField.SelectNode(null);
+                _mdlUnit.SetHasValidNodesStatus(true);
             }
             
             foreach (var elem in _mdlMythicUnitCombination.GetCombinationFlagCheckers())
