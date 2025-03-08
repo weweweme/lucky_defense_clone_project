@@ -30,14 +30,15 @@ namespace UI
                 .AddTo(_disposable);
             
             view.unitSellUI.actionButton.OnClickAsObservable()
-                .Subscribe(SellUnit)
+                .Subscribe(TrySellUnit)
+                .AddTo(_disposable);
                 .AddTo(_disposable);
         }
 
         /// <summary>
         /// 해당 노드의 유닛을 판매합니다.
         /// </summary>
-        private void SellUnit(UniRx.Unit _)
+        private void TrySellUnit(UniRx.Unit _)
         {
             UnitPlacementNode selectedNode = _mdlUnitPlacementField.GetSelectedNode();
             AssertHelper.NotNull(typeof(PR_UnitPlacementSelection), selectedNode);
