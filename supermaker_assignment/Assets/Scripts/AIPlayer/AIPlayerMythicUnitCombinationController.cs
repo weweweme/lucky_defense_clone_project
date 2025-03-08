@@ -2,6 +2,7 @@ using System;
 using CleverCrow.Fluid.BTs.Tasks;
 using System.Collections.Generic;
 using Model;
+using UnityEngine;
 using Util;
 
 namespace AIPlayer
@@ -35,6 +36,11 @@ namespace AIPlayer
         /// 조합을 위한 유닛 조건 리스트입니다.
         /// </summary>
         private readonly List<AIUnitCombinationChecker> _combinationCheckers = new List<AIUnitCombinationChecker>();
+        
+        /// <summary>
+        /// 조합 조건을 충족한 경우 선택된 조합 조건입니다.
+        /// </summary>
+        private AIUnitCombinationChecker _selectedCombinationChecker;
         
         /// <summary>
         /// 조합을 수행할 유닛들이 저장된 Dictionary (Key: 유닛이 있는 노드, Value: 해당 노드가 충족한 조건 인덱스)
@@ -78,10 +84,13 @@ namespace AIPlayer
         /// <returns>조합이 가능하면 true, 불가능하면 false</returns>
         public bool CanCombination()
         {
+            _selectedCombinationChecker = default; // 초기화
+
             foreach (var checker in _combinationCheckers)
             {
                 if (HasRequiredUnits(checker))
                 {
+                    _selectedCombinationChecker = checker; // 가능한 조합 조건 저장
                     return true;
                 }
             }
@@ -148,7 +157,33 @@ namespace AIPlayer
         /// <returns>조합 성공 시 Success 반환</returns>
         public TaskStatus MythicUnitCombination()
         {
-            return TaskStatus.Failure;
+            AssertHelper.NotEqualsValue(typeof(AIPlayerMythicUnitCombinationController), _matchingNodes.Count, 0);
+            AssertHelper.NotEqualsEnum(typeof(AIPlayerMythicUnitCombinationController), _selectedCombinationChecker.ResultUnitType, EUnitType.None);
+
+            // 조합을 실행할 유닛 유형 결정 (탐색된 조건의 결과 타입 사용)
+            EUnitType targetType = _selectedCombinationChecker.ResultUnitType;
+
+            // 유닛 판매 (조합을 위한 기존 유닛 제거)
+            RemoveUnitsForCombination();
+
+            // 새로운 신화 유닛 소환
+            SUnitSpawnRequestData spawnData = new SUnitSpawnRequestData(EUnitGrade.Mythic, targetType, EPlayerSide.North);
+            _globalMdlUnit.SpawnUnit(spawnData);
+
+            return TaskStatus.Success;
+        }
+
+        /// <summary>
+        /// 신화 유닛 조합 시 기존 유닛을 제거하는 메서드입니다.
+        /// </summary>
+        private void RemoveUnitsForCombination()
+        {
+            foreach (var node in _matchingNodes.Keys)
+            {
+                node.SellUnit(); // 기존 유닛 제거
+            }
+    
+            _matchingNodes.Clear(); // 조합 후 매칭된 노드 초기화
         }
     }
 }
