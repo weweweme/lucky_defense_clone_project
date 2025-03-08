@@ -12,6 +12,7 @@ namespace Model
         private const int ROUND_INCREMENT = 1;
         private readonly ReactiveProperty<uint> _currentWave = new ReactiveProperty<uint>(0);
         public IReadOnlyReactiveProperty<uint> CurrentWave => _currentWave;
+        public uint GetCurrentWaveCount() => _currentWave.Value;
         public void TriggerNextWave() => _currentWave.Value = _currentWave.Value + ROUND_INCREMENT;
         
         // 현재 웨이브의 상태를 나타내는 Rx
