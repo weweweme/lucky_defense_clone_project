@@ -39,6 +39,7 @@ namespace Enemy
             AssertHelper.NotNull(typeof(EnemySpriteController), metaData);
             
             _spriteRenderer.sprite = metaData.Sprite;
+            _spriteRenderer.transform.localScale = Vector3.one * metaData.ScaleSize;
         }
     }
 }
