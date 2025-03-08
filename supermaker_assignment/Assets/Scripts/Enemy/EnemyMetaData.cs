@@ -9,7 +9,7 @@ namespace Enemy
     [Serializable]
     public class EnemyMetaData
     {
-        public EUnitType Type;
+        public EEnemyType Type;
         public Sprite Sprite;
     }
 }
