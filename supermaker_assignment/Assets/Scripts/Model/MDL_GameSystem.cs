@@ -26,6 +26,7 @@ namespace Model
         // 현재 게임 속도가 더블 스피드인지 나타내는 Rx.
         private readonly ReactiveProperty<bool> _isDoubleSpeed = new ReactiveProperty<bool>(false);
         public IReactiveProperty<bool> IsDoubleSpeed => _isDoubleSpeed;
-        public void SetDoubleSpeed(bool value) => _isDoubleSpeed.Value = value;
+        public void SetDoubleGameSpeed(bool value) => _isDoubleSpeed.Value = value;
+        public bool IsDoubleSpeedActive() => _isDoubleSpeed.Value;
     }
 }

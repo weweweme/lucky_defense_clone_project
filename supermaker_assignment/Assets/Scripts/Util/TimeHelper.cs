@@ -24,5 +24,14 @@ namespace Util
         {
             Time.timeScale = isSlow ? 0.25f : 1.0f;
         }
+        
+        /// <summary>
+        /// 게임 타임 스케일을 설정합니다.
+        /// </summary>
+        /// <param name="scale"></param>
+        public static void SetTimeScale(float scale)
+        {
+            Time.timeScale = scale;
+        }
     }
 }
