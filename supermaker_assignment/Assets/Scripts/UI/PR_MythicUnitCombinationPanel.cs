@@ -19,6 +19,7 @@ namespace UI
         private MDL_Unit _mdlUnit;
         private VW_MythicUnitCombinationPanel _vw;
         private EUnitType _currentClickedUnitType;
+        private MDL_GameSystem _mdlGameSystem;
 
         public override void Init(DataManager dataManager, View view)
         {
@@ -27,16 +28,16 @@ namespace UI
             _vw = view as VW_MythicUnitCombinationPanel;
             AssertHelper.NotNull(typeof(PR_MythicUnitCombinationPanel), _vw);
 
-            MDL_GameSystem mdlGameSystem = dataManager.GameSystem;
-            AssertHelper.NotNull(typeof(PR_MythicUnitCombinationPanel), mdlGameSystem);
-            mdlGameSystem.MythicCombinationPanelVisible
+            _mdlGameSystem = dataManager.GameSystem;
+            AssertHelper.NotNull(typeof(PR_MythicUnitCombinationPanel), _mdlGameSystem);
+            _mdlGameSystem.MythicCombinationPanelVisible
                 .Subscribe(_vw!.SetCanvasActive)
                 .AddTo(disposable);
             _vw.exitBackgroundPanel.OnClickAsObservable()
-                .Subscribe(_ => mdlGameSystem.SetMythicCombinationPanelVisible(false))
+                .Subscribe(_ => _mdlGameSystem.SetMythicCombinationPanelVisible(false))
                 .AddTo(disposable);
             _vw.exitButton.OnClickAsObservable()
-                .Subscribe(_ => mdlGameSystem.SetMythicCombinationPanelVisible(false))
+                .Subscribe(_ => _mdlGameSystem.SetMythicCombinationPanelVisible(false))
                 .AddTo(disposable);
             _vw.combineBut.OnClickAsObservable()
                 .Subscribe(_ => TryCombineMythicUnit())
@@ -93,6 +94,7 @@ namespace UI
                 EPlayerSide.South);
 
             _mdlUnit.SpawnUnit(spawnData);
+            _mdlGameSystem.SetMythicCombinationPanelVisible(false);
         }
         
         /// <summary>
