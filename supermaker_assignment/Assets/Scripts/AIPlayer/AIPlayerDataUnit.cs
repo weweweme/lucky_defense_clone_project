@@ -18,7 +18,7 @@ namespace AIPlayer
         
         // 유닛 스폰 최대 가능 수량
         private const uint MAX_POSSIBLE_SPAWN_COUNT = 20;
-        private uint _currentSpawnCount = MAX_POSSIBLE_SPAWN_COUNT
+        private uint _currentSpawnCount = MAX_POSSIBLE_SPAWN_COUNT;
         public uint GetCurrentSpawnCount() => _currentSpawnCount;
         public uint GetMaxPossibleSpawnCount() => MAX_POSSIBLE_SPAWN_COUNT;
         public bool IsSpawnPossible() => _currentSpawnCount < MAX_POSSIBLE_SPAWN_COUNT;
