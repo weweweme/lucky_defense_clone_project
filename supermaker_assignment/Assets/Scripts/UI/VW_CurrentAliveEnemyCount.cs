@@ -8,14 +8,14 @@ namespace UI
     /// <summary>
     /// 현재 남은 적의 수를 보여주는 View 클래스입니다.
     /// </summary>
-    public sealed class VW_CurrentRemainingEnemyCount : View
+    public sealed class VW_CurrentAliveEnemyCount : View
     {
-        [SerializeField] private Image _remainingEnemyPercentImg;
+        [SerializeField] private Image _aliveEnemyPercentImg;
         private const float MAX_ENEMY_COUNT = 100f;
         
         private void Awake()
         {
-            AssertHelper.NotNull(typeof(VW_CurrentRemainingEnemyCount), _remainingEnemyPercentImg);
+            AssertHelper.NotNull(typeof(VW_CurrentAliveEnemyCount), _aliveEnemyPercentImg);
         }
 
         public void UpdateRemainingUI(uint remainingEnemyCount)
@@ -24,7 +24,7 @@ namespace UI
             
             // normalizedHealth 값이 0과 1 사이에 있는지 확인
             normalizedHealth = Mathf.Clamp01(normalizedHealth);
-            _remainingEnemyPercentImg.fillAmount = normalizedHealth;   
+            _aliveEnemyPercentImg.fillAmount = normalizedHealth;   
         }
     }
 }
