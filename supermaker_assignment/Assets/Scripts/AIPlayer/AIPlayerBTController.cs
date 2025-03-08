@@ -34,10 +34,16 @@ namespace AI
         /// AI 플레이어의 루트 클래스입니다.
         /// </summary>
         private AIPlayerRoot _root;
+        
+        /// <summary>
+        /// AI 플레이어의 스폰 컨트롤러입니다.
+        /// </summary>
+        private AIPlayerSpawnController _spawnController;
 
         public void Init(AIPlayerRoot root)
         {
             _root = root;
+            _spawnController = root.spawnController;
             _bt = CreateTree(root.gameObject);
         }
         
@@ -55,19 +61,19 @@ namespace AI
                     // 1. 유닛 합성이 가능한 경우 합성
                     .Sequence("유닛 합성 가능할 때")
                         .Condition("합성 가능한 유닛이 있는가?", () => false)  // TODO: 실제 합성 조건으로 변경
-                        .Do("유닛 합성 실행", () => TaskStatus.Success) // TODO: 실제 합성 로직으로 변경
+                        .Do("유닛 합성 실행", () => TaskStatus.Failure) // TODO: 실제 합성 로직으로 변경
                     .End()
 
                     // 2. 도박이 가능한 경우 도박 진행
                     .Sequence("도박 가능할 때")
                         .Condition("도박에 필요한 돌이 있는가?", () => false)  // TODO: 실제 도박 조건으로 변경
-                        .Do("도박 실행", () => TaskStatus.Success) // TODO: 실제 도박 로직으로 변경
+                        .Do("도박 실행", () => TaskStatus.Failure) // TODO: 실제 도박 로직으로 변경
                     .End()
 
                     // 3. 유닛 생산 (돈이 있을 경우)
                     .Sequence("유닛 생산 가능할 때")
-                        .Condition("유닛을 생산할 돈이 있는가?", () => false)  // TODO: 실제 돈 확인 조건으로 변경
-                        .Do("유닛 생산 실행", () => TaskStatus.Success) // TODO: 실제 유닛 생산 로직으로 변경
+                        .Condition("유닛을 생산할 돈이 있는가?", _spawnController.CanSpawnUnit)
+                        .Do("유닛 생산 실행", _spawnController.TrySpawnUnit)
                     .End()
 
                 .End()

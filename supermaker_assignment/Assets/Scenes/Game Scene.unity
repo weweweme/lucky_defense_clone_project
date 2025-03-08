@@ -3536,6 +3536,7 @@ GameObject:
   - component: {fileID: 459902447}
   - component: {fileID: 459902449}
   - component: {fileID: 459902450}
+  - component: {fileID: 459902451}
   m_Layer: 0
   m_Name: AI Player Root
   m_TagString: Untagged
@@ -3557,6 +3558,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btController: {fileID: 459902449}
   mergeController: {fileID: 459902450}
+  spawnController: {fileID: 459902451}
 --- !u!4 &459902448
 Transform:
   m_ObjectHideFlags: 0
@@ -3594,6 +3596,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a30f628ac04f742d482e438830dcc950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &459902451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459902446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71013cd50b5640229cb0e15dc569aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &473001344

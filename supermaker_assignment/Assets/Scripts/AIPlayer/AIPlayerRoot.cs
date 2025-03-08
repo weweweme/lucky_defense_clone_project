@@ -12,20 +12,28 @@ namespace AIPlayer
     {
         [SerializeField] internal AIPlayerBTController btController;
         [SerializeField] internal AIPlayerMergeController mergeController;
+        [SerializeField] internal AIPlayerSpawnController spawnController;
         internal AIPlayerDataModel dataModel;
+        internal DataManager rootDataManager;
         
         private void Awake()
         {
             AssertHelper.NotNull(typeof(AIPlayerRoot), btController);
             AssertHelper.NotNull(typeof(AIPlayerRoot), mergeController);
-            
-            btController.Init(this);
-            mergeController.Init(this);
+            AssertHelper.NotNull(typeof(AIPlayerRoot), spawnController);
         }
 
         public void Init(RootManager rootManager)
         {
             dataModel = new AIPlayerDataModel(rootManager.DataManager);
+            AssertHelper.NotNull(typeof(AIPlayerRoot), dataModel);
+            
+            rootDataManager = rootManager.DataManager;
+            AssertHelper.NotNull(typeof(AIPlayerRoot), rootDataManager);
+            
+            btController.Init(this);
+            mergeController.Init(this);
+            spawnController.Init(this);
         }
         
         public void ActivateAI()
