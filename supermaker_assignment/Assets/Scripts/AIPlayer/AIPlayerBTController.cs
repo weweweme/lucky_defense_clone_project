@@ -62,7 +62,7 @@ namespace AI
         private BehaviorTree CreateTree(GameObject owner)
         {
             BehaviorTree bt = new BehaviorTreeBuilder(owner)
-                .Selector("최우선 행동 선택")  // 여러 행동 중 하나 선택
+                .Selector("최우선 행동 선택")
 
                     // 1. 유닛 합성이 가능한 경우 합성
                     .Sequence("유닛 합성 가능할 때")
@@ -72,8 +72,8 @@ namespace AI
 
                     // 2. 도박이 가능한 경우 도박 진행
                     .Sequence("도박 가능할 때")
-                        .Condition("도박에 필요한 돌이 있는가?", () => false)  // TODO: 실제 도박 조건으로 변경
-                        .Do("도박 실행", () => TaskStatus.Failure) // TODO: 실제 도박 로직으로 변경
+                        .Condition("도박에 필요한 돌이 있는가?", _gambleController.CanGamble)
+                        .Do("도박 실행", () => _gambleController.TryGamble())
                     .End()
 
                     // 3. 유닛 생산 (돈이 있을 경우)
