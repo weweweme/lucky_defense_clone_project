@@ -68,5 +68,18 @@ namespace Model
 
             throw new KeyNotFoundException($"신화 유닛 전체 이미지 리소스 없음: {type}");
         }
+        
+        [NotNull]
+        public Material GetUnitGradeMaterial(EUnitGrade grade)
+        {
+            AssertHelper.NotEqualsEnum(typeof(MDL_UnitResources), grade, EUnitGrade.None);
+
+            if (_unitGradeToMaterialDic.TryGetValue(grade, out var material))
+            {
+                return material;
+            }
+
+            throw new KeyNotFoundException($"유닛 등급 Material 리소스 없음: {grade}");
+        }
     }
 }
