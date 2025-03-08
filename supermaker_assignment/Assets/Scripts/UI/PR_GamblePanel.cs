@@ -118,7 +118,7 @@ namespace UI
 
             if (GAMBLE_META_DATA.TryGetValue(grade, out SGambleMetaData metaData))
             {
-                _mdlCurrency.SubtractDiamond(metaData.RequiredDia);
+                _mdlCurrency.SubDiamond(metaData.RequiredDia);
             }
         }
 
