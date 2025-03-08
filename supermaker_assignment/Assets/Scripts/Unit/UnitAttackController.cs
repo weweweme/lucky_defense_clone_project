@@ -59,7 +59,7 @@ namespace Unit
             _attackRange.radius = float.MaxValue;
         }
 
-        public void Init()
+        public void CreatePooledItemInit()
         {
             CancelTokenHelper.GetToken(ref _cts);
             StartAttacking(_cts.Token).Forget();

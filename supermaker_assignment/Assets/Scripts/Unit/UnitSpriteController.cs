@@ -25,10 +25,9 @@ namespace Unit
 
         /// <summary>
         /// 유닛 생성 시점에 UnitRoot 정보를 주입받아 내부 참조를 설정합니다.
-        /// 이를 통해, 유닛의 등급과 타입 정보를 기반으로 적절한 Sprite를 가져올 수 있습니다.
         /// </summary>
         /// <param name="root">해당 유닛의 UnitRoot 참조</param>
-        public void Init(UnitRoot root)
+        public void CreatePooledItemInit(UnitRoot root)
         {
             _unitRoot = root;
         }
