@@ -9126,6 +9126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rootManager: {fileID: 1939053484}
   _vwGoldCurrency: {fileID: 1315631891}
+  _vwDiamondCurrency: {fileID: 1186547960}
   _vwUserSpawnInfo: {fileID: 1109695507}
 --- !u!1 &1000611572
 GameObject:
