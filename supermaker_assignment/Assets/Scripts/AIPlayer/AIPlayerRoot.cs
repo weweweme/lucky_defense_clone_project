@@ -1,3 +1,4 @@
+using System;
 using AIPlayer;
 using UnityEngine;
 using Util;
@@ -11,7 +12,7 @@ namespace AI
     {
         [SerializeField] internal AIPlayerBTController btController;
         [SerializeField] internal AIPlayerMergeController mergeController;
-        internal readonly AIPlayerDataModel dataModel = new AIPlayerDataModel();
+        internal AIPlayerDataModel dataModel;
         
         private void Awake()
         {
@@ -20,6 +21,11 @@ namespace AI
             
             btController.Init(this);
             mergeController.Init(this);
+        }
+
+        public void Init(RootManager rootManager)
+        {
+            dataModel = new AIPlayerDataModel(rootManager.DataManager);
         }
         
         public void ActivateAI()

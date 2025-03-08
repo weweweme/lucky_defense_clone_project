@@ -1,3 +1,5 @@
+using System;
+
 namespace AIPlayer
 {
     /// <summary>
@@ -11,5 +13,10 @@ namespace AIPlayer
         public uint GetGold() => _gold;
         public void AddGold(uint amount) => _gold += amount;
         public void SubtractGold(uint amount) => _gold -= amount;
+
+        public AIPlayerDataModel(DataManager dataManager)
+        {
+            
+        }
     }
 }
