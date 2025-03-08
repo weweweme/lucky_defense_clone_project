@@ -34,7 +34,7 @@ namespace System
         {
             _mdlEnemy = rootManager.DataManager.Enemy;
             _mdlGameSystem = rootManager.DataManager.GameSystem;
-            _currentEnemyCount = _mdlEnemy.CurrentEnemyCount;
+            _currentEnemyCount = _mdlEnemy.CurrentAliveEnemyCount;
         }
         
         /// <summary>
