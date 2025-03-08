@@ -76,7 +76,7 @@ namespace System
         /// <summary>
         /// 유닛 합성 이벤트가 일어났을 때 호출되는 메서드입니다.
         /// </summary>
-        public void MergeUnit()
+        public void BeforeMergeClearUnit()
         {
             AssertHelper.NotEqualsValue(typeof(UnitPlacementNode), UnitGroup.IsEmpty(), true);
             
