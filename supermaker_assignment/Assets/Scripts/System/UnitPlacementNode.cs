@@ -69,7 +69,7 @@ namespace System
         /// </summary>
         public void SellUnit()
         {
-            UnitGroup.SellUnit();
+            UnitGroup.SubUnit();
             RearrangeUnitPositions();
         }
 

@@ -50,7 +50,7 @@ namespace Unit
         /// <summary>
         /// 마지막으로 추가된 유닛을 판매합니다.
         /// </summary>
-        public void SellUnit()
+        public void SubUnit()
         {
             uint targetIdx = UnitCount-- - 1;
             UnitRoot unit = _placedUnits[targetIdx];
