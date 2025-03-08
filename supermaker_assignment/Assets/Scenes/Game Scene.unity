@@ -9502,7 +9502,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1976319205667222258, guid: a58b3e7a40d9645d3820876a33d579b3, type: 3}
       propertyPath: m_Name
-      value: UI_Gamble Try Item Heroic
+      value: UI_Gamble Choice Item Heroic
       objectReference: {fileID: 0}
     - target: {fileID: 8953150605942837915, guid: a58b3e7a40d9645d3820876a33d579b3, type: 3}
       propertyPath: unitGrade
@@ -10861,9 +10861,11 @@ MonoBehaviour:
   exitBackgroundPanel: {fileID: 341829741}
   exitButton: {fileID: 1741367881}
   gambleTryItems:
-  - {fileID: 1157405338}
-  - {fileID: 1025801283}
-  - {fileID: 2064940957}
+    m_keys: 020000000300000004000000
+    m_values:
+    - {fileID: 1157405338}
+    - {fileID: 1025801283}
+    - {fileID: 2064940957}
   _gambleCanvas: {fileID: 1214724060}
 --- !u!1 &1223137430
 GameObject:
@@ -15330,7 +15332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1976319205667222258, guid: a58b3e7a40d9645d3820876a33d579b3, type: 3}
       propertyPath: m_Name
-      value: UI_Gamble Try Item Mythic
+      value: UI_Gamble Choice Item Mythic
       objectReference: {fileID: 0}
     - target: {fileID: 8953150605942837915, guid: a58b3e7a40d9645d3820876a33d579b3, type: 3}
       propertyPath: unitGrade
@@ -20376,7 +20378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1976319205667222258, guid: a58b3e7a40d9645d3820876a33d579b3, type: 3}
       propertyPath: m_Name
-      value: UI_Gamble Try Item Rare
+      value: UI_Gamble Choice Item Rare
       objectReference: {fileID: 0}
     - target: {fileID: 8953150605942837915, guid: a58b3e7a40d9645d3820876a33d579b3, type: 3}
       propertyPath: unitGrade

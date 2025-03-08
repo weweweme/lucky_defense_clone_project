@@ -27,15 +27,16 @@ namespace UI
 
             VW_GamblePanel vw = view as VW_GamblePanel;
             AssertHelper.NotNull(typeof(PR_GamblePanel), vw);
+            vw!.SetGambleDescription(GAMBLE_META_DATA);
             
             _mdlUnit = dataManager.Unit;
             AssertHelper.NotNull(typeof(PR_GamblePanel), _mdlUnit);
             _mdlCurrency = dataManager.Currency;
-            AssertHelper.NotNull(typeof(PR_UnitSpawn), _mdlCurrency);
+            AssertHelper.NotNull(typeof(PR_GamblePanel), _mdlCurrency);
 
             MDL_GameSystem mdlSystem = dataManager.GameSystem;
-            AssertHelper.NotNull(typeof(PR_MythicUnitCombinationPanel), mdlSystem);
-            vw!.exitBackgroundPanel.OnClickAsObservable()
+            AssertHelper.NotNull(typeof(PR_GamblePanel), mdlSystem);
+            vw.exitBackgroundPanel.OnClickAsObservable()
                 .Subscribe(_ => mdlSystem.SetGamblePanelVisible(false))
                 .AddTo(disposable);
             vw.exitButton.OnClickAsObservable()
@@ -47,14 +48,17 @@ namespace UI
             
             foreach (var elem in vw.gambleTryItems)
             {
-                elem.tryButton.OnClickAsObservable()
-                    .Subscribe(_ => TryGamble(elem.unitGrade))
+                elem.Value.tryButton.OnClickAsObservable()
+                    .Subscribe(_ => TryGamble(elem.Value.unitGrade))
                     .AddTo(disposable);
             }
         }
 
         private void TryGamble(EUnitGrade grade)
         {
+            AssertHelper.NotEqualsEnum(typeof(PR_GamblePanel), grade, EUnitGrade.None);
+            AssertHelper.NotEqualsEnum(typeof(PR_GamblePanel), grade, EUnitGrade.Common);
+            
             if (!IsPossibleGamble(grade)) return;
 
             ConsumeGambleCost(grade);
@@ -92,6 +96,7 @@ namespace UI
             if (!_mdlUnit.IsSpawnPossible()) return false;
 
             AssertHelper.NotEqualsEnum(typeof(PR_GamblePanel), grade, EUnitGrade.None);
+            AssertHelper.NotEqualsEnum(typeof(PR_GamblePanel), grade, EUnitGrade.Common);
 
             if (GAMBLE_META_DATA.TryGetValue(grade, out SGambleMetaData metaData))
             {
@@ -109,6 +114,7 @@ namespace UI
         private void ConsumeGambleCost(EUnitGrade grade)
         {
             AssertHelper.NotEqualsEnum(typeof(PR_GamblePanel), grade, EUnitGrade.None);
+            AssertHelper.NotEqualsEnum(typeof(PR_GamblePanel), grade, EUnitGrade.Common);
 
             if (GAMBLE_META_DATA.TryGetValue(grade, out SGambleMetaData metaData))
             {
@@ -124,6 +130,7 @@ namespace UI
         private float GetGambleSuccessProbability(EUnitGrade grade)
         {
             AssertHelper.NotEqualsEnum(typeof(PR_GamblePanel), grade, EUnitGrade.None);
+            AssertHelper.NotEqualsEnum(typeof(PR_GamblePanel), grade, EUnitGrade.Common);
     
             if (GAMBLE_META_DATA.TryGetValue(grade, out SGambleMetaData metaData))
             {
@@ -134,12 +141,14 @@ namespace UI
         }
 
         /// <summary>
-        /// 근거리와 원거리를 60%/40%로 랜덤 선택합니다.
+        /// 근거리와 원거리를 랜덤 선택합니다.
         /// </summary>
         /// <returns>랜덤 유닛 타입</returns>
         private EUnitType GetRandomType()
         {
-            return UnityEngine.Random.Range(0f, 1f) < 0.6f ? EUnitType.Melee : EUnitType.Ranged;
+            float meleeRatio = 0.6f;
+            
+            return UnityEngine.Random.Range(0f, 1f) < meleeRatio ? EUnitType.Melee : EUnitType.Ranged;
         }
     }
 }
