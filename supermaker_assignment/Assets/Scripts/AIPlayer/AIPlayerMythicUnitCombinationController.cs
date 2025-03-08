@@ -12,6 +12,21 @@ namespace AIPlayer
     public sealed class AIPlayerMythicUnitCombinationController : MonoBehaviourBase
     {
         /// <summary>
+        /// AI가 신화 유닛 조합을 수행하기 위해 필요한 유닛 조건을 정의합니다.
+        /// </summary>
+        private struct AIUnitCombinationChecker
+        {
+            public readonly EUnitType ResultUnitType;
+            public readonly SUnitCombinationFlagCondition[] Conditions;
+
+            public AIUnitCombinationChecker(EUnitType resultType, params SUnitCombinationFlagCondition[] conditions)
+            {
+                ResultUnitType = resultType;
+                Conditions = conditions;
+            }
+        }
+        
+        /// <summary>
         /// AI 플레이어의 유닛이 배치된 노드 목록입니다.
         /// </summary>
         private UnitPlacementNode[] _northGridNodes;
@@ -30,22 +45,10 @@ namespace AIPlayer
         /// 중복된 조건을 방지하기 위한 인덱스 추적 HashSet
         /// </summary>
         private readonly HashSet<int> _matchedIndices = new HashSet<int>();
-
-        /// <summary>
-        /// AI가 신화 유닛 조합을 수행하기 위해 필요한 유닛 조건을 정의합니다.
-        /// </summary>
-        private struct AIUnitCombinationChecker
-        {
-            public readonly EUnitType ResultUnitType;
-            public readonly SUnitCombinationFlagCondition[] Conditions;
-
-            public AIUnitCombinationChecker(EUnitType resultType, params SUnitCombinationFlagCondition[] conditions)
-            {
-                ResultUnitType = resultType;
-                Conditions = conditions;
-            }
-        }
         
+        /// <summary>
+        /// 전역 유닛 관리 모델입니다.
+        /// </summary>
         private MDL_Unit _globalMdlUnit;
 
         public void Init(AIPlayerRoot root)
