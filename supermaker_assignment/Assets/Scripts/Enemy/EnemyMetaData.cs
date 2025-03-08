@@ -11,5 +11,6 @@ namespace Enemy
     {
         public EEnemyType Type;
         public Sprite Sprite;
+        public float ScaleSize;
     }
 }
