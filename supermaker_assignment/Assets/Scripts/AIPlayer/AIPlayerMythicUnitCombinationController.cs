@@ -94,6 +94,7 @@ namespace AIPlayer
         /// <returns>조합이 가능하면 true, 불가능하면 false</returns>
         public bool CanCombination()
         {
+            if (!_aiPlayerUnitData.HasValidNodes) return false;
             if (CheckCoolTime()) return false; // 쿨타임 체크
             _lastMergeTime = Time.time; // 쿨타임 리셋
             

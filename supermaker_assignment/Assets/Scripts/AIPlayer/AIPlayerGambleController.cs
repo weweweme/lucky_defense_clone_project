@@ -38,6 +38,7 @@ namespace AIPlayer
         /// <returns>도박이 가능하면 true, 불가능하면 false 반환</returns>
         public bool CanGamble()
         {
+            if (!_aiPlayerUnitData.HasValidNodes) return false;
             if (!_aiPlayerUnitData.IsSpawnPossible()) return false;
             
             // 신화 뽑기가 가능한지 확인. 신화 뽑기가 가능한 다이아가 없다면 시도조차 하지 않음

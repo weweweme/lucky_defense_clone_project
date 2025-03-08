@@ -26,7 +26,6 @@ namespace UI
             
             VW_UnitSpawn vwUnitSpawn = view as VW_UnitSpawn;
             AssertHelper.NotNull(typeof(PR_UnitSpawn), vwUnitSpawn);
-            
             vwUnitSpawn!.btnSpawn.OnClickAsObservable()
                 .Subscribe(TrySpawnUnit)
                 .AddTo(disposable);
@@ -55,6 +54,7 @@ namespace UI
         /// <returns>소환이 가능하면 true, 불가능하면 false</returns>
         private bool IsPossibleSpawn()
         {
+            if (!_mdlUnit.HasValidNodes) return false;
             if (!_mdlUnit.IsSpawnPossible()) return false;
 
             // 보유 골드가 부족한 경우 소환 중단

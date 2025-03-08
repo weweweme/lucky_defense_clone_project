@@ -1,5 +1,6 @@
 using System;
 using InGame.System;
+using Model;
 using UnityEngine;
 using UnityEngine.UI;
 using Util;
@@ -33,12 +34,20 @@ namespace UI
         [SerializeField] internal UnitActionUI unitMergeUI;
         [SerializeField] private GameObject _unitMergeDenyPanel;
 
+        private MDL_Unit _mdlUnit;
+        
         private void Awake()
         {
             AssertHelper.NotNull(typeof(VW_UnitPlacementSelection), _attackRangeSpriteRenderer);
             AssertHelper.NotNull(typeof(VW_UnitPlacementSelection), unitSellUI);
             AssertHelper.NotNull(typeof(VW_UnitPlacementSelection), unitMergeUI);
             AssertHelper.NotNull(typeof(VW_UnitPlacementSelection), _unitMergeDenyPanel);
+        }
+
+        private void Start()
+        {
+            _mdlUnit = RootManager.Ins.DataManager.Unit;
+            AssertHelper.NotNull(typeof(VW_UnitPlacementSelection), _mdlUnit);
         }
 
         public void ShowUnitPlacementField(UnitPlacementNode node)
@@ -64,6 +73,9 @@ namespace UI
             
             bool deniedPanelDisable = node.UnitGroup.IsFull();
             _unitMergeDenyPanel.SetActive(!deniedPanelDisable);
+
+            if (_mdlUnit.HasValidNodes) return;
+            _unitMergeDenyPanel.SetActive(true);
         }
     }
 }

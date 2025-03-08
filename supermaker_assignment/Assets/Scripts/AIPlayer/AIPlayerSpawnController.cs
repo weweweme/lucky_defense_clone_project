@@ -30,6 +30,7 @@ namespace AIPlayer
         /// <returns>유닛 생산이 가능하면 true, 불가능하면 false 반환</returns>
         public bool CanSpawnUnit()
         {
+            if (!_aiPlayerUnitData.HasValidNodes) return false;
             if (!_aiPlayerUnitData.IsSpawnPossible()) return false;
             
             // 보유 골드가 부족한 경우 소환 중단

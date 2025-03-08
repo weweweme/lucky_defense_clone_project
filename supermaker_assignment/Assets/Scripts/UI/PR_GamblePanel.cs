@@ -58,7 +58,8 @@ namespace UI
         {
             AssertHelper.NotEqualsEnum(typeof(PR_GamblePanel), grade, EUnitGrade.None);
             AssertHelper.NotEqualsEnum(typeof(PR_GamblePanel), grade, EUnitGrade.Common);
-            
+
+            if (!_mdlUnit.HasValidNodes) return;
             if (!IsPossibleGamble(grade)) return;
 
             ConsumeGambleCost(grade);
@@ -68,15 +69,12 @@ namespace UI
             if (!isSuccess)
             {
                 // TODO: 실패 UX 추가
-                UnityEngine.Debug.Log($"[Gamble Failed] Grade: {grade}");
                 return;
             }
 
             // TODO: 성공 UX 추가
             SUnitSpawnRequestData data = new SUnitSpawnRequestData(grade, GetRandomType(), EPlayerSide.South);
             _mdlUnit.SpawnUnit(data);
-
-            UnityEngine.Debug.Log($"[Gamble Success] Grade: {grade}");
         }
         
         /// <summary>
@@ -94,6 +92,7 @@ namespace UI
         private bool IsPossibleGamble(EUnitGrade grade)
         {
             if (!_mdlUnit.IsSpawnPossible()) return false;
+            if (!_mdlUnit.HasValidNodes) return false;
 
             AssertHelper.NotEqualsEnum(typeof(PR_GamblePanel), grade, EUnitGrade.None);
             AssertHelper.NotEqualsEnum(typeof(PR_GamblePanel), grade, EUnitGrade.Common);

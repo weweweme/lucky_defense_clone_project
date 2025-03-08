@@ -24,9 +24,11 @@ namespace UI
         [SerializeField] private RequiredUnitSlot[] _requiredUnitSlots;
         [SerializeField] internal Button combineBut;
         [SerializeField] private GameObject _combineButDenyPanel;
+        [SerializeField] private TextMeshProUGUI _combineButDenyText;
         
         private MDL_UnitResources _mdlUnitResources;
         private MDL_MythicUnitCombination _mdlMythicUnitCombination;
+        private MDL_Unit _mdlUnit;
 
         private void Awake()
         {
@@ -38,6 +40,7 @@ namespace UI
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _unitFullImage);
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _requiredUnitSlots);
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), combineBut);
+            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _combineButDenyPanel);
             
             const int REQUIRE_SLOT_COUNT = 3;
             AssertHelper.EqualsValue(typeof(VW_MythicUnitCombinationPanel), _requiredUnitSlots.Length, REQUIRE_SLOT_COUNT);
@@ -45,11 +48,16 @@ namespace UI
 
         private void Start()
         {
-            _mdlUnitResources = RootManager.Ins.DataManager.UnitResources;
+            var dataManager = RootManager.Ins.DataManager;
+            
+            _mdlUnitResources = dataManager.UnitResources;
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _mdlUnitResources);
             
-            _mdlMythicUnitCombination = RootManager.Ins.DataManager.MythicUnitCombination;
+            _mdlMythicUnitCombination = dataManager.MythicUnitCombination;
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _mdlMythicUnitCombination);
+            
+            _mdlUnit = dataManager.Unit;
+            AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), _mdlUnit);
         }
         
         public void SetCanvasActive(bool isActive) => _canvas.enabled = isActive;
@@ -89,6 +97,18 @@ namespace UI
             const uint COMBINE_FLAG_COUNT = 3;
             bool canCombine = flagCount == COMBINE_FLAG_COUNT;
             _combineButDenyPanel.SetActive(!canCombine);
+
+            bool isValidNodeExist = _mdlUnit.HasValidNodes;
+            if (canCombine)
+            {
+                if (isValidNodeExist) return;
+                _combineButDenyText.SetText("유효한 공간 부족!");
+                _combineButDenyPanel.SetActive(true);
+            }
+            else
+            {
+                _combineButDenyText.SetText(isValidNodeExist ? "유닛 불충분!" : "유효한 공간 부족!");    
+            }
         }
 
         /// <summary>

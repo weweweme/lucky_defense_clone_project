@@ -49,6 +49,7 @@ namespace AIPlayer
 
         public bool CanMerge()
         {
+            if (!_aiPlayerUnitData.HasValidNodes) return false;
             if (CheckCoolTime()) return false; // 쿨타임 체크
             _lastMergeTime = Time.time; // 쿨타임 리셋
 

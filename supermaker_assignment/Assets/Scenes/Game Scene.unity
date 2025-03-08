@@ -277,7 +277,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -31.9, y: 1.8}
+  m_AnchoredPosition: {x: -31.900002, y: 1.7999992}
   m_SizeDelta: {x: -50, y: -50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &51118850
@@ -8467,7 +8467,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4304a94cb1315407e92c832ffd81362f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _aiPlayerRoot: {fileID: 459902447}
 --- !u!1001 &923343665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15267,6 +15266,7 @@ MonoBehaviour:
   - {fileID: 858897397}
   combineBut: {fileID: 1065151931}
   _combineButDenyPanel: {fileID: 1668701868}
+  _combineButDenyText: {fileID: 572030913}
 --- !u!114 &1847254439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16159,6 +16159,7 @@ MonoBehaviour:
   enemyPathNodeManager: {fileID: 1813658367}
   _unitGridNodeManager: {fileID: 266216276}
   _sequenceManager: {fileID: 922398808}
+  _aiPlayerRoot: {fileID: 459902447}
 --- !u!1 &1949003308
 GameObject:
   m_ObjectHideFlags: 0

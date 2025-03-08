@@ -15,6 +15,7 @@ namespace AIPlayer
         [SerializeField] internal AIPlayerGambleController gambleController;
         [SerializeField] internal AIPlayerMythicUnitCombinationController mythicUnitCombinationController;
         internal AIPlayerDataModel dataModel;
+        public AIPlayerDataModel DataModel => dataModel;
         internal RootManager globalRootManager;
         
         private void Awake()
