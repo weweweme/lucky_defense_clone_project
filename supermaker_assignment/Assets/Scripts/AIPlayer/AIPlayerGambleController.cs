@@ -29,7 +29,7 @@ namespace AIPlayer
             
             _aiPlayerDataCurrency = dataModel.Currency;
             _aiPlayerUnitData = dataModel.Unit;
-            _mdlGlobalUnit = root.rootDataManager.Unit;
+            _mdlGlobalUnit = root.globalRootManager.DataManager.Unit;
         }
 
         /// <summary>
