@@ -1759,11 +1759,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1877562549}
-  m_Father: {fileID: 774533464}
+  m_Father: {fileID: 1518470091}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 54}
+  m_AnchoredPosition: {x: 0, y: 833.00006}
   m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &250815359
@@ -7306,8 +7306,9 @@ GameObject:
   - component: {fileID: 774533464}
   - component: {fileID: 774533467}
   - component: {fileID: 774533466}
+  - component: {fileID: 774533468}
   m_Layer: 5
-  m_Name: Image_Base Rect
+  m_Name: VW_Next Wave Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7325,7 +7326,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 250815358}
   - {fileID: 153081291}
   m_Father: {fileID: 1518470091}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7372,6 +7372,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 774533463}
   m_CullTransparentMesh: 1
+--- !u!114 &774533468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774533463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38bf947a8e62e4658a792a04c67aa43e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextWaveTimerText: {fileID: 153081292}
 --- !u!1 &782602167
 GameObject:
   m_ObjectHideFlags: 0
@@ -12755,6 +12768,7 @@ GameObject:
   - component: {fileID: 1518470095}
   - component: {fileID: 1518470094}
   - component: {fileID: 1518470093}
+  - component: {fileID: 1518470096}
   m_Layer: 5
   m_Name: VC_Wave Info
   m_TagString: Untagged
@@ -12775,6 +12789,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 774533464}
+  - {fileID: 250815358}
   m_Father: {fileID: 1750989006}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -12845,6 +12860,20 @@ Canvas:
   m_SortingLayerID: -2147147229
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1518470096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518470090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92892dc42f13b484e8a5e9dd6fa822cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rootManager: {fileID: 1939053484}
+  _vwNextWaveTimer: {fileID: 774533468}
 --- !u!1 &1544907292
 GameObject:
   m_ObjectHideFlags: 0
