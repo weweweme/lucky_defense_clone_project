@@ -55,6 +55,7 @@ namespace AIPlayer
                 if (!isMergePossibleGrade) continue;
 
                 _mergeNode = elem;
+                return true;
             }
             
             return false;
@@ -70,7 +71,9 @@ namespace AIPlayer
             
             EUnitGrade targetGrade = GetNextGrade(_mergeNode.UnitGroup.UnitGrade);
             EUnitType targetType = GetRandomType();
-            SUnitSpawnRequestData data = new SUnitSpawnRequestData(targetGrade, targetType, EPlayerSide.South);
+            
+            _mergeNode = null;
+            SUnitSpawnRequestData data = new SUnitSpawnRequestData(targetGrade, targetType, EPlayerSide.North);
             _globalMdlUnit.SpawnUnit(data);
             
             return TaskStatus.Success;
