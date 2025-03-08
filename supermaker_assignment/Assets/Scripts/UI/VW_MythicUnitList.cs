@@ -11,6 +11,7 @@ namespace UI
     public sealed class VW_MythicUnitList : View
     {
         [SerializeField] internal List<MythicUnitListItem> mythicUnitItemList;
+        [SerializeField] internal GameObject highlight;
         
         private void Awake()
         {
