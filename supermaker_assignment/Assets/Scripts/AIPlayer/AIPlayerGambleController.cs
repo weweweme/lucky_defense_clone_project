@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using CleverCrow.Fluid.BTs.Tasks;
 using Model;
 using Util;
@@ -9,6 +11,13 @@ namespace AIPlayer
     /// </summary>
     public sealed class AIPlayerGambleController : MonoBehaviourBase
     {
+        private static readonly Dictionary<EUnitGrade, SGambleMetaData> GAMBLE_META_DATA = new()
+        {
+            { EUnitGrade.Rare, new SGambleMetaData(EUnitGrade.Rare, 0.6f, 1) },
+            { EUnitGrade.Heroic, new SGambleMetaData(EUnitGrade.Heroic, 0.2f, 1) },
+            { EUnitGrade.Mythic, new SGambleMetaData(EUnitGrade.Mythic, 0.1f, 2) }
+        };
+        
         private AIPlayerDataCurrency _aiPlayerDataCurrency;
         private AIPlayerDataUnit _aiPlayerUnitData;
         private MDL_Unit _mdlGlobalUnit;
@@ -29,12 +38,13 @@ namespace AIPlayer
         /// <returns>도박이 가능하면 true, 불가능하면 false 반환</returns>
         public bool CanGamble()
         {
-            // TODO: 현재 AI가 도박을 진행할 수 있는 조건을 검토
-            // 1. 필요한 다이아몬드(도박 비용)를 보유하고 있는가?
-            // 2. 도박이 가능한 게임 상태인가?
-            // 3. 도박 시스템이 활성화된 상태인가?
-
-            return false; // 실제 로직을 구현 후 조건에 맞게 변경
+            if (!_aiPlayerUnitData.IsSpawnPossible()) return false;
+            
+            // 신화 뽑기가 가능한지 확인. 신화 뽑기가 가능한 다이아가 없다면 시도조차 하지 않음
+            if (!GAMBLE_META_DATA.TryGetValue(EUnitGrade.Mythic, out SGambleMetaData metaData)) return false;
+            
+            uint currentAvailableDia = _aiPlayerDataCurrency.GetDiamond();
+            return currentAvailableDia >= metaData.RequiredDia;
         }
         
         /// <summary>
