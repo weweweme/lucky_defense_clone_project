@@ -44,6 +44,7 @@ namespace Unit
         /// 노드 제거 시 어떤 조건 카운트를 감소시켜야 하는지 판단할 때 사용합니다.
         /// </summary>
         private readonly Dictionary<UnitPlacementNode, int> _nodeConditionMap = new Dictionary<UnitPlacementNode, int>();
+        public IReadOnlyDictionary<UnitPlacementNode, int> NodeConditionMap => _nodeConditionMap;
 
         /// <summary>
         /// 3개의 조합 조건을 초기화하는 생성자입니다.
