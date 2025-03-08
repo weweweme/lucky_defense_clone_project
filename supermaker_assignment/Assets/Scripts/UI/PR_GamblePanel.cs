@@ -146,7 +146,7 @@ namespace UI
         /// <returns>랜덤 유닛 타입</returns>
         private EUnitType GetRandomType()
         {
-            float meleeRatio = 0.6f;
+            float meleeRatio = 0.5f;
             
             return UnityEngine.Random.Range(0f, 1f) < meleeRatio ? EUnitType.Melee : EUnitType.Ranged;
         }
