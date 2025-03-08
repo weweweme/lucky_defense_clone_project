@@ -48999,6 +48999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _aliveEnemyPercentImg: {fileID: 8105344471393258736}
+  _aliveEnemyCountText: {fileID: 211760234}
 --- !u!224 &7339036786836589445
 RectTransform:
   m_ObjectHideFlags: 0
