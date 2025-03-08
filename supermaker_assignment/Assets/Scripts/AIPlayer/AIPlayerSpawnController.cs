@@ -26,9 +26,12 @@ namespace AIPlayer
         /// <returns>유닛 생산이 가능하면 true, 불가능하면 false 반환</returns>
         public bool CanSpawnUnit()
         {
-            // TODO: 현재 보유한 돈이 유닛 소환 비용보다 많은지 확인하는 로직 추가
-            // TODO: 최대 소환 가능한 유닛 수를 초과하지 않는지 확인하는 로직 추가
-            return false;
+            if (!_unit.IsSpawnPossible()) return false;
+            
+            // 보유 골드가 부족한 경우 소환 중단
+            uint currentSpawnNeededGold = _unit.GetSpawnNeededGold();
+            uint currentAvailableGold = _currency.GetGold();
+            return currentSpawnNeededGold <= currentAvailableGold;
         }
 
         /// <summary>
