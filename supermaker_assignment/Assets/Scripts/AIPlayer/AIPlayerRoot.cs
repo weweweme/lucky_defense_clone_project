@@ -13,11 +13,18 @@ namespace AI
         private void Awake()
         {
             AssertHelper.NotNull(typeof(AIPlayerRoot), btController);
+            
+            btController.Init(this);
         }
         
-        private void Start()
+        public void StartGame()
         {
-            btController.Init(this);
+            btController.StartBtTick();
+        }
+        
+        public void StopGame()
+        {
+            btController.Dispose();
         }
 
         protected override void OnDestroy()
