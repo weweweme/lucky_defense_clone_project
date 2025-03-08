@@ -1,4 +1,3 @@
-using AI;
 using Util;
 
 namespace AIPlayer
