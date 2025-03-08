@@ -14,6 +14,7 @@ namespace AIPlayer
         [SerializeField] internal AIPlayerMergeController mergeController;
         [SerializeField] internal AIPlayerSpawnController spawnController;
         internal AIPlayerDataModel dataModel;
+        internal DataManager rootDataManager;
         
         private void Awake()
         {
@@ -29,6 +30,10 @@ namespace AIPlayer
         public void Init(RootManager rootManager)
         {
             dataModel = new AIPlayerDataModel(rootManager.DataManager);
+            AssertHelper.NotNull(typeof(AIPlayerRoot), dataModel);
+            
+            rootDataManager = rootManager.DataManager;
+            AssertHelper.NotNull(typeof(AIPlayerRoot), rootDataManager);
         }
         
         public void ActivateAI()
