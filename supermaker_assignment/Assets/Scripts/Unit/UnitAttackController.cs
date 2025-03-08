@@ -65,7 +65,7 @@ namespace Unit
             StartAttacking(_cts.Token).Forget();
         }
 
-        public void OnTakeFromPoolInit(UnitRoot root)
+        public void ChangeAttackData(UnitRoot root)
         {
             UnitMetaData metaData = root.dependencyContainer.mdlUnitResources.GetResource(root.grade, root.type);
             AssertHelper.NotNull(typeof(UnitAttackController), metaData);

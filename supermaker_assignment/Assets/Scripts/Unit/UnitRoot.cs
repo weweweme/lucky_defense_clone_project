@@ -52,7 +52,7 @@ namespace Unit
             
             spriteController.ChangeVisible();
             _btController.StartBtTick();
-            attackController.OnTakeFromPoolInit(this);
+            attackController.ChangeAttackData(this);
         }
         
         public void ReleaseObject()
