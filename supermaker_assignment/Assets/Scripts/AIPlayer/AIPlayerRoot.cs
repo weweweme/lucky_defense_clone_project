@@ -11,6 +11,7 @@ namespace AI
     {
         [SerializeField] internal AIPlayerBTController btController;
         [SerializeField] internal AIPlayerMergeController mergeController;
+        internal readonly AIPlayerDataModel dataModel = new AIPlayerDataModel();
         
         private void Awake()
         {
