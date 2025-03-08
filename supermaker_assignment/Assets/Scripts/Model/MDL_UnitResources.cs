@@ -8,7 +8,7 @@ using Util;
 namespace Model
 {
     /// <summary>
-    /// 프로젝트 내부에서 사용되는 Sprite 리소스들을 관리하는 클래스입니다.
+    /// 프로젝트 내부에서 사용되는 유닛 관련 리소스들을 관리하는 클래스입니다.
     /// </summary>
     public sealed class MDL_UnitResources : MonoBehaviourBase
     {
