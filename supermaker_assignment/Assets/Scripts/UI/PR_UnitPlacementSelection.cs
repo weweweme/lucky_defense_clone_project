@@ -60,6 +60,9 @@ namespace UI
             selectedNode.SubUnit();
             // TODO: 추후 Grade와 Type에 따라 return하도록 변경.
             _mdlCurrency.SubGold(1);
+            
+            const uint SELL_UNIT_COUNT = 1;
+            ApplyUnitCount(SELL_UNIT_COUNT);
 
             // 판매 처리 후 노드가 비어있으면 선택된 노드를 null로 변경
             if (selectedNode.UnitGroup.IsEmpty())
@@ -92,8 +95,21 @@ namespace UI
             AssertHelper.NotEqualsEnum(typeof(PR_UnitPlacementSelection), targetGrade, EUnitGrade.None);
             
             EUnitType targetType = GetRandomType();
+            
+            const uint MERGE_UNIT_COUNT = 2; // -3 + 1 = 2
+            ApplyUnitCount(MERGE_UNIT_COUNT);
+            
             SUnitSpawnRequestData data = new SUnitSpawnRequestData(targetGrade, targetType, EPlayerSide.South);
             _mdlUnit.SpawnUnit(data);
+        }
+        
+        /// <summary>
+        /// 조합을 위한 유닛 수량을 적용하는 메서드입니다.
+        /// </summary>
+        private void ApplyUnitCount(uint subCount)
+        {
+            uint currentSpawnCount = _mdlUnit.GetCurrentSpawnCount();
+            _mdlUnit.SetCurrentSpawnCount(currentSpawnCount - subCount);
         }
 
         private EUnitGrade GetNextGrade(EUnitGrade grade) => grade + 1;
