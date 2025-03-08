@@ -8,14 +8,14 @@ namespace UI
     /// <summary>
     /// 현재 남은 적의 수를 보여주는 View 클래스입니다.
     /// </summary>
-    public sealed class VW_CurrentRemainigEnemyCount : View
+    public sealed class VW_CurrentRemainingEnemyCount : View
     {
         [SerializeField] private Image _remainingEnemyPercentImg;
         private const float MAX_ENEMY_COUNT = 100f;
         
         private void Awake()
         {
-            AssertHelper.NotNull(typeof(VW_CurrentRemainigEnemyCount), _remainingEnemyPercentImg);
+            AssertHelper.NotNull(typeof(VW_CurrentRemainingEnemyCount), _remainingEnemyPercentImg);
         }
 
         public void UpdateRemainingUI(uint remainingEnemyCount)
