@@ -13,7 +13,6 @@ namespace UI
     {
         private MDL_Unit _mdlUnit;
         private MDL_Currency _mdlCurrency;
-        private uint _maxPossibleSpawnCount;
         
         public override void Init(DataManager dataManager, View view)
         {
@@ -21,7 +20,6 @@ namespace UI
             
             _mdlUnit = dataManager.Unit;
             AssertHelper.NotNull(typeof(PR_UnitSpawn), _mdlUnit);
-            _maxPossibleSpawnCount = _mdlUnit.GetMaxPossibleSpawnCount();
             
             _mdlCurrency = dataManager.Currency;
             AssertHelper.NotNull(typeof(PR_UnitSpawn), _mdlCurrency);
@@ -33,29 +31,49 @@ namespace UI
                 .Subscribe(TrySpawnUnit)
                 .AddTo(disposable);
         }
-
+        
         /// <summary>
         /// 유닛 소환 시도 메서드입니다.
-        /// 버튼 클릭 이벤트로 호출되며, 소환에 필요한 골드와 현재 보유 골드를 비교하여 소환 가능 여부를 판단합니다.
+        /// 버튼 클릭 이벤트로 호출되며, 소환 가능 여부를 확인 후 소환을 진행합니다.
         /// </summary>
         /// <param name="_">버튼 클릭 이벤트에서 전달되는 파라미터 (사용하지 않음)</param>
         private void TrySpawnUnit(UniRx.Unit _)
         {
-            if (!_mdlUnit.IsSpawnPossible()) return;
-            
+            if (!IsPossibleSpawn()) return;
+
+            ConsumeSpawnCost();
+
+            SUnitSpawnRequestData data = new SUnitSpawnRequestData(GetRandomGrade(), GetRandomType(), EPlayerSide.South);
+            _mdlUnit.SpawnUnit(data);
+        }
+
+        /// <summary>
+        /// 유닛 소환이 가능한지 여부를 판단합니다.
+        /// 1. 현재 소환이 가능한 상태인지 확인
+        /// 2. 보유 골드가 충분한지 확인
+        /// </summary>
+        /// <returns>소환이 가능하면 true, 불가능하면 false</returns>
+        private bool IsPossibleSpawn()
+        {
+            if (!_mdlUnit.IsSpawnPossible()) return false;
+
             // 보유 골드가 부족한 경우 소환 중단
             uint currentSpawnNeededGold = _mdlUnit.GetSpawnNeededGold();
             uint currentAvailableGold = _mdlCurrency.GetGold();
-            if (currentSpawnNeededGold > currentAvailableGold) return;
-            
+            return currentSpawnNeededGold <= currentAvailableGold;
+        }
+
+        /// <summary>
+        /// 유닛 소환 비용을 차감하고, 필요한 골드와 소환 카운트를 증가시킵니다.
+        /// </summary>
+        private void ConsumeSpawnCost()
+        {
+            uint currentSpawnNeededGold = _mdlUnit.GetSpawnNeededGold();
             _mdlCurrency.SubtractGold(currentSpawnNeededGold);
             _mdlUnit.SetSpawnNeededGold(currentSpawnNeededGold + 1);
-            
+
             uint currentSpawnCount = _mdlUnit.GetCurrentSpawnCount();
             _mdlUnit.SetCurrentSpawnCount(currentSpawnCount + 1);
-            
-            SUnitSpawnRequestData data = new SUnitSpawnRequestData(GetRandomGrade(), GetRandomType(), EPlayerSide.South);
-            _mdlUnit.SpawnUnit(data);
         }
         
         private EUnitGrade GetRandomGrade()
