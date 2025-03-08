@@ -55,18 +55,18 @@ namespace UI
 
         private void TryGamble(EUnitGrade grade)
         {
-            if (IsPossibleGamble(grade)) return;
+            if (!IsPossibleGamble(grade)) return;
 
             float successProbability = GetGambleSuccessProbability(grade);
             bool isSuccess = UnityEngine.Random.Range(0f, 1f) < successProbability;
             if (!isSuccess)
             {
-                // 실패 처리 로직 (UI 메시지 출력, 리소스 차감 등 추가 가능)
+                // TODO: 실패 UX 추가
                 UnityEngine.Debug.Log($"[Gamble Failed] Grade: {grade}");
                 return;
             }
 
-            // 성공 시 유닛 소환
+            // TODO: 성공 UX 추가
             SUnitSpawnRequestData data = new SUnitSpawnRequestData(grade, GetRandomType(), EPlayerSide.South);
             _mdlUnit.SpawnUnit(data);
 
