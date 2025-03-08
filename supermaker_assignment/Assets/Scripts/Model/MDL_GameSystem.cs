@@ -22,5 +22,11 @@ namespace Model
         private readonly ReactiveProperty<bool> _gamblePanelVisible = new ReactiveProperty<bool>(false);
         public IReactiveProperty<bool> GamblePanelVisible => _gamblePanelVisible;
         public void SetGamblePanelVisible(bool value) => _gamblePanelVisible.Value = value;
+        
+        // 현재 게임 속도가 더블 스피드인지 나타내는 Rx.
+        private readonly ReactiveProperty<bool> _isDoubleSpeed = new ReactiveProperty<bool>(false);
+        public IReactiveProperty<bool> IsDoubleSpeed => _isDoubleSpeed;
+        public void SetDoubleGameSpeed(bool value) => _isDoubleSpeed.Value = value;
+        public bool IsDoubleSpeedActive() => _isDoubleSpeed.Value;
     }
 }
