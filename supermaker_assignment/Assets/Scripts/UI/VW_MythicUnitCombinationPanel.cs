@@ -120,7 +120,6 @@ namespace UI
             AssertHelper.NotNull(typeof(VW_MythicUnitCombinationPanel), metaData);
 
             slot.unitIcon.sprite = metaData.Sprite;
-            slot.approvedPanel.SetActive(isApproved);
             slot.deniedPanel.SetActive(!isApproved);
         }
     }

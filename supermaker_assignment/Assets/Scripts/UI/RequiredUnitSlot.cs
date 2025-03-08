@@ -20,18 +20,12 @@ namespace UI
         [SerializeField] internal GameObject deniedPanel;
 
         /// <summary>
-        /// 해당 유닛 조건이 충족되었을 때 표시되는 패널입니다.
-        /// </summary>
-        [SerializeField] internal GameObject approvedPanel;
-
-        /// <summary>
         /// 필수 컴포넌트들의 참조 여부를 확인하는 초기화 메서드입니다.
         /// </summary>
         private void Awake()
         {
             AssertHelper.NotNull(typeof(RequiredUnitSlot), unitIcon);
             AssertHelper.NotNull(typeof(RequiredUnitSlot), deniedPanel);
-            AssertHelper.NotNull(typeof(RequiredUnitSlot), approvedPanel);
         }
     }
 }
