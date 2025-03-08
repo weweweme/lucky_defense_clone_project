@@ -23,7 +23,12 @@ namespace AIPlayer
         public bool IsSpawnPossible() => _currentSpawnCount < MAX_POSSIBLE_SPAWN_COUNT;
         public void SetCurrentSpawnCount(uint value) => _currentSpawnCount = value;
         
-        public AIPlayerDataUnit(DataManager dataManager, CompositeDisposable disposable)
+        // 현재 유효한 노드가 있는지 여부
+        private bool _hasValidNodes = true;
+        public bool HasValidNodes => _hasValidNodes;
+        public void SetHasValidNodesStatus(bool value) => _hasValidNodes = value;
+        
+        public AIPlayerDataUnit(DataManager dataManager)
         {
             MDL_Unit unit = dataManager.Unit;
             AssertHelper.NotNull(typeof(AIPlayerDataModel), unit);

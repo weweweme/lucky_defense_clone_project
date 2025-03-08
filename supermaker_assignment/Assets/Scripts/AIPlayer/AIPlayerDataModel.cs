@@ -17,7 +17,7 @@ namespace AIPlayer
         public AIPlayerDataModel(DataManager dataManager)
         {
             _currency = new AIPlayerDataCurrency(dataManager, _disposable);
-            _unit = new AIPlayerDataUnit(dataManager, _disposable);
+            _unit = new AIPlayerDataUnit(dataManager);
         }
 
         public void Dispose()
