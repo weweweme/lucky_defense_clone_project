@@ -1,11 +1,10 @@
 using System.Threading;
-using AIPlayer;
 using CleverCrow.Fluid.BTs.Trees;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Util;
 
-namespace AI
+namespace AIPlayer
 {
     /// <summary>
     /// 상대 AI의 행동을 제어하는 BT 클래스입니다.
@@ -48,6 +47,11 @@ namespace AI
         /// AI 플레이어의 유닛 합성 컨트롤러입니다.
         /// </summary>
         private AIPlayerMergeController _mergeController;
+        
+        /// <summary>
+        /// AI 플레이어의 신화 유닛 조합 컨트롤러입니다.
+        /// </summary>
+        private AIPlayerMythicUnitCombinationController _mythicUnitCombinationController;
 
         public void Init(AIPlayerRoot root)
         {
@@ -55,6 +59,7 @@ namespace AI
             _spawnController = root.spawnController;
             _gambleController = root.gambleController;
             _mergeController = root.mergeController;
+            _mythicUnitCombinationController = root.mythicUnitCombinationController;
             _bt = CreateTree(root.gameObject);
         }
         
