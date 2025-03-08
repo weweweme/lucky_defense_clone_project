@@ -26,7 +26,6 @@ namespace UI
             
             VW_UnitSpawn vwUnitSpawn = view as VW_UnitSpawn;
             AssertHelper.NotNull(typeof(PR_UnitSpawn), vwUnitSpawn);
-            
             vwUnitSpawn!.btnSpawn.OnClickAsObservable()
                 .Subscribe(TrySpawnUnit)
                 .AddTo(disposable);
