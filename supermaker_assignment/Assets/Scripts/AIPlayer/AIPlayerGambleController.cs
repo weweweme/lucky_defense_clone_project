@@ -61,5 +61,37 @@ namespace AIPlayer
 
             return TaskStatus.Success; // 실제 결과에 따라 반환 값 변경
         }
+        
+        /// <summary>
+        /// AI가 어떤 등급의 도박을 선택할지 확률적으로 결정합니다.
+        /// </summary>
+        /// <returns>선택된 도박 등급</returns>
+        private EUnitGrade GetRandomGambleGrade()
+        {
+            float randomValue = UnityEngine.Random.Range(0f, 1f);
+            float cumulativeProbability = 0f;
+
+            foreach (var kvp in GAMBLE_META_DATA)
+            {
+                cumulativeProbability += kvp.Value.SuccessProbability;
+                if (randomValue < cumulativeProbability)
+                {
+                    return kvp.Key;
+                }
+            }
+
+            return EUnitGrade.Mythic; // 논리적으로 도달할 수 없는 경우 대비
+        }
+        
+        /// <summary>
+        /// 근거리와 원거리를 랜덤 선택합니다.
+        /// </summary>
+        /// <returns>랜덤 유닛 타입</returns>
+        private EUnitType GetRandomType()
+        {
+            float meleeRatio = 0.5f;
+            
+            return UnityEngine.Random.Range(0f, 1f) < meleeRatio ? EUnitType.Melee : EUnitType.Ranged;
+        }
     }
 }
