@@ -57,7 +57,7 @@ namespace UI
         {
             if (!IsPossibleGamble(grade)) return;
 
-            ConsumeGambleCost();
+            ConsumeGambleCost(grade);
             
             float successProbability = GetGambleSuccessProbability(grade);
             bool isSuccess = UnityEngine.Random.Range(0f, 1f) < successProbability;
