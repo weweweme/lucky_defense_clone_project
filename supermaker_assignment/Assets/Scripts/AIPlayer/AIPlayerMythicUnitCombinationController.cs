@@ -1,3 +1,4 @@
+using CleverCrow.Fluid.BTs.Tasks;
 using Util;
 
 namespace AIPlayer
@@ -10,6 +11,16 @@ namespace AIPlayer
         public void Init(AIPlayerRoot root)
         {
             
+        }
+
+        public bool CanCombination()
+        {
+            return false;
+        }
+        
+        public TaskStatus MythicUnitCombination()
+        {
+            return TaskStatus.Success;
         }
     }
 }
