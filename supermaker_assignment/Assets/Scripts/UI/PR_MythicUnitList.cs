@@ -13,13 +13,14 @@ namespace UI
     {
         private MDL_MythicUnitCombination _mdlMythicUnitCombination;
         private MythicUnitListItem _firstMythicUnitListItem;
+        private VW_MythicUnitList _vw;
         
         public override void Init(DataManager dataManager, View view)
         {
             AssertHelper.NotNull(typeof(PR_MythicUnitList), dataManager);
             
-            VW_MythicUnitList vw = view as VW_MythicUnitList;
-            AssertHelper.NotNull(typeof(PR_MythicUnitList), vw);
+            _vw = view as VW_MythicUnitList;
+            AssertHelper.NotNull(typeof(PR_MythicUnitList), _vw);
             
             MDL_GameSystem mdlSystem = dataManager.GameSystem;
             AssertHelper.NotNull(typeof(PR_MythicUnitList), mdlSystem);
@@ -29,13 +30,13 @@ namespace UI
 
             _mdlMythicUnitCombination = dataManager.MythicUnitCombination;
             AssertHelper.NotNull(typeof(PR_MythicUnitList), _mdlMythicUnitCombination);
-            _firstMythicUnitListItem = vw!.mythicUnitItemList[0];
-            foreach (var elem in vw!.mythicUnitItemList)
+            _firstMythicUnitListItem = _vw!.mythicUnitItemList[0];
+            foreach (var elem in _vw!.mythicUnitItemList)
             {
                 elem.unitButton.OnClickAsObservable()
                     .Subscribe(_ =>
                     {
-                        vw.highlight.transform.position = elem.transform.position;
+                        _vw.highlight.transform.position = elem.transform.position;
                         _mdlMythicUnitCombination.DisplayMythicUnitCombination(new SCurrentMythicUnitCombinationData(elem.unitName, elem.unitType));
                     })
                     .AddTo(disposable);
@@ -46,6 +47,7 @@ namespace UI
         {
             if (!value) return;
             
+            _vw.highlight.transform.position = _firstMythicUnitListItem.transform.position;
             _mdlMythicUnitCombination.DisplayMythicUnitCombination(new SCurrentMythicUnitCombinationData(_firstMythicUnitListItem.unitName, _firstMythicUnitListItem.unitType));
         }
     }
