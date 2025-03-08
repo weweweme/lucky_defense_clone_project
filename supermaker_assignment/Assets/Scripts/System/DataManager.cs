@@ -18,10 +18,14 @@ namespace System
 
         [SerializeField] private MDL_UnitResources _unitResources;
         public MDL_UnitResources UnitResources => _unitResources;
+        
+        [SerializeField] private MDL_EnemyResources _enemyResources;
+        public MDL_EnemyResources EnemyResources => _enemyResources;
 
         private void Awake()
         {
             AssertHelper.NotNull(typeof(DataManager), _unitResources);
+            AssertHelper.NotNull(typeof(DataManager), _enemyResources);
         }
     }
 }
