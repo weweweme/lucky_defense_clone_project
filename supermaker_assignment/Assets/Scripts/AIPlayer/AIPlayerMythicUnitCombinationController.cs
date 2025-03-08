@@ -2,7 +2,6 @@ using System;
 using CleverCrow.Fluid.BTs.Tasks;
 using System.Collections.Generic;
 using Model;
-using UnityEngine;
 using Util;
 
 namespace AIPlayer
@@ -12,6 +11,8 @@ namespace AIPlayer
     /// </summary>
     public sealed class AIPlayerMythicUnitCombinationController : MonoBehaviourBase
     {
+        private const int INVALID_MATCHED_INDEX = -1;
+        
         /// <summary>
         /// AI가 신화 유닛 조합을 수행하기 위해 필요한 유닛 조건을 정의합니다.
         /// </summary>
@@ -120,6 +121,7 @@ namespace AIPlayer
                 // 현재 노드가 checker의 조합 조건 중 하나와 일치하는지 확인
                 // 일치하는 경우 matchedIndex에 해당 조건의 인덱스를 저장
                 if (!TryMatchCondition(node, checker, out int matchedIndex)) continue;
+                AssertHelper.NotEqualsValue(typeof(AIPlayerMythicUnitCombinationController), matchedIndex, INVALID_MATCHED_INDEX);
 
                 _matchingNodes[node] = matchedIndex; // 조합 가능한 유닛이 위치한 노드 저장
                 _matchedIndices.Add(matchedIndex); // 이미 매칭된 조건 인덱스 기록
@@ -153,7 +155,7 @@ namespace AIPlayer
                 }
             }
 
-            matchedIndex = -1; // 정상적인 흐름에서는 사용되지 않음 (return false 시점에서 처리됨)
+            matchedIndex = INVALID_MATCHED_INDEX; // 정상적인 흐름에서는 사용되지 않음 (return false 시점에서 처리됨)
             return false;
         }
 
