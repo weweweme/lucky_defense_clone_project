@@ -57,6 +57,10 @@ namespace UI
             _attackRangeSpriteRenderer.transform.localScale = new Vector3(diameter, diameter, 1f);
 
             transform.position = node.transform.position;
+            
+            // 신화 등급 미만일 경우에만 unitMergeUI 활성화
+            bool canMerge = node.UnitGroup.UnitGrade < EUnitGrade.Mythic;
+            unitMergeUI.SetActive(canMerge);
         }
     }
 }
