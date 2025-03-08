@@ -10,11 +10,8 @@ namespace Unit
     /// </summary>
     public class UnitRoot : PooledEntityRootBase
     {
-        private EUnitGrade _grade = EUnitGrade.None;
-        public EUnitGrade Grade => _grade;
-        
-        private EUnitType _type = EUnitType.None;
-        public EUnitType Type => _type;
+        internal EUnitGrade grade = EUnitGrade.None;
+        internal EUnitType type = EUnitType.None;
         
         [SerializeField] internal UnitAttackController attackController;
         [SerializeField] internal UnitSpriteController spriteController;
@@ -34,28 +31,28 @@ namespace Unit
             
             dependencyContainer = container;
             _btController = new UnitBTController(this);
-            spriteController.Init(this);
-            attackController.Init();
+            spriteController.CreatePooledItemInit(this);
+            attackController.CreatePooledItemInit();
         }
         
-        public void SetupUnitClassification(EUnitGrade grade, EUnitType type)
+        public void SetupUnitClassification(EUnitGrade unitGrade, EUnitType unitType)
         {
-            AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),grade, EUnitGrade.None);
-            AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),type, EUnitType.None);
+            AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),unitGrade, EUnitGrade.None);
+            AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),unitType, EUnitType.None);
             
-            _grade = grade;
-            _type = type;
+            grade = unitGrade;
+            type = unitType;
         }
 
         public override void OnTakeFromPoolInit(EPlayerSide side)
         {
             AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),side, EPlayerSide.None);
-            AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),_grade, EUnitGrade.None);
-            AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),_type, EUnitType.None);
+            AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),grade, EUnitGrade.None);
+            AssertHelper.NotEqualsEnum(typeof(EnemySpawnHandler),type, EUnitType.None);
             
             spriteController.ChangeVisible();
             _btController.StartBtTick();
-            attackController.OnTakeFromPoolInit(this);
+            attackController.ChangeAttackData(this);
         }
         
         public void ReleaseObject()

@@ -18,10 +18,6 @@ namespace Unit
         /// </summary>
         private UnitRoot _unitRoot;
 
-        /// <summary>
-        /// 컴포넌트 초기화 시 SpriteRenderer 컴포넌트를 필수로 가져옵니다.
-        /// 존재하지 않을 경우 예외를 발생시켜 문제 상황을 조기에 인지할 수 있도록 합니다.
-        /// </summary>
         private void Awake()
         {
             AssertHelper.NotNull(typeof(UnitSpriteController), _spriteRenderer);
@@ -29,10 +25,9 @@ namespace Unit
 
         /// <summary>
         /// 유닛 생성 시점에 UnitRoot 정보를 주입받아 내부 참조를 설정합니다.
-        /// 이를 통해, 유닛의 등급과 타입 정보를 기반으로 적절한 Sprite를 가져올 수 있습니다.
         /// </summary>
         /// <param name="root">해당 유닛의 UnitRoot 참조</param>
-        public void Init(UnitRoot root)
+        public void CreatePooledItemInit(UnitRoot root)
         {
             _unitRoot = root;
         }
@@ -43,7 +38,7 @@ namespace Unit
         /// </summary>
         public void ChangeVisible()
         {
-            UnitMetaData metaData = _unitRoot.dependencyContainer.mdlUnitResources.GetResource(_unitRoot.Grade, _unitRoot.Type);
+            UnitMetaData metaData = _unitRoot.dependencyContainer.mdlUnitResources.GetResource(_unitRoot.grade, _unitRoot.type);
             AssertHelper.NotNull(typeof(UnitAttackController), metaData);
             
             _spriteRenderer.sprite = metaData.Sprite;

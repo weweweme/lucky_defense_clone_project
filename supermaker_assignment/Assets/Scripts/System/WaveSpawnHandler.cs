@@ -44,10 +44,10 @@ namespace System
         /// <param name="token">작업 취소 토큰</param>
         public async UniTaskVoid HandleWaveSpawnAsync(uint currentWave, CancellationToken token)
         {
-            // TODO: 보스 웨이브인지, 노말 웨이브인지 확인하고 데이터 셋업하는 기능 추가
-            _currentSpawnMetaData.SetData(EEnemyType.Common, currentWave);
-            
-            if (currentWave % 10 == 0)
+            EEnemyType enemyType = (currentWave % 10 == 0) ? EEnemyType.Boss : EEnemyType.Common;
+            _currentSpawnMetaData.SetData(enemyType, currentWave);
+
+            if (enemyType == EEnemyType.Boss)
             {
                 SpawnBossWave();
             }
@@ -97,7 +97,6 @@ namespace System
         private void SpawnBossWave()
         {
             // TODO: waveNumber에 따라 에너미가 강해지는 기능 추가
-            // TODO: 보스 소환 이벤트 발행으로 변경
             SpawnEnemy(EPlayerSide.North);
             SpawnEnemy(EPlayerSide.South);
         }

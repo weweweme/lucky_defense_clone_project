@@ -17,5 +17,11 @@ namespace Model
         {
             AssertHelper.EqualsValue(typeof(MDL_EnemyResources), (uint)_enemyResourceList.Count, CURRENT_ENEMY_COUNT);
         }
+        
+        public EnemyMetaData GetResources(uint waveIdx)
+        {
+            uint targetIdx = (waveIdx - 1) % CURRENT_ENEMY_COUNT;
+            return _enemyResourceList[(int)targetIdx];
+        }
     }
 }

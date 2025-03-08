@@ -10,8 +10,15 @@ namespace Enemy
     /// </summary>
     public sealed class EnemyRoot : PooledEntityRootBase
     {
+        /// <summary>
+        /// 현재 몇번째 웨이브에 생성되었는지 저장하는 변수입니다. 
+        /// </summary>
+        internal uint currentSpawnWaveIdx;
+        internal EEnemyType type;
+        
         [SerializeField] internal EnemyMoveController moveController;
         [SerializeField] internal EnemyStatController statController;
+        [SerializeField] internal EnemySpriteController spriteController;
         internal EnemyDependencyContainer dependencyContainer;
 
         private void Awake()
@@ -27,6 +34,15 @@ namespace Enemy
             
             dependencyContainer = container;
             statController.CreatePooledItemInit(this);
+            spriteController.CreatePooledItemInit(this);
+        }
+        
+        public void SetUpClassification(EEnemyType enemyType, uint waveIdx)
+        {
+            AssertHelper.NotEqualsEnum(typeof(EnemyRoot), enemyType, EEnemyType.None);
+            
+            type = enemyType;
+            currentSpawnWaveIdx = waveIdx;
         }
 
         public override void OnTakeFromPoolInit(EPlayerSide side)
@@ -39,6 +55,7 @@ namespace Enemy
             
             moveController.OnActivate(pathNodePtr);
             statController.OnTakeFromPoolInit();
+            spriteController.ChangeVisible();
         }
     }
 }
