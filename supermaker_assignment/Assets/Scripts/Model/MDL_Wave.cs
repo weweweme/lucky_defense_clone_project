@@ -10,9 +10,10 @@ namespace Model
     {
         // 현재 몇 웨이브인지 나타내는 Rx
         private const int ROUND_INCREMENT = 1;
-        private readonly ReactiveProperty<uint> _currentWave = new ReactiveProperty<uint>(0);
-        public IReadOnlyReactiveProperty<uint> CurrentWave => _currentWave;
-        public void TriggerNextWave() => _currentWave.Value = _currentWave.Value + ROUND_INCREMENT;
+        private readonly ReactiveProperty<uint> _currentWaveCount = new ReactiveProperty<uint>(0);
+        public IReadOnlyReactiveProperty<uint> CurrentWaveCount => _currentWaveCount;
+        public uint GetCurrentWaveCount() => _currentWaveCount.Value;
+        public void TriggerNextWave() => _currentWaveCount.Value = _currentWaveCount.Value + ROUND_INCREMENT;
         
         // 현재 웨이브의 상태를 나타내는 Rx
         private readonly ReactiveProperty<EWaveState> _waveState = new ReactiveProperty<EWaveState>(EWaveState.Spawning);

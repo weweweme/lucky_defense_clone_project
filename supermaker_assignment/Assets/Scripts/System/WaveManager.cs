@@ -78,7 +78,7 @@ namespace System
             _mdlWave.TriggerNextWave();
             _mdlWave.SetWaveState(EWaveState.Spawning);
             
-            uint currentWave = _mdlWave.CurrentWave.Value;
+            uint currentWave = _mdlWave.GetCurrentWaveCount();
             
             _spawnHandler.HandleWaveSpawnAsync(currentWave, token).Forget();
             

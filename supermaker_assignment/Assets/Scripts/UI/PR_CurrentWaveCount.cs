@@ -1,6 +1,8 @@
 using System;
 using InGame.System;
+using Model;
 using Util;
+using UniRx;
 
 namespace UI
 {
@@ -15,6 +17,12 @@ namespace UI
 
             VW_CurrentWaveCount vw = view as VW_CurrentWaveCount;
             AssertHelper.NotNull(typeof(PR_CurrentWaveCount), vw);
+            
+            MDL_Wave mdl = dataManager.Wave;
+            AssertHelper.NotNull(typeof(PR_CurrentWaveCount), mdl);
+            mdl.CurrentWaveCount
+                .Subscribe(vw!.SetWaveCount)
+                .AddTo(disposable);
         }
     }
 }
