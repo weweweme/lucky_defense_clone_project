@@ -57,6 +57,8 @@ namespace UI
         {
             if (!IsPossibleGamble(grade)) return;
 
+            ConsumeGambleCost();
+            
             float successProbability = GetGambleSuccessProbability(grade);
             bool isSuccess = UnityEngine.Random.Range(0f, 1f) < successProbability;
             if (!isSuccess)
@@ -98,6 +100,20 @@ namespace UI
             }
            
             throw new ArgumentOutOfRangeException(nameof(grade), grade, "Unsupported grade for gambling."); 
+        }
+        
+        /// <summary>
+        /// 도박 비용을 차감합니다.
+        /// </summary>
+        /// <param name="grade">어떤 등급 도박을 수행했는지 알 수 있는 등급</param>
+        private void ConsumeGambleCost(EUnitGrade grade)
+        {
+            AssertHelper.NotEqualsEnum(typeof(PR_GamblePanel), grade, EUnitGrade.None);
+
+            if (GAMBLE_META_DATA.TryGetValue(grade, out SGambleMetaData metaData))
+            {
+                _mdlCurrency.SubtractDiamond(metaData.RequiredDia);
+            }
         }
 
         /// <summary>
