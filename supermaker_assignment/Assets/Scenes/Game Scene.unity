@@ -10921,7 +10921,7 @@ MonoBehaviour:
     ScaleSize: 1
     AttackDamage: 20
     AttackRange: 4
-    AttackFireRate: 0.1
+    AttackFireRate: 0.5
   - Grade: 1
     Type: 2
     SellPrice: 0
@@ -10929,7 +10929,7 @@ MonoBehaviour:
     ScaleSize: 1
     AttackDamage: 15
     AttackRange: 7
-    AttackFireRate: 0.1
+    AttackFireRate: 0.3
   - Grade: 2
     Type: 1
     SellPrice: 10
@@ -10937,7 +10937,7 @@ MonoBehaviour:
     ScaleSize: 1
     AttackDamage: 30
     AttackRange: 4
-    AttackFireRate: 0.1
+    AttackFireRate: 0.5
   - Grade: 2
     Type: 2
     SellPrice: 10
@@ -10945,7 +10945,7 @@ MonoBehaviour:
     ScaleSize: 1
     AttackDamage: 30
     AttackRange: 7
-    AttackFireRate: 0.1
+    AttackFireRate: 0.3
   - Grade: 3
     Type: 1
     SellPrice: 50
@@ -10953,7 +10953,7 @@ MonoBehaviour:
     ScaleSize: 4.4
     AttackDamage: 120
     AttackRange: 4
-    AttackFireRate: 0.1
+    AttackFireRate: 0.5
   - Grade: 3
     Type: 2
     SellPrice: 50
@@ -10961,7 +10961,7 @@ MonoBehaviour:
     ScaleSize: 3.8
     AttackDamage: 80
     AttackRange: 7
-    AttackFireRate: 0.1
+    AttackFireRate: 0.3
   - Grade: 4
     Type: 1
     SellPrice: 100
@@ -10969,7 +10969,7 @@ MonoBehaviour:
     ScaleSize: 8
     AttackDamage: 200
     AttackRange: 4
-    AttackFireRate: 0.1
+    AttackFireRate: 0.5
   - Grade: 4
     Type: 2
     SellPrice: 100
@@ -10977,7 +10977,7 @@ MonoBehaviour:
     ScaleSize: 8
     AttackDamage: 150
     AttackRange: 7
-    AttackFireRate: 0.1
+    AttackFireRate: 0.3
   _mythicUnitFullSpriteDic:
     m_keys: 0100000002000000
     m_values:
