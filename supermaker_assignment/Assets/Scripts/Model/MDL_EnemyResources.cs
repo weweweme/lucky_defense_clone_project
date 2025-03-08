@@ -1,0 +1,21 @@
+using System.Collections.Generic;
+using Enemy;
+using UnityEngine;
+using Util;
+
+namespace Model
+{
+    /// <summary>
+    /// 프로젝트 내부에서 사용되는 적 캐릭터의 리소스를 관리하는 클래스입니다.
+    /// </summary>
+    public sealed class MDL_EnemyResources : MonoBehaviourBase
+    {
+        private const uint CURRENT_ENEMY_COUNT = 10;
+        [SerializeField] private List<EnemyMetaData> _enemyResourceList;
+        
+        private void Awake()
+        {
+            AssertHelper.EqualsValue(typeof(MDL_EnemyResources), (uint)_enemyResourceList.Count, CURRENT_ENEMY_COUNT);
+        }
+    }
+}
