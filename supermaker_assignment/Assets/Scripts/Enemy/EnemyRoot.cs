@@ -10,6 +10,12 @@ namespace Enemy
     /// </summary>
     public sealed class EnemyRoot : PooledEntityRootBase
     {
+        /// <summary>
+        /// 현재 몇번째 웨이브에 생성되었는지 저장하는 변수입니다. 
+        /// </summary>
+        internal uint currentSpawnWaveIdx;
+        internal EEnemyType type;
+        
         [SerializeField] internal EnemyMoveController moveController;
         [SerializeField] internal EnemyStatController statController;
         internal EnemyDependencyContainer dependencyContainer;
@@ -18,6 +24,14 @@ namespace Enemy
         {
             AssertHelper.NotNull(typeof(EnemyRoot), moveController);
             AssertHelper.NotNull(typeof(EnemyRoot), statController);
+        }
+        
+        public void SetUpClassification(EEnemyType enemyType, uint waveIdx)
+        {
+            AssertHelper.NotEqualsEnum(typeof(EnemyRoot), enemyType, EEnemyType.None);
+            
+            type = enemyType;
+            currentSpawnWaveIdx = waveIdx;
         }
         
         public override void CreatePooledItemInit(DependencyContainerBase containerBase)
