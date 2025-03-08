@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _view: {fileID: 9024578723320691347}
-  _maxHP: 100
+  _maxHP: 500
 --- !u!114 &976538610315278562
 MonoBehaviour:
   m_ObjectHideFlags: 0
