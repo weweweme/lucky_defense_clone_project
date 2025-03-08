@@ -35,7 +35,10 @@ namespace Enemy
         /// </summary>
         public void ChangeVisible()
         {
+            EnemyMetaData metaData = _enemyRoot.dependencyContainer.mdlEnemyResources.GetResources(_enemyRoot.currentSpawnWaveIdx);
+            AssertHelper.NotNull(typeof(EnemySpriteController), metaData);
             
+            _spriteRenderer.sprite = metaData.Sprite;
         }
     }
 }
