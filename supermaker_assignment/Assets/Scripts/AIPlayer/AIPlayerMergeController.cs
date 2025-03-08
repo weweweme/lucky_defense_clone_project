@@ -1,4 +1,5 @@
 using System;
+using CleverCrow.Fluid.BTs.Tasks;
 using Util;
 
 namespace AIPlayer
@@ -13,6 +14,16 @@ namespace AIPlayer
         public void Init(AIPlayerRoot root)
         {
             _northGridNodes = root.globalRootManager.UnitGridNodeManager.NorthGridNodes;
+        }
+
+        public bool CanMerge()
+        {
+            return false;
+        }
+        
+        public TaskStatus TryMerge()
+        {
+            return TaskStatus.Success;
         }
     }
 }
