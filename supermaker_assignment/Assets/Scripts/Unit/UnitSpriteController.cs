@@ -1,3 +1,4 @@
+using Model;
 using UnityEngine;
 using Util;
 
@@ -17,6 +18,11 @@ namespace Unit
         /// 해당 유닛의 최상위 컨테이너인 UnitRoot 참조
         /// </summary>
         private UnitRoot _unitRoot;
+        
+        /// <summary>
+        /// 유닛의 등급 및 타입에 따른 리소스 정보를 관리하는 모델 클래스
+        /// </summary>
+        private MDL_UnitResources _mdl;
 
         private void Awake()
         {
@@ -30,6 +36,7 @@ namespace Unit
         public void CreatePooledItemInit(UnitRoot root)
         {
             _unitRoot = root;
+            _mdl = root.dependencyContainer.mdlUnitResources;
         }
 
         /// <summary>
@@ -38,10 +45,14 @@ namespace Unit
         /// </summary>
         public void ChangeVisible()
         {
-            UnitMetaData metaData = _unitRoot.dependencyContainer.mdlUnitResources.GetResource(_unitRoot.grade, _unitRoot.type);
+            UnitMetaData metaData = _mdl.GetResource(_unitRoot.grade, _unitRoot.type);
             AssertHelper.NotNull(typeof(UnitAttackController), metaData);
             
+            Material material = _mdl.GetUnitGradeMaterial(_unitRoot.grade);
+            AssertHelper.NotNull(typeof(UnitAttackController), material);
+            
             _spriteRenderer.sprite = metaData.Sprite;
+            _spriteRenderer.material = material;
             _spriteRenderer.transform.localScale = Vector3.one * metaData.ScaleSize;
         }
     }

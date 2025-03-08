@@ -9,4 +9,7 @@ namespace Util
     
     [Serializable]
     public class UnitGradeToGambleMetaDataDic : SerializableDictionary<EUnitGrade, GambleChoiceItem> { }
+    
+    [Serializable]
+    public class UnitGradeToMaterialDic : SerializableDictionary<EUnitGrade, Material> { }
 }
