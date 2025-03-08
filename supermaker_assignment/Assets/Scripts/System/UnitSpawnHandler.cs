@@ -54,6 +54,9 @@ namespace System
             AssertHelper.NotNull(typeof(UnitSpawnHandler), placementNode);
             placementNode.AddUnit(unit);
 
+            // 만약 유저의 유닛 스폰이 아니라면 더이상 진행하지 않습니다.
+            if (data.SpawnSide == EPlayerSide.South) return;
+            
             foreach (var elem in _mdlMythicUnitCombination.GetCombinationFlagCheckers())
             {
                 elem.HandleAddUnit(placementNode);
