@@ -17,6 +17,13 @@ namespace AIPlayer
         public void AddGold(uint amount) => _gold += amount;
         public void SubtractGold(uint amount) => _gold -= amount;
         
+        // 다이아몬드 관련 데이터
+        private const uint INITIAL_DIAMOND = 3;
+        private uint _diamond = INITIAL_DIAMOND;
+        public uint GetDiamond() => _diamond;
+        public void AddDiamond(uint amount) => _diamond += amount;
+        public void SubDiamond(uint amount) => _diamond -= amount;
+        
         public AIPlayerDataCurrency(DataManager dataManager, CompositeDisposable disposable)
         {
             MDL_Enemy enemy = dataManager.Enemy;
