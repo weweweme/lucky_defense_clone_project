@@ -97,6 +97,10 @@ namespace UI
 
             selectedNode.BeforeMergeClearUnit();
             _mdlUnitPlacementField.SelectNode(null);
+            foreach (var elem in _mdlMythicUnitCombination.GetCombinationFlagCheckers())
+            {
+                elem.HandleRemoveUnit(selectedNode);
+            }
             
             EUnitGrade targetGrade = GetNextGrade(grade);
             AssertHelper.NotEqualsEnum(typeof(PR_UnitPlacementSelection), targetGrade, EUnitGrade.None);
