@@ -142,4 +142,39 @@ namespace System
             UnitType = unitType;
         }
     }
+
+    /// <summary>
+    /// 특정 유닛 등급에 대한 도박(뽑기) 정보를 저장하는 구조체입니다.
+    /// 도박 시 성공 확률과 필요한 다이아 수량을 포함합니다.
+    /// </summary>
+    public readonly struct SGambleMetaData
+    {
+        /// <summary>
+        /// 도박 대상 유닛의 등급입니다.
+        /// </summary>
+        public EUnitGrade Grade { get; }
+
+        /// <summary>
+        /// 도박 성공 확률 (0.0f ~ 1.0f 범위).
+        /// </summary>
+        public float SuccessProbability { get; }
+
+        /// <summary>
+        /// 도박 시 필요한 다이아 수량입니다.
+        /// </summary>
+        public uint RequiredDia { get; }
+
+        /// <summary>
+        /// 도박 메타데이터를 초기화하는 생성자입니다.
+        /// </summary>
+        /// <param name="grade">도박 대상 유닛 등급</param>
+        /// <param name="successProbability">도박 성공 확률 (0.0f ~ 1.0f)</param>
+        /// <param name="requiredDia">필요한 다이아 수량</param>
+        public SGambleMetaData(EUnitGrade grade, float successProbability, uint requiredDia)
+        {
+            Grade = grade;
+            SuccessProbability = successProbability;
+            RequiredDia = requiredDia;
+        }
+    }
 }
