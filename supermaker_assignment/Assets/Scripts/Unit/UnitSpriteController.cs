@@ -18,10 +18,6 @@ namespace Unit
         /// </summary>
         private UnitRoot _unitRoot;
 
-        /// <summary>
-        /// 컴포넌트 초기화 시 SpriteRenderer 컴포넌트를 필수로 가져옵니다.
-        /// 존재하지 않을 경우 예외를 발생시켜 문제 상황을 조기에 인지할 수 있도록 합니다.
-        /// </summary>
         private void Awake()
         {
             AssertHelper.NotNull(typeof(UnitSpriteController), _spriteRenderer);
