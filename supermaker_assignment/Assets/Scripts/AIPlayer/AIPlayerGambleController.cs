@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using CleverCrow.Fluid.BTs.Tasks;
 using Model;
-using UnityEngine;
 using Util;
 
 namespace AIPlayer
@@ -54,6 +53,7 @@ namespace AIPlayer
         public TaskStatus TryGamble()
         {
             EUnitGrade tryTargetGrade = GetRandomGambleGrade();
+            ConsumeGambleCost(tryTargetGrade);
             float targetSuccessProbability = GetGambleSuccessProbability(tryTargetGrade);
             bool isSuccess = UnityEngine.Random.Range(0f, 1f) < targetSuccessProbability;
             if (!isSuccess) return TaskStatus.Success;
@@ -61,6 +61,21 @@ namespace AIPlayer
             SUnitSpawnRequestData data = new SUnitSpawnRequestData(tryTargetGrade, GetRandomType(), EPlayerSide.North);
             _mdlGlobalUnit.SpawnUnit(data);
             return TaskStatus.Success;
+        }
+        
+        /// <summary>
+        /// 도박 비용을 차감합니다.
+        /// </summary>
+        /// <param name="grade">어떤 등급 도박을 수행했는지 알 수 있는 등급</param>
+        private void ConsumeGambleCost(EUnitGrade grade)
+        {
+            AssertHelper.NotEqualsEnum(typeof(AIPlayerGambleController), grade, EUnitGrade.None);
+            AssertHelper.NotEqualsEnum(typeof(AIPlayerGambleController), grade, EUnitGrade.Common);
+
+            if (GAMBLE_META_DATA.TryGetValue(grade, out SGambleMetaData metaData))
+            {
+                _aiPlayerDataCurrency.SubDiamond(metaData.RequiredDia);
+            }
         }
         
         /// <summary>
