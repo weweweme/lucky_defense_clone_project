@@ -72,8 +72,8 @@ namespace AI
 
                     // 3. 유닛 생산 (돈이 있을 경우)
                     .Sequence("유닛 생산 가능할 때")
-                        .Condition("유닛을 생산할 돈이 있는가?", () => false)  // TODO: 실제 돈 확인 조건으로 변경
-                        .Do("유닛 생산 실행", () => TaskStatus.Success) // TODO: 실제 유닛 생산 로직으로 변경
+                        .Condition("유닛을 생산할 돈이 있는가?", _spawnController.CanSpawnUnit)
+                        .Do("유닛 생산 실행", _spawnController.TrySpawnUnit)
                     .End()
 
                 .End()
