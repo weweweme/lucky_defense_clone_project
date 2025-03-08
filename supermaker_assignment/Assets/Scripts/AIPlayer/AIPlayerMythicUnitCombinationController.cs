@@ -2,6 +2,7 @@ using System;
 using CleverCrow.Fluid.BTs.Tasks;
 using System.Collections.Generic;
 using Model;
+using UnityEngine;
 using Util;
 
 namespace AIPlayer
@@ -12,6 +13,8 @@ namespace AIPlayer
     public sealed class AIPlayerMythicUnitCombinationController : MonoBehaviourBase
     {
         private const int INVALID_MATCHED_INDEX = -1;
+        private const float COMBINATION_COOLDOWN = 15f; // 신화 유닛 조합 쿨타임 (초)
+        private float _lastMergeTime;
         
         /// <summary>
         /// AI가 신화 유닛 조합을 수행하기 위해 필요한 유닛 조건을 정의합니다.
@@ -91,6 +94,9 @@ namespace AIPlayer
         /// <returns>조합이 가능하면 true, 불가능하면 false</returns>
         public bool CanCombination()
         {
+            if (CheckCoolTime()) return false; // 쿨타임 체크
+            _lastMergeTime = Time.time; // 쿨타임 리셋
+            
             _selectedCombinationChecker = default; // 초기화
 
             foreach (var checker in _combinationCheckers)
@@ -102,6 +108,15 @@ namespace AIPlayer
                 }
             }
             return false;
+        }
+        
+        /// <summary>
+        /// 현재 쿨타임이 지나지 않았는지 확인하는 메서드.
+        /// </summary>
+        /// <returns>쿨타임 중이면 true, 아니면 false</returns>
+        private bool CheckCoolTime()
+        {
+            return Time.time - _lastMergeTime < COMBINATION_COOLDOWN;
         }
 
         /// <summary>
