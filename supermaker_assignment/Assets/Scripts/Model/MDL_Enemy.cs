@@ -19,8 +19,8 @@ namespace Model
         public void KillEnemy(EEnemyType type) => _onEnemyDeath.OnNext(type);
         
         // 현재 맵에 존재하는 적 유닛의 수를 나타내는 Rx
-        private readonly ReactiveProperty<uint> _currentEnemyCount = new ReactiveProperty<uint>(0);
-        public IReadOnlyReactiveProperty<uint> CurrentEnemyCount => _currentEnemyCount;
-        public void SetCurrentEnemyCount(uint count) => _currentEnemyCount.Value = count;
+        private readonly ReactiveProperty<uint> _currentAliveEnemyCount = new ReactiveProperty<uint>(0);
+        public IReadOnlyReactiveProperty<uint> CurrentAliveEnemyCount => _currentAliveEnemyCount;
+        public void SetCurrentEnemyCount(uint count) => _currentAliveEnemyCount.Value = count;
     }
 }

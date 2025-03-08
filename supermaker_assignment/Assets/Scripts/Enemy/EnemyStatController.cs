@@ -13,7 +13,7 @@ namespace Enemy
     public sealed class EnemyStatController : MonoBehaviourBase
     {
         [SerializeField] private VW_EnemyHP _view;
-        private readonly MDL_EnemyStat _mdl = new MDL_EnemyStat();
+        private readonly MDL_EnemyStat _mdlEnemyStat = new MDL_EnemyStat();
         private PR_EnemyHP _presenter;
         
         /// <summary>
@@ -36,7 +36,7 @@ namespace Enemy
             AssertHelper.NotNull(typeof(EnemyStatController), _view);
             
             // 적 생성 시, 현재 체력을 최대 체력으로 초기화합니다.
-            _presenter = new PR_EnemyHP(_mdl, _view);
+            _presenter = new PR_EnemyHP(_mdlEnemyStat, _view);
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Enemy
             uint currentSpawnWaveIdx = _enemyRoot.currentSpawnWaveIdx;
             uint currentWaveMaxHp = _maxHP + currentSpawnWaveIdx * 20;
             
-            _mdl.SetStat(currentWaveMaxHp);
+            _mdlEnemyStat.SetStat(currentWaveMaxHp);
         }
 
         /// <summary>
@@ -69,9 +69,9 @@ namespace Enemy
         /// <param name="damage">적용할 피해량</param>
         public void TakeDamage(uint damage)
         {
-            _mdl.SetCurrentHp(Math.Max(0, _mdl.Hp.Value - (int)damage));
+            _mdlEnemyStat.SetCurrentHp(Math.Max(0, _mdlEnemyStat.Hp.Value - (int)damage));
 
-            if (_mdl.HasHpRemaining()) return;
+            if (_mdlEnemyStat.HasHpRemaining()) return;
             
             Die();
         }
@@ -97,6 +97,9 @@ namespace Enemy
             dependencyContainer.mdlEnemy.KillEnemy(EEnemyType.Common);
             dependencyContainer.mdlCurrency.AddGold((uint)Random.Range(1, 3));
             dependencyContainer.enemyBasePool.ReleaseObject(_enemyRoot);
+            
+            uint currentAliveEnemyCount = dependencyContainer.mdlEnemy.CurrentAliveEnemyCount.Value;
+            dependencyContainer.mdlEnemy.SetCurrentEnemyCount(currentAliveEnemyCount - 1);
         }
 
         protected override void OnDestroy()

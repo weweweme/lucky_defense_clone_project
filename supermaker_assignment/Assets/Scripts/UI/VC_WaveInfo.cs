@@ -15,28 +15,28 @@ namespace UI
         [SerializeField] private VW_CurrentWaveCount _vwCurrentWaveCount;
         private readonly PR_CurrentWaveCount _prCurrentWaveCount = new PR_CurrentWaveCount();
         
-        [SerializeField] private VW_CurrentRemainigEnemyCount _vwCurrentRemainigEnemyCount;
-        private readonly PR_CurrentRemainigEnemyCount _prCurrentRemainigEnemyCount = new PR_CurrentRemainigEnemyCount();
+        [SerializeField] private VW_CurrentAliveEnemyCount vwCurrentAliveEnemyCount;
+        private readonly PR_CurrentAliveEnemyCount _prCurrentAliveEnemyCount = new PR_CurrentAliveEnemyCount();
         
         protected override void ValidateReferences()
         {
             AssertHelper.NotNull(typeof(VC_WaveInfo), _vwNextWaveTimer);
             AssertHelper.NotNull(typeof(VC_WaveInfo), _vwCurrentWaveCount);
-            AssertHelper.NotNull(typeof(VC_WaveInfo), _vwCurrentRemainigEnemyCount);
+            AssertHelper.NotNull(typeof(VC_WaveInfo), vwCurrentAliveEnemyCount);
         }
 
         public override void Init(DataManager dataManager)
         {
             _prNextWaveTimer.Init(dataManager, _vwNextWaveTimer);
             _prCurrentWaveCount.Init(dataManager, _vwCurrentWaveCount);
-            _prCurrentRemainigEnemyCount.Init(dataManager, _vwCurrentRemainigEnemyCount);
+            _prCurrentAliveEnemyCount.Init(dataManager, vwCurrentAliveEnemyCount);
         }
 
         protected override void ReleasePresenter()
         {
             _prNextWaveTimer.Dispose();
             _prCurrentWaveCount.Dispose();
-            _prCurrentRemainigEnemyCount.Dispose();
+            _prCurrentAliveEnemyCount.Dispose();
         }
     }
 }
