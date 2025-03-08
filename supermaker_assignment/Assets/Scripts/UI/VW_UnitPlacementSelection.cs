@@ -48,8 +48,6 @@ namespace UI
             unitSellUI.SetActive(!isNodeNull);
             unitMergeUI.SetActive(!isNodeNull); 
             
-            // TODO: 머지 가능 or 불가능 여부에 따라 unitMergeDenyPanel를 조정하는 로직 구현
-
             if (isNodeNull) return;
 
             float attackRange = node.UnitGroup.GetAttackRange();
@@ -61,6 +59,11 @@ namespace UI
             // 신화 등급 미만일 경우에만 unitMergeUI 활성화
             bool canMerge = node.UnitGroup.UnitGrade < EUnitGrade.Mythic;
             unitMergeUI.SetActive(canMerge);
+
+            if (!canMerge) return;
+            
+            bool deniedPanelDisable = node.UnitGroup.IsFull();
+            _unitMergeDenyPanel.SetActive(!deniedPanelDisable);
         }
     }
 }
