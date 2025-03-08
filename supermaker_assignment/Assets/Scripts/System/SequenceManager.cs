@@ -22,6 +22,7 @@ namespace System
         public void Init(RootManager rootManager)
         {
             _rootManager = rootManager;
+            _aiPlayerRoot.Init(rootManager);
             
             rootManager.DataManager.GameSystem.OnGameFlow
                 .Where(state => state == EGameState.GameOver) // 게임 오버 상태만 필터링
