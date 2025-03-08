@@ -21,10 +21,6 @@ namespace AIPlayer
             AssertHelper.NotNull(typeof(AIPlayerRoot), btController);
             AssertHelper.NotNull(typeof(AIPlayerRoot), mergeController);
             AssertHelper.NotNull(typeof(AIPlayerRoot), spawnController);
-            
-            btController.Init(this);
-            mergeController.Init(this);
-            spawnController.Init(this);
         }
 
         public void Init(RootManager rootManager)
@@ -34,6 +30,10 @@ namespace AIPlayer
             
             rootDataManager = rootManager.DataManager;
             AssertHelper.NotNull(typeof(AIPlayerRoot), rootDataManager);
+            
+            btController.Init(this);
+            mergeController.Init(this);
+            spawnController.Init(this);
         }
         
         public void ActivateAI()

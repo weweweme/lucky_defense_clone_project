@@ -1,6 +1,7 @@
 using System;
 using CleverCrow.Fluid.BTs.Tasks;
 using Model;
+using UnityEngine;
 using Util;
 
 namespace AIPlayer
@@ -21,7 +22,7 @@ namespace AIPlayer
             
             _aiPlayerDataCurrency = dataModel.Currency;
             _aiPlayerUnitData = dataModel.Unit;
-            
+            _mdlGlobalUnit = root.rootDataManager.Unit;
         }
 
         /// <summary>
