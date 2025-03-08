@@ -27,14 +27,6 @@ namespace Enemy
             AssertHelper.NotNull(typeof(EnemyRoot), statController);
         }
         
-        public void SetUpClassification(EEnemyType enemyType, uint waveIdx)
-        {
-            AssertHelper.NotEqualsEnum(typeof(EnemyRoot), enemyType, EEnemyType.None);
-            
-            type = enemyType;
-            currentSpawnWaveIdx = waveIdx;
-        }
-        
         public override void CreatePooledItemInit(DependencyContainerBase containerBase)
         {
             EnemyDependencyContainer container = containerBase as EnemyDependencyContainer;
@@ -42,7 +34,15 @@ namespace Enemy
             
             dependencyContainer = container;
             statController.CreatePooledItemInit(this);
-            spriteController.ChangeVisible();
+            spriteController.CreatePooledItemInit(this);
+        }
+        
+        public void SetUpClassification(EEnemyType enemyType, uint waveIdx)
+        {
+            AssertHelper.NotEqualsEnum(typeof(EnemyRoot), enemyType, EEnemyType.None);
+            
+            type = enemyType;
+            currentSpawnWaveIdx = waveIdx;
         }
 
         public override void OnTakeFromPoolInit(EPlayerSide side)
@@ -55,6 +55,7 @@ namespace Enemy
             
             moveController.OnActivate(pathNodePtr);
             statController.OnTakeFromPoolInit();
+            spriteController.ChangeVisible();
         }
     }
 }

@@ -13,9 +13,20 @@ namespace Enemy
         /// </summary>
 		[SerializeField] private SpriteRenderer _spriteRenderer;
 
+        private EnemyRoot _enemyRoot;
+        
         private void Awake()
         {
             AssertHelper.NotNull(typeof(EnemySpriteController), _spriteRenderer);
+        }
+
+        /// <summary>
+        /// 에너미 생성 시점에 EnemyRoot 정보를 주입받아 내부 참조를 설정합니다.
+        /// </summary>
+        /// <param name="root">해당 에너미의 Enemy 참조</param>
+        public void CreatePooledItemInit(EnemyRoot root)
+        {
+            _enemyRoot = root;
         }
 
         /// <summary>
