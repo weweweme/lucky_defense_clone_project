@@ -32,6 +32,9 @@ namespace UI
             view.unitSellUI.actionButton.OnClickAsObservable()
                 .Subscribe(TrySellUnit)
                 .AddTo(_disposable);
+            
+            view.unitMergeUI.actionButton.OnClickAsObservable()
+                .Subscribe(TryMergeUnit)
                 .AddTo(_disposable);
         }
 
@@ -63,6 +66,20 @@ namespace UI
             {
                 elem.HandleRemoveUnit(selectedNode);
             }
+        }
+
+        /// <summary>
+        /// 해당 노드의 유닛을 합성합니다
+        /// </summary>
+        private void TryMergeUnit(UniRx.Unit _)
+        {
+            UnitPlacementNode selectedNode = _mdlUnitPlacementField.GetSelectedNode();
+            AssertHelper.NotNull(typeof(PR_UnitPlacementSelection), selectedNode);
+            
+            EUnitGrade grade = selectedNode.UnitGroup.UnitGrade;
+            AssertHelper.NotEqualsEnum(typeof(PR_UnitPlacementSelection), grade, EUnitGrade.None);
+
+            selectedNode.MergeUnit();
         }
         
         public void Dispose()
