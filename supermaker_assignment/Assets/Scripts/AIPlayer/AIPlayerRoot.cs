@@ -18,6 +18,7 @@ namespace AI
             AssertHelper.NotNull(typeof(AIPlayerRoot), mergeController);
             
             btController.Init(this);
+            mergeController.Init(this);
         }
         
         public void ActivateAI()
