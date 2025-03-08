@@ -16,7 +16,7 @@ namespace AIPlayer
         public void SetSpawnNeededGold(uint value) => _spawnNeededGold = value;
         
         // 유닛 스폰 최대 가능 수량
-        private const uint MAX_POSSIBLE_SPAWN_COUNT = 30;
+        private const uint MAX_POSSIBLE_SPAWN_COUNT = 20;
         private uint _currentSpawnCount = 0;
         public uint GetCurrentSpawnCount() => _currentSpawnCount;
         public bool IsSpawnPossible() => _currentSpawnCount < MAX_POSSIBLE_SPAWN_COUNT;
