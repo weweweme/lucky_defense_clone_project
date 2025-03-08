@@ -7,7 +7,7 @@ using UniRx;
 namespace UI
 {
     /// <summary>
-    /// 재화와 관련된 UI를 관리하는 Presenter 클래스입니다.
+    /// 골드와 관련된 UI를 관리하는 Presenter 클래스입니다.
     /// </summary>
     public class PR_GoldCurrency : Presenter
     {
@@ -19,7 +19,7 @@ namespace UI
             AssertHelper.NotNull(typeof(PR_GoldCurrency), mdl);
             
             VW_Currency vw = view as VW_Currency;
-            AssertHelper.NotNull(typeof(PR_UnitSpawn), vw);
+            AssertHelper.NotNull(typeof(PR_GoldCurrency), vw);
             
             mdl.Gold
                 .Subscribe(vw!.UpdateCurrency)
