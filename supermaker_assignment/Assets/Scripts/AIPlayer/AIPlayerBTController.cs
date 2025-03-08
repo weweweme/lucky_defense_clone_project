@@ -77,19 +77,25 @@ namespace AIPlayer
                     // 1. 유닛 합성이 가능한 경우 합성
                     .Sequence("유닛 합성 가능할 때")
                         .Condition("합성 가능한 유닛이 있는가?", _mergeController.CanMerge)
-                        .Do("유닛 합성 실행", () => _mergeController.TryMerge())
+                        .Do("유닛 합성 실행", _mergeController.TryMerge)
                     .End()
 
                     // 2. 도박이 가능한 경우 도박 진행
                     .Sequence("도박 가능할 때")
                         .Condition("도박에 필요한 돌이 있는가?", _gambleController.CanGamble)
-                        .Do("도박 실행", () => _gambleController.TryGamble())
+                        .Do("도박 실행", _gambleController.TryGamble)
                     .End()
 
-                    // 3. 유닛 생산 (돈이 있을 경우)
+                    // 3. 유닛 생산
                     .Sequence("유닛 생산 가능할 때")
                         .Condition("유닛을 생산할 돈이 있는가?", _spawnController.CanSpawnUnit)
                         .Do("유닛 생산 실행", _spawnController.TrySpawnUnit)
+                    .End()
+                
+                    // 4. 신화 유닛 조합이 가능한 경우 합성
+                    .Sequence("유닛 생산 가능할 때")
+                        .Condition("유닛을 생산할 돈이 있는가?", _mythicUnitCombinationController.CanCombination)
+                        .Do("유닛 생산 실행", _mythicUnitCombinationController.MythicUnitCombination)
                     .End()
 
                 .End()
