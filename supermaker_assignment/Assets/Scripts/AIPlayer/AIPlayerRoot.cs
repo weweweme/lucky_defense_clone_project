@@ -1,9 +1,9 @@
 using System;
-using AIPlayer;
+using AI;
 using UnityEngine;
 using Util;
 
-namespace AI
+namespace AIPlayer
 {
     /// <summary>
     /// AI의 루트 클래스입니다.
