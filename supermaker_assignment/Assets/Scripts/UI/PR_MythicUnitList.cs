@@ -33,7 +33,11 @@ namespace UI
             foreach (var elem in vw!.mythicUnitItemList)
             {
                 elem.unitButton.OnClickAsObservable()
-                    .Subscribe(_ => _mdlMythicUnitCombination.DisplayMythicUnitCombination(new SCurrentMythicUnitCombinationData(elem.unitName, elem.unitType)))
+                    .Subscribe(_ =>
+                    {
+                        vw.highlight.transform.position = elem.transform.position;
+                        _mdlMythicUnitCombination.DisplayMythicUnitCombination(new SCurrentMythicUnitCombinationData(elem.unitName, elem.unitType));
+                    })
                     .AddTo(disposable);
             }
         }
