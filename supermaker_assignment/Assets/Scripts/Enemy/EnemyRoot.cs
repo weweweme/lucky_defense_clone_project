@@ -18,6 +18,7 @@ namespace Enemy
         
         [SerializeField] internal EnemyMoveController moveController;
         [SerializeField] internal EnemyStatController statController;
+        [SerializeField] internal EnemySpriteController spriteController;
         internal EnemyDependencyContainer dependencyContainer;
 
         private void Awake()
@@ -41,6 +42,7 @@ namespace Enemy
             
             dependencyContainer = container;
             statController.CreatePooledItemInit(this);
+            spriteController.ChangeVisible();
         }
 
         public override void OnTakeFromPoolInit(EPlayerSide side)
