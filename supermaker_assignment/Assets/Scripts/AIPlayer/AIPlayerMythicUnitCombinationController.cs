@@ -56,11 +56,17 @@ namespace AIPlayer
         /// 전역 유닛 관리 모델입니다.
         /// </summary>
         private MDL_Unit _globalMdlUnit;
+        
+        /// <summary>
+        /// AI 플레이어의 유닛 데이터 클래스입니다.
+        /// </summary>
+        private AIPlayerDataUnit _aiPlayerUnitData;
 
         public void Init(AIPlayerRoot root)
         {
             _northGridNodes = root.globalRootManager.UnitGridNodeManager.NorthGridNodes;
             _globalMdlUnit = root.globalRootManager.DataManager.Unit;
+            _aiPlayerUnitData = root.dataModel.Unit;
 
             // AI 전용 신화 조합 조건 정의
             _combinationCheckers.Add(new AIUnitCombinationChecker(
@@ -166,11 +172,24 @@ namespace AIPlayer
             // 유닛 판매 (조합을 위한 기존 유닛 제거)
             RemoveUnitsForCombination();
 
+            ApplyUnitCount();
+            
             // 새로운 신화 유닛 소환
             SUnitSpawnRequestData spawnData = new SUnitSpawnRequestData(EUnitGrade.Mythic, targetType, EPlayerSide.North);
             _globalMdlUnit.SpawnUnit(spawnData);
 
             return TaskStatus.Success;
+        }
+
+        /// <summary>
+        /// 조합을 위한 유닛 수량을 적용하는 메서드입니다.
+        /// </summary>
+        private void ApplyUnitCount()
+        {
+            uint currentSpawnCount = _aiPlayerUnitData.GetCurrentSpawnCount();
+            
+            // 조합을 위한 유닛 수 차감 (-3 + 1)
+            _aiPlayerUnitData.SetCurrentSpawnCount(currentSpawnCount - 2);
         }
 
         /// <summary>
