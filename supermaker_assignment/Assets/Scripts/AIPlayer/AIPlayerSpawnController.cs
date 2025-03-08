@@ -1,4 +1,6 @@
+using System;
 using CleverCrow.Fluid.BTs.Tasks;
+using Model;
 using Util;
 
 namespace AIPlayer
@@ -8,16 +10,18 @@ namespace AIPlayer
     /// </summary>
     public sealed class AIPlayerSpawnController : MonoBehaviourBase
     {
-        private AIPlayerDataCurrency _currency;
-        private AIPlayerDataUnit _unit;
+        private AIPlayerDataCurrency _aiPlayerDataCurrency;
+        private AIPlayerDataUnit _aiPlayerUnitData;
+        private MDL_Unit _mdlGlobalUnit;
 
         public void Init(AIPlayerRoot root)
         {
             AIPlayerDataModel dataModel = root.dataModel;
             AssertHelper.NotNull(typeof(AIPlayerSpawnController), dataModel);
             
-            _currency = dataModel.Currency;
-            _unit = dataModel.Unit;
+            _aiPlayerDataCurrency = dataModel.Currency;
+            _aiPlayerUnitData = dataModel.Unit;
+            
         }
 
         /// <summary>
@@ -26,11 +30,11 @@ namespace AIPlayer
         /// <returns>유닛 생산이 가능하면 true, 불가능하면 false 반환</returns>
         public bool CanSpawnUnit()
         {
-            if (!_unit.IsSpawnPossible()) return false;
+            if (!_aiPlayerUnitData.IsSpawnPossible()) return false;
             
             // 보유 골드가 부족한 경우 소환 중단
-            uint currentSpawnNeededGold = _unit.GetSpawnNeededGold();
-            uint currentAvailableGold = _currency.GetGold();
+            uint currentSpawnNeededGold = _aiPlayerUnitData.GetSpawnNeededGold();
+            uint currentAvailableGold = _aiPlayerDataCurrency.GetGold();
             return currentSpawnNeededGold <= currentAvailableGold;
         }
 
@@ -40,9 +44,40 @@ namespace AIPlayer
         /// <returns>생산 성공 여부</returns>
         public TaskStatus TrySpawnUnit()
         {
-            // TODO: 유닛 생산을 시도하는 로직 추가
-            // TODO: 성공적으로 소환되면 TaskStatus.Success 반환, 실패 시 TaskStatus.Failure 반환
-            return TaskStatus.Failure;
+            ConsumeSpawnCost();
+
+            SUnitSpawnRequestData data = new SUnitSpawnRequestData(GetRandomGrade(), GetRandomType(), EPlayerSide.North);
+            _mdlGlobalUnit.SpawnUnit(data);
+            
+            return TaskStatus.Success;
+        }
+        
+        /// <summary>
+        /// 유닛 소환 비용을 차감하고, 필요한 골드와 소환 카운트를 증가시킵니다.
+        /// </summary>
+        private void ConsumeSpawnCost()
+        {
+            uint currentSpawnNeededGold = _aiPlayerUnitData.GetSpawnNeededGold();
+            _aiPlayerDataCurrency.SubtractGold(currentSpawnNeededGold);
+            _aiPlayerUnitData.SetSpawnNeededGold(currentSpawnNeededGold + 1);
+
+            uint currentSpawnCount = _aiPlayerUnitData.GetCurrentSpawnCount();
+            _aiPlayerUnitData.SetCurrentSpawnCount(currentSpawnCount + 1);
+        }
+        
+        private EUnitGrade GetRandomGrade()
+        {
+            int roll = UnityEngine.Random.Range(0, 100);
+
+            if (roll < 50) return EUnitGrade.Common;   // 50%
+            if (roll < 80) return EUnitGrade.Rare;     // 30%
+            if (roll < 95) return EUnitGrade.Heroic;   // 15%
+            return EUnitGrade.Mythic;                   // 5%
+        }
+
+        private EUnitType GetRandomType()
+        {
+            return UnityEngine.Random.Range(0f, 1f) < 0.5f ? EUnitType.Melee : EUnitType.Ranged;
         }
     }
 }
