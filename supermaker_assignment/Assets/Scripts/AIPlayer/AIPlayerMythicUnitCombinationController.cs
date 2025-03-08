@@ -180,7 +180,7 @@ namespace AIPlayer
         {
             foreach (var node in _matchingNodes.Keys)
             {
-                node.SellUnit(); // 기존 유닛 제거
+                node.SubUnit(); // 기존 유닛 제거
             }
     
             _matchingNodes.Clear(); // 조합 후 매칭된 노드 초기화

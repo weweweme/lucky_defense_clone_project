@@ -67,7 +67,7 @@ namespace System
         /// <summary>
         /// 노드에 배치된 유닛을 판매하고, 자동으로 배치 위치를 재조정합니다.
         /// </summary>
-        public void SellUnit()
+        public void SubUnit()
         {
             UnitGroup.SubUnit();
             RearrangeUnitPositions();
