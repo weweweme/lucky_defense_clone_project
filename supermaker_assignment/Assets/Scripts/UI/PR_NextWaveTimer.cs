@@ -1,5 +1,7 @@
 using System;
 using InGame.System;
+using Model;
+using UniRx;
 using Util;
 
 namespace UI
@@ -15,6 +17,12 @@ namespace UI
 
             VW_NextWaveTimer vw = view as VW_NextWaveTimer;
             AssertHelper.NotNull(typeof(PR_NextWaveTimer), vw);
+            
+            MDL_Wave mdl = dataManager.Wave;
+            AssertHelper.NotNull(typeof(PR_NextWaveTimer), mdl);
+            mdl.NextWaveCountDown
+                .Subscribe(vw!.SetTime)
+                .AddTo(disposable);
         }
     }
 }
