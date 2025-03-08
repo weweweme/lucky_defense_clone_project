@@ -14,7 +14,7 @@ namespace Model
         public void SpawnUnit(SUnitSpawnRequestData data) => _onUnitSpawn.OnNext(data);
         
         // 현재 유효한 노드가 있는지 여부
-        private bool _hasValidNodes;
+        private bool _hasValidNodes = true;
         public bool HasValidNodes => _hasValidNodes;
         public void SetHasValidNodesStatus(bool value) => _hasValidNodes = value;
         
