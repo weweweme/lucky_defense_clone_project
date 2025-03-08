@@ -24,10 +24,5 @@ namespace Model
         private readonly ReactiveProperty<uint> _nextWaveCountDown = new ReactiveProperty<uint>(0);
         public IReadOnlyReactiveProperty<uint> NextWaveCountDown => _nextWaveCountDown;
         public void SetNextWaveCountDown(uint countDown) => _nextWaveCountDown.Value = countDown;
-        
-        // 현재 맵에 존재하는 적의 수를 나타내는 Rx
-        private readonly ReactiveProperty<uint> _currentAliveEnemyCount = new ReactiveProperty<uint>(0);
-        public IReadOnlyReactiveProperty<uint> CurrentAliveEnemyCount => _currentAliveEnemyCount;
-        public void SetCurrentAliveEnemyCount(uint count) => _currentAliveEnemyCount.Value = count;
     }
 }
