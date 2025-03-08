@@ -2,6 +2,7 @@ using System;
 using CleverCrow.Fluid.BTs.Tasks;
 using Model;
 using Unit;
+using UnityEngine;
 using Util;
 
 namespace AIPlayer
@@ -11,6 +12,9 @@ namespace AIPlayer
     /// </summary>
     public sealed class AIPlayerMergeController : MonoBehaviourBase
     {
+        private const float MERGE_COOLDOWN = 7f; // 유닛 합성 쿨타임 (초)
+        private float _lastMergeTime;
+        
         /// <summary>
         /// AI 플레이어의 유닛이 배치된 노드 목록입니다.
         /// </summary>
@@ -37,19 +41,18 @@ namespace AIPlayer
             _globalMdlUnit = root.globalRootManager.DataManager.Unit;
         }
 
-        /// <summary>
-        /// 현재 AI가 유닛을 합성할 수 있는지 확인합니다.
-        /// </summary>
-        /// <returns>합성이 가능하면 true, 불가능하면 false</returns>
         public bool CanMerge()
         {
+            if (CheckCoolTime()) return false; // 쿨타임 체크
+            _lastMergeTime = Time.time; // 쿨타임 리셋
+
             foreach (var elem in _northGridNodes)
             {
                 UnitGroup currentUnitGroup = elem.UnitGroup;
 
                 // 유닛이 꽉 차지 않은 경우 합성 불가능
                 if (!currentUnitGroup.IsFull()) continue;
-                
+        
                 // 유닛 등급이 신화 등급 미만인 경우에만 합성 가능
                 bool isMergePossibleGrade = currentUnitGroup.UnitGrade < EUnitGrade.Mythic;
                 if (!isMergePossibleGrade) continue;
@@ -57,8 +60,17 @@ namespace AIPlayer
                 _mergeNode = elem;
                 return true;
             }
-            
+    
             return false;
+        }
+
+        /// <summary>
+        /// 현재 쿨타임이 지나지 않았는지 확인하는 메서드.
+        /// </summary>
+        /// <returns>쿨타임 중이면 true, 아니면 false</returns>
+        private bool CheckCoolTime()
+        {
+            return Time.time - _lastMergeTime < MERGE_COOLDOWN;
         }
         
         /// <summary>
