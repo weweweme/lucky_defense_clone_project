@@ -1,7 +1,6 @@
 using System;
 using CleverCrow.Fluid.BTs.Tasks;
 using Model;
-using UnityEngine;
 using Util;
 
 namespace AIPlayer

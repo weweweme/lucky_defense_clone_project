@@ -39,11 +39,17 @@ namespace AI
         /// AI 플레이어의 스폰 컨트롤러입니다.
         /// </summary>
         private AIPlayerSpawnController _spawnController;
+        
+        /// <summary>
+        /// AI 플레이어의 도박 컨트롤러입니다.
+        /// </summary>
+        private AIPlayerGambleController _gambleController;
 
         public void Init(AIPlayerRoot root)
         {
             _root = root;
             _spawnController = root.spawnController;
+            _gambleController = root.gambleController;
             _bt = CreateTree(root.gameObject);
         }
         
