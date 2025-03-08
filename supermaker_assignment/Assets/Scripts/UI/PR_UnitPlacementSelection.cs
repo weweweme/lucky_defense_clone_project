@@ -29,7 +29,7 @@ namespace UI
                 .Subscribe(view.ShowUnitPlacementField)
                 .AddTo(_disposable);
             
-            view.unitSellBtn.OnClickAsObservable()
+            view.unitSellUI.actionButton.OnClickAsObservable()
                 .Subscribe(SellUnit)
                 .AddTo(_disposable);
         }
