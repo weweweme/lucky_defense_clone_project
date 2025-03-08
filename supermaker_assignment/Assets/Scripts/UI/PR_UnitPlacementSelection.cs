@@ -1,6 +1,7 @@
 using System;
 using Model;
 using UniRx;
+using Unit;
 using Util;
 
 namespace UI
@@ -15,6 +16,7 @@ namespace UI
         private readonly MDL_Currency _mdlCurrency;
         private readonly MDL_MythicUnitCombination _mdlMythicUnitCombination;
         private readonly MDL_Unit _mdlUnit;
+        private readonly MDL_UnitResources _mdlUnitResources;
 
         public PR_UnitPlacementSelection(MDL_UnitPlacementField mdlUnitPlacementField, VW_UnitPlacementSelection view)
         {
@@ -28,8 +30,11 @@ namespace UI
             AssertHelper.NotNull(typeof(PR_UnitPlacementSelection), _mdlMythicUnitCombination);
             _mdlUnit = dataManager.Unit;
             AssertHelper.NotNull(typeof(PR_UnitPlacementSelection), _mdlUnit);
+            _mdlUnitResources = dataManager.UnitResources;
+            AssertHelper.NotNull(typeof(PR_UnitPlacementSelection), _mdlUnitResources);
 
             _mdlUnitPlacementField = mdlUnitPlacementField;
+            AssertHelper.NotNull(typeof(PR_UnitPlacementSelection), _mdlUnitPlacementField);
             mdlUnitPlacementField.SelectedNode
                 .Subscribe(view.ShowUnitPlacementField)
                 .AddTo(_disposable);
@@ -58,8 +63,10 @@ namespace UI
             AssertHelper.NotEqualsEnum(typeof(PR_UnitPlacementSelection), type, EUnitType.None);
             
             selectedNode.SubUnit();
-            // TODO: 추후 Grade와 Type에 따라 return하도록 변경.
-            _mdlCurrency.SubGold(1);
+            
+            UnitMetaData metaData = _mdlUnitResources.GetResource(grade, type);
+            AssertHelper.NotNull(typeof(PR_UnitPlacementSelection), metaData);
+            _mdlCurrency.SubGold(metaData.SellPrice);
             
             const uint SELL_UNIT_COUNT = 1;
             ApplyUnitCount(SELL_UNIT_COUNT);
