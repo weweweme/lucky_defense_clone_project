@@ -14,6 +14,7 @@ namespace UI
         private readonly MDL_UnitPlacementField _mdlUnitPlacementField;
         private readonly MDL_Currency _mdlCurrency;
         private readonly MDL_MythicUnitCombination _mdlMythicUnitCombination;
+        private readonly MDL_Unit _mdlUnit;
 
         public PR_UnitPlacementSelection(MDL_UnitPlacementField mdlUnitPlacementField, VW_UnitPlacementSelection view)
         {
@@ -22,7 +23,11 @@ namespace UI
 
             var dataManager = RootManager.Ins.DataManager;
             _mdlCurrency = dataManager.Currency;
+            AssertHelper.NotNull(typeof(PR_UnitPlacementSelection), _mdlCurrency);
             _mdlMythicUnitCombination = dataManager.MythicUnitCombination;
+            AssertHelper.NotNull(typeof(PR_UnitPlacementSelection), _mdlMythicUnitCombination);
+            _mdlUnit = dataManager.Unit;
+            AssertHelper.NotNull(typeof(PR_UnitPlacementSelection), _mdlUnit);
 
             _mdlUnitPlacementField = mdlUnitPlacementField;
             mdlUnitPlacementField.SelectedNode
@@ -80,6 +85,19 @@ namespace UI
             AssertHelper.NotEqualsEnum(typeof(PR_UnitPlacementSelection), grade, EUnitGrade.None);
 
             selectedNode.MergeUnit();
+            _mdlUnitPlacementField.SelectNode(null);
+            
+            EUnitGrade targetGrade = GetNextGrade(grade);
+            EUnitType targetType = GetRandomType();
+            SUnitSpawnRequestData data = new SUnitSpawnRequestData(targetGrade, targetType, EPlayerSide.South);
+            _mdlUnit.SpawnUnit(data);
+        }
+
+        private EUnitGrade GetNextGrade(EUnitGrade grade) => grade + 1;
+        
+        private EUnitType GetRandomType()
+        {
+            return UnityEngine.Random.Range(0f, 1f) < 0.6f ? EUnitType.Melee : EUnitType.Ranged;
         }
         
         public void Dispose()
