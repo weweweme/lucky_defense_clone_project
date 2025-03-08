@@ -30,6 +30,11 @@ namespace AIPlayer
         /// 유닛 합성이 성공하면 새로운 유닛을 생성하는 데 사용됩니다.
         /// </summary>
         private MDL_Unit _globalMdlUnit;
+        
+        /// <summary>
+        /// AI 플레이어의 유닛 데이터 클래스입니다.
+        /// </summary>
+        private AIPlayerDataUnit _aiPlayerUnitData;
 
         /// <summary>
         /// AI 플레이어 합성 컨트롤러를 초기화합니다.
@@ -39,6 +44,7 @@ namespace AIPlayer
         {
             _northGridNodes = root.globalRootManager.UnitGridNodeManager.NorthGridNodes;
             _globalMdlUnit = root.globalRootManager.DataManager.Unit;
+            _aiPlayerUnitData = root.dataModel.Unit;
         }
 
         public bool CanMerge()
@@ -92,10 +98,22 @@ namespace AIPlayer
             
             _mergeNode.BeforeMergeClearUnit();
             _mergeNode = null;
+            ApplyUnitCount();
             SUnitSpawnRequestData data = new SUnitSpawnRequestData(targetGrade, targetType, EPlayerSide.North);
             _globalMdlUnit.SpawnUnit(data);
             
             return TaskStatus.Success;
+        }
+        
+        /// <summary>
+        /// 조합을 위한 유닛 수량을 적용하는 메서드입니다.
+        /// </summary>
+        private void ApplyUnitCount()
+        {
+            uint currentSpawnCount = _aiPlayerUnitData.GetCurrentSpawnCount();
+            
+            // 조합을 위한 유닛 수 차감 (-3 + 1)
+            _aiPlayerUnitData.SetCurrentSpawnCount(currentSpawnCount - 2);
         }
         
         /// <summary>
