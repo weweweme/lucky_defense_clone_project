@@ -1,3 +1,4 @@
+using System;
 using Util;
 
 namespace AIPlayer
@@ -7,14 +8,11 @@ namespace AIPlayer
     /// </summary>
     public sealed class AIPlayerMergeController : MonoBehaviourBase
     {
-        /// <summary>
-        /// AI 플레이어의 루트 클래스입니다.
-        /// </summary>
-        private AIPlayerRoot _root;
+        private UnitPlacementNode[] _northGridNodes;
 
         public void Init(AIPlayerRoot root)
         {
-            _root = root;
+            _northGridNodes = root.globalRootManager.UnitGridNodeManager.NorthGridNodes;
         }
     }
 }
