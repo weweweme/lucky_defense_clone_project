@@ -1,6 +1,5 @@
 using System.Threading;
 using AIPlayer;
-using CleverCrow.Fluid.BTs.Tasks;
 using CleverCrow.Fluid.BTs.Trees;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -44,12 +43,18 @@ namespace AI
         /// AI 플레이어의 도박 컨트롤러입니다.
         /// </summary>
         private AIPlayerGambleController _gambleController;
+        
+        /// <summary>
+        /// AI 플레이어의 유닛 합성 컨트롤러입니다.
+        /// </summary>
+        private AIPlayerMergeController _mergeController;
 
         public void Init(AIPlayerRoot root)
         {
             _root = root;
             _spawnController = root.spawnController;
             _gambleController = root.gambleController;
+            _mergeController = root.mergeController;
             _bt = CreateTree(root.gameObject);
         }
         
@@ -66,8 +71,8 @@ namespace AI
 
                     // 1. 유닛 합성이 가능한 경우 합성
                     .Sequence("유닛 합성 가능할 때")
-                        .Condition("합성 가능한 유닛이 있는가?", () => false)  // TODO: 실제 합성 조건으로 변경
-                        .Do("유닛 합성 실행", () => TaskStatus.Failure) // TODO: 실제 합성 로직으로 변경
+                        .Condition("합성 가능한 유닛이 있는가?", _mergeController.CanMerge)
+                        .Do("유닛 합성 실행", () => _mergeController.TryMerge())
                     .End()
 
                     // 2. 도박이 가능한 경우 도박 진행

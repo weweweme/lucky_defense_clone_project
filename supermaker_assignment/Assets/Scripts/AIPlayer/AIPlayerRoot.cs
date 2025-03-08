@@ -15,7 +15,7 @@ namespace AIPlayer
         [SerializeField] internal AIPlayerSpawnController spawnController;
         [SerializeField] internal AIPlayerGambleController gambleController;
         internal AIPlayerDataModel dataModel;
-        internal DataManager rootDataManager;
+        internal RootManager globalRootManager;
         
         private void Awake()
         {
@@ -30,8 +30,8 @@ namespace AIPlayer
             dataModel = new AIPlayerDataModel(rootManager.DataManager);
             AssertHelper.NotNull(typeof(AIPlayerRoot), dataModel);
             
-            rootDataManager = rootManager.DataManager;
-            AssertHelper.NotNull(typeof(AIPlayerRoot), rootDataManager);
+            globalRootManager = rootManager;
+            AssertHelper.NotNull(typeof(AIPlayerRoot), this.globalRootManager);
             
             btController.Init(this);
             mergeController.Init(this);

@@ -20,7 +20,6 @@ namespace AIPlayer
         private const uint MAX_POSSIBLE_SPAWN_COUNT = 20;
         private uint _currentSpawnCount = 0;
         public uint GetCurrentSpawnCount() => _currentSpawnCount;
-        public uint GetMaxPossibleSpawnCount() => MAX_POSSIBLE_SPAWN_COUNT;
         public bool IsSpawnPossible() => _currentSpawnCount < MAX_POSSIBLE_SPAWN_COUNT;
         public void SetCurrentSpawnCount(uint value) => _currentSpawnCount = value;
         
