@@ -17,12 +17,12 @@ namespace AI
             btController.Init(this);
         }
         
-        public void StartGame()
+        public void ActivateAI()
         {
             btController.StartBtTick();
         }
         
-        public void StopGame()
+        public void DeactivateAI()
         {
             btController.Dispose();
         }

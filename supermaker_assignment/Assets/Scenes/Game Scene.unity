@@ -8277,6 +8277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4304a94cb1315407e92c832ffd81362f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _aiPlayerRoot: {fileID: 459902447}
 --- !u!1001 &923343665
 PrefabInstance:
   m_ObjectHideFlags: 0

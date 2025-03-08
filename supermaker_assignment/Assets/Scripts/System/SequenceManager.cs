@@ -1,3 +1,5 @@
+using AI;
+using UnityEngine;
 using Util;
 
 namespace System
@@ -7,6 +9,21 @@ namespace System
     /// </summary>
     public sealed class SequenceManager : MonoBehaviourBase
     {
+        [SerializeField] private AIPlayerRoot _aiPlayerRoot;
         
+        private void Awake()
+        {
+            AssertHelper.NotNull(typeof(SequenceManager), _aiPlayerRoot);
+        }
+        
+        public void StartGame()
+        {
+            _aiPlayerRoot.ActivateAI();
+        }
+
+        public void StopGame()
+        {
+            _aiPlayerRoot.DeactivateAI();
+        }
     }
 }
