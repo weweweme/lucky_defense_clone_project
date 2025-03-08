@@ -57,7 +57,7 @@ namespace UI
             EUnitType type = selectedNode.UnitGroup.UnitType;
             AssertHelper.NotEqualsEnum(typeof(PR_UnitPlacementSelection), type, EUnitType.None);
             
-            selectedNode.SellUnit();
+            selectedNode.SubUnit();
             // TODO: 추후 Grade와 Type에 따라 return하도록 변경.
             _mdlCurrency.SubGold(1);
 
