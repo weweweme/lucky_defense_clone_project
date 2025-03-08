@@ -41,9 +41,7 @@ namespace UI
         /// <param name="_">버튼 클릭 이벤트에서 전달되는 파라미터 (사용하지 않음)</param>
         private void TrySpawnUnit(UniRx.Unit _)
         {
-            // 소환 가능 여부 판단
-            uint currentSpawnCount = _mdlUnit.GetCurrentSpawnCount();
-            if (currentSpawnCount >= _maxPossibleSpawnCount) return;
+            if (!_mdlUnit.IsSpawnPossible()) return;
             
             // 보유 골드가 부족한 경우 소환 중단
             uint currentSpawnNeededGold = _mdlUnit.GetSpawnNeededGold();
@@ -52,6 +50,8 @@ namespace UI
             
             _mdlCurrency.SubtractGold(currentSpawnNeededGold);
             _mdlUnit.SetSpawnNeededGold(currentSpawnNeededGold + 1);
+            
+            uint currentSpawnCount = _mdlUnit.GetCurrentSpawnCount();
             _mdlUnit.SetCurrentSpawnCount(currentSpawnCount + 1);
             
             SUnitSpawnRequestData data = new SUnitSpawnRequestData(GetRandomGrade(), GetRandomType(), EPlayerSide.South);

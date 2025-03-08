@@ -12,13 +12,14 @@ namespace UI
     /// </summary>
     public sealed class PR_GamblePanel : Presenter
     {
-        private static readonly Dictionary<EUnitGrade, float> _gambleSuccessProbabilities = new()
+        private static readonly Dictionary<EUnitGrade, SGambleMetaData> GAMBLE_META_DATA = new()
         {
-            { EUnitGrade.Rare, 0.6f },
-            { EUnitGrade.Heroic, 0.2f },
-            { EUnitGrade.Mythic, 0.1f }
+            { EUnitGrade.Rare, new SGambleMetaData(EUnitGrade.Rare, 0.6f, 1) },
+            { EUnitGrade.Heroic, new SGambleMetaData(EUnitGrade.Heroic, 0.2f, 1) },
+            { EUnitGrade.Mythic, new SGambleMetaData(EUnitGrade.Mythic, 0.1f, 2) }
         };
         private MDL_Unit _mdlUnit;
+        private MDL_Currency _mdlCurrency;
         
         public override void Init(DataManager dataManager, View view)
         {
@@ -29,6 +30,8 @@ namespace UI
             
             _mdlUnit = dataManager.Unit;
             AssertHelper.NotNull(typeof(PR_GamblePanel), _mdlUnit);
+            _mdlCurrency = dataManager.Currency;
+            AssertHelper.NotNull(typeof(PR_UnitSpawn), _mdlCurrency);
 
             MDL_GameSystem mdlSystem = dataManager.GameSystem;
             AssertHelper.NotNull(typeof(PR_MythicUnitCombinationPanel), mdlSystem);
@@ -52,21 +55,49 @@ namespace UI
 
         private void TryGamble(EUnitGrade grade)
         {
+            if (!IsPossibleGamble(grade)) return;
+
             float successProbability = GetGambleSuccessProbability(grade);
             bool isSuccess = UnityEngine.Random.Range(0f, 1f) < successProbability;
-
             if (!isSuccess)
             {
-                // 실패 처리 로직 (UI 메시지 출력, 리소스 차감 등 추가 가능)
+                // TODO: 실패 UX 추가
                 UnityEngine.Debug.Log($"[Gamble Failed] Grade: {grade}");
                 return;
             }
 
-            // 성공 시 유닛 소환
+            // TODO: 성공 UX 추가
             SUnitSpawnRequestData data = new SUnitSpawnRequestData(grade, GetRandomType(), EPlayerSide.South);
             _mdlUnit.SpawnUnit(data);
 
             UnityEngine.Debug.Log($"[Gamble Success] Grade: {grade}");
+        }
+        
+        /// <summary>
+        /// 해당 등급의 유닛 도박(Gamble)이 가능한지 여부를 판단합니다.
+        /// 도박 가능 조건:
+        /// 1. 유닛 소환이 가능한 상태인지 확인
+        /// 2. 유닛 등급(Grade)이 유효한지 검증
+        /// 3. 현재 보유 다이아(Diamond)가 요구량 이상인지 확인
+        /// </summary>
+        /// <param name="grade">도박하려는 유닛의 등급</param>
+        /// <returns>
+        /// 도박 가능 여부 (true: 가능, false: 불가능)
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException">지원되지 않는 유닛 등급을 입력한 경우 발생</exception>
+        private bool IsPossibleGamble(EUnitGrade grade)
+        {
+            if (!_mdlUnit.IsSpawnPossible()) return false;
+
+            AssertHelper.NotEqualsEnum(typeof(PR_GamblePanel), grade, EUnitGrade.None);
+
+            if (GAMBLE_META_DATA.TryGetValue(grade, out SGambleMetaData metaData))
+            {
+                uint currentAvailableDia = _mdlCurrency.GetDiamond();
+                return currentAvailableDia >= metaData.RequiredDia;
+            }
+           
+            throw new ArgumentOutOfRangeException(nameof(grade), grade, "Unsupported grade for gambling."); 
         }
 
         /// <summary>
@@ -77,12 +108,12 @@ namespace UI
         private float GetGambleSuccessProbability(EUnitGrade grade)
         {
             AssertHelper.NotEqualsEnum(typeof(PR_GamblePanel), grade, EUnitGrade.None);
-            
-            if (_gambleSuccessProbabilities.TryGetValue(grade, out float probability))
+    
+            if (GAMBLE_META_DATA.TryGetValue(grade, out SGambleMetaData metaData))
             {
-                return probability;
+                return metaData.SuccessProbability;
             }
-            
+    
             throw new ArgumentOutOfRangeException(nameof(grade), grade, "Unsupported grade for gambling.");
         }
 

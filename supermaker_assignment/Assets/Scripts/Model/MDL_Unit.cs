@@ -26,6 +26,7 @@ namespace Model
         public IReactiveProperty<uint> CurrentSpawnCount => _currentSpawnCount;
         public uint GetCurrentSpawnCount() => _currentSpawnCount.Value;
         public uint GetMaxPossibleSpawnCount() => MAX_POSSIBLE_SPAWN_COUNT;
+        public bool IsSpawnPossible() => _currentSpawnCount.Value < MAX_POSSIBLE_SPAWN_COUNT;
         public void SetCurrentSpawnCount(uint value) => _currentSpawnCount.Value = value;
     }
 }
