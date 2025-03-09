@@ -15,7 +15,7 @@ namespace AIPlayer
         /// 행동 트리 틱(Tick)의 실행 간격 (밀리초 단위)입니다.
         /// 유닛의 AI 판단 주기를 설정합니다.
         /// </summary>
-        private const int TICK_INTERVAL = 50;
+        private const int TICK_INTERVAL = 500;
                 
         /// <summary>
         /// 행동 트리 실행을 제어하는 취소 토큰 소스입니다.

@@ -22,7 +22,6 @@ namespace System
         public UnitGridNodeManager UnitGridNodeManager => _unitGridNodeManager;
         
         [SerializeField] private SequenceManager _sequenceManager;
-        public SequenceManager SequenceManager => _sequenceManager;
         
         [SerializeField] private AIPlayerRoot _aiPlayerRoot;
         public AIPlayerRoot AIPlayerRoot => _aiPlayerRoot;
@@ -53,8 +52,6 @@ namespace System
             _spawnManager = new SpawnManager(this);
             _uiManager.Init(_dataManager);
             _sequenceManager.Init(this);
-
-            _sequenceManager.StartGame();
         }
 
         protected override void OnDispose()

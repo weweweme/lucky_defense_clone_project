@@ -20,9 +20,27 @@ namespace UI
             
             MDL_GameSystem mdlSystem = dataManager.GameSystem;
             AssertHelper.NotNull(typeof(PR_GameDoor), mdlSystem);
+
+            // 게임 오버 시 게임 종료 연출 실행
             mdlSystem.OnGameFlow
                 .Where(state => state == EGameState.GameOver)
                 .Subscribe(_ => vw!.EndGameDirection().Forget())
+                .AddTo(disposable);
+
+            // 게임 시작 시 게임 시작 연출 실행
+            mdlSystem.OnGameFlow
+                .Where(state => state == EGameState.Start)
+                .Subscribe(_ => vw!.StartGameDirection().Forget())
+                .AddTo(disposable);
+            
+            // 게임 시작 버튼 클릭 시 게임 상태 변경 + 버튼 비활성화
+            vw!.startBtn.OnClickAsObservable()
+                .Take(1) // 최초 1회만 반응하도록 제한
+                .Subscribe(_ =>
+                {
+                    vw.startBtn.interactable = false; // 버튼 비활성화
+                    mdlSystem.ChangeGameFlow(EGameState.Start);
+                })
                 .AddTo(disposable);
         }
     }
