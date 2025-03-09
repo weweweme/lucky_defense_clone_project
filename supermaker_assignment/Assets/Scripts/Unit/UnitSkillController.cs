@@ -1,5 +1,8 @@
+using CleverCrow.Fluid.BTs.Tasks;
 using UI;
 using Util;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Unit
 {
@@ -11,6 +14,9 @@ namespace Unit
         private UnitSkillBase _skill;
         private UnitSkillPoolManager _unitSkillPoolManager;
         private UnitAttackController _unitAttackController;
+
+        [SerializeField] private float _skillCooldownDuration = 5f; // 쿨타임 (기본 5초)
+        private float _skillCooldown; // 현재 남은 쿨타임
 
         public void CreatePooledItemInit(UnitRoot root)
         {
@@ -27,11 +33,39 @@ namespace Unit
         /// <summary>
         /// 스킬을 사용합니다.
         /// </summary>
-        /// <param name="skill">사용할 스킬</param>
-        public void UseSkill()
+        public TaskStatus UseSkill()
         {
-            _skill.SetStartPoint(_unitAttackController.CurrentTarget.Transform);
+            _skill.SetTarget(_unitAttackController.CurrentTarget.Transform);
             _skill.UseSkill();
+            
+            SetCooldown(); // 스킬 사용 후 쿨타임 시작
+            return TaskStatus.Success;
         }
+
+        /// <summary>
+        /// 스킬 쿨타임을 설정합니다.
+        /// </summary>
+        private void SetCooldown()
+        {
+            _skillCooldown = _skillCooldownDuration;
+            StartCooldownTimer().Forget();
+        }
+
+        /// <summary>
+        /// 쿨타임을 비동기적으로 감소시킵니다.
+        /// </summary>
+        private async UniTaskVoid StartCooldownTimer()
+        {
+            while (_skillCooldown > 0)
+            {
+                await UniTask.Delay(100, cancellationToken: this.GetCancellationTokenOnDestroy());
+                _skillCooldown -= 0.1f;
+            }
+        }
+
+        /// <summary>
+        /// 스킬이 사용 가능한 상태인지 확인합니다.
+        /// </summary>
+        public bool IsSkillReady() => _skillCooldown <= 0;
     }
 }

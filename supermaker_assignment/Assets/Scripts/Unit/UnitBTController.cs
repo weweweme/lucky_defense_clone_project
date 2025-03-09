@@ -33,6 +33,11 @@ namespace Unit
         /// 유닛의 행동을 결정하는 트리입니다.
         /// </summary>
         private readonly BehaviorTree _bt;
+        
+        /// <summary>
+        /// 유닛의 스킬 로직을 담당하는 컨트롤러입니다.
+        /// </summary>
+        private readonly UnitSkillController _skillController;
 
         /// <summary>
         /// 유닛의 행동 트리 컨트롤러를 생성합니다.
@@ -41,6 +46,7 @@ namespace Unit
         public UnitBTController(UnitRoot root)
         {
             _attackController = root.attackController;
+            _skillController = root.skillController;
             _bt = CreateTree(root.gameObject);
         }
         
@@ -85,12 +91,22 @@ namespace Unit
             BehaviorTree bt = new BehaviorTreeBuilder(owner)
                 .Selector("한 가지 행동 선택")
                 
-                    // 1. 현재 공격 중인지 확인
+                    // 1. 공격 중인지 확인 (타겟 있음)
                     .Sequence("공격 중일 때")
-                        .Condition("현재 공격 중인가?, 공격중이라면 Target을 가지고 있음", _attackController.HasTarget)
-                        .Selector("타겟 유지 or 해제")
-                            .Condition("타겟이 여전히 사거리 안에 있는가?", _attackController.IsTargetInRange)
-                            .Do("타겟 해제", _attackController.ClearTarget)
+                        .Condition("현재 공격 중인가?, 공격 중이라면 Target을 가지고 있음", _attackController.HasTarget)
+                
+                        // 1-1. 스킬 사용 조건 확인 (쿨타임이 끝났는가?)
+                        .Selector("스킬 사용 or 타겟 유지/해제")
+                            .Sequence("스킬 사용 가능할 때")
+                                .Condition("스킬 쿨타임이 끝났는가?", _skillController.IsSkillReady)
+                                .Do("스킬 사용", _skillController.UseSkill)
+                            .End()
+                            
+                            // 1-2. 스킬 사용이 불가능한 경우, 기존 로직 수행
+                            .Selector("타겟 유지 or 해제")
+                                .Condition("타겟이 여전히 사거리 안에 있는가?", _attackController.IsTargetInRange)
+                                .Do("타겟 해제", _attackController.ClearTarget)
+                            .End()
                         .End()
                     .End()
                 

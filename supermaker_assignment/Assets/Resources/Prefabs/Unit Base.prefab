@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 3610169384799238795}
   - component: {fileID: 5238383128305566337}
   - component: {fileID: 5748179030352680662}
+  - component: {fileID: 6719102654079866961}
   m_Layer: 30
   m_Name: Unit Base
   m_TagString: Untagged
@@ -186,6 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackController: {fileID: 3610169384799238795}
   spriteController: {fileID: 5238383128305566337}
+  skillController: {fileID: 6719102654079866961}
   _moveController: {fileID: 5748179030352680662}
 --- !u!114 &3610169384799238795
 MonoBehaviour:
@@ -228,6 +230,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveEffect: {fileID: 5475876735087152973}
   _moveDuration: 0.5
+--- !u!114 &6719102654079866961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211534585129982868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f800ef305064841349138c4f664ccebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4401101172534658232
 GameObject:
   m_ObjectHideFlags: 0
