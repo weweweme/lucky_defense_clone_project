@@ -171,4 +171,25 @@ namespace System
         /// </summary>
         Paused,
     }
+
+    /// <summary>
+    /// 테스트 환경 설정을 나타내는 열거형입니다.
+    /// </summary>
+    public enum ETestConfigState
+    {
+        /// <summary>
+        /// 설정 없음.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// 테스트 설정 활성화.
+        /// </summary>
+        Open,
+
+        /// <summary>
+        /// 테스트 설정 비활성화.
+        /// </summary>
+        Close,
+    }
 }
