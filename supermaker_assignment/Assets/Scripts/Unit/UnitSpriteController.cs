@@ -76,5 +76,20 @@ namespace Unit
         {
             _animator.SetBool(_isAttackingHash, value);   
         }
+        
+        /// <summary>
+        /// 대상 방향으로 유닛의 좌우 방향을 설정합니다.
+        /// </summary>
+        public void SetFacingDirection(Transform target)
+        {
+            AssertHelper.NotNull(typeof(UnitSpriteController), target);
+            
+            float dirX = target.position.x - transform.position.x;
+            float sign = (dirX < 0) ? -1f : 1f;
+
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Abs(scale.x) * sign;
+            transform.localScale = scale;
+        }
     }
 }

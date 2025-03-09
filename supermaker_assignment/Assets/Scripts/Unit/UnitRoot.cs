@@ -37,6 +37,7 @@ namespace Unit
             _btController = new UnitBTController(this);
             spriteController.CreatePooledItemInit(this);
             attackController.CreatePooledItemInit(this);
+            _moveController.CreatePooledItemInit(this);
         }
         
         public void SetupUnitClassification(EUnitGrade unitGrade, EUnitType unitType)
@@ -57,6 +58,7 @@ namespace Unit
             spriteController.ChangeVisible();
             _btController.StartBtTick();
             attackController.ChangeAttackData(this);
+            _moveController.ChangeEffectScale();
         }
         
         public void ReleaseObject()

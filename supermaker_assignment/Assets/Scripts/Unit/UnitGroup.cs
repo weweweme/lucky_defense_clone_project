@@ -124,6 +124,7 @@ namespace Unit
         {
             for (int i = 0; i < UnitCount; ++i)
             {
+                _moveTasks[i] = default;
                 _moveTasks[i] = _placedUnits[i].MoveController.MoveToTarget(targetPositions[i]);
             }
 
