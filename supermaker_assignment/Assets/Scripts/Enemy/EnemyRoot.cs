@@ -35,6 +35,7 @@ namespace Enemy
             dependencyContainer = container;
             statController.CreatePooledItemInit(this);
             spriteController.CreatePooledItemInit(this);
+            moveController.CreatePooledItemInit(this);
         }
         
         public void SetUpClassification(EEnemyType enemyType, uint waveIdx)

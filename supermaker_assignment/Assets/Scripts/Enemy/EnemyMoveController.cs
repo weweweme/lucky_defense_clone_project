@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Util;
 
@@ -15,10 +16,16 @@ namespace Enemy
 
         private Rigidbody2D _rb;
         private Vector2 _moveDirection;
+        private EnemyStatController _statController;
 
         private void Awake()
         {
             _rb = gameObject.GetComponentOrAssert<Rigidbody2D>();
+        }
+        
+        public void CreatePooledItemInit(EnemyRoot root)
+        {
+            _statController = root.statController;
         }
 
         /// <summary>
@@ -36,6 +43,7 @@ namespace Enemy
 
         private void FixedUpdate()
         {
+            if (_statController.State != EEnemyState.Alive) return;
             if (_moveDirection == Vector2.zero) return;
 
             if (HasReachedNextNode())

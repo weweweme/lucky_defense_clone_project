@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Enemy;
+using UnityEditor.Animations;
 using UnityEngine;
 using Util;
 
@@ -12,6 +13,7 @@ namespace Model
     {
         private const uint CURRENT_ENEMY_COUNT = 10;
         [SerializeField] private List<EnemyMetaData> _enemyResourceList;
+        [SerializeField] private AnimatorController _enemyDeathAnimationController;
         
         private void Awake()
         {
@@ -23,5 +25,7 @@ namespace Model
             uint targetIdx = (waveIdx - 1) % CURRENT_ENEMY_COUNT;
             return _enemyResourceList[(int)targetIdx];
         }
+        
+        public AnimatorController GetDeathAnimationController() => _enemyDeathAnimationController;
     }
 }
