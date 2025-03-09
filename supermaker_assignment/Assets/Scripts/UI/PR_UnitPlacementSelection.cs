@@ -2,6 +2,7 @@ using System;
 using Model;
 using UniRx;
 using Unit;
+using UnityEngine;
 using Util;
 
 namespace UI
@@ -110,7 +111,7 @@ namespace UI
         private void ApplyUnitCount(uint subCount)
         {
             uint currentSpawnCount = _mdlUnit.GetCurrentSpawnCount();
-            _mdlUnit.SetCurrentSpawnCount(currentSpawnCount - subCount);
+            _mdlUnit.SetCurrentSpawnCount(currentSpawnCount - Math.Min(currentSpawnCount, currentSpawnCount - subCount));
         }
 
         private EUnitGrade GetNextGrade(EUnitGrade grade) => grade + 1;

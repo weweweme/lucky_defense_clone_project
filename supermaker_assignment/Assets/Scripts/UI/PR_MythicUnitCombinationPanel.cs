@@ -114,7 +114,7 @@ namespace UI
         {
             const uint SUB_COMBINATION_UNIT_COUNT = 2; // -3 + 1 = 2
             uint currentSpawnCount = _mdlUnit.GetCurrentSpawnCount();
-            _mdlUnit.SetCurrentSpawnCount(currentSpawnCount - SUB_COMBINATION_UNIT_COUNT);
+            _mdlUnit.SetCurrentSpawnCount(currentSpawnCount - Math.Min(currentSpawnCount, SUB_COMBINATION_UNIT_COUNT));
         }
 
         private void OnClickCombinationUnitListItem(SCurrentMythicUnitCombinationData data)
