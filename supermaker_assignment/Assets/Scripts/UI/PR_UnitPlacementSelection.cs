@@ -68,12 +68,13 @@ namespace UI
             const uint SELL_UNIT_COUNT = 1;
             ApplyUnitCount(SELL_UNIT_COUNT);
 
-            // 판매 처리 후 노드가 비어있으면 선택된 노드를 null로 변경
+            // UI 정리
             if (selectedNode.UnitGroup.IsEmpty())
             {
-                _mdlUnitPlacementField.SelectNode(null);
                 _mdlUnit.SetHasValidNodesStatus(true);
             }
+            
+            _mdlUnitPlacementField.SelectNode(null);
         }
 
         /// <summary>

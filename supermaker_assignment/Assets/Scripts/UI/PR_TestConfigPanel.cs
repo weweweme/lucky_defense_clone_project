@@ -33,7 +33,7 @@ namespace UI
                 .AddTo(disposable);
 
             vw.addGold.selectBut.OnClickAsObservable()
-                .Subscribe(_ => mdlCurrency.AddGold(20))
+                .Subscribe(_ => mdlCurrency.AddGold(100))
                 .AddTo(disposable);
             
             vw.addDia.selectBut.OnClickAsObservable()
