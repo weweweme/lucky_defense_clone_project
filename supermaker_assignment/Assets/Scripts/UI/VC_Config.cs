@@ -15,22 +15,28 @@ namespace UI
         [SerializeField] private VW_GameDoor _vwGameDoor;
         private readonly PR_GameDoor _prGameDoor = new PR_GameDoor();
         
+        [SerializeField] private VW_TestConfigToggle _vwTestConfigToggle;
+        private readonly PR_TestConfigToggle _prTestConfigToggle = new PR_TestConfigToggle();
+        
         protected override void ValidateReferences()
         {
             AssertHelper.NotNull(typeof(VC_Config), _vwGameSpeedMultiplier);
             AssertHelper.NotNull(typeof(VC_Config), _vwGameDoor);
+            AssertHelper.NotNull(typeof(VC_Config), _vwTestConfigToggle);
         }
 
         public override void Init(DataManager dataManager)
         {
             _prGameSpeedMultiplier.Init(dataManager, _vwGameSpeedMultiplier);
             _prGameDoor.Init(dataManager, _vwGameDoor);
+            _prTestConfigToggle.Init(dataManager, _vwTestConfigToggle);
         }
 
         protected override void ReleasePresenter()
         {
             _prGameSpeedMultiplier.Dispose();
             _prGameDoor.Dispose();
+            _prTestConfigToggle.Dispose();
         }
     }
 }
