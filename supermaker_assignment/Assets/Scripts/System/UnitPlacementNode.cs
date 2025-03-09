@@ -42,12 +42,6 @@ namespace System
             AssertHelper.EqualsValue(typeof(UnitPlacementNode), threeUnitPositions.Length, 3);
         }
 
-        private MDL_MythicUnitCombination _mdlMythicUnitCombination;
-        private void Start()
-        {
-            _mdlMythicUnitCombination = RootManager.Ins.DataManager.MythicUnitCombination;
-        }
-
         /// <summary>
         /// 주어진 유닛 스폰 요청 데이터에 따라 해당 유닛을 수용할 수 있는지 여부를 반환합니다.
         /// </summary>
@@ -110,18 +104,6 @@ namespace System
         {
             // 유닛 그룹 교환
             (UnitGroup, targetNode.UnitGroup) = (targetNode.UnitGroup, UnitGroup);
-
-            foreach (var elem in _mdlMythicUnitCombination.GetCombinationFlagCheckers())
-            {
-                elem.HandleRemoveUnit(targetNode);
-                elem.HandleRemoveUnit(this);
-            }
-            
-            foreach (var elem in _mdlMythicUnitCombination.GetCombinationFlagCheckers())
-            {
-                elem.HandleAddUnit(targetNode);
-                elem.HandleAddUnit(this);
-            }
 
             // 이동할 목표 위치 설정
             Transform[] myTargetPositions = GetUnitPositions();
