@@ -54,7 +54,7 @@ namespace Unit
         }
 
         /// <summary>
-        /// 마지막으로 추가된 유닛을 판매합니다.
+        /// 마지막으로 추가된 유닛을 제거합니다.
         /// </summary>
         public void SubUnit()
         {
@@ -63,19 +63,28 @@ namespace Unit
             AssertHelper.NotNull(typeof(UnitGroup), unit);
             unit.ReleaseObject();
 
-            if (!IsEmpty()) return;
+            if (!IsEmpty()) 
+            {
+                UpdateUnitInfo(); // 남아 있는 유닛 기준으로 UnitType, UnitGrade 갱신
+                return;
+            }
+
             Clear();
         }
 
         /// <summary>
-        /// 현재 배치된 유닛들의 위치를 지정된 위치로 설정합니다.
+        /// 현재 배치된 유닛의 정보를 다시 설정 (UnitType, UnitGrade 갱신)
         /// </summary>
-        public void SetPositions(params Transform[] targetPositions)
+        public void UpdateUnitInfo()
         {
-            for (int i = 0; i < UnitCount; ++i)
+            if (IsEmpty())
             {
-                _placedUnits[i].transform.position = targetPositions[i].position;
+                Clear();
+                return;
             }
+
+            UnitGrade = _placedUnits[0].grade;
+            UnitType = _placedUnits[0].type;
         }
 
         /// <summary>
@@ -101,25 +110,22 @@ namespace Unit
         /// <summary>
         /// 현재 그룹이 비어있는지 여부를 반환합니다.
         /// </summary>
-        /// <returns>true일 경우 비어있음, false일 경우 점유 중 </returns>
         public bool IsEmpty() => UnitCount == 0;
 
         /// <summary>
-        /// 현재 그룹의 공격 사정거리를 반환합니다.
+        /// 현재 배치된 유닛들의 위치를 지정된 위치로 설정합니다.
         /// </summary>
-        /// <returns>현재 그룹의 공격 사정거리.</returns>
-        public float GetAttackRange()
+        public void SetPositions(params Transform[] targetPositions)
         {
-            UnitMetaData data = RootManager.Ins.DataManager.UnitResources.GetResource(UnitGrade, UnitType);
-            AssertHelper.NotNull(typeof(UnitGroup), data);
-
-            return data.AttackRange;
+            for (int i = 0; i < UnitCount; ++i)
+            {
+                _placedUnits[i].transform.position = targetPositions[i].position;
+            }
         }
-        
+
         /// <summary>
         /// 현재 배치된 유닛들을 지정된 위치로 이동시킨 후, 모두 도착할 때까지 기다립니다.
         /// </summary>
-        /// <param name="targetPositions">도착 지점 Transform 배열</param>
         public async UniTask MoveToTargetNode(params Transform[] targetPositions)
         {
             for (int i = 0; i < MAX_UNIT_COUNT; ++i)
@@ -133,6 +139,14 @@ namespace Unit
             }
 
             await UniTask.WhenAll(_moveTasks);
+        }
+        
+        public float GetAttackRange()
+        {
+            UnitMetaData data = RootManager.Ins.DataManager.UnitResources.GetResource(UnitGrade, UnitType);
+            AssertHelper.NotNull(typeof(UnitGroup), data);
+
+            return data.AttackRange;
         }
     }
 }

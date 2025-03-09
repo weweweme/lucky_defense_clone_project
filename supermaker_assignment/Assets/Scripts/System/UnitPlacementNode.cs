@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using Model;
 using Unit;
 using UnityEngine;
 using Util;
@@ -63,15 +62,16 @@ namespace System
         public void AddUnit(UnitRoot unit)
         {
             UnitGroup.AddUnit(unit);
+            UnitGroup.UpdateUnitInfo();
             RearrangeUnitPositions();
         }
-
         /// <summary>
         /// 노드에 배치된 유닛을 판매하고, 자동으로 배치 위치를 재조정합니다.
         /// </summary>
         public void SubUnit()
         {
             UnitGroup.SubUnit();
+            UnitGroup.UpdateUnitInfo();
             RearrangeUnitPositions();
         }
 
@@ -87,6 +87,8 @@ namespace System
             {
                 UnitGroup.SubUnit();
             }
+            
+            UnitGroup.UpdateUnitInfo();
         }
 
         /// <summary>
@@ -115,8 +117,10 @@ namespace System
                 targetNode.UnitGroup.MoveToTargetNode(targetNodePositions)
             );
 
-            // 유닛 위치 확실한 마무리
+            UnitGroup.UpdateUnitInfo();
+            targetNode.UnitGroup.UpdateUnitInfo();
             RearrangeUnitPositions();
+            targetNode.RearrangeUnitPositions();
         }
         
         /// <summary>
