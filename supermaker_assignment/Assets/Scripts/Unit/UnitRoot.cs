@@ -32,7 +32,7 @@ namespace Unit
             dependencyContainer = container;
             _btController = new UnitBTController(this);
             spriteController.CreatePooledItemInit(this);
-            attackController.CreatePooledItemInit();
+            attackController.CreatePooledItemInit(this);
         }
         
         public void SetupUnitClassification(EUnitGrade unitGrade, EUnitType unitType)
