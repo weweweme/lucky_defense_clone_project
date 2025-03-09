@@ -44,19 +44,19 @@ namespace System
         /// <param name="token">작업 취소 토큰</param>
         public async UniTaskVoid HandleWaveSpawnAsync(uint currentWave, CancellationToken token)
         {
-            TestWaveSpawn().Forget();
+            // TestWaveSpawn().Forget();
             
-            // EEnemyType enemyType = (currentWave % 10 == 0) ? EEnemyType.Boss : EEnemyType.Common;
-            // _currentSpawnMetaData.SetData(enemyType, currentWave);
-            //
-            // if (enemyType == EEnemyType.Boss)
-            // {
-            //     SpawnBossWave();
-            // }
-            // else
-            // {
-            //     await SpawnNormalWaveAsync(token);
-            // }
+            EEnemyType enemyType = (currentWave % 10 == 0) ? EEnemyType.Boss : EEnemyType.Common;
+            _currentSpawnMetaData.SetData(enemyType, currentWave);
+            
+            if (enemyType == EEnemyType.Boss)
+            {
+                SpawnBossWave();
+            }
+            else
+            {
+                await SpawnNormalWaveAsync(token);
+            }
         }
         
         public async UniTaskVoid TestWaveSpawn()
