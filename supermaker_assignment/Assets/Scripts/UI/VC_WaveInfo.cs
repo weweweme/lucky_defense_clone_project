@@ -18,11 +18,15 @@ namespace UI
         [SerializeField] private VW_CurrentAliveEnemyCount vwCurrentAliveEnemyCount;
         private readonly PR_CurrentAliveEnemyCount _prCurrentAliveEnemyCount = new PR_CurrentAliveEnemyCount();
         
+        [SerializeField] private VW_InitializeWave _vwInitializeWave;
+        private readonly PR_InitializeWave _prInitializeWave = new PR_InitializeWave();
+        
         protected override void ValidateReferences()
         {
             AssertHelper.NotNull(typeof(VC_WaveInfo), _vwNextWaveTimer);
             AssertHelper.NotNull(typeof(VC_WaveInfo), _vwCurrentWaveCount);
             AssertHelper.NotNull(typeof(VC_WaveInfo), vwCurrentAliveEnemyCount);
+            AssertHelper.NotNull(typeof(VC_WaveInfo), _vwInitializeWave);
         }
 
         public override void Init(DataManager dataManager)
@@ -30,6 +34,7 @@ namespace UI
             _prNextWaveTimer.Init(dataManager, _vwNextWaveTimer);
             _prCurrentWaveCount.Init(dataManager, _vwCurrentWaveCount);
             _prCurrentAliveEnemyCount.Init(dataManager, vwCurrentAliveEnemyCount);
+            _prInitializeWave.Init(dataManager, _vwInitializeWave);
         }
 
         protected override void ReleasePresenter()
@@ -37,6 +42,7 @@ namespace UI
             _prNextWaveTimer.Dispose();
             _prCurrentWaveCount.Dispose();
             _prCurrentAliveEnemyCount.Dispose();
+            _prInitializeWave.Dispose();
         }
     }
 }

@@ -10,20 +10,21 @@ namespace System
     public sealed class SequenceManager : MonoBehaviourBase
     {
         private RootManager _rootManager;
+        private MDL_GameSystem _mdlSystem;
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
 
         public void Init(RootManager rootManager)
         {
             _rootManager = rootManager;
-            MDL_GameSystem mdlSystem = rootManager.DataManager.GameSystem;
+            _mdlSystem = rootManager.DataManager.GameSystem;
             rootManager.AIPlayerRoot.Init(rootManager);
             
-            mdlSystem.OnGameFlow
+            _mdlSystem.OnGameFlow
                 .Where(state => state == EGameState.GameOver)
                 .Subscribe(_ => HandleGameOver())
                 .AddTo(_disposable);
             
-            mdlSystem.OnGameFlow
+            _mdlSystem.OnGameFlow
                 .Where(state => state == EGameState.Start)
                 .Subscribe(_ => StartGame())
                 .AddTo(_disposable);
@@ -31,8 +32,12 @@ namespace System
         
         private void StartGame()
         {
-            _rootManager.WaveManager.WaveStart();
+            _mdlSystem.ChangeGameFlow(EGameState.Playing);
             _rootManager.AIPlayerRoot.ActivateAI();
+            
+            Observable.Timer(TimeSpan.FromSeconds(5))
+                .Subscribe(_ => _rootManager.WaveManager.WaveStart())
+                .AddTo(_disposable);
         }
         
         /// <summary>

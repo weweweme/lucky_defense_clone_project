@@ -55,6 +55,8 @@ namespace UI
                     // 0이 되면 텍스트 사라짐
                     _topWaveCountTxt.gameObject.SetActive(false);
                     _bottomWaveCountTxt.gameObject.SetActive(false);
+                    _topWaveArrow.gameObject.SetActive(false);
+                    _bottomWaveArrow.gameObject.SetActive(false);
                 }
 
                 await UniTask.Delay(1000);
@@ -63,11 +65,6 @@ namespace UI
             // 5초 후 애니메이션 정지
             _topWaveArrow.DOKill();
             _bottomWaveArrow.DOKill();
-            
-            _topWaveArrow.gameObject.SetActive(false);
-            _bottomWaveArrow.gameObject.SetActive(false);
-            _topWaveCountTxt.gameObject.SetActive(false);
-            _bottomWaveCountTxt.gameObject.SetActive(false);
         }
     }
 }
