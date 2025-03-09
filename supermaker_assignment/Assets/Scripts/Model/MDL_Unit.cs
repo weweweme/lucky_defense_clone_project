@@ -36,6 +36,6 @@ namespace Model
         private readonly ReactiveProperty<uint> _maxPossibleSpawnCount = new ReactiveProperty<uint>(INIT_MAX_POSSIBLE_SPAWN_COUNT);
         public IReactiveProperty<uint> MaxPossibleSpawnCount => _maxPossibleSpawnCount;
         public uint GetMaxPossibleSpawnCount() => _maxPossibleSpawnCount.Value;
-        public void SetMaxPossibleSpawnCount(uint value) => _maxPossibleSpawnCount.Value = value;
+        public void SetMaxPossibleSpawnCount(uint value) => _maxPossibleSpawnCount.Value = Math.Min(value, 50);
     }
 }
