@@ -122,9 +122,13 @@ namespace Unit
         /// <param name="targetPositions">도착 지점 Transform 배열</param>
         public async UniTask MoveToTargetNode(params Transform[] targetPositions)
         {
-            for (int i = 0; i < UnitCount; ++i)
+            for (int i = 0; i < MAX_UNIT_COUNT; ++i)
             {
                 _moveTasks[i] = default;
+            }
+            
+            for (int i = 0; i < UnitCount; ++i)
+            {
                 _moveTasks[i] = _placedUnits[i].MoveController.MoveToTarget(targetPositions[i]);
             }
 
