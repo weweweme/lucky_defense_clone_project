@@ -26,6 +26,11 @@ namespace System
         /// 웨이브 정보를 관리하는 데이터 모델입니다.
         /// </summary>
         private readonly MDL_Wave _mdlWave;
+        
+        /// <summary>
+        /// 게임 시스템 정보를 관리하는 데이터 모델입니다.
+        /// </summary>
+        private readonly MDL_GameSystem _mdlSystem;
 
         /// <summary>
         /// 현재 웨이브에서의 몬스터 및 보스 스폰 로직을 관리하는 핸들러입니다.
@@ -34,7 +39,9 @@ namespace System
 
         public WaveManager(RootManager rootManager)
         {
-            _mdlWave = rootManager.DataManager.Wave;
+            var dataManager = rootManager.DataManager;
+            _mdlWave = dataManager.Wave;
+            _mdlSystem = dataManager.GameSystem;
             _spawnHandler = new WaveSpawnHandler(rootManager, _disposable);
         }
         
@@ -54,12 +61,28 @@ namespace System
         {
             while (!token.IsCancellationRequested)
             {
+                uint currentWave = _mdlWave.GetCurrentWaveCount();
+
+                if (currentWave >= 21) // 20번째 웨이브까지 진행 후 종료
+                {
+                    GameClear();
+                    break;
+                }
+
                 StartWave(token);
-                
+        
                 await WaitForNextWave(token);
-                
+        
                 EndWave();
             }
+        }
+
+        /// <summary>
+        /// 게임 클리어 처리 메서드
+        /// </summary>
+        private void GameClear()
+        {
+            _mdlSystem.ChangeGameFlow(EGameState.GameClear);
         }
 
         /// <summary>
