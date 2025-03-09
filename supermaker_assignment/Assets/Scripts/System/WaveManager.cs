@@ -69,8 +69,10 @@ namespace System
             {
                 uint currentWave = _mdlWave.GetCurrentWaveCount();
                 const uint FINAL_WAVE = 20;
-                if (currentWave == FINAL_WAVE) // 20번째 웨이브 (최후의 웨이브)
+
+                if (currentWave == FINAL_WAVE)
                 {
+                    StartWave(token);
                     bool isSuccess = await FinalWaveCountdown(token);
 
                     if (isSuccess)
@@ -82,12 +84,13 @@ namespace System
                 }
 
                 StartWave(token);
-        
-                await WaitForNextWave(token);
-        
+
+                await WaitForNextWave(token); // 20번째 웨이브는 여기 생략됨
+
                 EndWave();
             }
         }
+
 
         /// <summary>
         /// 게임 클리어 처리 메서드
