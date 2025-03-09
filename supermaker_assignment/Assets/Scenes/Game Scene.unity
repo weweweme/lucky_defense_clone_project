@@ -12744,8 +12744,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 4184735902855163255, guid: 666e2a16d2f8e43f5953db65db7f0548, type: 3}
-  defaultCapacity: 50
-  maxSize: 50
+  defaultCapacity: 200
+  maxSize: 200
 --- !u!1 &1186547958
 GameObject:
   m_ObjectHideFlags: 0
@@ -13471,8 +13471,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 3996251943159188635, guid: b5568ad10d3614ae197aa48978413d2a, type: 3}
-  defaultCapacity: 110
-  maxSize: 110
+  defaultCapacity: 200
+  maxSize: 200
 --- !u!1 &1297528928
 GameObject:
   m_ObjectHideFlags: 0
