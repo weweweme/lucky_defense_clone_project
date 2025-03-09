@@ -26,5 +26,6 @@ namespace Model
         private readonly ReactiveProperty<uint> _currentAliveEnemyCount = new ReactiveProperty<uint>(0);
         public IReadOnlyReactiveProperty<uint> CurrentAliveEnemyCount => _currentAliveEnemyCount;
         public void SetCurrentEnemyCount(uint count) => _currentAliveEnemyCount.Value = count;
+        public uint GetCurrentEnemyCount() => _currentAliveEnemyCount.Value;
     }
 }
