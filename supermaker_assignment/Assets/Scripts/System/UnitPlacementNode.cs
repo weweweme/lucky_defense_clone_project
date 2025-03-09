@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using Unit;
 using UnityEngine;
 using Util;
@@ -92,28 +93,43 @@ namespace System
         /// </summary>
         private void RearrangeUnitPositions()
         {
-            switch (UnitGroup.UnitCount)
-            {
-                case 1:
-                    UnitGroup.SetPositions(oneUnitPosition);
-                    break;
-                case 2:
-                    UnitGroup.SetPositions(twoUnitPositions);
-                    break;
-                case 3:
-                    UnitGroup.SetPositions(threeUnitPositions);
-                    break;
-            }
+            UnitGroup.SetPositions(GetUnitPositions());
         }
 
         /// <summary>
-        /// 다른 노드와 유닛 그룹을 교환하고, 서로의 유닛 위치를 재조정합니다.
+        /// 다른 노드와 유닛 그룹을 교환하고, 서로의 유닛 위치를 재조정한 후 유닛을 이동시킵니다.
         /// </summary>
-        public void SwapWith(UnitPlacementNode targetNode)
+        public async UniTask SwapWith(UnitPlacementNode targetNode)
         {
+            // 유닛 그룹 교환
             (UnitGroup, targetNode.UnitGroup) = (targetNode.UnitGroup, UnitGroup);
+
+            // 이동할 목표 위치 설정
+            Transform[] myTargetPositions = GetUnitPositions();
+            Transform[] targetNodePositions = targetNode.GetUnitPositions();
+
+            // 유닛 이동 (모두 이동 완료될 때까지 대기)
+            await UniTask.WhenAll(
+                UnitGroup.MoveToTargetNode(myTargetPositions),
+                targetNode.UnitGroup.MoveToTargetNode(targetNodePositions)
+            );
+
+            // 유닛 위치 확실한 마무리
             RearrangeUnitPositions();
-            targetNode.RearrangeUnitPositions();
+        }
+        
+        /// <summary>
+        /// 현재 UnitGroup의 유닛 수에 맞는 위치 배열을 반환합니다.
+        /// </summary>
+        private Transform[] GetUnitPositions()
+        {
+            return UnitGroup.UnitCount switch
+            {
+                1 => new[] { oneUnitPosition },
+                2 => twoUnitPositions,
+                3 => threeUnitPositions,
+                _ => Array.Empty<Transform>() // 예외 방지
+            };
         }
     }
 }
