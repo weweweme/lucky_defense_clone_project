@@ -31,6 +31,11 @@ namespace System
         /// 게임 시스템 정보를 관리하는 데이터 모델입니다.
         /// </summary>
         private readonly MDL_GameSystem _mdlSystem;
+        
+        /// <summary>
+        /// 에너미와 관련된 데이터를 관리하는 데이터 모델입니다.
+        /// </summary>
+        private readonly MDL_Enemy _mdlEnemy;
 
         /// <summary>
         /// 현재 웨이브에서의 몬스터 및 보스 스폰 로직을 관리하는 핸들러입니다.
@@ -42,6 +47,7 @@ namespace System
             var dataManager = rootManager.DataManager;
             _mdlWave = dataManager.Wave;
             _mdlSystem = dataManager.GameSystem;
+            _mdlEnemy = dataManager.Enemy;
             _spawnHandler = new WaveSpawnHandler(rootManager, _disposable);
         }
         
@@ -62,10 +68,16 @@ namespace System
             while (!token.IsCancellationRequested)
             {
                 uint currentWave = _mdlWave.GetCurrentWaveCount();
-                const uint CLEAR_WAVE = 20;
-                if (currentWave >= CLEAR_WAVE) // 20번째 웨이브까지 진행 후 종료
+                const uint FINAL_WAVE = 20;
+                if (currentWave == FINAL_WAVE) // 20번째 웨이브 (최후의 웨이브)
                 {
-                    GameClear();
+                    bool isSuccess = await FinalWaveCountdown(token);
+
+                    if (isSuccess)
+                        GameClear();
+                    else
+                        GameOver();
+
                     break;
                 }
 
@@ -83,6 +95,11 @@ namespace System
         private void GameClear()
         {
             _mdlSystem.ChangeGameFlow(EGameState.GameClear);
+        }
+        
+        private void GameOver()
+        {
+            _mdlSystem.ChangeGameFlow(EGameState.GameOver);
         }
 
         /// <summary>
@@ -116,6 +133,24 @@ namespace System
 
                 await UniTask.Delay(TimeSpan.FromSeconds(COUNTDOWN_INTERVAL_SECONDS), cancellationToken: token);
             }
+        }
+        
+        private async UniTask<bool> FinalWaveCountdown(CancellationToken token)
+        {
+            const uint FINAL_WAVE_TIME = 60;
+            const uint COUNTDOWN_INTERVAL_SECONDS = 1;
+
+            for (uint i = 0; i < FINAL_WAVE_TIME; ++i)
+            {
+                _mdlWave.SetNextWaveCountDown(FINAL_WAVE_TIME - i);
+
+                if (_mdlEnemy.GetCurrentEnemyCount() == 0)
+                    return true; // 모든 적 처치 → 클리어
+
+                await UniTask.Delay(TimeSpan.FromSeconds(COUNTDOWN_INTERVAL_SECONDS), cancellationToken: token);
+            }
+
+            return _mdlEnemy.GetCurrentEnemyCount() == 0; // 남은 적이 없으면 클리어, 남아있으면 실패
         }
 
         /// <summary>
