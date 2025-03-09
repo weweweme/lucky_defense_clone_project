@@ -93,18 +93,7 @@ namespace System
         /// </summary>
         private void RearrangeUnitPositions()
         {
-            switch (UnitGroup.UnitCount)
-            {
-                case 1:
-                    UnitGroup.SetPositions(oneUnitPosition);
-                    break;
-                case 2:
-                    UnitGroup.SetPositions(twoUnitPositions);
-                    break;
-                case 3:
-                    UnitGroup.SetPositions(threeUnitPositions);
-                    break;
-            }
+            UnitGroup.SetPositions(GetUnitPositions());
         }
 
         /// <summary>
