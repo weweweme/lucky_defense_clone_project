@@ -14,6 +14,7 @@ namespace Model
         public IReadOnlyReactiveProperty<uint> CurrentWaveCount => _currentWaveCount;
         public uint GetCurrentWaveCount() => _currentWaveCount.Value;
         public void TriggerNextWave() => _currentWaveCount.Value = _currentWaveCount.Value + ROUND_INCREMENT;
+        public void SetWaveCount(uint count) => _currentWaveCount.Value = count;
         
         // 현재 웨이브의 상태를 나타내는 Rx
         private readonly ReactiveProperty<EWaveState> _waveState = new ReactiveProperty<EWaveState>(EWaveState.Spawning);
