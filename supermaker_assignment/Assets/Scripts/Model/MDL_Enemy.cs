@@ -12,6 +12,10 @@ namespace Model
         private readonly Subject<SEnemySpawnRequestData> _onEnemySpawn = new Subject<SEnemySpawnRequestData>();
         public IObservable<SEnemySpawnRequestData> OnEnemySpawn => _onEnemySpawn;
         public void SpawnEnemy(SEnemySpawnRequestData data) => _onEnemySpawn.OnNext(data);
+        
+        private readonly Subject<UniRx.Unit> _onOneEnemySpawn = new Subject<UniRx.Unit>();
+        public IObservable<UniRx.Unit> OnOneEnemySpawn => _onOneEnemySpawn;
+        public void SpawnOneEnemy() => _onOneEnemySpawn.OnNext(UniRx.Unit.Default);
 
         // 적 유닛 사망과 관련된 Rx
         private readonly Subject<UniRx.Unit> _onEnemyDeath = new Subject<UniRx.Unit>();
