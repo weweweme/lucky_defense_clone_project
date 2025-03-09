@@ -62,6 +62,7 @@ namespace Enemy
         {
             AnimatorController deathAnim = _mdlResources.GetDeathAnimationController();
             _animator.runtimeAnimatorController = deathAnim;
+            _spriteRenderer.transform.localScale *= 2f;
 
             float animationLength = deathAnim.animationClips[0].length;
 
