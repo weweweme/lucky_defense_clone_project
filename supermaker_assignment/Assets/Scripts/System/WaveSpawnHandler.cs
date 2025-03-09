@@ -2,6 +2,8 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using Model;
 using UniRx;
+using UnityEditor.Rendering;
+using UnityEngine;
 
 namespace System
 {
@@ -30,11 +32,15 @@ namespace System
         /// </summary>
         private readonly IReadOnlyReactiveProperty<uint> _currentEnemyCount;
 
-        public WaveSpawnHandler(RootManager rootManager)
+        public WaveSpawnHandler(RootManager rootManager, CompositeDisposable disposable)
         {
             _mdlEnemy = rootManager.DataManager.Enemy;
             _mdlGameSystem = rootManager.DataManager.GameSystem;
             _currentEnemyCount = _mdlEnemy.CurrentAliveEnemyCount;
+            
+            _mdlEnemy.OnOneEnemySpawn
+                .Subscribe(_ => SpawnOneEnemy())
+                .AddTo(disposable);
         }
         
         /// <summary>
@@ -51,7 +57,9 @@ namespace System
             
             if (enemyType == EEnemyType.Boss)
             {
-                SpawnBossWave();
+                // 보스 웨이브의 경우 스폰되면서 웨이브 인덱스에 따라 능력치가 세팅됨
+                // 따라서 하나의 에너미만 생성
+                SpawnOneEnemy();
             }
             else
             {
@@ -90,7 +98,6 @@ namespace System
             {
                 if (token.IsCancellationRequested) return;
 
-                // TODO: waveNumber에 따라 에너미가 강해지는 기능 추가
                 SpawnEnemy(EPlayerSide.North);
                 SpawnEnemy(EPlayerSide.South);
                 
@@ -104,13 +111,12 @@ namespace System
         }
 
         /// <summary>
-        /// 보스 웨이브 스폰 처리 메서드
+        /// 하나의 유닛만 스폰 처리하는 메서드
         /// </summary>
         /// <param name="waveNumber">웨이브 번호</param>
         /// <param name="token">작업 취소 토큰</param>
-        private void SpawnBossWave()
+        private void SpawnOneEnemy()
         {
-            // TODO: waveNumber에 따라 에너미가 강해지는 기능 추가
             SpawnEnemy(EPlayerSide.North);
             SpawnEnemy(EPlayerSide.South);
         }

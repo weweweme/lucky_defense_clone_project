@@ -35,7 +35,7 @@ namespace System
         public WaveManager(RootManager rootManager)
         {
             _mdlWave = rootManager.DataManager.Wave;
-            _spawnHandler = new WaveSpawnHandler(rootManager);
+            _spawnHandler = new WaveSpawnHandler(rootManager, _disposable);
         }
         
         /// <summary>

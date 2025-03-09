@@ -14,6 +14,7 @@ namespace UI
         [SerializeField] internal TestConfigPanelItem addGold;
         [SerializeField] internal TestConfigPanelItem addDia;
         [SerializeField] internal TestConfigPanelItem addUnitLimit;
+        [SerializeField] internal TestConfigPanelItem addEnemy;
 
         private void Awake()
         {
@@ -21,6 +22,7 @@ namespace UI
             AssertHelper.NotNull(typeof(VW_TestConfigPanel), addGold);
             AssertHelper.NotNull(typeof(VW_TestConfigPanel), addDia);
             AssertHelper.NotNull(typeof(VW_TestConfigPanel), addUnitLimit);
+            AssertHelper.NotNull(typeof(VW_TestConfigPanel), addEnemy);
         }
         
         public void SetCanvasActive(ETestConfigState state)
