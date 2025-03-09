@@ -43,8 +43,8 @@ namespace UI
             // 기본 골드 지급
             _currency.AddGold(1);
 
-            // 1% 확률로 다이아 지급
-            if (UnityEngine.Random.value < 0.01f)  
+            // 5% 확률로 다이아 지급
+            if (UnityEngine.Random.value < 0.05f)  
             {
                 _currency.AddDiamond(1);
             }
