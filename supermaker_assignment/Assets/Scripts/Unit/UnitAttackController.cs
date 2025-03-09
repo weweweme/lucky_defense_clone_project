@@ -209,25 +209,6 @@ namespace Unit
             _currentTarget.StatController.TakeDamage(_damage);
         }
 
-        /// <summary>
-        /// 타겟의 위치를 기준으로 유닛의 좌/우 방향을 설정합니다.
-        /// </summary>
-        /// <param name="targetPosition">타겟의 월드 위치</param>
-        /// <summary>
-        /// 타겟의 위치를 기준으로 유닛의 좌/우 방향을 설정합니다.
-        /// </summary>
-        private void SetFacingDirection()
-        {
-            AssertHelper.NotNull(typeof(UnitAttackController), _currentTarget);
-            
-            float dirX = _currentTarget.Transform.position.x - transform.position.x;
-            float sign = (dirX < 0) ? -1f : 1f;
-
-            Vector3 scale = transform.localScale;
-            scale.x = Mathf.Abs(scale.x) * sign;
-            transform.localScale = scale;
-        }
-
         protected override void OnDestroy()
         {
             CancelTokenHelper.DisposeToken(in _cts);
