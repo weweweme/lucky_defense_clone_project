@@ -63,7 +63,7 @@ namespace UI
             
             UnitMetaData metaData = _mdlUnitResources.GetResource(grade, type);
             AssertHelper.NotNull(typeof(PR_UnitPlacementSelection), metaData);
-            _mdlCurrency.SubGold(metaData.SellPrice);
+            _mdlCurrency.AddGold(metaData.SellPrice);
             
             const uint SELL_UNIT_COUNT = 1;
             ApplyUnitCount(SELL_UNIT_COUNT);
