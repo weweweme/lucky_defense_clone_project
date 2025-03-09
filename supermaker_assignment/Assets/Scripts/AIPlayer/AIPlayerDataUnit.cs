@@ -10,7 +10,7 @@ namespace AIPlayer
     public class AIPlayerDataUnit
     {
         // 유닛 스폰에 필요한 골드량
-        private const uint INITIAL_SPAWN_NEEDED_GOLD = 1;
+        private const uint INITIAL_SPAWN_NEEDED_GOLD = 20;
         private uint _spawnNeededGold = INITIAL_SPAWN_NEEDED_GOLD;
         public uint GetSpawnNeededGold() => _spawnNeededGold;
         public void SetSpawnNeededGold(uint value) => _spawnNeededGold = value;

@@ -2,7 +2,6 @@ using System;
 using Cysharp.Threading.Tasks;
 using Model;
 using UI;
-using UniRx;
 using UnityEngine;
 using Util;
 
@@ -54,10 +53,6 @@ namespace Enemy
         {
             _enemyRoot = root;
             _spriteController = root.spriteController;
-
-            _enemyRoot.dependencyContainer.mdlEnemy.OnEnemyDeath
-                .Subscribe(_ => RewardCurrencyOnEnemyDeath())
-                .AddTo(this);
         }
 
         /// <summary>
@@ -70,7 +65,15 @@ namespace Enemy
 
             uint currentSpawnWaveIdx = _enemyRoot.currentSpawnWaveIdx;
             uint currentWaveMaxHp = _maxHP + currentSpawnWaveIdx * 20;
-            
+            bool isBoss = _enemyRoot.type == EEnemyType.Boss;
+
+            // 보스인지 체크 후 HP * 100 적용
+            if (isBoss)
+            {
+                currentWaveMaxHp *= 50;
+            }
+
+            _view.SetPositionAndScale(isBoss);
             _mdlEnemyStat.SetStat(currentWaveMaxHp);
         }
 
@@ -105,7 +108,6 @@ namespace Enemy
             _state = EEnemyState.Dead;
             
             EnemyDependencyContainer dependencyContainer = _enemyRoot.dependencyContainer;
-            
             dependencyContainer.mdlEnemy.KillEnemy();
             
             uint currentAliveEnemyCount = dependencyContainer.mdlEnemy.CurrentAliveEnemyCount.Value;
@@ -114,23 +116,6 @@ namespace Enemy
             
             await _spriteController.PlayDeathAnimation();
             dependencyContainer.enemyBasePool.ReleaseObject(_enemyRoot);
-        }
-
-        /// <summary>
-        /// 적이 사망했을 때 플레이어에게 골드를 지급합니다.
-        /// </summary>
-        private void RewardCurrencyOnEnemyDeath()
-        {
-            var currency = _enemyRoot.dependencyContainer.mdlCurrency;
-
-            // 기본 골드 지급
-            currency.AddGold(1);
-
-            // 1% 확률로 다이아 지급
-            if (UnityEngine.Random.value < 0.01f)  
-            {
-                currency.AddDiamond(1);
-            }
         }
 
         protected override void OnDestroy()

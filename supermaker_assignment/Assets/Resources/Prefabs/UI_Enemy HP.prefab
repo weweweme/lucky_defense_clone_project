@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4272d733a834999a91fc9dea229c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rect: {fileID: 9170633682076057650}
   _canvas: {fileID: 4768691767015621832}
   _healthBarImage: {fileID: 7659868660736979377}
 --- !u!1 &4548962479544328928
