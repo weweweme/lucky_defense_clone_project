@@ -1,6 +1,7 @@
 using System;
 using InGame.System;
 using UnityEngine;
+using UnityEngine.UI;
 using Util;
 
 namespace UI
@@ -15,6 +16,7 @@ namespace UI
         [SerializeField] internal TestConfigPanelItem addDia;
         [SerializeField] internal TestConfigPanelItem addUnitLimit;
         [SerializeField] internal TestConfigPanelItem addEnemy;
+        [SerializeField] internal Button backgroundExitBut;
 
         private void Awake()
         {
@@ -23,6 +25,7 @@ namespace UI
             AssertHelper.NotNull(typeof(VW_TestConfigPanel), addDia);
             AssertHelper.NotNull(typeof(VW_TestConfigPanel), addUnitLimit);
             AssertHelper.NotNull(typeof(VW_TestConfigPanel), addEnemy);
+            AssertHelper.NotNull(typeof(VW_TestConfigPanel), backgroundExitBut);
         }
         
         public void SetCanvasActive(ETestConfigState state)

@@ -47,6 +47,10 @@ namespace UI
             vw.addEnemy.selectBut.OnClickAsObservable()
                 .Subscribe(_ => mdlEnemy.SpawnOneEnemy())
                 .AddTo(disposable);
+            
+            vw.backgroundExitBut.OnClickAsObservable()
+                .Subscribe(_ => mdlSystem.ChangeTestConfigState(ETestConfigState.Close))
+                .AddTo(disposable);
         }
     }
 }
