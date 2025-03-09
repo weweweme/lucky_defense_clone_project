@@ -47,6 +47,15 @@ namespace Unit
         /// </summary>
         /// <param name="target">타겟 Transform</param>
         public void SetTarget(Transform target) => targetTr = target;
+        
+        /// <summary>
+        /// 스킬을 사용하고 정보를 비웁니다.
+        /// </summary>
+        public void ClearRef()
+        {
+            targetTr = null;
+            startTr = null;
+        }
 
         /// <summary>
         /// 스킬을 발동하는 메서드입니다.

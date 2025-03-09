@@ -14,5 +14,11 @@ namespace Unit
             
             return base.CreatePooledItem();
         }
+
+        protected override void OnReturnedToPool(UnitSkillBase item)
+        {
+            item.ClearRef();
+            base.OnReturnedToPool(item);
+        }
     }
 }
