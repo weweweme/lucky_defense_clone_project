@@ -21,10 +21,14 @@ namespace UI
             MDL_GameSystem mdlSystem = dataManager.GameSystem;
             AssertHelper.NotNull(typeof(PR_GameDoor), mdlSystem);
 
-            // 게임 오버 시 게임 종료 연출 실행
+            // 게임 종료 시 게임 클리어 여부 판단 후 연출 실행
             mdlSystem.OnGameFlow
-                .Where(state => state == EGameState.GameOver)
-                .Subscribe(_ => vw!.EndGameDirection().Forget())
+                .Where(state => state == EGameState.GameOver || state == EGameState.GameClear)
+                .Subscribe(state =>
+                {
+                    bool isClear = state == EGameState.GameClear;
+                    vw!.GameEndDirection(isClear).Forget();
+                })
                 .AddTo(disposable);
 
             // 게임 시작 시 게임 시작 연출 실행

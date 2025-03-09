@@ -36,9 +36,13 @@ namespace UI
             await DoorAction(true);
         }
         
-        public async UniTaskVoid EndGameDirection()
+        /// <summary>
+        /// 게임 종료 연출 (클리어/실패 구분 가능)
+        /// </summary>
+        /// <param name="isClear">true면 클리어 성공, false면 실패</param>
+        public async UniTaskVoid GameEndDirection(bool isClear)
         {
-            _mainTxt.SetText("클리어 실패!");
+            _mainTxt.SetText(isClear ? "클리어 성공!" : "클리어 실패!");
             
             await DoorAction(false);
             
@@ -46,7 +50,7 @@ namespace UI
             
             for (int i = 5; i >= 0; --i)
             {
-                _subTxt.SetText("잠시 후 게임이 종료됩니다. ({0})", i);
+                _subTxt.SetText($"잠시 후 게임이 종료됩니다. ({i})");
                 
                 await UniTask.Delay(1000); // 1초
             }
