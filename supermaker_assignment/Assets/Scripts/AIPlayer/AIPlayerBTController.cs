@@ -93,6 +93,7 @@ namespace AIPlayer
                     .End()
 
                     // TODO: 노드를 탐색한 뒤 가중치에 따라 유닛을 배치하는 기능 구현
+                    // TODO: 현재 에너미가 가진 자원 UI 보여주는 기능 구현
                 
                 .End()
             .Build();
