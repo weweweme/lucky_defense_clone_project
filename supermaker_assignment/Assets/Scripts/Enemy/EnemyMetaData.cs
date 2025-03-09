@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Animations;
 using UnityEngine;
 
 namespace Enemy
@@ -12,5 +13,6 @@ namespace Enemy
         public EEnemyType Type;
         public Sprite Sprite;
         public float ScaleSize;
+        public AnimatorController AnimationController;
     }
 }
