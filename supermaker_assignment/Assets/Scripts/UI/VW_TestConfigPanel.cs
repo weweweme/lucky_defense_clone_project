@@ -1,3 +1,4 @@
+using System;
 using InGame.System;
 using UnityEngine;
 using Util;
@@ -16,6 +17,12 @@ namespace UI
             AssertHelper.NotNull(typeof(VW_TestConfigPanel), _canvas);
         }
         
-        public void SetCanvasActive(bool value) => _canvas.enabled = value;
+        public void SetCanvasActive(ETestConfigState state)
+        {
+            AssertHelper.NotEqualsEnum(typeof(VW_TestConfigPanel), state, ETestConfigState.None);
+            
+            bool isActive = state == ETestConfigState.Open;
+            _canvas.enabled = isActive;
+        }
     }
 }
