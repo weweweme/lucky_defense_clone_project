@@ -9085,6 +9085,7 @@ MonoBehaviour:
   addGold: {fileID: 796187867}
   addDia: {fileID: 1531054310}
   addUnitLimit: {fileID: 961815420}
+  addEnemy: {fileID: 1202847197}
 --- !u!114 &826629100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12788,6 +12789,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1714315950770827878, guid: f4693a67763414f9f82caf0e50a2cd7d, type: 3}
   m_PrefabInstance: {fileID: 1202847192}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1202847197 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2349667323445575343, guid: f4693a67763414f9f82caf0e50a2cd7d, type: 3}
+  m_PrefabInstance: {fileID: 1202847192}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d26835882764f1d9aa574581b4fa2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1214724057
 GameObject:
   m_ObjectHideFlags: 0

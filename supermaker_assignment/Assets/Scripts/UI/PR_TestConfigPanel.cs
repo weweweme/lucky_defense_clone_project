@@ -25,6 +25,8 @@ namespace UI
             AssertHelper.NotNull(typeof(PR_TestConfigPanel), mdlCurrency);
             MDL_Unit mdlUnit = dataManager.Unit;
             AssertHelper.NotNull(typeof(PR_TestConfigPanel), mdlUnit);
+            MDL_Enemy mdlEnemy = dataManager.Enemy;
+            AssertHelper.NotNull(typeof(PR_TestConfigPanel), mdlEnemy);
             
             mdlSystem.OnTestConfigState
                 .Subscribe(vw!.SetCanvasActive)
@@ -40,6 +42,10 @@ namespace UI
 
             vw.addUnitLimit.selectBut.OnClickAsObservable()
                 .Subscribe(_ => mdlUnit.SetMaxPossibleSpawnCount(mdlUnit.GetMaxPossibleSpawnCount() + 1))
+                .AddTo(disposable);
+            
+            vw.addEnemy.selectBut.OnClickAsObservable()
+                .Subscribe(_ => mdlEnemy.SpawnOneEnemy())
                 .AddTo(disposable);
         }
     }

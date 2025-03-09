@@ -117,7 +117,6 @@ namespace System
         /// <param name="token">작업 취소 토큰</param>
         private void SpawnOneEnemy()
         {
-            Debug.Log("호출");
             SpawnEnemy(EPlayerSide.North);
             SpawnEnemy(EPlayerSide.South);
         }
