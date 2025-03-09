@@ -18,7 +18,7 @@ namespace Model
                 EUnitType.Melee,
                 new SUnitCombinationFlagCondition(EUnitGrade.Common, EUnitType.Melee),
                 new SUnitCombinationFlagCondition(EUnitGrade.Rare, EUnitType.Melee),
-                new SUnitCombinationFlagCondition(EUnitGrade.Heroic, EUnitType.Melee)
+                new SUnitCombinationFlagCondition(EUnitGrade.Hero, EUnitType.Melee)
             );
             _combinationFlagCheckers.Add(meleeMythicalChecker);
             
@@ -26,7 +26,7 @@ namespace Model
                 EUnitType.Ranged,
                 new SUnitCombinationFlagCondition(EUnitGrade.Common, EUnitType.Ranged),
                 new SUnitCombinationFlagCondition(EUnitGrade.Rare, EUnitType.Ranged),
-                new SUnitCombinationFlagCondition(EUnitGrade.Heroic, EUnitType.Ranged)
+                new SUnitCombinationFlagCondition(EUnitGrade.Hero, EUnitType.Ranged)
             );
             _combinationFlagCheckers.Add(rangedMythicalChecker);
         }
