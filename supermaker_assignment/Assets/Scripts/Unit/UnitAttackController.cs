@@ -23,6 +23,7 @@ namespace Unit
         /// 공격 대상이 존재하지 않으면 null입니다.
         /// </summary>
         private readonly TargetEnemyData _currentTarget = new TargetEnemyData();
+        public TargetEnemyData CurrentTarget => _currentTarget;
 
         /// <summary>
         /// 유닛의 공격 범위를 결정하는 CircleCollider2D입니다.

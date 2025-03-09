@@ -15,6 +15,7 @@ namespace Unit
         
         [SerializeField] internal UnitAttackController attackController;
         [SerializeField] internal UnitSpriteController spriteController;
+        [SerializeField] internal UnitSkillController skillController;
         internal UnitDependencyContainer dependencyContainer;
         
         private UnitBTController _btController;
@@ -38,6 +39,7 @@ namespace Unit
             spriteController.CreatePooledItemInit(this);
             attackController.CreatePooledItemInit(this);
             _moveController.CreatePooledItemInit(this);
+            skillController.CreatePooledItemInit(this);
         }
         
         public void SetupUnitClassification(EUnitGrade unitGrade, EUnitType unitType)
@@ -59,6 +61,7 @@ namespace Unit
             _btController.StartBtTick();
             attackController.ChangeAttackData(this);
             _moveController.ChangeEffectScale();
+            skillController.SetCurrentSkillGrade(this);
         }
         
         public void ReleaseObject()
