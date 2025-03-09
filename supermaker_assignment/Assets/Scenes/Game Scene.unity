@@ -13279,6 +13279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyBasePool: {fileID: 1288428785}
   unitBasePool: {fileID: 1167137700}
+  unitSkillPoolManager: {fileID: 1769799566}
 --- !u!1 &1257651714
 GameObject:
   m_ObjectHideFlags: 0
