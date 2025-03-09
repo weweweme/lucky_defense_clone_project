@@ -19,6 +19,7 @@ namespace Unit.Unit_Skill
         private readonly LayerMask _enemyLayer = Layers.GetLayerMask(Layers.ENEMY);
         private readonly CancellationTokenSource _cts = new CancellationTokenSource();
         private readonly Collider2D[] _hitEnemiesBuffer = new Collider2D[16];
+        private float _offsetY = 1.76f;
 
         private void Awake()
         {
@@ -36,6 +37,7 @@ namespace Unit.Unit_Skill
             AssertHelper.NotNull(typeof(HellForgeSmash), startTr);
 
             transform.position = startTr.position;
+            _smashEffect.transform.position = new Vector3(startTr.position.x, startTr.position.y + _offsetY, startTr.position.z);
             
             // 1. 파티클 이펙트 실행
             _smashEffect.Play();
