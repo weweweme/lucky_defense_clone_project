@@ -13,12 +13,14 @@ namespace UI
         [SerializeField] private Canvas _canvas;
         [SerializeField] internal TestConfigPanelItem addGold;
         [SerializeField] internal TestConfigPanelItem addDia;
+        [SerializeField] internal TestConfigPanelItem addUnitLimit;
 
         private void Awake()
         {
             AssertHelper.NotNull(typeof(VW_TestConfigPanel), _canvas);
             AssertHelper.NotNull(typeof(VW_TestConfigPanel), addGold);
             AssertHelper.NotNull(typeof(VW_TestConfigPanel), addDia);
+            AssertHelper.NotNull(typeof(VW_TestConfigPanel), addUnitLimit);
         }
         
         public void SetCanvasActive(ETestConfigState state)
