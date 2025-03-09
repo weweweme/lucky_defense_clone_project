@@ -16670,33 +16670,43 @@ MonoBehaviour:
   - Type: 1
     Sprite: {fileID: 613658156, guid: 1bc6097228993f045852159e71f81d5b, type: 3}
     ScaleSize: 1
+    AnimationController: {fileID: 9100000, guid: 1a3fbb256ec494d549a9dbb5a2c39e2b, type: 2}
   - Type: 1
     Sprite: {fileID: -2092964637, guid: 4104ee12b4d54f54b91b3ba875787837, type: 3}
     ScaleSize: 1
+    AnimationController: {fileID: 9100000, guid: 13dbb907361754fda9f315cfe5b6f165, type: 2}
   - Type: 1
     Sprite: {fileID: 1782705385, guid: d33598d781682e049a53a0a13104ef29, type: 3}
     ScaleSize: 1
+    AnimationController: {fileID: 9100000, guid: 119072ebf016e411ba25922ce08402ae, type: 2}
   - Type: 1
     Sprite: {fileID: 172626504, guid: c4d2ccab0c2ad7e47853b6e31a7ac7c2, type: 3}
     ScaleSize: 1
+    AnimationController: {fileID: 9100000, guid: 063d45a7672474473a933f6642403e21, type: 2}
   - Type: 1
     Sprite: {fileID: 21300000, guid: f7155fac0d464a04796941cd3fbbfaac, type: 3}
     ScaleSize: 2.8
+    AnimationController: {fileID: 9100000, guid: 8ed4713ce6d95477e8848167352ac4b0, type: 2}
   - Type: 1
     Sprite: {fileID: 21300000, guid: e0aab8ef7a3e2664c9a41888a276b862, type: 3}
     ScaleSize: 3
+    AnimationController: {fileID: 9100000, guid: 0bf15870713ad423faa4a312ed72765e, type: 2}
   - Type: 1
     Sprite: {fileID: 21300000, guid: d31f46d309957764298b96bbd18f8b18, type: 3}
     ScaleSize: 3.5
+    AnimationController: {fileID: 9100000, guid: 3c7981ff6d1e844828dd4663839a32cd, type: 2}
   - Type: 1
     Sprite: {fileID: 21300000, guid: f240dfd4814d34d55a9b033f3c9d8a60, type: 3}
     ScaleSize: 3.5
+    AnimationController: {fileID: 9100000, guid: 50008a93f85794b3aa9721893641f648, type: 2}
   - Type: 1
     Sprite: {fileID: 21300000, guid: b7a9b30e19b516f4e8f485ca2d26cbbd, type: 3}
     ScaleSize: 3.5
+    AnimationController: {fileID: 9100000, guid: f84c52c0ecb9c436a9afc708a572fa62, type: 2}
   - Type: 2
     Sprite: {fileID: 21300000, guid: 05806b63f014ac3449ddae915b77a961, type: 3}
     ScaleSize: 5
+    AnimationController: {fileID: 9100000, guid: 158796d2ac36b44aeb66686f6fc9ac97, type: 2}
 --- !u!1 &1910648951
 GameObject:
   m_ObjectHideFlags: 0

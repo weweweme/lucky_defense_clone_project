@@ -12,12 +12,21 @@ namespace Enemy
         /// 에너미의 스프라이트 렌더링을 담당하는 컴포넌트
         /// </summary>
 		[SerializeField] private SpriteRenderer _spriteRenderer;
+        
+        /// <summary>
+        /// 에너미의 애니메이션을 담당하는 컴포넌트
+        /// </summary>
+        [SerializeField] private Animator _animator;
 
+        /// <summary>
+        /// 에너미의 상태 및 정보를 관리하는 루트 클래스
+        /// </summary>
         private EnemyRoot _enemyRoot;
         
         private void Awake()
         {
             AssertHelper.NotNull(typeof(EnemySpriteController), _spriteRenderer);
+            AssertHelper.NotNull(typeof(EnemySpriteController), _animator);
         }
 
         /// <summary>
@@ -40,6 +49,7 @@ namespace Enemy
             
             _spriteRenderer.sprite = metaData.Sprite;
             _spriteRenderer.transform.localScale = Vector3.one * metaData.ScaleSize;
+            _animator.runtimeAnimatorController = metaData.AnimationController;
         }
     }
 }
