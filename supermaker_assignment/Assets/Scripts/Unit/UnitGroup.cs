@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Util;
 
@@ -34,6 +35,11 @@ namespace Unit
         /// 현재 그룹에 속한 유닛 수입니다.
         /// </summary>
         public uint UnitCount { get; private set; }
+        
+        /// <summary>
+        /// 유닛 이동 작업을 저장하는 캐싱된 배열 (최대 3개까지 저장)
+        /// </summary>
+        private readonly UniTask[] _moveTasks = new UniTask[MAX_UNIT_COUNT];
 
         /// <summary>
         /// 유닛을 그룹에 추가합니다.
@@ -108,6 +114,20 @@ namespace Unit
             AssertHelper.NotNull(typeof(UnitGroup), data);
 
             return data.AttackRange;
+        }
+        
+        /// <summary>
+        /// 현재 배치된 유닛들을 지정된 위치로 이동시킨 후, 모두 도착할 때까지 기다립니다.
+        /// </summary>
+        /// <param name="targetPositions">도착 지점 Transform 배열</param>
+        public async UniTask MoveToTargetNode(params Transform[] targetPositions)
+        {
+            for (int i = 0; i < UnitCount; ++i)
+            {
+                _moveTasks[i] = _placedUnits[i].MoveController.MoveToTarget(targetPositions[i]);
+            }
+
+            await UniTask.WhenAll(_moveTasks);
         }
     }
 }
