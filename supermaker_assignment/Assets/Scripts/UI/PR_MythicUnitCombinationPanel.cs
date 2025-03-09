@@ -20,6 +20,7 @@ namespace UI
         private VW_MythicUnitCombinationPanel _vw;
         private EUnitType _currentClickedUnitType;
         private MDL_GameSystem _mdlGameSystem;
+        private readonly HashSet<int> _matchedIndices = new HashSet<int>();
 
         public override void Init(DataManager dataManager, View view)
         {
@@ -51,6 +52,8 @@ namespace UI
             _mdlMythicUnitCombination.OnMythicUnitCombination
                 .Subscribe(OnClickCombinationUnitListItem)
                 .AddTo(disposable);
+            
+            // =====
         }
 
         private void TryCombineMythicUnit()
@@ -111,6 +114,57 @@ namespace UI
         {
             _vw.SetCurrentUnitData(data);
             _currentClickedUnitType = data.UnitType;
+        }
+        
+        // ===
+        
+        private void SearchSouthGridForMythicCombination()
+        {
+            foreach (var checker in _combinationCheckers)
+            {
+                if (HasRequiredUnits(checker))
+                {
+                    string unitName = checker.ResultUnitType == EUnitType.Ranged ? "청명한 칼날비" : "종말의 광대";
+                    var data = new SCurrentMythicUnitCombinationData(unitName, checker.ResultUnitType);
+                    _mdlMythicUnitCombination.DisplayMythicUnitCombination(data);
+                    return;
+                }
+            }
+        }
+
+        private bool HasRequiredUnits(UnitCombinationPossibleChecker checker)
+        {
+            var southGridNodes = RootManager.Ins.UnitGridNodeManager.SouthGridNodes;
+            _matchedIndices.Clear();
+
+            foreach (var node in southGridNodes)
+            {
+                if (node.UnitGroup.IsEmpty()) continue;
+
+                if (!TryMatchCondition(node, checker, out int matchedIndex)) continue;
+                if (!_matchedIndices.Add(matchedIndex)) continue;
+
+                if (_matchedIndices.Count == checker.NodeConditionMap.Count) return true;
+            }
+    
+            return false;
+        }
+
+        private bool TryMatchCondition(UnitPlacementNode node, UnitCombinationPossibleChecker checker, out int matchedIndex)
+        {
+            for (int i = 0; i < checker.NodeConditionMap.Count; i++)
+            {
+                var condition = checker.GetCondition(i);
+
+                if (node.UnitGroup.UnitGrade == condition.Grade && node.UnitGroup.UnitType == condition.Type)
+                {
+                    matchedIndex = i;
+                    return true;
+                }
+            }
+
+            matchedIndex = -1;
+            return false;
         }
     }
 }

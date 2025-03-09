@@ -18,6 +18,7 @@ namespace System
         public UnitPlacementNode[] NorthGridNodes => northGridNodes;
         
         [SerializeField] private UnitPlacementNode[] southGridNodes = new UnitPlacementNode[GRID_NODE_COUNT];
+        public UnitPlacementNode[] SouthGridNodes => southGridNodes;
 
         /// <summary>
         /// 주어진 진영에서 배치 가능한 노드를 반환합니다.
