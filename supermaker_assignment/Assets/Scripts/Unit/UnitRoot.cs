@@ -37,6 +37,7 @@ namespace Unit
             _btController = new UnitBTController(this);
             spriteController.CreatePooledItemInit(this);
             attackController.CreatePooledItemInit(this);
+            _moveController.CreatePooledItemInit(this);
         }
         
         public void SetupUnitClassification(EUnitGrade unitGrade, EUnitType unitType)
