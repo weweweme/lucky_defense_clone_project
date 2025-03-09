@@ -35,7 +35,7 @@ namespace AIPlayer
         
         private void AddCurrencyOnEnemyDeath()
         {
-            AddGold((uint)UnityEngine.Random.Range(1, 3));
+            AddGold(1);
         }
     }
 }

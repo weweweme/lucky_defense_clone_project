@@ -121,7 +121,7 @@ namespace Enemy
         /// </summary>
         private void RewardGoldOnEnemyDeath()
         {
-            _enemyRoot.dependencyContainer.mdlCurrency.AddGold((uint)UnityEngine.Random.Range(1, 3));
+            _enemyRoot.dependencyContainer.mdlCurrency.AddGold(1);
         }
 
         protected override void OnDestroy()
