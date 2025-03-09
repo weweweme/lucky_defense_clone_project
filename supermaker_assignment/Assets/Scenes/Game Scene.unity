@@ -16971,6 +16971,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1769799565}
+  - component: {fileID: 1769799566}
   m_Layer: 0
   m_Name: Unit Skill Pool Manager
   m_TagString: Untagged
@@ -16994,6 +16995,24 @@ Transform:
   - {fileID: 663209182}
   m_Father: {fileID: 1245659186}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1769799566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769799564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d85517dd4c9e147ccb1632c5f9881d3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rareRangeSkillPool: {fileID: 663209183}
+  _rareMeleeSkillPool: {fileID: 0}
+  _heroRangeSkillPool: {fileID: 0}
+  _heroMeleeSkillPool: {fileID: 0}
+  _mythicMeleeSkillPool: {fileID: 0}
+  _mythicRangeSkillPool: {fileID: 0}
 --- !u!1 &1780615700
 GameObject:
   m_ObjectHideFlags: 0
