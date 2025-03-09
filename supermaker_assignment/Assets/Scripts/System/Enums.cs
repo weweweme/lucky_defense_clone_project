@@ -91,7 +91,7 @@ namespace System
         /// <summary>
         /// 영웅 등급.
         /// </summary>
-        Heroic,
+        Hero,
 
         /// <summary>
         /// 신화 등급.

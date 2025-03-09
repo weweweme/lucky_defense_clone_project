@@ -14,7 +14,7 @@ namespace AIPlayer
         private static readonly Dictionary<EUnitGrade, SGambleMetaData> GAMBLE_META_DATA = new()
         {
             { EUnitGrade.Rare, new SGambleMetaData(EUnitGrade.Rare, 0.6f, 1) },
-            { EUnitGrade.Heroic, new SGambleMetaData(EUnitGrade.Heroic, 0.2f, 1) },
+            { EUnitGrade.Hero, new SGambleMetaData(EUnitGrade.Hero, 0.2f, 1) },
             { EUnitGrade.Mythic, new SGambleMetaData(EUnitGrade.Mythic, 0.1f, 2) }
         };
         

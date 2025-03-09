@@ -72,7 +72,7 @@ namespace AIPlayer
 
             if (roll < 50) return EUnitGrade.Common;   // 50%
             if (roll < 80) return EUnitGrade.Rare;     // 30%
-            if (roll < 95) return EUnitGrade.Heroic;   // 15%
+            if (roll < 95) return EUnitGrade.Hero;   // 15%
             return EUnitGrade.Mythic;                   // 5%
         }
 
