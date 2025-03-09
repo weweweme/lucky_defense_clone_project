@@ -1,10 +1,10 @@
 using System;
+using Cysharp.Threading.Tasks;
 using Model;
 using UI;
 using UniRx;
 using UnityEngine;
 using Util;
-using Random = UnityEngine.Random;
 
 namespace Enemy
 {
@@ -31,6 +31,11 @@ namespace Enemy
         /// EnemyRoot 객체로부터 적 관련 의존성을 관리하기 위한 참조입니다.
         /// </summary>
         private EnemyRoot _enemyRoot;  
+        
+        /// <summary>
+        /// 에너미의 스프라이트 컨트롤러입니다.
+        /// </summary>
+        private EnemySpriteController _spriteController;
 
         private void Awake()
         {
@@ -47,6 +52,7 @@ namespace Enemy
         public void CreatePooledItemInit(EnemyRoot root)
         {
             _enemyRoot = root;
+            _spriteController = root.spriteController;
 
             _enemyRoot.dependencyContainer.mdlEnemy.OnEnemyDeath
                 .Subscribe(_ => RewardGoldOnEnemyDeath())
@@ -78,7 +84,7 @@ namespace Enemy
 
             if (_mdlEnemyStat.HasHpRemaining()) return;
             
-            Die();
+            Die().Forget();
         }
 
         /// <summary>
@@ -93,17 +99,19 @@ namespace Enemy
         /// <summary>
         /// 적이 사망했을 때 호출되는 메서드입니다.
         /// </summary>
-        private void Die()
+        private async UniTaskVoid Die()
         {
             _state = EEnemyState.Dead;
             
             EnemyDependencyContainer dependencyContainer = _enemyRoot.dependencyContainer;
             
             dependencyContainer.mdlEnemy.KillEnemy();
-            dependencyContainer.enemyBasePool.ReleaseObject(_enemyRoot);
             
             uint currentAliveEnemyCount = dependencyContainer.mdlEnemy.CurrentAliveEnemyCount.Value;
             dependencyContainer.mdlEnemy.SetCurrentEnemyCount(currentAliveEnemyCount - 1);
+            
+            await _spriteController.PlayDeathAnimation();
+            dependencyContainer.enemyBasePool.ReleaseObject(_enemyRoot);
         }
 
         /// <summary>

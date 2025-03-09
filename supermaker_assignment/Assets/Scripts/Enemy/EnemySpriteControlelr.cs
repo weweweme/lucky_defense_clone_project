@@ -1,3 +1,6 @@
+using Cysharp.Threading.Tasks;
+using Model;
+using UnityEditor.Animations;
 using UnityEngine;
 using Util;
 
@@ -23,6 +26,8 @@ namespace Enemy
         /// </summary>
         private EnemyRoot _enemyRoot;
         
+        private MDL_EnemyResources _mdlResources;
+        
         private void Awake()
         {
             AssertHelper.NotNull(typeof(EnemySpriteController), _spriteRenderer);
@@ -36,6 +41,7 @@ namespace Enemy
         public void CreatePooledItemInit(EnemyRoot root)
         {
             _enemyRoot = root;
+            _mdlResources = _enemyRoot.dependencyContainer.mdlEnemyResources;
         }
 
         /// <summary>
@@ -44,12 +50,23 @@ namespace Enemy
         /// </summary>
         public void ChangeVisible()
         {
-            EnemyMetaData metaData = _enemyRoot.dependencyContainer.mdlEnemyResources.GetResources(_enemyRoot.currentSpawnWaveIdx);
+            EnemyMetaData metaData = _mdlResources.GetResources(_enemyRoot.currentSpawnWaveIdx);
             AssertHelper.NotNull(typeof(EnemySpriteController), metaData);
             
             _spriteRenderer.sprite = metaData.Sprite;
             _spriteRenderer.transform.localScale = Vector3.one * metaData.ScaleSize;
             _animator.runtimeAnimatorController = metaData.AnimationController;
+        }
+
+        public async UniTask PlayDeathAnimation()
+        {
+            AnimatorController deathAnim = _mdlResources.GetDeathAnimationController();
+            _animator.runtimeAnimatorController = deathAnim;
+
+            float animationLength = deathAnim.animationClips[0].length;
+
+            // 애니메이션 재생 시간 동안 대기
+            await UniTask.Delay((int)(animationLength * 1000));
         }
     }
 }
