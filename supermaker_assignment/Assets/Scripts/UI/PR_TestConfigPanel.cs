@@ -21,8 +21,15 @@ namespace UI
             
             MDL_GameSystem mdlSystem = dataManager.GameSystem;
             AssertHelper.NotNull(typeof(PR_TestConfigPanel), mdlSystem);
+            MDL_Currency mdlCurrency = dataManager.Currency;
+            AssertHelper.NotNull(typeof(PR_TestConfigPanel), mdlCurrency);
+            
             mdlSystem.OnTestConfigState
                 .Subscribe(vw!.SetCanvasActive)
+                .AddTo(disposable);
+
+            vw.addGold.selectBut.OnClickAsObservable()
+                .Subscribe(_ => mdlCurrency.AddGold(20))
                 .AddTo(disposable);
         }
     }
