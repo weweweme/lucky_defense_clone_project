@@ -32,7 +32,7 @@ namespace UI
         public async UniTaskVoid StartWaveCountdown()
         {
             const int DURATION = 5;
-            const float SHAKE_AMOUNT = 2f;
+            const float SHAKE_AMOUNT = 8f;
             const float SHAKE_SPEED = 0.5f;
             
             // 흔들기 애니메이션
