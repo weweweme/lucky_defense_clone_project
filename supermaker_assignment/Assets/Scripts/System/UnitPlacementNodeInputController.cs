@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using Model;
 using UI;
@@ -163,7 +164,7 @@ namespace System
 
             if (targetNode != null)
             {
-                _currentClickedNode.SwapWith(targetNode);
+                _currentClickedNode.SwapWith(targetNode).Forget();
                 _lastClickedNode = null;
             }
         }
