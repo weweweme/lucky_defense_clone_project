@@ -26,6 +26,7 @@ namespace UI
                 .Where(state => state == EGameState.GameOver || state == EGameState.GameClear)
                 .Subscribe(state =>
                 {
+                    TimeHelper.SetTimeScale(1f);
                     bool isClear = state == EGameState.GameClear;
                     vw!.GameEndDirection(isClear).Forget();
                 })
