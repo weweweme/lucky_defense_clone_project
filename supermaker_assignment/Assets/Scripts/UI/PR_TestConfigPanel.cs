@@ -31,6 +31,10 @@ namespace UI
             vw.addGold.selectBut.OnClickAsObservable()
                 .Subscribe(_ => mdlCurrency.AddGold(20))
                 .AddTo(disposable);
+            
+            vw.addDia.selectBut.OnClickAsObservable()
+                .Subscribe(_ => mdlCurrency.AddDiamond(1))
+                .AddTo(disposable);
         }
     }
 }
