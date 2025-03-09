@@ -2,8 +2,6 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using Model;
 using UniRx;
-using UnityEditor.Rendering;
-using UnityEngine;
 
 namespace System
 {
@@ -72,8 +70,8 @@ namespace System
         /// <param name="token">작업 취소 토큰</param>
         private async UniTask SpawnNormalWaveAsync(CancellationToken token)
         {
-            const float TOTAL_DURATION_SECONDS = 18f;
-            const int TOTAL_SPAWN_COUNT = 30;
+            const float TOTAL_DURATION_SECONDS = 13f;
+            const int TOTAL_SPAWN_COUNT = 20;
 
             float spawnInterval = TOTAL_DURATION_SECONDS / TOTAL_SPAWN_COUNT;
 

@@ -127,7 +127,7 @@ namespace System
         /// <param name="token">작업 취소 토큰</param>
         private async UniTask WaitForNextWave(CancellationToken token)
         {
-            const uint NEXT_ROUND_WAIT_SECONDS = 20;
+            const uint NEXT_ROUND_WAIT_SECONDS = 15;
             const uint COUNTDOWN_INTERVAL_SECONDS = 1;
             
             for (uint i = 0; i < NEXT_ROUND_WAIT_SECONDS; ++i)
