@@ -23,14 +23,20 @@ namespace UI
         public void SetArrowDirection(ETestConfigState state)
         {
             AssertHelper.NotEqualsEnum(typeof(VW_TestConfigToggle), state, ETestConfigState.None);
-            
+    
+            Vector3 newScale = _directionArrow.localScale;
+
             switch (state)
             {
                 case ETestConfigState.Open:
+                    newScale.x = -1;
                     break;
                 case ETestConfigState.Close:
+                    newScale.x = 1;
                     break;
             }
+
+            _directionArrow.localScale = newScale;
         }
     }
 }
