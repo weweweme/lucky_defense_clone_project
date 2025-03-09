@@ -62,8 +62,8 @@ namespace System
             while (!token.IsCancellationRequested)
             {
                 uint currentWave = _mdlWave.GetCurrentWaveCount();
-
-                if (currentWave >= 21) // 20번째 웨이브까지 진행 후 종료
+                const uint CLEAR_WAVE = 20;
+                if (currentWave >= CLEAR_WAVE) // 20번째 웨이브까지 진행 후 종료
                 {
                     GameClear();
                     break;
