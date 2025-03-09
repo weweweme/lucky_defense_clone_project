@@ -35,6 +35,8 @@ namespace Unit.Unit_Skill
         {
             AssertHelper.NotNull(typeof(HellForgeSmash), startTr);
 
+            transform.position = startTr.position;
+            
             // 1. 파티클 이펙트 실행
             _smashEffect.Play();
 

@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3574456435059514505}
-  - component: {fileID: 7023162784042965000}
   - component: {fileID: 1676711727790442139}
+  - component: {fileID: 7145620475490984544}
   m_Layer: 30
-  m_Name: Rare - Range - Hell Forge Smash
+  m_Name: Rare - Melee - Hell Forge Smash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,22 +34,6 @@ Transform:
   - {fileID: 6245701556987802853}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7023162784042965000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5771825681619198603}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35fedba1498254628845beb87ff00033, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _flightDuration: 0.5
-  _explosionRange: {fileID: 1676711727790442139}
-  _damage: 15
-  _explosionEffect: {fileID: 0}
 --- !u!58 &1676711727790442139
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -85,6 +69,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.5
+--- !u!114 &7145620475490984544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5771825681619198603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b751275fe12b4e228d684b03f670b44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageRange: {fileID: 1676711727790442139}
+  _damage: 30
+  _smashEffect: {fileID: 6245701556987802851}
 --- !u!1001 &2765372888612967220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -334,6 +333,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50e0d8bd25c91497eb8002397bfe5044, type: 3}
+--- !u!198 &6245701556987802851 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8128332690007599063, guid: 50e0d8bd25c91497eb8002397bfe5044, type: 3}
+  m_PrefabInstance: {fileID: 2765372888612967220}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6245701556987802853 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8128332690007599057, guid: 50e0d8bd25c91497eb8002397bfe5044, type: 3}

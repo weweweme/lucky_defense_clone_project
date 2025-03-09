@@ -10204,6 +10204,53 @@ Transform:
   - {fileID: 293709193}
   m_Father: {fileID: 1813658366}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &959954661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 959954662}
+  - component: {fileID: 959954663}
+  m_Layer: 0
+  m_Name: Hell Forge Smash Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &959954662
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959954661}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1769799565}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &959954663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959954661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92523b16918844ff8901e9d9f513bf17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 7145620475490984544, guid: 4ad7066aee80b4dafa815e252e9969b7, type: 3}
+  defaultCapacity: 30
+  maxSize: 30
 --- !u!114 &961815420 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2349667323445575343, guid: f4693a67763414f9f82caf0e50a2cd7d, type: 3}
@@ -16994,6 +17041,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 663209182}
+  - {fileID: 959954662}
   m_Father: {fileID: 1245659186}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1769799566
@@ -17009,7 +17057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rareRangeSkillPool: {fileID: 663209183}
-  _rareMeleeSkillPool: {fileID: 0}
+  _rareMeleeSkillPool: {fileID: 959954663}
   _heroRangeSkillPool: {fileID: 0}
   _heroMeleeSkillPool: {fileID: 0}
   _mythicMeleeSkillPool: {fileID: 0}
