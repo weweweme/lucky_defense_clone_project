@@ -26,6 +26,7 @@ namespace Enemy
         /// 에너미의 현재 상태입니다.
         /// </summary>
         private EEnemyState _state = EEnemyState.None;
+        public EEnemyState State => _state;
         
         /// <summary>
         /// EnemyRoot 객체로부터 적 관련 의존성을 관리하기 위한 참조입니다.
