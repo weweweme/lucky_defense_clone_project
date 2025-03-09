@@ -28,5 +28,11 @@ namespace Model
         public IReactiveProperty<bool> IsDoubleSpeed => _isDoubleSpeed;
         public void SetDoubleGameSpeed(bool value) => _isDoubleSpeed.Value = value;
         public bool IsDoubleSpeedActive() => _isDoubleSpeed.Value;
+        
+        // 현재 테스트 설정 중인지 나타내는 Rx.
+        private readonly BehaviorSubject<ETestConfigState> _onTestConfigState = new BehaviorSubject<ETestConfigState>(ETestConfigState.Close);
+        public IObservable<ETestConfigState> OnTestConfigState => _onTestConfigState;
+        public void ChangeTestConfigState(ETestConfigState state) => _onTestConfigState.OnNext(state);
+        public ETestConfigState GetCurrentTestConfigState() => _onTestConfigState.Value;
     }
 }
