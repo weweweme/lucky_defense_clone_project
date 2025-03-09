@@ -19,7 +19,7 @@ namespace System
             rootManager.AIPlayerRoot.Init(rootManager);
             
             rootManager.DataManager.GameSystem.OnGameFlow
-                .Where(state => state == EGameState.GameOver) // 게임 오버 상태만 필터링
+                .Where(state => state == EGameState.GameOver)
                 .Subscribe(_ => HandleGameOver())
                 .AddTo(_disposable);
         }
