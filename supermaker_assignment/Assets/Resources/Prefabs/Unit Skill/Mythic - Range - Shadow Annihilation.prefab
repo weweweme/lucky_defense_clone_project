@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1676711727790442139}
   - component: {fileID: 7222441192645697510}
   m_Layer: 30
-  m_Name: Mythic - Range - ShadowAnnihilation
+  m_Name: Mythic - Range - Shadow Annihilation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
