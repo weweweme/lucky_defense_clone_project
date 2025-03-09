@@ -154,6 +154,7 @@ namespace Unit
         public TaskStatus ClearTarget()
         {
             _currentTarget.Clear();
+            _spriteController.SetIsAttacking(false);
             return TaskStatus.Failure;
         }
 
@@ -205,7 +206,7 @@ namespace Unit
         {
             AssertHelper.NotEqualsValue(typeof(UnitAttackController), _damage, uint.MaxValue);
             
-            SetFacingDirection();
+            _spriteController.SetFacingDirection(_currentTarget.Transform);
             _currentTarget.StatController.TakeDamage(_damage);
         }
 
