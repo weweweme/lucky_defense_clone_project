@@ -1,8 +1,6 @@
 using System;
 using InGame.System;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 using Util;
 
 namespace UI
@@ -14,11 +12,13 @@ namespace UI
     {
         [SerializeField] private Canvas _canvas;
         [SerializeField] internal TestConfigPanelItem addGold;
+        [SerializeField] internal TestConfigPanelItem addDia;
 
         private void Awake()
         {
             AssertHelper.NotNull(typeof(VW_TestConfigPanel), _canvas);
             AssertHelper.NotNull(typeof(VW_TestConfigPanel), addGold);
+            AssertHelper.NotNull(typeof(VW_TestConfigPanel), addDia);
         }
         
         public void SetCanvasActive(ETestConfigState state)
