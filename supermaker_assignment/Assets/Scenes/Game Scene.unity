@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 5228833}
   - component: {fileID: 5228834}
   - component: {fileID: 5228835}
+  - component: {fileID: 5228836}
   m_Layer: 5
   m_Name: VW_Test Config Toggle
   m_TagString: Untagged
@@ -282,6 +283,23 @@ Canvas:
   m_SortingLayerID: -2147147229
   m_SortingOrder: 21
   m_TargetDisplay: 0
+--- !u!114 &5228836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5228829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1001 &42982259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8951,6 +8969,8 @@ GameObject:
   - component: {fileID: 826629097}
   - component: {fileID: 826629096}
   - component: {fileID: 826629098}
+  - component: {fileID: 826629099}
+  - component: {fileID: 826629100}
   m_Layer: 5
   m_Name: VW_Test Config Panel
   m_TagString: Untagged
@@ -9023,7 +9043,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 826629094}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -9039,6 +9059,36 @@ Canvas:
   m_SortingLayerID: -2147147229
   m_SortingOrder: 20
   m_TargetDisplay: 0
+--- !u!114 &826629099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826629094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4df73e1b525b4d408fdbe649eac1b8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canvas: {fileID: 826629098}
+--- !u!114 &826629100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826629094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &834808394
 GameObject:
   m_ObjectHideFlags: 0
@@ -14673,6 +14723,7 @@ MonoBehaviour:
   _vwGameSpeedMultiplier: {fileID: 748038305}
   _vwGameDoor: {fileID: 1257651719}
   _vwTestConfigToggle: {fileID: 5228834}
+  _vwTestConfigPanel: {fileID: 826629099}
 --- !u!1 &1482889022
 GameObject:
   m_ObjectHideFlags: 0
