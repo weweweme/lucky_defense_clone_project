@@ -187,6 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackController: {fileID: 3610169384799238795}
   spriteController: {fileID: 5238383128305566337}
+  _moveController: {fileID: 5748179030352680662}
 --- !u!114 &3610169384799238795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,6 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveEffect: {fileID: 5475876735087152973}
+  _moveDuration: 1
 --- !u!1 &1474913819531039723
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +335,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7390326374496421581}
     m_Modifications:
+    - target: {fileID: 1588186329789549441, guid: 3ee8aa5f9e562484597e763041906b3a, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1588186329789549442, guid: 3ee8aa5f9e562484597e763041906b3a, type: 3}
       propertyPath: m_SortingLayer
       value: 2

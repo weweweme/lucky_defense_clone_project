@@ -16,12 +16,16 @@ namespace Unit
         [SerializeField] internal UnitAttackController attackController;
         [SerializeField] internal UnitSpriteController spriteController;
         internal UnitDependencyContainer dependencyContainer;
+        
         private UnitBTController _btController;
+        [SerializeField] private UnitMoveController _moveController;
+        public UnitMoveController MoveController => _moveController;
 
         private void Awake()
         {
             AssertHelper.NotNull(typeof(UnitRoot), attackController);
             AssertHelper.NotNull(typeof(UnitRoot), spriteController);
+            AssertHelper.NotNull(typeof(UnitRoot), _moveController);
         }
         
         public override void CreatePooledItemInit(DependencyContainerBase containerBase)
