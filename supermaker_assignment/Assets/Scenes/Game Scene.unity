@@ -3750,8 +3750,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9084345032183123822, guid: f4693a67763414f9f82caf0e50a2cd7d, type: 3}
       propertyPath: m_text
-      value: "\uC720\uC800 \uC720\uB2DB \uC218 \uC81C\uD55C \uC0C1\uD5A5 (\uCD5C\uB300
-        50)"
+      value: "\uC720\uB2DB \uC218 \uC81C\uD55C \uC0C1\uD5A5 (\uCD5C\uB300 50)"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

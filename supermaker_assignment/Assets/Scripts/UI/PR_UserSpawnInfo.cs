@@ -20,8 +20,9 @@ namespace UI
             
             VW_UserSpawnInfo vw = view as VW_UserSpawnInfo;
             AssertHelper.NotNull(typeof(PR_UnitSpawn), vw);
-            
-            vw!.UpdateMaxSpawnCount(mdl.GetMaxPossibleSpawnCount());
+            mdl.MaxPossibleSpawnCount
+                .Subscribe(vw!.UpdateMaxSpawnCount)
+                .AddTo(disposable);
             mdl.CurrentSpawnCount
                 .Subscribe(vw.UpdateCurrentSpawnCount)
                 .AddTo(disposable);
