@@ -104,10 +104,6 @@ namespace System
             // 유닛 그룹 교환
             (UnitGroup, targetNode.UnitGroup) = (targetNode.UnitGroup, UnitGroup);
 
-            // 서로의 유닛 위치 데이터 재조정
-            RearrangeUnitPositions();
-            targetNode.RearrangeUnitPositions();
-
             // 이동할 목표 위치 설정
             Transform[] myTargetPositions = GetUnitPositions();
             Transform[] targetNodePositions = targetNode.GetUnitPositions();
@@ -117,6 +113,9 @@ namespace System
                 UnitGroup.MoveToTargetNode(myTargetPositions),
                 targetNode.UnitGroup.MoveToTargetNode(targetNodePositions)
             );
+
+            // 유닛 위치 확실한 마무리
+            RearrangeUnitPositions();
         }
         
         /// <summary>
