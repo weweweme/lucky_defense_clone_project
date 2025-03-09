@@ -3460,6 +3460,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 341829739}
   m_CullTransparentMesh: 1
+--- !u!1 &365959789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 365959790}
+  - component: {fileID: 365959791}
+  m_Layer: 0
+  m_Name: Shadow Annihilation Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &365959790
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365959789}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1769799565}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &365959791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365959789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92523b16918844ff8901e9d9f513bf17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 7222441192645697510, guid: a35d8aec741da4514a180b44230efd07, type: 3}
+  defaultCapacity: 30
+  maxSize: 30
 --- !u!1 &392058660
 GameObject:
   m_ObjectHideFlags: 0
@@ -5614,7 +5661,7 @@ GameObject:
   - component: {fileID: 663816712}
   - component: {fileID: 663816713}
   m_Layer: 0
-  m_Name: Beasts Roar
+  m_Name: Beasts Roar Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17138,6 +17185,7 @@ Transform:
   - {fileID: 959954662}
   - {fileID: 1264441669}
   - {fileID: 663816712}
+  - {fileID: 365959790}
   m_Father: {fileID: 1245659186}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1769799566
@@ -17156,7 +17204,7 @@ MonoBehaviour:
   _rareMeleeSkillPool: {fileID: 959954663}
   _heroRangeSkillPool: {fileID: 1264441670}
   _heroMeleeSkillPool: {fileID: 663816713}
-  _mythicMeleeSkillPool: {fileID: 0}
+  _mythicMeleeSkillPool: {fileID: 365959791}
   _mythicRangeSkillPool: {fileID: 0}
 --- !u!1 &1780615700
 GameObject:
