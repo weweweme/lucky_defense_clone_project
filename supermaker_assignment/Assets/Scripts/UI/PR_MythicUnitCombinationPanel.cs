@@ -4,6 +4,7 @@ using InGame.System;
 using Model;
 using UniRx;
 using Unit;
+using UnityEngine;
 using Util;
 
 namespace UI
@@ -57,8 +58,6 @@ namespace UI
                 {
                     if (isVisible)
                         AddAllSouthUnitsToCheckers(); // 모든 South 노드 추가
-                    else
-                        RemoveAllSouthUnitsFromCheckers(); // 모든 South 노드 제거
                 })
                 .AddTo(disposable);
         }
@@ -104,6 +103,7 @@ namespace UI
 
             _mdlUnit.SpawnUnit(spawnData);
             _mdlGameSystem.SetMythicCombinationPanelVisible(false);
+            RemoveAllSouthUnitsFromCheckers(); // 모든 South 노드 제거
         }
         
         /// <summary>
@@ -139,16 +139,9 @@ namespace UI
 
         private void RemoveAllSouthUnitsFromCheckers()
         {
-            var southGridNodes = RootManager.Ins.UnitGridNodeManager.SouthGridNodes;
-
-            foreach (var node in southGridNodes)
+            foreach (var checker in _combinationCheckers)
             {
-                if (node.UnitGroup.IsEmpty()) continue;
-
-                foreach (var checker in _combinationCheckers)
-                {
-                    checker.HandleRemoveUnit(node);
-                }
+                checker.ClearAll();
             }
         }
     }
