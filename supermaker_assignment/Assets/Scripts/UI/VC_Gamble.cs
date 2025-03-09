@@ -23,14 +23,8 @@ namespace UI
 
         public override void Init(DataManager dataManager)
         {
-            _prGambleButton.Init(dataManager, _vwGambleButton);
-            _prGamblePanel.Init(dataManager, _vwGamblePanel);
-        }
-
-        protected override void ReleasePresenter()
-        {
-            _prGambleButton.Dispose();
-            _prGamblePanel.Dispose();
+            _prGambleButton.Init(dataManager, _vwGambleButton, disposable);
+            _prGamblePanel.Init(dataManager, _vwGamblePanel, disposable);
         }
     }
 }

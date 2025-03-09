@@ -11,7 +11,7 @@ namespace UI
     /// </summary>
     public class PR_SpawnNeededGold : Presenter
     {
-        public override void Init(DataManager dataManager, View view)
+        public override void Init(DataManager dataManager, View view, CompositeDisposable disposable)
         {
             VW_Currency vwCurrency = view as VW_Currency;
             AssertHelper.NotNull(typeof(PR_SpawnNeededGold), vwCurrency);

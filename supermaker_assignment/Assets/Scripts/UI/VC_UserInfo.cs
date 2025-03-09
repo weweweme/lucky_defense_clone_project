@@ -27,16 +27,9 @@ namespace UI
 
         public override void Init(DataManager dataManager)
         {
-            _prGoldCurrency.Init(dataManager, _vwGoldCurrency);
-            _prDiamondCurrency.Init(dataManager, _vwDiamondCurrency);
-            _prUserSpawnInfo.Init(dataManager, _vwUserSpawnInfo);
-        }
-
-        protected override void ReleasePresenter()
-        {
-            _prGoldCurrency.Dispose();
-            _prDiamondCurrency.Dispose();
-            _prUserSpawnInfo.Dispose();
+            _prGoldCurrency.Init(dataManager, _vwGoldCurrency, disposable);
+            _prDiamondCurrency.Init(dataManager, _vwDiamondCurrency, disposable);
+            _prUserSpawnInfo.Init(dataManager, _vwUserSpawnInfo, disposable);
         }
     }
 }

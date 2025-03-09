@@ -27,16 +27,9 @@ namespace UI
 
         public override void Init(DataManager dataManager)
         {
-            _prMythicUnitCombinationButton.Init(dataManager, _vwMythicUnitCombinationButton);
-            _prMythicUnitCombinationPanel.Init(dataManager, _vwMythicUnitCombinationPanel);
-            _prMythicUnitList.Init(dataManager, _vwMythicUnitList);
-        }
-
-        protected override void ReleasePresenter()
-        {
-            _prMythicUnitCombinationButton.Dispose();
-            _prMythicUnitCombinationPanel.Dispose();
-            _prMythicUnitList.Dispose();
+            _prMythicUnitCombinationButton.Init(dataManager, _vwMythicUnitCombinationButton, disposable);
+            _prMythicUnitCombinationPanel.Init(dataManager, _vwMythicUnitCombinationPanel, disposable);
+            _prMythicUnitList.Init(dataManager, _vwMythicUnitList, disposable);
         }
     }
 }

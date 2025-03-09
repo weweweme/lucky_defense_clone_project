@@ -1,4 +1,5 @@
 using System;
+using UniRx;
 using UnityEngine;
 using Util;
 
@@ -12,6 +13,12 @@ namespace UI
     /// </summary>
     public abstract class ViewController : MonoBehaviourBase
     {
+        /// <summary>
+        /// UniRx의 CompositeDisposable을 사용하여 Rx 관련 구독을 관리합니다.
+        /// Dispose 시 모든 구독을 해제하여 메모리 누수를 방지합니다.
+        /// </summary>
+        protected readonly CompositeDisposable disposable = new CompositeDisposable();
+        
         [SerializeField] private RootManager _rootManager;
         
         private void Awake()
@@ -42,14 +49,9 @@ namespace UI
         /// </summary>
         public abstract void Init(DataManager dataManager);
         
-        /// <summary>
-        /// 프레젠터의 자원을 정리할 때 사용합니다.
-        /// </summary>
-        protected abstract void ReleasePresenter();
-
         protected override void OnDestroy()
         {
-            ReleasePresenter();
+            disposable.Dispose();
             
             base.OnDestroy();
         }

@@ -11,7 +11,7 @@ namespace UI
     /// </summary>
     public class PR_UserSpawnInfo : Presenter
     {
-        public override void Init(DataManager dataManager, View view)
+        public override void Init(DataManager dataManager, View view, CompositeDisposable disposable)
         {
             AssertHelper.NotNull(typeof(PR_UnitSpawn), dataManager);
             
