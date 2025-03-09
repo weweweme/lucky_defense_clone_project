@@ -18,6 +18,7 @@ namespace UI
             public bool IsSuccess;
         }
         
+        // TODO: 도박 데이터 중복 제거
         private static readonly Dictionary<EUnitGrade, SGambleMetaData> GAMBLE_META_DATA = new()
         {
             { EUnitGrade.Rare, new SGambleMetaData(EUnitGrade.Rare, 0.6f, 1) },

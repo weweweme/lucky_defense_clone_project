@@ -11,6 +11,7 @@ namespace AIPlayer
     /// </summary>
     public sealed class AIPlayerGambleController : MonoBehaviourBase
     {
+        // TODO: 도박 코드 중복 제거
         private static readonly Dictionary<EUnitGrade, SGambleMetaData> GAMBLE_META_DATA = new()
         {
             { EUnitGrade.Rare, new SGambleMetaData(EUnitGrade.Rare, 0.6f, 1) },

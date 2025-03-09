@@ -29,11 +29,6 @@ namespace AIPlayer
         private BehaviorTree _bt;
         
         /// <summary>
-        /// AI 플레이어의 루트 클래스입니다.
-        /// </summary>
-        private AIPlayerRoot _root;
-        
-        /// <summary>
         /// AI 플레이어의 스폰 컨트롤러입니다.
         /// </summary>
         private AIPlayerSpawnController _spawnController;
@@ -55,7 +50,6 @@ namespace AIPlayer
 
         public void Init(AIPlayerRoot root)
         {
-            _root = root;
             _spawnController = root.spawnController;
             _gambleController = root.gambleController;
             _mergeController = root.mergeController;
@@ -98,6 +92,8 @@ namespace AIPlayer
                         .Do("유닛 생산 실행", _mythicUnitCombinationController.MythicUnitCombination)
                     .End()
 
+                    // TODO: 노드를 탐색한 뒤 가중치에 따라 유닛을 배치하는 기능 구현
+                
                 .End()
             .Build();
 
