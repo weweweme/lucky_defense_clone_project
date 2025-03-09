@@ -19,5 +19,6 @@ namespace Unit
         public float AttackRange;
         public float AttackFireRate;
         public AnimatorController AnimatorController;
+        public float SkillCoolTime;
     }
 }

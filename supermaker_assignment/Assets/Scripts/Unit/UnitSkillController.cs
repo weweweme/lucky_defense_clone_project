@@ -2,7 +2,6 @@ using CleverCrow.Fluid.BTs.Tasks;
 using UI;
 using Util;
 using Cysharp.Threading.Tasks;
-using UnityEngine;
 
 namespace Unit
 {
@@ -15,7 +14,7 @@ namespace Unit
         private UnitSkillPoolManager _unitSkillPoolManager;
         private UnitAttackController _unitAttackController;
 
-        [SerializeField] private float _skillCooldownDuration = 5f; // 쿨타임 (기본 5초)
+        private float _skillCooldownDuration; // 스킬 쿨타임
         private float _skillCooldown; // 현재 남은 쿨타임
 
         public void CreatePooledItemInit(UnitRoot root)
@@ -28,10 +27,12 @@ namespace Unit
         {
             _skill = _unitSkillPoolManager.GetSkill(root.grade, root.type);
             
-            if (_skill == null)
-            {
-                return;
-            }
+            if (_skill == null) return;
+
+            var metaData = root.dependencyContainer.mdlUnitResources.GetResource(root.grade, root.type);
+            float skillCooldownDuration = metaData.SkillCoolTime;
+            _skillCooldownDuration = skillCooldownDuration;
+            SetCooldown();
             _skill.SetOwned(root);
         }
 
