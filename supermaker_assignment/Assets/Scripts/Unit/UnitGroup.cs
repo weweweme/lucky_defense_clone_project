@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Util;
@@ -17,9 +18,9 @@ namespace Unit
         private const int MAX_UNIT_COUNT = 3;
         
         /// <summary>
-        /// 해당 노드에 배치된 유닛들의 참조 배열입니다.
+        /// 해당 노드에 배치된 유닛들의 리스트입니다.
         /// </summary>
-        private readonly UnitRoot[] _placedUnits = new UnitRoot[MAX_UNIT_COUNT];
+        private readonly List<UnitRoot> _placedUnits = new List<UnitRoot>(MAX_UNIT_COUNT);
 
         /// <summary>
         /// 현재 그룹에 속한 유닛들의 등급입니다.
@@ -34,7 +35,7 @@ namespace Unit
         /// <summary>
         /// 현재 그룹에 속한 유닛 수입니다.
         /// </summary>
-        public uint UnitCount { get; private set; }
+        public int UnitCount => _placedUnits.Count; // 리스트 크기 기반으로 갱신
         
         /// <summary>
         /// 유닛 이동 작업을 저장하는 캐싱된 배열 (최대 3개까지 저장)
@@ -46,22 +47,26 @@ namespace Unit
         /// </summary>
         public void AddUnit(UnitRoot unit)
         {
-            AssertHelper.NotEqualsValue<uint>(typeof(UnitGroup), UnitCount, MAX_UNIT_COUNT);
+            AssertHelper.NotEqualsValue(typeof(UnitGroup), UnitCount, MAX_UNIT_COUNT);
             
-            _placedUnits[UnitCount++] = unit;
-            UnitGrade = unit.grade;
-            UnitType = unit.type;
+            _placedUnits.Add(unit);
+            UpdateUnitInfo();
         }
 
         /// <summary>
-        /// 마지막으로 추가된 유닛을 제거합니다.
+        /// ✅ 마지막으로 추가된 유닛을 제거합니다.
         /// </summary>
         public void SubUnit()
         {
-            uint targetIdx = UnitCount-- - 1;
-            UnitRoot unit = _placedUnits[targetIdx];
+            if (IsEmpty()) return;
+
+            int lastIndex = _placedUnits.Count - 1;
+            UnitRoot unit = _placedUnits[lastIndex];
+
             AssertHelper.NotNull(typeof(UnitGroup), unit);
             unit.ReleaseObject();
+
+            _placedUnits.RemoveAt(lastIndex); // 마지막 유닛 제거
 
             if (!IsEmpty()) 
             {
@@ -92,25 +97,20 @@ namespace Unit
         /// </summary>
         private void Clear()
         {
-            for (int i = 0; i < MAX_UNIT_COUNT; ++i)
-            {
-                _placedUnits[i] = null;
-            }
-
+            _placedUnits.Clear(); // 리스트 비우기
             UnitGrade = EUnitGrade.None;
             UnitType = EUnitType.None;
-            UnitCount = 0;
         }
 
         /// <summary>
         /// 현재 그룹이 가득 찼는지 여부를 반환합니다.
         /// </summary>
-        public bool IsFull() => UnitCount == MAX_UNIT_COUNT || UnitGrade == EUnitGrade.Mythic;
+        public bool IsFull() => UnitCount >= MAX_UNIT_COUNT || UnitGrade == EUnitGrade.Mythic;
         
         /// <summary>
         /// 현재 그룹이 비어있는지 여부를 반환합니다.
         /// </summary>
-        public bool IsEmpty() => UnitCount == 0;
+        public bool IsEmpty() => _placedUnits.Count == 0;
 
         /// <summary>
         /// 현재 배치된 유닛들의 위치를 지정된 위치로 설정합니다.

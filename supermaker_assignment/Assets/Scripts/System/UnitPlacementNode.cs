@@ -82,8 +82,8 @@ namespace System
         {
             AssertHelper.NotEqualsValue(typeof(UnitPlacementNode), UnitGroup.IsEmpty(), true);
             
-            uint unitCount = UnitGroup.UnitCount;
-            for (uint i = 0; i < unitCount; ++i)
+            int unitCount = UnitGroup.UnitCount;
+            for (int i = 0; i < unitCount; ++i)
             {
                 UnitGroup.SubUnit();
             }
