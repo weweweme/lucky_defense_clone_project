@@ -8,17 +8,23 @@ namespace Unit.Unit_Skill
 {
     /// <summary>
     /// 희귀 원거리 유닛의 스킬입니다.
-    /// 지정된 타겟을 향해 0.5초 동안 날아가며, 도착 후 폭발하여 주변 적들에게 피해를 줍니다.
     /// </summary>
     public sealed class LightPiercer : UnitSkillBase
     {
         [SerializeField] private float _flightDuration = 0.5f;
         [SerializeField] private CircleCollider2D _explosionRange;
         [SerializeField] private uint _damage = 10;
+        [SerializeField] private ParticleSystem _explosionEffect;
         
         private readonly LayerMask _enemyLayer = Layers.GetLayerMask(Layers.ENEMY);
         private readonly CancellationTokenSource _cts = new CancellationTokenSource();
         private readonly Collider2D[] _hitEnemiesBuffer = new Collider2D[16];
+
+        private void Awake()
+        {
+            AssertHelper.NotNull(typeof(LightPiercer), _explosionRange);
+            AssertHelper.NotNull(typeof(LightPiercer), _explosionEffect);
+        }
 
         public override void UseSkill()
         {
@@ -34,6 +40,9 @@ namespace Unit.Unit_Skill
             Vector3 targetPosition = targetTr.position;
             float elapsedTime = 0f;
 
+            _explosionEffect.transform.localScale = Vector3.one * 0.08f;
+            _explosionEffect.Play();
+            
             // 1. Duration동안 startTr에서 targetTr로 이동
             while (elapsedTime < _flightDuration)
             {
@@ -46,13 +55,15 @@ namespace Unit.Unit_Skill
 
             transform.position = targetPosition;
 
-            // 2. 폭발 (디버그 로그 출력)
-            Debug.Log("폭발");
+            // 2. 폭발
+            _explosionEffect.transform.localScale = Vector3.one * 0.28f;
             
-            // 3. 원형 감지 후 4. 데미지 적용
+            // 3. 원형 감지 후 데미지 적용
             ApplyExplosionDamage(targetPosition);
+            await UniTask.Delay(Mathf.RoundToInt(_explosionEffect.main.duration * 1000), cancellationToken: _cts.Token);
 
-            // 5. 스킬 오브젝트 풀로 반환
+            // 4. 스킬 오브젝트 풀로 반환
+            _explosionEffect.Stop();
             skillPool.ReleaseObject(this);
         }
         

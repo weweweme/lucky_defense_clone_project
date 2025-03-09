@@ -48,7 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _flightDuration: 0.5
   _explosionRange: {fileID: 1676711727790442139}
-  _damage: 10
+  _damage: 15
+  _explosionEffect: {fileID: 2312994296976883895}
 --- !u!58 &1676711727790442139
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -152,5 +153,10 @@ PrefabInstance:
 --- !u!4 &2312994296976883880 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3950214905299764841, guid: 28e588a34ba5f4556be1b9792f4159ac, type: 3}
+  m_PrefabInstance: {fileID: 1641724276872005313}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2312994296976883895 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3950214905299764854, guid: 28e588a34ba5f4556be1b9792f4159ac, type: 3}
   m_PrefabInstance: {fileID: 1641724276872005313}
   m_PrefabAsset: {fileID: 0}
