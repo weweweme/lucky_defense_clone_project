@@ -15,6 +15,11 @@ namespace Unit
         [SerializeField] private SpriteRenderer _spriteRenderer;
 
         /// <summary>
+        /// 유닛의 애니메이션 처리를 담당하는 컴포넌트 
+        /// </summary>
+        [SerializeField] private Animator _animator;
+
+        /// <summary>
         /// 해당 유닛의 최상위 컨테이너인 UnitRoot 참조
         /// </summary>
         private UnitRoot _unitRoot;
@@ -27,6 +32,7 @@ namespace Unit
         private void Awake()
         {
             AssertHelper.NotNull(typeof(UnitSpriteController), _spriteRenderer);
+            AssertHelper.NotNull(typeof(UnitSpriteController), _animator);
         }
 
         /// <summary>
@@ -54,6 +60,7 @@ namespace Unit
             _spriteRenderer.sprite = metaData.Sprite;
             _spriteRenderer.material = material;
             _spriteRenderer.transform.localScale = Vector3.one * metaData.ScaleSize;
+            _animator.runtimeAnimatorController = metaData.AnimatorController;
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Animations;
 using UnityEngine;
 
 namespace Unit
@@ -17,5 +18,6 @@ namespace Unit
         public uint AttackDamage;
         public float AttackRange;
         public float AttackFireRate;
+        public AnimatorController AnimatorController;
     }
 }
