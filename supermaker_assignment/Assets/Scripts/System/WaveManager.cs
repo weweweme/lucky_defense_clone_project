@@ -70,7 +70,7 @@ namespace System
                 uint currentWave = _mdlWave.GetCurrentWaveCount();
                 const uint FINAL_WAVE = 20;
 
-                if (currentWave == FINAL_WAVE)
+                if (currentWave == FINAL_WAVE - 1)
                 {
                     StartWave(token);
                     bool isSuccess = await FinalWaveCountdown(token);
@@ -90,7 +90,6 @@ namespace System
                 EndWave();
             }
         }
-
 
         /// <summary>
         /// 게임 클리어 처리 메서드
