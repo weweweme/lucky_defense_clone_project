@@ -36,6 +36,12 @@ namespace AIPlayer
         private void AddCurrencyOnEnemyDeath()
         {
             AddGold(1);
+            
+            // 1% 확률로 다이아 지급
+            if (UnityEngine.Random.value < 0.01f)  
+            {
+                AddDiamond(1);
+            }
         }
     }
 }

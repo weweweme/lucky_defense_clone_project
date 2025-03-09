@@ -56,7 +56,7 @@ namespace Enemy
             _spriteController = root.spriteController;
 
             _enemyRoot.dependencyContainer.mdlEnemy.OnEnemyDeath
-                .Subscribe(_ => RewardGoldOnEnemyDeath())
+                .Subscribe(_ => RewardCurrencyOnEnemyDeath())
                 .AddTo(this);
         }
 
@@ -119,9 +119,18 @@ namespace Enemy
         /// <summary>
         /// 적이 사망했을 때 플레이어에게 골드를 지급합니다.
         /// </summary>
-        private void RewardGoldOnEnemyDeath()
+        private void RewardCurrencyOnEnemyDeath()
         {
-            _enemyRoot.dependencyContainer.mdlCurrency.AddGold(1);
+            var currency = _enemyRoot.dependencyContainer.mdlCurrency;
+
+            // 기본 골드 지급
+            currency.AddGold(1);
+
+            // 1% 확률로 다이아 지급
+            if (UnityEngine.Random.value < 0.01f)  
+            {
+                currency.AddDiamond(1);
+            }
         }
 
         protected override void OnDestroy()
