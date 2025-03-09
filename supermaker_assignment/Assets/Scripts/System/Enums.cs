@@ -150,6 +150,11 @@ namespace System
         /// 상태 없음.
         /// </summary>
         None,
+        
+        /// <summary>
+        /// 게임 스타트.
+        /// </summary>
+        Start,
 
         /// <summary>
         /// 게임 진행 중.

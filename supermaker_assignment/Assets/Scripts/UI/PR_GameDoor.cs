@@ -24,6 +24,14 @@ namespace UI
                 .Where(state => state == EGameState.GameOver)
                 .Subscribe(_ => vw!.EndGameDirection().Forget())
                 .AddTo(disposable);
+            mdlSystem.OnGameFlow
+                .Where(state => state == EGameState.Start)
+                .Subscribe(_ => vw!.StartGameDirection().Forget())
+                .AddTo(disposable);
+            
+            vw!.startBtn.OnClickAsObservable()
+                .Subscribe(_ => mdlSystem.ChangeGameFlow(EGameState.Start))
+                .AddTo(disposable);
         }
     }
 }

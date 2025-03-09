@@ -5526,7 +5526,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Description
+  m_text: "\uD074\uB9AD\uC2DC \uC2DC\uC791\uD569\uB2C8\uB2E4"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aa74801f1815c48feb6cfc34a42494c1, type: 2}
   m_sharedMaterial: {fileID: -6382555307566913213, guid: aa74801f1815c48feb6cfc34a42494c1, type: 2}
@@ -13467,6 +13467,7 @@ GameObject:
   - component: {fileID: 1257651716}
   - component: {fileID: 1257651719}
   - component: {fileID: 1257651720}
+  - component: {fileID: 1257651721}
   m_Layer: 5
   m_Name: VW_Game Door
   m_TagString: Untagged
@@ -13516,7 +13517,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: -2147147229
-  m_SortingOrder: 120
+  m_SortingOrder: 200
   m_TargetDisplay: 0
 --- !u!114 &1257651717
 MonoBehaviour:
@@ -13571,7 +13572,7 @@ MonoBehaviour:
   _gameDoor: {fileID: 1257651715}
   _mainTxt: {fileID: 652392874}
   _subTxt: {fileID: 1382825603}
-  _btnStart: {fileID: 1257651720}
+  startBtn: {fileID: 1257651720}
 --- !u!114 &1257651720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13616,6 +13617,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1257651721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257651714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &1260206555
 GameObject:
   m_ObjectHideFlags: 0
@@ -14338,7 +14356,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1382825602
 RectTransform:
   m_ObjectHideFlags: 0

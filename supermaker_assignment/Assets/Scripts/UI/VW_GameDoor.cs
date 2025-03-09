@@ -17,21 +17,32 @@ namespace UI
         [SerializeField] private RectTransform _gameDoor;
         [SerializeField] private TextMeshProUGUI _mainTxt;
         [SerializeField] private TextMeshProUGUI _subTxt;
-        [SerializeField] internal Button _btnStart; 
+        [SerializeField] internal Button startBtn; 
 
         private void Awake()
         {
             AssertHelper.NotNull(typeof(VW_GameDoor), _gameDoor);
             AssertHelper.NotNull(typeof(VW_GameDoor), _mainTxt);
             AssertHelper.NotNull(typeof(VW_GameDoor), _subTxt);
-            AssertHelper.NotNull(typeof(VW_GameDoor), _btnStart);
+            AssertHelper.NotNull(typeof(VW_GameDoor), startBtn);
+            
+            _subTxt.gameObject.SetActive(false);
+        }
+        
+        public async UniTaskVoid StartGameDirection()
+        {
+            _mainTxt.SetText("게임 시작!");
+            
+            await DoorAction(true);
         }
         
         public async UniTaskVoid EndGameDirection()
         {
             _mainTxt.SetText("클리어 실패!");
             
-            await CloseDoor();
+            await DoorAction(false);
+            
+            _subTxt.gameObject.SetActive(true);
             
             for (int i = 5; i >= 0; --i)
             {
@@ -43,11 +54,16 @@ namespace UI
             EditorApplication.isPlaying = false;
         }
 
-#pragma warning disable CS1998 // 비동기 메서드에 'await'가 없지만, 설계상 문제없음.
-        private async UniTask CloseDoor()
-#pragma warning restore CS1998 
+        /// <summary>
+        /// 게임 문을 여닫는 애니메이션을 실행합니다.
+        /// </summary>
+        /// <param name="isOpen">true면 문을 열고, false면 닫습니다.</param>
+#pragma warning disable CS1998 // 이 비동기 메서드에는 'await' 연산자가 없지만 설계상 문제 없음
+        private async UniTask DoorAction(bool isOpen)
+#pragma warning restore CS1998 // 이 비동기 메서드에는 'await' 연산자가 없지만 설계상 문제 없음
         {
-            _gameDoor.DOAnchorPosY(0, 0.5f).SetEase(Ease.Linear);
+            float targetY = isOpen ? 1920f : 0f;
+            _gameDoor.DOAnchorPosY(targetY, 0.5f).SetEase(Ease.Linear);
         }
     }
 }
