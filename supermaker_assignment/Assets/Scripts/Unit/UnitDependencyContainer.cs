@@ -1,5 +1,6 @@
 using System;
 using Model;
+using UI;
 
 namespace Unit
 {
@@ -12,6 +13,7 @@ namespace Unit
         internal readonly MDL_Unit mdlUnit;
         internal readonly MDL_Currency mdlCurrency;
         internal readonly MDL_UnitResources mdlUnitResources;
+        internal readonly UnitSkillPoolManager unitSkillPoolManager;
 
         public UnitDependencyContainer(RootManager rootManager)
         {
@@ -19,6 +21,7 @@ namespace Unit
             mdlUnit = rootManager.DataManager.Unit;
             mdlCurrency = rootManager.DataManager.Currency;
             mdlUnitResources = rootManager.DataManager.UnitResources;
+            unitSkillPoolManager = rootManager.PoolManager.UnitSkillPoolManager;
         }
     }
 }

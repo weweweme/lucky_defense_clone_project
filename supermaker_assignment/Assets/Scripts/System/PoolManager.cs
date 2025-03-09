@@ -1,4 +1,5 @@
 using Enemy;
+using UI;
 using Unit;
 using UnityEngine;
 using Util;
@@ -15,11 +16,15 @@ namespace System
         
         [SerializeField] private UnitBasePool unitBasePool;
         public UnitBasePool UnitBasePool => unitBasePool;
+        
+        [SerializeField] private UnitSkillPoolManager unitSkillPoolManager;
+        public UnitSkillPoolManager UnitSkillPoolManager => unitSkillPoolManager;
 
         private void Awake()
         {
             AssertHelper.NotNull(typeof(PoolManager), enemyBasePool);
             AssertHelper.NotNull(typeof(PoolManager), unitBasePool);
+            AssertHelper.NotNull(typeof(PoolManager), unitSkillPoolManager);
         }
 
         public void Init(RootManager rootManager)

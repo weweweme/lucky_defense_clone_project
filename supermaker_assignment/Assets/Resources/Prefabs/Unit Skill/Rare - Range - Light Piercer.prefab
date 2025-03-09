@@ -145,6 +145,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: VFX_Rare Range Unit
       objectReference: {fileID: 0}
+    - target: {fileID: 3950214905299764852, guid: 28e588a34ba5f4556be1b9792f4159ac, type: 3}
+      propertyPath: m_Layer
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950214905299764854, guid: 28e588a34ba5f4556be1b9792f4159ac, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950214905299764855, guid: 28e588a34ba5f4556be1b9792f4159ac, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950214905299764855, guid: 28e588a34ba5f4556be1b9792f4159ac, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950214905299764855, guid: 28e588a34ba5f4556be1b9792f4159ac, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -736264061
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
