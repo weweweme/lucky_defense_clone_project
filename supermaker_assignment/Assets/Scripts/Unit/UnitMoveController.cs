@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Util;
@@ -13,6 +14,7 @@ namespace Unit
         [SerializeField] private float _moveDuration = 1f;
         private UnitSpriteController _spriteController;
         private UnitAttackController _attackController;
+        private UnitRoot _root;
 
         private void Awake()
         {
@@ -25,9 +27,17 @@ namespace Unit
         /// <param name="root">해당 유닛의 UnitRoot 참조</param>
         public void CreatePooledItemInit(UnitRoot root)
         {
+            _root = root;
             _spriteController = root.spriteController;
             _attackController = root.attackController;
-        }        
+        }
+
+        public void ChangeEffectScale()
+        {
+            // 이동 효과의 크기 설정
+            float scaleValue = (_root.grade == EUnitGrade.Mythic) ? 6f : 2.5f;
+            _moveEffect.transform.localScale = Vector3.one * scaleValue;
+        }
 
         /// <summary>
         /// 지정된 위치까지 일정 시간에 걸쳐 이동합니다.

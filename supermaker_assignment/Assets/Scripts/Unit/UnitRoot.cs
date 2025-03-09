@@ -58,6 +58,7 @@ namespace Unit
             spriteController.ChangeVisible();
             _btController.StartBtTick();
             attackController.ChangeAttackData(this);
+            _moveController.ChangeEffectScale();
         }
         
         public void ReleaseObject()
