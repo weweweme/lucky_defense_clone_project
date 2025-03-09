@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using System.Collections.Generic;
 using Util;
 
 namespace System
@@ -80,6 +82,33 @@ namespace System
             else if (context.phase == InputActionPhase.Canceled)
             {
                 OnLeftClickCanceled?.Invoke();
+            }
+        }
+
+        /// <summary>
+        /// 현재 마우스 위치에서 감지된 UI 요소를 출력하는 디버깅 함수
+        /// </summary>
+        private void CheckUIUnderCursor()
+        {
+            Debug.Log("🖱 좌클릭 감지됨!");
+            
+            PointerEventData eventData = new PointerEventData(EventSystem.current);
+            eventData.position = Mouse.current.position.ReadValue(); // InputSystem에서 마우스 위치 가져오기
+
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(eventData, results);
+
+            if (results.Count == 0)
+            {
+                Debug.Log("✅ 클릭한 위치에 UI가 없음.");
+            }
+            else
+            {
+                Debug.Log($"🔍 클릭한 UI 요소 ({results.Count}개):");
+                foreach (RaycastResult result in results)
+                {
+                    Debug.Log($"➡ {result.gameObject.name} (Layer: {LayerMask.LayerToName(result.gameObject.layer)}, result Parent: {result.gameObject.transform.parent?.name})");
+                }
             }
         }
     }
