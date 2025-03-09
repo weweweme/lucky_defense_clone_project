@@ -2,6 +2,7 @@ using System;
 using CleverCrow.Fluid.BTs.Tasks;
 using Model;
 using Util;
+using UnityEngine;
 
 namespace AIPlayer
 {
@@ -13,6 +14,9 @@ namespace AIPlayer
         private AIPlayerDataCurrency _aiPlayerDataCurrency;
         private AIPlayerDataUnit _aiPlayerUnitData;
         private MDL_Unit _mdlGlobalUnit;
+
+        private float _lastSpawnTime; // 마지막 유닛 소환 시간
+        private const float _spawnCooldown = 2f; // 쿨타임 (2초)
 
         public void Init(AIPlayerRoot root)
         {
@@ -30,6 +34,8 @@ namespace AIPlayer
         /// <returns>유닛 생산이 가능하면 true, 불가능하면 false 반환</returns>
         public bool CanSpawnUnit()
         {
+            // 쿨타임이 지나지 않았다면 false
+            if (Time.time - _lastSpawnTime < _spawnCooldown) return false;
             if (!_aiPlayerUnitData.HasValidNodes) return false;
             if (!_aiPlayerUnitData.IsSpawnPossible()) return false;
             
@@ -45,11 +51,16 @@ namespace AIPlayer
         /// <returns>생산 성공 여부</returns>
         public TaskStatus TrySpawnUnit()
         {
+            // 유닛 소환 및 비용 차감
             ConsumeSpawnCost();
 
+            // 랜덤 등급, 타입으로 소환
             SUnitSpawnRequestData data = new SUnitSpawnRequestData(GetRandomGrade(), GetRandomType(), EPlayerSide.North);
             _mdlGlobalUnit.SpawnUnit(data);
-            
+
+            // 마지막 소환 시간 갱신
+            _lastSpawnTime = Time.time;
+
             return TaskStatus.Success;
         }
         
@@ -72,8 +83,8 @@ namespace AIPlayer
 
             if (roll < 50) return EUnitGrade.Common;   // 50%
             if (roll < 80) return EUnitGrade.Rare;     // 30%
-            if (roll < 95) return EUnitGrade.Hero;   // 15%
-            return EUnitGrade.Mythic;                   // 5%
+            if (roll < 95) return EUnitGrade.Hero;     // 15%
+            return EUnitGrade.Mythic;                  // 5%
         }
 
         private EUnitType GetRandomType()
