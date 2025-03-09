@@ -1,3 +1,4 @@
+using System;
 using UniRx;
 
 namespace Model
@@ -13,7 +14,7 @@ namespace Model
         public IReadOnlyReactiveProperty<uint> Gold => _gold;
         public uint GetGold() => _gold.Value;
         public void AddGold(uint amount) => _gold.Value += amount;
-        public void SubGold(uint amount) => _gold.Value -= amount;
+        public void SubGold(uint amount) => _gold.Value = Math.Max(0, _gold.Value - amount);
 
         // 다이아몬드 관련 Rx
         private const uint INITIAL_DIAMOND = 3;
