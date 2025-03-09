@@ -18,6 +18,8 @@ namespace UI
         [SerializeField] private TextMeshProUGUI _mainTxt;
         [SerializeField] private TextMeshProUGUI _subTxt;
         [SerializeField] internal Button startBtn; 
+        
+        private bool _isBlinking = true; // 알파값 변경을 제어하는 플래그
 
         private void Awake()
         {
@@ -28,14 +30,36 @@ namespace UI
             
             _subTxt.gameObject.SetActive(false);
         }
+
+        private void Start()
+        {
+            BlinkMainText().Forget(); // 부드러운 깜빡임 시작
+        }
         
         public async UniTaskVoid StartGameDirection()
         {
             _mainTxt.SetText("게임 시작!");
             
             await DoorAction(true);
+            _isBlinking = false; // 깜빡임 정지
+            _mainTxt.DOFade(1f, 0.5f); // 알파값 1로 고정
         }
         
+        /// <summary>
+        /// _mainTxt 알파값을 부드럽게 1초 간격으로 0과 1 사이로 전환하는 비동기 루프
+        /// </summary>
+        private async UniTaskVoid BlinkMainText()
+        {
+            while (_isBlinking)
+            {
+                await _mainTxt.DOFade(0f, 1f).SetEase(Ease.InOutSine).AsyncWaitForCompletion();
+                await _mainTxt.DOFade(1f, 1f).SetEase(Ease.InOutSine).AsyncWaitForCompletion();
+            }
+
+            // 깜빡임이 멈춘 후 알파값 1로 설정
+            _mainTxt.DOFade(1f, 0.5f);
+        }
+
         /// <summary>
         /// 게임 종료 연출 (클리어/실패 구분 가능)
         /// </summary>
