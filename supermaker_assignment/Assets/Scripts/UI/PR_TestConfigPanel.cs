@@ -23,6 +23,8 @@ namespace UI
             AssertHelper.NotNull(typeof(PR_TestConfigPanel), mdlSystem);
             MDL_Currency mdlCurrency = dataManager.Currency;
             AssertHelper.NotNull(typeof(PR_TestConfigPanel), mdlCurrency);
+            MDL_Unit mdlUnit = dataManager.Unit;
+            AssertHelper.NotNull(typeof(PR_TestConfigPanel), mdlUnit);
             
             mdlSystem.OnTestConfigState
                 .Subscribe(vw!.SetCanvasActive)
@@ -34,6 +36,10 @@ namespace UI
             
             vw.addDia.selectBut.OnClickAsObservable()
                 .Subscribe(_ => mdlCurrency.AddDiamond(1))
+                .AddTo(disposable);
+
+            vw.addUnitLimit.selectBut.OnClickAsObservable()
+                .Subscribe(_ => mdlUnit.SetMaxPossibleSpawnCount(mdlUnit.GetMaxPossibleSpawnCount() + 1))
                 .AddTo(disposable);
         }
     }
