@@ -14,7 +14,6 @@ namespace UI
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
         private readonly MDL_UnitPlacementField _mdlUnitPlacementField;
         private readonly MDL_Currency _mdlCurrency;
-        private readonly MDL_MythicUnitCombination _mdlMythicUnitCombination;
         private readonly MDL_Unit _mdlUnit;
         private readonly MDL_UnitResources _mdlUnitResources;
 
@@ -26,8 +25,6 @@ namespace UI
             var dataManager = RootManager.Ins.DataManager;
             _mdlCurrency = dataManager.Currency;
             AssertHelper.NotNull(typeof(PR_UnitPlacementSelection), _mdlCurrency);
-            _mdlMythicUnitCombination = dataManager.MythicUnitCombination;
-            AssertHelper.NotNull(typeof(PR_UnitPlacementSelection), _mdlMythicUnitCombination);
             _mdlUnit = dataManager.Unit;
             AssertHelper.NotNull(typeof(PR_UnitPlacementSelection), _mdlUnit);
             _mdlUnitResources = dataManager.UnitResources;
@@ -77,11 +74,6 @@ namespace UI
                 _mdlUnitPlacementField.SelectNode(null);
                 _mdlUnit.SetHasValidNodesStatus(true);
             }
-            
-            foreach (var elem in _mdlMythicUnitCombination.GetCombinationFlagCheckers())
-            {
-                elem.HandleRemoveUnit(selectedNode);
-            }
         }
 
         /// <summary>
@@ -98,10 +90,6 @@ namespace UI
 
             selectedNode.BeforeMergeClearUnit();
             _mdlUnitPlacementField.SelectNode(null);
-            foreach (var elem in _mdlMythicUnitCombination.GetCombinationFlagCheckers())
-            {
-                elem.HandleRemoveUnit(selectedNode);
-            }
             
             EUnitGrade targetGrade = GetNextGrade(grade);
             AssertHelper.NotEqualsEnum(typeof(PR_UnitPlacementSelection), targetGrade, EUnitGrade.None);

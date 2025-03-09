@@ -51,6 +51,16 @@ namespace UI
             _mdlMythicUnitCombination.OnMythicUnitCombination
                 .Subscribe(OnClickCombinationUnitListItem)
                 .AddTo(disposable);
+            
+            _mdlGameSystem.MythicCombinationPanelVisible
+                .Subscribe(isVisible =>
+                {
+                    if (isVisible)
+                        AddAllSouthUnitsToCheckers(); // 모든 South 노드 추가
+                    else
+                        RemoveAllSouthUnitsFromCheckers(); // 모든 South 노드 제거
+                })
+                .AddTo(disposable);
         }
 
         private void TryCombineMythicUnit()
@@ -60,7 +70,7 @@ namespace UI
             // 조합 가능한 유닛 탐색
             UnitCombinationPossibleChecker selectedChecker = null;
 
-            // 횬재 클릭한 조합 가능한 신화 유닛 Checker 탐색
+            // 현재 클릭된 신화 유닛을 담당하는 Checker 탐색
             foreach (var elem in _combinationCheckers)
             {
                 if (elem.ResultUnitType == _currentClickedUnitType)
@@ -72,7 +82,7 @@ namespace UI
             
             AssertHelper.NotNull(typeof(PR_MythicUnitCombinationPanel), selectedChecker);
 
-            // 기존 유닛 제거를 위한 노드 수집
+            // 합쳐지기 전, 제물이 되는 유닛 제거를 위한 노드 수집
             foreach (var nodeEntry in selectedChecker!.NodeConditionMap) // 이미 매칭된 노드 활용
             {
                 _removeNodes.Add(nodeEntry.Key);
@@ -82,7 +92,6 @@ namespace UI
             foreach (var node in _removeNodes)
             {
                 node.SubUnit(); // 기존 유닛 제거
-                selectedChecker.HandleRemoveUnit(node); // 내부 카운트 정리
             }
 
             ApplyUnitCount();
@@ -111,6 +120,36 @@ namespace UI
         {
             _vw.SetCurrentUnitData(data);
             _currentClickedUnitType = data.UnitType;
+        }
+        
+        private void AddAllSouthUnitsToCheckers()
+        {
+            var southGridNodes = RootManager.Ins.UnitGridNodeManager.SouthGridNodes;
+
+            foreach (var node in southGridNodes)
+            {
+                if (node.UnitGroup.IsEmpty()) continue;
+
+                foreach (var checker in _combinationCheckers)
+                {
+                    checker.HandleAddUnit(node);
+                }
+            }
+        }
+
+        private void RemoveAllSouthUnitsFromCheckers()
+        {
+            var southGridNodes = RootManager.Ins.UnitGridNodeManager.SouthGridNodes;
+
+            foreach (var node in southGridNodes)
+            {
+                if (node.UnitGroup.IsEmpty()) continue;
+
+                foreach (var checker in _combinationCheckers)
+                {
+                    checker.HandleRemoveUnit(node);
+                }
+            }
         }
     }
 }

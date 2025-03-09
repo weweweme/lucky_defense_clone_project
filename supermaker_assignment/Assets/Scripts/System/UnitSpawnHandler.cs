@@ -14,7 +14,6 @@ namespace System
         private readonly UnitBasePool _unitBasePool;
         private readonly UnitGridNodeManager _unitGridNodeManager;
         private MDL_Unit _mdlUnit;
-        private MDL_MythicUnitCombination _mdlMythicUnitCombination;
         
         public UnitSpawnHandler(RootManager rootManager)
         {
@@ -35,8 +34,6 @@ namespace System
             _mdlUnit.OnUnitSpawn
                 .Subscribe(SpawnUnit)
                 .AddTo(disposable);
-            
-            _mdlMythicUnitCombination = dataManager.MythicUnitCombination;
         }
         
         private void SpawnUnit(SUnitSpawnRequestData data)
@@ -64,10 +61,6 @@ namespace System
             else
             {
                 _mdlUnit.SetHasValidNodesStatus(hasAvailableNode);
-                foreach (var elem in _mdlMythicUnitCombination.GetCombinationFlagCheckers())
-                {
-                    elem.HandleAddUnit(placementNode);
-                }
             }
         }
     }
