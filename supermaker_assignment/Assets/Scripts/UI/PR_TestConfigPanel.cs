@@ -11,7 +11,7 @@ namespace UI
     /// </summary>
     public sealed class PR_TestConfigPanel : Presenter
     {
-        public override void Init(DataManager dataManager, View view)
+        public override void Init(DataManager dataManager, View view, CompositeDisposable disposable)
         {
             AssertHelper.NotNull(typeof(PR_TestConfigPanel), dataManager);
             AssertHelper.NotNull(typeof(PR_TestConfigPanel), view);

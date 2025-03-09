@@ -14,7 +14,7 @@ namespace UI
     {
         private MDL_Currency _currency;
         
-        public override void Init(DataManager dataManager, View view)
+        public override void Init(DataManager dataManager, View view, CompositeDisposable disposable)
         {
             AssertHelper.NotNull(typeof(PR_GoldCurrency), dataManager);
 

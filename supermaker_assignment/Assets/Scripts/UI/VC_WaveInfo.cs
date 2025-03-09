@@ -31,18 +31,10 @@ namespace UI
 
         public override void Init(DataManager dataManager)
         {
-            _prNextWaveTimer.Init(dataManager, _vwNextWaveTimer);
-            _prCurrentWaveCount.Init(dataManager, _vwCurrentWaveCount);
-            _prCurrentAliveEnemyCount.Init(dataManager, vwCurrentAliveEnemyCount);
-            _prInitializeWave.Init(dataManager, _vwInitializeWave);
-        }
-
-        protected override void ReleasePresenter()
-        {
-            _prNextWaveTimer.Dispose();
-            _prCurrentWaveCount.Dispose();
-            _prCurrentAliveEnemyCount.Dispose();
-            _prInitializeWave.Dispose();
+            _prNextWaveTimer.Init(dataManager, _vwNextWaveTimer, disposable);
+            _prCurrentWaveCount.Init(dataManager, _vwCurrentWaveCount, disposable);
+            _prCurrentAliveEnemyCount.Init(dataManager, vwCurrentAliveEnemyCount, disposable);
+            _prInitializeWave.Init(dataManager, _vwInitializeWave, disposable);
         }
     }
 }

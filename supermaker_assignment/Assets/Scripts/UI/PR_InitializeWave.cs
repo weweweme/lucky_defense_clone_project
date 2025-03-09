@@ -8,7 +8,7 @@ namespace UI
 {
     public sealed class PR_InitializeWave : Presenter
     {
-        public override void Init(DataManager dataManager, View view)
+        public override void Init(DataManager dataManager, View view, CompositeDisposable disposable)
         {
             AssertHelper.NotNull(typeof(PR_InitializeWave), dataManager);
             

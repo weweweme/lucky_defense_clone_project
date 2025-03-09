@@ -31,18 +31,10 @@ namespace UI
 
         public override void Init(DataManager dataManager)
         {
-            _prGameSpeedMultiplier.Init(dataManager, _vwGameSpeedMultiplier);
-            _prGameDoor.Init(dataManager, _vwGameDoor);
-            _prTestConfigToggle.Init(dataManager, _vwTestConfigToggle);
-            _prTestConfigPanel.Init(dataManager, _vwTestConfigPanel);
-        }
-
-        protected override void ReleasePresenter()
-        {
-            _prGameSpeedMultiplier.Dispose();
-            _prGameDoor.Dispose();
-            _prTestConfigToggle.Dispose();
-            _prTestConfigPanel.Dispose();
+            _prGameSpeedMultiplier.Init(dataManager, _vwGameSpeedMultiplier, disposable);
+            _prGameDoor.Init(dataManager, _vwGameDoor, disposable);
+            _prTestConfigToggle.Init(dataManager, _vwTestConfigToggle, disposable);
+            _prTestConfigPanel.Init(dataManager, _vwTestConfigPanel, disposable);
         }
     }
 }

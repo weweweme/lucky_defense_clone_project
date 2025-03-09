@@ -21,7 +21,7 @@ namespace UI
         private EUnitType _currentClickedUnitType;
         private MDL_GameSystem _mdlGameSystem;
 
-        public override void Init(DataManager dataManager, View view)
+        public override void Init(DataManager dataManager, View view, CompositeDisposable disposable)
         {
             AssertHelper.NotNull(typeof(PR_MythicUnitCombinationPanel), dataManager);
 

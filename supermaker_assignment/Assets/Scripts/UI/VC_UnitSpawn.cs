@@ -23,14 +23,8 @@ namespace UI
 
         public override void Init(DataManager dataManager)
         {
-            _prUnitSpawn.Init(dataManager, _vwUnitSpawn);
-            _prSpawnNeededGold.Init(dataManager, _vwSpawnNeededGold);
-        }
-
-        protected override void ReleasePresenter()
-        {
-            _prUnitSpawn.Dispose();
-            _prSpawnNeededGold.Dispose();
+            _prUnitSpawn.Init(dataManager, _vwUnitSpawn, disposable);
+            _prSpawnNeededGold.Init(dataManager, _vwSpawnNeededGold, disposable);
         }
     }
 }
