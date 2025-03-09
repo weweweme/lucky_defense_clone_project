@@ -12446,6 +12446,7 @@ GameObject:
   - component: {fileID: 1257651718}
   - component: {fileID: 1257651717}
   - component: {fileID: 1257651716}
+  - component: {fileID: 1257651719}
   m_Layer: 5
   m_Name: VW_Game Door
   m_TagString: Untagged
@@ -12469,10 +12470,10 @@ RectTransform:
   - {fileID: 1382825602}
   m_Father: {fileID: 1473418057}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 1920}
+  m_SizeDelta: {x: 1080, y: 1920}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1257651716
 Canvas:
@@ -12535,6 +12536,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1257651714}
   m_CullTransparentMesh: 1
+--- !u!114 &1257651719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257651714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cd2078f70d92495d815134e82ce0b87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameDoor: {fileID: 1257651715}
+  _mainTxt: {fileID: 652392874}
+  _subTxt: {fileID: 1382825603}
 --- !u!1 &1260206555
 GameObject:
   m_ObjectHideFlags: 0
@@ -14064,6 +14080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rootManager: {fileID: 1939053484}
   _vwGameSpeedMultiplier: {fileID: 748038305}
+  _vwGameDoor: {fileID: 1257651719}
 --- !u!1 &1482889022
 GameObject:
   m_ObjectHideFlags: 0
