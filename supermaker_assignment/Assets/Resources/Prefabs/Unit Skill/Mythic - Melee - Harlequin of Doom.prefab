@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3574456435059514505}
   - component: {fileID: 1676711727790442139}
-  - component: {fileID: 7222441192645697510}
+  - component: {fileID: 1602925456639289470}
   m_Layer: 30
   m_Name: Mythic - Melee - Harlequin of Doom
   m_TagString: Untagged
@@ -38,6 +38,10 @@ Transform:
   - {fileID: 7548218851900548800}
   - {fileID: 2657173587823018306}
   - {fileID: 561684158028191928}
+  - {fileID: 6762496935444053985}
+  - {fileID: 4865762178165957132}
+  - {fileID: 8177319452826094893}
+  - {fileID: 5526900227230875970}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &1676711727790442139
@@ -75,7 +79,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.5
---- !u!114 &7222441192645697510
+--- !u!114 &1602925456639289470
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,22 +88,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 5771825681619198603}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36e618aa86bfe402596d59f977ee9ea5, type: 3}
+  m_Script: {fileID: 11500000, guid: da540c074c80b4f2dbe23fdcff63d8c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effectDuration: 3
   _effectInterval: 0.1
+  _effectCount: 10
   _damageRange: {fileID: 1676711727790442139}
-  _damage: 20
-  _particleEffects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _damagePerTick: 50
+  _initialEffect: {fileID: 4116707047671966711}
+  _secondaryEffects:
+  - {fileID: 4116707047671966711}
+  - {fileID: 5501300936291724736}
+  - {fileID: 8568199329286946022}
+  - {fileID: 7548218851900548803}
+  - {fileID: 2657173587823018305}
+  - {fileID: 561684158028191931}
+  - {fileID: 6762496935444053986}
+  - {fileID: 4865762178165957135}
+  - {fileID: 8177319452826094894}
+  - {fileID: 5526900227230875969}
 --- !u!1001 &534863401145016542
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -168,6 +175,11 @@ PrefabInstance:
 --- !u!4 &7548218851900548800 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+  m_PrefabInstance: {fileID: 534863401145016542}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7548218851900548803 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8046980770682324509, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
   m_PrefabInstance: {fileID: 534863401145016542}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1820797322306009851
@@ -240,6 +252,161 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
   m_PrefabInstance: {fileID: 1820797322306009851}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &8568199329286946022 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8046980770682324509, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+  m_PrefabInstance: {fileID: 1820797322306009851}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2222300843862657843
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3574456435059514505}
+    m_Modifications:
+    - target: {fileID: 8046980770682324499, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_Name
+      value: Mythic Melee Unit VFX 1 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324509, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324509, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+--- !u!4 &8177319452826094893 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+  m_PrefabInstance: {fileID: 2222300843862657843}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8177319452826094894 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8046980770682324509, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+  m_PrefabInstance: {fileID: 2222300843862657843}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2530987914120398684
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3574456435059514505}
+    m_Modifications:
+    - target: {fileID: 8046980770682324499, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_Name
+      value: Mythic Melee Unit VFX 1 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324509, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324509, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+--- !u!198 &5526900227230875969 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8046980770682324509, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+  m_PrefabInstance: {fileID: 2530987914120398684}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5526900227230875970 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+  m_PrefabInstance: {fileID: 2530987914120398684}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2590715947704282077
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -305,10 +472,165 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+--- !u!198 &5501300936291724736 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8046980770682324509, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+  m_PrefabInstance: {fileID: 2590715947704282077}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5501300936291724739 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
   m_PrefabInstance: {fileID: 2590715947704282077}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3182416059499521042
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3574456435059514505}
+    m_Modifications:
+    - target: {fileID: 8046980770682324499, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_Name
+      value: Mythic Melee Unit VFX 1 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324509, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324509, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+--- !u!4 &4865762178165957132 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+  m_PrefabInstance: {fileID: 3182416059499521042}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &4865762178165957135 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8046980770682324509, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+  m_PrefabInstance: {fileID: 3182416059499521042}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3635998376734243327
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3574456435059514505}
+    m_Modifications:
+    - target: {fileID: 8046980770682324499, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_Name
+      value: Mythic Melee Unit VFX 1 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324509, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324509, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+--- !u!4 &6762496935444053985 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+  m_PrefabInstance: {fileID: 3635998376734243327}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6762496935444053986 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8046980770682324509, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+  m_PrefabInstance: {fileID: 3635998376734243327}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5425908655022573404
 PrefabInstance:
@@ -375,6 +697,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+--- !u!198 &2657173587823018305 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8046980770682324509, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+  m_PrefabInstance: {fileID: 5425908655022573404}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2657173587823018306 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
@@ -450,6 +777,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
   m_PrefabInstance: {fileID: 6236893259092651498}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &4116707047671966711 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8046980770682324509, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+  m_PrefabInstance: {fileID: 6236893259092651498}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7523015393440915110
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -518,6 +850,11 @@ PrefabInstance:
 --- !u!4 &561684158028191928 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8046980770682324510, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
+  m_PrefabInstance: {fileID: 7523015393440915110}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &561684158028191931 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8046980770682324509, guid: 3b336ccc3c797449eb0277442c71a6be, type: 3}
   m_PrefabInstance: {fileID: 7523015393440915110}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8630938200053591915
