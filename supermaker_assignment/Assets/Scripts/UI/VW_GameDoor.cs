@@ -5,6 +5,7 @@ using UnityEngine;
 using Util;
 using DG.Tweening;
 using UnityEditor;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -16,12 +17,14 @@ namespace UI
         [SerializeField] private RectTransform _gameDoor;
         [SerializeField] private TextMeshProUGUI _mainTxt;
         [SerializeField] private TextMeshProUGUI _subTxt;
+        [SerializeField] internal Button _btnStart; 
 
         private void Awake()
         {
             AssertHelper.NotNull(typeof(VW_GameDoor), _gameDoor);
             AssertHelper.NotNull(typeof(VW_GameDoor), _mainTxt);
             AssertHelper.NotNull(typeof(VW_GameDoor), _subTxt);
+            AssertHelper.NotNull(typeof(VW_GameDoor), _btnStart);
         }
         
         public async UniTaskVoid EndGameDirection()
