@@ -110,6 +110,7 @@ namespace Enemy
             
             uint currentAliveEnemyCount = dependencyContainer.mdlEnemy.CurrentAliveEnemyCount.Value;
             dependencyContainer.mdlEnemy.SetCurrentEnemyCount(currentAliveEnemyCount - 1);
+            _mdlEnemyStat.SetCurrentHp(_mdlEnemyStat.MaxHp);
             
             await _spriteController.PlayDeathAnimation();
             dependencyContainer.enemyBasePool.ReleaseObject(_enemyRoot);
