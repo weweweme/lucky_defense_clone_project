@@ -21,6 +21,18 @@ namespace Unit
         /// 스킬의 대상이 존재하지 않을 수도 있습니다.
         /// </summary>
         protected Transform targetTr;
+        
+        /// <summary>
+        /// 스킬 오브젝트를 관리하는 풀의 참조입니다.
+        /// 스킬을 사용한 후 반환할 때 활용됩니다.
+        /// </summary>
+        protected UnitSkillPool skillPool;
+        
+        /// <summary>
+        /// 스킬이 생성된 후 호출되며, 해당 스킬이 속한 풀을 설정합니다.
+        /// </summary>
+        /// <param name="pool">스킬 오브젝트 풀</param>
+        public void CreatePooledItemInit(UnitSkillPool pool) => skillPool = pool;
 
         /// <summary>
         /// 스킬의 시작 위치를 설정합니다.

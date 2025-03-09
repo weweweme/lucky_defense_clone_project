@@ -7,5 +7,12 @@ namespace Unit
     /// </summary>
     public sealed class UnitSkillPool : ObjectPoolBase<UnitSkillBase>
     {
+        protected override UnitSkillBase CreatePooledItem()
+        {
+            var enemy = base.CreatePooledItem();
+            enemy.CreatePooledItemInit(this);
+            
+            return base.CreatePooledItem();
+        }
     }
 }
