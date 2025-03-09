@@ -3750,8 +3750,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9084345032183123822, guid: f4693a67763414f9f82caf0e50a2cd7d, type: 3}
       propertyPath: m_text
-      value: "\uC720\uC800 \uC720\uB2DB \uC218 \uC81C\uD55C \uC0C1\uD5A5 (\uCD5C\uB300
-        50)"
+      value: "\uC720\uB2DB \uC218 \uC81C\uD55C \uC0C1\uD5A5 (\uCD5C\uB300 50)"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9085,6 +9084,7 @@ MonoBehaviour:
   _canvas: {fileID: 826629098}
   addGold: {fileID: 796187867}
   addDia: {fileID: 1531054310}
+  addUnitLimit: {fileID: 961815420}
 --- !u!114 &826629100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10034,6 +10034,17 @@ Transform:
   - {fileID: 293709193}
   m_Father: {fileID: 1813658366}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &961815420 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2349667323445575343, guid: f4693a67763414f9f82caf0e50a2cd7d, type: 3}
+  m_PrefabInstance: {fileID: 420060059}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d26835882764f1d9aa574581b4fa2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &962097193
 GameObject:
   m_ObjectHideFlags: 0
