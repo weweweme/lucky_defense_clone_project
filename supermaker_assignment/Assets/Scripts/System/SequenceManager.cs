@@ -1,3 +1,4 @@
+using Model;
 using UniRx;
 using Util;
 
@@ -14,15 +15,21 @@ namespace System
         public void Init(RootManager rootManager)
         {
             _rootManager = rootManager;
+            MDL_GameSystem mdlSystem = rootManager.DataManager.GameSystem;
             rootManager.AIPlayerRoot.Init(rootManager);
             
-            rootManager.DataManager.GameSystem.OnGameFlow
+            mdlSystem.OnGameFlow
                 .Where(state => state == EGameState.GameOver)
                 .Subscribe(_ => HandleGameOver())
                 .AddTo(_disposable);
+            
+            mdlSystem.OnGameFlow
+                .Where(state => state == EGameState.Start)
+                .Subscribe(_ => StartGame())
+                .AddTo(_disposable);
         }
         
-        public void StartGame()
+        private void StartGame()
         {
             _rootManager.WaveManager.WaveStart();
             _rootManager.AIPlayerRoot.ActivateAI();

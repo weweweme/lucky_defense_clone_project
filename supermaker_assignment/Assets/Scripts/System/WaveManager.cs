@@ -52,13 +52,6 @@ namespace System
         /// <param name="token">작업 취소 토큰</param>
         private async UniTaskVoid LoopAsync(CancellationToken token)
         {
-            // for (int i = 3; i > 0; --i)
-            // {
-            //     Debug.Log(i);
-            //     
-            //     await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: token);
-            // }
-            
             while (!token.IsCancellationRequested)
             {
                 StartWave(token);
