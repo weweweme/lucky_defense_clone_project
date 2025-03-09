@@ -64,7 +64,9 @@ namespace Unit.Unit_Skill
 
             // 4. 스킬 오브젝트 풀로 반환
             _explosionEffect.Stop();
-            skillPool.ReleaseObject(this);
+
+            if (IsOwned()) return;
+            SkillRelease();
         }
         
         private void ApplyExplosionDamage(Vector3 explosionPosition)

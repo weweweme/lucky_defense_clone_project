@@ -36,11 +36,11 @@ namespace UI
             return (grade, type) switch
             {
                 (EUnitGrade.Rare, EUnitType.Ranged) => _rareRangeSkillPool.GetObject(),
-                (EUnitGrade.Rare, EUnitType.Melee) => _rareMeleeSkillPool.GetObject(),
-                (EUnitGrade.Hero, EUnitType.Ranged) => _heroRangeSkillPool.GetObject(),
-                (EUnitGrade.Hero, EUnitType.Melee) => _heroMeleeSkillPool.GetObject(),
-                (EUnitGrade.Mythic, EUnitType.Melee) => _mythicMeleeSkillPool.GetObject(),
-                (EUnitGrade.Mythic, EUnitType.Ranged) => _mythicRangeSkillPool.GetObject(),
+                // (EUnitGrade.Rare, EUnitType.Melee) => _rareMeleeSkillPool.GetObject(),
+                // (EUnitGrade.Hero, EUnitType.Ranged) => _heroRangeSkillPool.GetObject(),
+                // (EUnitGrade.Hero, EUnitType.Melee) => _heroMeleeSkillPool.GetObject(),
+                // (EUnitGrade.Mythic, EUnitType.Melee) => _mythicMeleeSkillPool.GetObject(),
+                // (EUnitGrade.Mythic, EUnitType.Ranged) => _mythicRangeSkillPool.GetObject(),
                 _ => null // 신화 등급 스킬은 별도 관리
             };
         }

@@ -67,6 +67,9 @@ namespace Unit
         public void ReleaseObject()
         {
             _btController.Dispose();
+            skillController.ClearOwned();
+            grade = EUnitGrade.None;
+            type = EUnitType.None;
             dependencyContainer.unitBasePool.ReleaseObject(this);
         }
     }

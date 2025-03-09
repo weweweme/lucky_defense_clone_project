@@ -12,7 +12,7 @@ namespace Unit
             var enemy = base.CreatePooledItem();
             enemy.CreatePooledItemInit(this);
             
-            return base.CreatePooledItem();
+            return enemy;
         }
 
         protected override void OnReturnedToPool(UnitSkillBase item)

@@ -27,7 +27,12 @@ namespace Unit
         public void SetCurrentSkillGrade(UnitRoot root)
         {
             _skill = _unitSkillPoolManager.GetSkill(root.grade, root.type);
-            _skill.SetStartPoint(transform);
+            
+            if (_skill == null)
+            {
+                return;
+            }
+            _skill.SetOwned(root);
         }
 
         /// <summary>
@@ -35,6 +40,7 @@ namespace Unit
         /// </summary>
         public TaskStatus UseSkill()
         {
+            _skill.SetStartPoint(transform);
             _skill.SetTarget(_unitAttackController.CurrentTarget.Transform);
             _skill.UseSkill();
             
@@ -49,6 +55,12 @@ namespace Unit
         {
             _skillCooldown = _skillCooldownDuration;
             StartCooldownTimer().Forget();
+        }
+        
+        public void ClearOwned()
+        {
+            if (_skill == null) return;
+            _skill.ClearOwned();
         }
 
         /// <summary>
@@ -66,6 +78,10 @@ namespace Unit
         /// <summary>
         /// 스킬이 사용 가능한 상태인지 확인합니다.
         /// </summary>
-        public bool IsSkillReady() => _skillCooldown <= 0;
+        public bool IsSkillReady()
+        {
+            if (_skill == null) return false;
+            return _skillCooldown <= 0;
+        }
     }
 }
