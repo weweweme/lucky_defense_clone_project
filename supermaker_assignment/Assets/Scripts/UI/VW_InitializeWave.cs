@@ -63,6 +63,11 @@ namespace UI
             // 5초 후 애니메이션 정지
             _topWaveArrow.DOKill();
             _bottomWaveArrow.DOKill();
+            
+            _topWaveArrow.gameObject.SetActive(false);
+            _bottomWaveArrow.gameObject.SetActive(false);
+            _topWaveCountTxt.gameObject.SetActive(false);
+            _bottomWaveCountTxt.gameObject.SetActive(false);
         }
     }
 }
