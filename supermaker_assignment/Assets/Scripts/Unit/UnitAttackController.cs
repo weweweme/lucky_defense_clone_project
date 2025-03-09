@@ -38,20 +38,18 @@ namespace Unit
         /// 유닛의 공격 속도 (초당 공격 횟수)입니다.
         /// </summary>
         private float _fireRate = float.MaxValue;
+        
         /// <summary>
         /// 유닛의 다음 공격까지 발사까지 남은 쿨다운 시간(초)입니다.
         /// </summary>
         private float _fireCooldown;
 
         /// <summary>
-        /// 유닛이 현재 공격 중인지 여부입니다.
-        /// </summary>
-        private bool _isAttacking;
-
-        /// <summary>
         /// 유닛의 데미지입니다.
         /// </summary>
         private uint _damage = uint.MaxValue;
+        
+        private UnitSpriteController _spriteController;
 
         private void Awake()
         {
@@ -59,10 +57,11 @@ namespace Unit
             _attackRange.radius = float.MaxValue;
         }
 
-        public void CreatePooledItemInit()
+        public void CreatePooledItemInit(UnitRoot root)
         {
             CancelTokenHelper.GetToken(ref _cts);
             StartAttacking(_cts.Token).Forget();
+            _spriteController = root.spriteController;
         }
 
         public void ChangeAttackData(UnitRoot root)
@@ -100,7 +99,12 @@ namespace Unit
 
             // 탐색 범위의 제곱과 비교
             float detectRange = _attackRange.radius;
-            return distance <= detectRange * detectRange;
+            bool isInRange = distance <= detectRange * detectRange;
+
+            // 애니메이션 상태 변경
+            _spriteController.SetIsAttacking(isInRange);
+
+            return isInRange;
         }
 
         /// <summary>

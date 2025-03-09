@@ -29,6 +29,11 @@ namespace Unit
         /// </summary>
         private MDL_UnitResources _mdl;
 
+        /// <summary>
+        /// 어택 애니메이션을 위한 해시값
+        /// </summary>
+        private static readonly int _isAttackingHash = Animator.StringToHash("isAttacking");
+
         private void Awake()
         {
             AssertHelper.NotNull(typeof(UnitSpriteController), _spriteRenderer);
@@ -61,6 +66,15 @@ namespace Unit
             _spriteRenderer.material = material;
             _spriteRenderer.transform.localScale = Vector3.one * metaData.ScaleSize;
             _animator.runtimeAnimatorController = metaData.AnimatorController;
+        }
+
+        /// <summary>
+        /// 현재 어택 애니메이션의 활성화 여부입니다
+        /// </summary>
+        /// <param name="value"></param>
+        public void SetIsAttacking(bool value)
+        {
+            _animator.SetBool(_isAttackingHash, value);   
         }
     }
 }
