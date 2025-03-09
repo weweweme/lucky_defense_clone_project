@@ -2,7 +2,6 @@ using System;
 using Cysharp.Threading.Tasks;
 using Model;
 using UI;
-using UniRx;
 using UnityEngine;
 using Util;
 
@@ -66,13 +65,15 @@ namespace Enemy
 
             uint currentSpawnWaveIdx = _enemyRoot.currentSpawnWaveIdx;
             uint currentWaveMaxHp = _maxHP + currentSpawnWaveIdx * 20;
+            bool isBoss = _enemyRoot.type == EEnemyType.Boss;
 
             // 보스인지 체크 후 HP * 100 적용
-            if (_enemyRoot.type == EEnemyType.Boss)
+            if (isBoss)
             {
-                currentWaveMaxHp *= 100;
+                currentWaveMaxHp *= 50;
             }
 
+            _view.SetPositionAndScale(isBoss);
             _mdlEnemyStat.SetStat(currentWaveMaxHp);
         }
 
@@ -108,7 +109,6 @@ namespace Enemy
             
             EnemyDependencyContainer dependencyContainer = _enemyRoot.dependencyContainer;
             dependencyContainer.mdlEnemy.KillEnemy();
-            Debug.Log("Kill Enemy");
             
             uint currentAliveEnemyCount = dependencyContainer.mdlEnemy.CurrentAliveEnemyCount.Value;
             dependencyContainer.mdlEnemy.SetCurrentEnemyCount(currentAliveEnemyCount - 1);

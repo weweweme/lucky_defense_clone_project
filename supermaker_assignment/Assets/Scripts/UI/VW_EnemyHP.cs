@@ -10,6 +10,7 @@ namespace UI
     /// </summary>
     public class VW_EnemyHP : View
     {
+        [SerializeField] private RectTransform _rect;
         [SerializeField] private Canvas _canvas;
 
         /// <summary>
@@ -21,6 +22,7 @@ namespace UI
         {
             AssertHelper.NotNull(typeof(VW_EnemyHP), _canvas);
             AssertHelper.NotNull(typeof(VW_EnemyHP), _healthBarImage);
+            AssertHelper.NotNull(typeof(VW_EnemyHP), _rect);
         }
 
         private void Start()
@@ -41,6 +43,26 @@ namespace UI
             // normalizedHealth 값이 0과 1 사이에 있는지 확인
             normalizedHealth = Mathf.Clamp01(normalizedHealth);
             _healthBarImage.fillAmount = normalizedHealth;
+        }
+
+        /// <summary>
+        /// 체력 UI의 위치와 크기를 설정하는 메서드
+        /// </summary>
+        /// <param name="isBoss">보스 여부</param>
+        public void SetPositionAndScale(bool isBoss)
+        {
+            if (_rect == null) return;
+
+            if (isBoss)
+            {
+                _rect.localPosition = new Vector3(0f, 1.08f, 0f); // 보스 UI 위치
+                _rect.localScale = new Vector3(2f, 1f, 1f); // 보스 UI 크기
+            }
+            else
+            {
+                _rect.localPosition = new Vector3(0f, 0f, 0f); // 일반 적 UI 위치
+                _rect.localScale = new Vector3(1f, 1f, 1f); // 일반 적 UI 크기
+            }
         }
     }
 }
