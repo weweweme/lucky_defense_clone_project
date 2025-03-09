@@ -12,6 +12,12 @@ namespace UI
     /// </summary>
     public sealed class PR_GamblePanel : Presenter
     {
+        public struct SGambleResult
+        {
+            public EUnitGrade Grade;
+            public bool IsSuccess;
+        }
+        
         private static readonly Dictionary<EUnitGrade, SGambleMetaData> GAMBLE_META_DATA = new()
         {
             { EUnitGrade.Rare, new SGambleMetaData(EUnitGrade.Rare, 0.6f, 1) },
@@ -20,7 +26,8 @@ namespace UI
         };
         private MDL_Unit _mdlUnit;
         private MDL_Currency _mdlCurrency;
-        
+        private readonly Subject<SGambleResult> _gambleResultSubject = new Subject<SGambleResult>();
+
         public override void Init(DataManager dataManager, View view, CompositeDisposable disposable)
         {
             AssertHelper.NotNull(typeof(PR_GamblePanel), dataManager);
@@ -52,6 +59,10 @@ namespace UI
                     .Subscribe(_ => TryGamble(elem.Value.unitGrade))
                     .AddTo(disposable);
             }
+            
+            _gambleResultSubject
+                .Subscribe(vw.ShowGambleResult)
+                .AddTo(disposable);
         }
 
         private void TryGamble(EUnitGrade grade)
@@ -68,11 +79,11 @@ namespace UI
             bool isSuccess = UnityEngine.Random.Range(0f, 1f) < successProbability;
             if (!isSuccess)
             {
-                // TODO: 실패 UX 추가
+                _gambleResultSubject.OnNext(new SGambleResult { Grade = grade, IsSuccess = false });
                 return;
             }
 
-            // TODO: 성공 UX 추가
+            _gambleResultSubject.OnNext(new SGambleResult { Grade = grade, IsSuccess = true });
             SUnitSpawnRequestData data = new SUnitSpawnRequestData(grade, GetRandomType(), EPlayerSide.South);
             _mdlUnit.SpawnUnit(data);
         }
