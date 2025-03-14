@@ -17,7 +17,7 @@
 
 # 플레이 영상 링크
 - [운빨존많겜 인게임 시스템 모작 (클리어)](https://youtu.be/5-9P88vKSoI)
-- [운빨존많겜 인게임 시스템 모작 (게임오버](https://youtube.com/shorts/AphtjLnGvn8?feature=share)
+- [운빨존많겜 인게임 시스템 모작 (게임오버)](https://youtube.com/shorts/AphtjLnGvn8?feature=share)
 
 
 # 주요 구현
